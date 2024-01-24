@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="content-script-type" content="text/javascript">
+    <title>Altas STB</title>
+    <!-- script type="text/javascript" src="js/jquery.js"></script-->
+    <script type="text/javascript" src="js/contratos.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/actb.js"></script>
+    <link href="css/cssLayout.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+        <table align="center" width="800" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td>
+              <div id="content" class="colDer">
+          <link rel="stylesheet" type="text/css" media="all" href="css/calendar-system.css" />
+          <script type="text/javascript">
+            /* <![CDATA[ */
+            function start() {
+              var fills = {'forma:celebrationstate':'forma:celebrationplace'};
+              comboLoader('inc/statecity.xml', fills);
+            }
+            window.onload = start;
+            /* ]]> */
+          </script>
+<form id="forma" name="forma" method="post" action="/contract/generalInfoNomina.jsf" enctype="application/x-www-form-urlencoded">
+<input type="hidden" name="forma" value="forma" />
+
+            <br />
+            <br /><table class="contractStyle" cellpadding="0" cellspacing="0">
+<thead>
+<tr><th colspan="1" scope="colgroup">Datos de Celebracion <div id="prueba"></div></th></tr>
+</thead>
+<tbody>
+<tr>
+<td><table class="contractStyleInner" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr class="tableStyleFirstRow">
+<td>Estado</td>
+<td>Poblaci&oacute;n</td>
+<td>Fecha</td>
+</tr>
+<tr class="tableStyleFirstRow">
+<td>
+                <select id="forma:celebrationstate--" style="width:180px" class="camposx" onchange="loadCity('forma:celebrationstate','forma:celebrationplace');">
+                  <option value="- - Selecione el estado - -">- - Selecione el estado - -</option>
+                </select></td>
+<td>
+                <select id="forma:celebrationplace--" style="width:180px" class="camposx" onchange="refer('forma:celebrationplace')">
+                  <option>- - Selecione una ciudad - -</option>
+                </select></td>
+<td><input id="forma:celebrationdate" type="text" name="forma:celebrationdate" value="" class="camposx" maxlength="10" onkeypress="return block(evt);" style="width:180px" /></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<input id="forma:celebrationplace" type="hidden" name="forma:celebrationplace" value="" /><input id="forma:celebrationstate" type="hidden" name="forma:celebrationstate" value="" />
+            <br />
+            <br />
+            </form>
+  </body>
+</html>

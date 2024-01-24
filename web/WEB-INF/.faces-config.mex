@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JSFFlowViewLayout version="1.0">
+  <Drawing gridVisible="true" snapOn="true" />
+  <JSFFlowResource path="*" location="39,585" dimension="50,36" />
+  <JSFFlowResource path="/home.xhtml" location="0,696" dimension="128,36" />
+  <JSFFlowResource path="/ordenBEM.xhtml" location="1060,267" dimension="159,36" />
+  <JSFFlowResource path="/generalInfoBem.xhtml" location="1042,378" dimension="196,36" />
+  <JSFFlowResource path="/ordenNomina.xhtml" location="18,267" dimension="182,36" />
+  <JSFFlowResource path="/generalInfoNomina.xhtml" location="0,378" dimension="219,36" />
+  <JSFFlowResource path="/ordenAfiliacionAdquirente.xhtml" location="373,0" dimension="266,36" />
+  <JSFFlowResource path="/condicionesEspecialesTPV.xhtml" location="880,160" dimension="262,36" />
+  <JSFFlowResource path="/ordenAfiliacionOIP.xhtml" location="180,730" dimension="184,36" />
+  <JSFFlowResource path="/datosParametricosAdquirente.xhtml" location="373,267" dimension="287,36" />
+  <JSFFlowResource path="/generalInfoAdquirente.xhtml" location="391,378" dimension="240,36" />
+  <JSFFlowResource path="/generalInfoAdquirenteOIP.xhtml" location="480,730" dimension="223,36" />
+  <JSFFlowResource path="/condicionesEspecialesCE.xhtml" location="384,156" dimension="254,36" />
+  <JSFFlowResource path="/muestraContratos.xhtml" location="298,504" dimension="207,36" />
+  <JSFFlowResource path="/muestraContratosOIP.xhtml" location="330,830" dimension="200,36" />
+  <JSFFlowResource path="/criteriaReportOIP.xhtml" location="30,930" dimension="176,36" />
+  <JSFFlowResource path="/criteriaReport.xhtml" location="30,830" dimension="153,36" />
+  <JSFFlowResource path="/enProceso.xhtml" location="480,630" dimension="140,36" />
+  <JSFFlowResource path="/contractReport.xhtml" location="20,160" dimension="161,36" />
+  <JSFFlowResource path="/poblacion.xhtml" location="203,615" dimension="157,36" />
+  <JSFFlowNavigationCase id="*,/home.xhtml,welcome,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="64,621" />
+      <AbsolutePoint location="64,696" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/ordenBEM.xhtml,/generalInfoBem.xhtml,SUCCESS,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1140,303" />
+      <AbsolutePoint location="1140,378" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/generalInfoBem.xhtml,/ordenBEM.xhtml,BACK,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1155,378" />
+      <AbsolutePoint location="1155,303" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/generalInfoBem.xhtml,/muestraContratos.xhtml,SUCCESS,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1140,414" />
+      <AbsolutePoint location="1140,522" />
+      <AbsolutePoint location="505,522" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/ordenNomina.xhtml,/generalInfoNomina.xhtml,SUCCESS,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="109,303" />
+      <AbsolutePoint location="109,378" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/generalInfoNomina.xhtml,/ordenNomina.xhtml,BACK,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="124,378" />
+      <AbsolutePoint location="124,303" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/generalInfoNomina.xhtml,/muestraContratos.xhtml,SUCCESS,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="109,414" />
+      <AbsolutePoint location="109,507" />
+      <AbsolutePoint location="298,507" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/ordenAfiliacionAdquirente.xhtml,/condicionesEspecialesCE.xhtml,COMERCIO_ELECTRONICO,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="511,36" />
+      <AbsolutePoint location="511,156" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/ordenAfiliacionAdquirente.xhtml,/datosParametricosAdquirente.xhtml,CARGOS_AUTOMATICOS,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="376,36" />
+      <AbsolutePoint location="376,267" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/ordenAfiliacionAdquirente.xhtml,/datosParametricosAdquirente.xhtml,SUCCESS,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="639,18" />
+      <AbsolutePoint location="646,18" />
+      <AbsolutePoint location="646,267" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/condicionesEspecialesTPV.xhtml,/generalInfoAdquirente.xhtml,SUCCESS,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1011,196" />
+      <AbsolutePoint location="1011,396" />
+      <AbsolutePoint location="631,396" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/ordenAfiliacionOIP.xhtml,/datosParametricosAdquirente.xhtml,OIP,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="272,730" />
+      <AbsolutePoint location="272,718" />
+      <AbsolutePoint location="638,718" />
+      <AbsolutePoint location="638,303" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/datosParametricosAdquirente.xhtml,/generalInfoAdquirente.xhtml,SUCCESS,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="511,303" />
+      <AbsolutePoint location="511,378" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/datosParametricosAdquirente.xhtml,/generalInfoAdquirenteOIP.xhtml,OIP,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="653,303" />
+      <AbsolutePoint location="653,730" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/generalInfoAdquirente.xhtml,/ordenAfiliacionAdquirente.xhtml,BACK,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="391,411" />
+      <AbsolutePoint location="266,411" />
+      <AbsolutePoint location="266,3" />
+      <AbsolutePoint location="373,3" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/generalInfoAdquirente.xhtml,/muestraContratos.xhtml,SUCCESS,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="401,414" />
+      <AbsolutePoint location="401,504" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/generalInfoAdquirenteOIP.xhtml,/ordenAfiliacionOIP.xhtml,BACK,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="480,748" />
+      <AbsolutePoint location="364,748" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/generalInfoAdquirenteOIP.xhtml,/muestraContratosOIP.xhtml,SUCCESS,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="487,766" />
+      <AbsolutePoint location="487,830" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/condicionesEspecialesCE.xhtml,/datosParametricosAdquirente.xhtml,SUCCESS,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="516,192" />
+      <AbsolutePoint location="516,267" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/criteriaReportOIP.xhtml,/muestraContratosOIP.xhtml,SUCCESS,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="206,948" />
+      <AbsolutePoint location="430,948" />
+      <AbsolutePoint location="430,866" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/criteriaReportOIP.xhtml,/criteriaReportOIP.xhtml,SEARCH,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="118,966" />
+      <AbsolutePoint location="118,1003" />
+      <AbsolutePoint location="273,1003" />
+      <AbsolutePoint location="273,963" />
+      <AbsolutePoint location="206,963" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/enProceso.xhtml,/criteriaReport.xhtml,SUCCESS,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="480,658" />
+      <AbsolutePoint location="165,658" />
+      <AbsolutePoint location="165,830" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/contractReport.xhtml,/contractReport.xhtml,SEARCH,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="100,160" />
+      <AbsolutePoint location="100,93" />
+      <AbsolutePoint location="241,93" />
+      <AbsolutePoint location="241,178" />
+      <AbsolutePoint location="181,178" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/contractReport.xhtml,/ordenNomina.xhtml,EDIT,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="109,196" />
+      <AbsolutePoint location="109,267" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/contractReport.xhtml,/muestraContratos.xhtml,SUCCESS,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="20,178" />
+      <AbsolutePoint location="-37,178" />
+      <AbsolutePoint location="-37,522" />
+      <AbsolutePoint location="298,522" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+  <JSFFlowNavigationCase id="/poblacion.xhtml,/poblacion.xhtml,SUCCESS,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="287,651" />
+      <AbsolutePoint location="287,673" />
+      <AbsolutePoint location="416,673" />
+      <AbsolutePoint location="416,637" />
+      <AbsolutePoint location="360,637" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+</JSFFlowViewLayout>
+

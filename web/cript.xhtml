@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+  <body>
+
+    <ui:composition template="./contractTemplate.xhtml">
+
+      <ui:define name="top">
+        Herramienta de Altas STB
+      </ui:define>
+
+      <ui:define name="content">
+        <f:view >
+          <h:form id="forma">
+            <br/>
+            <br/>
+            <h:panelGrid columns="1" styleClass="content">
+            <h:outputText value="Proceso:"/>
+            <h:commandLink id="Proceso" action="#{ContractBemMB.processEncryptBd}" immediate="false">Ejecutar</h:commandLink>
+           </h:panelGrid>
+          </h:form>
+        </f:view>
+      </ui:define>
+
+    </ui:composition>
+
+  </body>
+</html>

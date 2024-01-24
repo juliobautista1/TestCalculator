@@ -1,0 +1,568 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jstl/core">
+  <body>
+      <ui:composition template="./contractTemplate.xhtml">
+      <ui:define name="top">
+        Orden BEM
+      </ui:define>
+
+      <ui:define name="content">
+        <f:view>
+          
+          <script type="text/javascript">
+            /* <![CDATA[ */
+              function start() {
+                //enableDisable('quanttokens', 12);
+                //enableDisable('quantaccown', 5);
+                //enableDisable('quantaccothers', 5);
+              }
+              window.onload = start;
+            /* ]]> */
+          </script>
+          
+          <h:form id="forma">
+            
+            <br/>
+            <h:messages layout="table" styleClass="errorStyle"/>
+            <br/>
+            <c:if test="${param['resetForm']==true}"> 
+              #{ContractBemMB.resetForm}
+            </c:if>
+            <c:if test="${param['editForm']==true}">
+              #{ContractBemMB.editForm}
+            </c:if>
+            
+            <c:if test="#{! empty ContractBemMB.errorsList}">
+              <h:dataTable id="list" value="#{ContractBemMB.errorsList}" rendered="#{! empty ContractBemMB.errorsList}" var="errors" styleClass="contractStyleNone" rowClasses="tableStyleSecondRow">
+                <h:column>                  
+                  <h:outputText value="#{errors.message}" styleClass="msgValidation"/>
+                </h:column>                 
+              </h:dataTable>              
+            <br/>
+            <br/>
+            </c:if>
+
+			<!-- <input id="duplicatedTokens" name="duplicatedTokens" type="hidden"/>		 -->
+			
+            <!--PanelGrid Datos Especiales BEM-->
+              <h:panelGrid styleClass="contractStyle" cellpadding="0" cellspacing="0" width="100%">
+                <f:facet name="header">
+                  <h:outputText value="Datos Especiales BEM"/>
+                </f:facet>
+                
+                <h:panelGrid columns="6" width="99%" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+                  <h:outputText value="Plan Seleccionado"/>
+                  <h:outputText value="Cantidad de tokens"/>                  
+                  <h:outputText value="No. Cliente" />
+                  <h:outputText value="Tipo de cobro comisión"/>
+                  <h:outputText value="No. de Cuentas Autorizadas Propias"/>
+                  <!--h:outputText value="No. de Cuentas de Terceros"/-->
+                  <h:outputText value=""/>
+
+                  <h:selectOneMenu id="selectedbemplan" style="width:80px;" styleClass="camposx" requiredMessage="#{msgs.obSelectedbemplanReqError}" value="#{ContractBemMB.selectedbemplan}" required="true">
+                    <f:selectItem itemValue="0" itemLabel="Seleccione"/>
+                    <f:selectItems value="#{ContractBemMB.selectedbemplanArray}"/>
+                  </h:selectOneMenu>
+                  <h:selectOneMenu id="quanttokens" style="width:80px;" styleClass="camposx" requiredMessage="#{msgs.obQuanttokensReqError}" value="#{ContractBemMB.quanttokens}" required="true">
+                    <f:selectItem itemValue="2" itemLabel="2"/>
+                    <f:selectItem itemValue="3" itemLabel="3"/>
+                    <f:selectItem itemValue="4" itemLabel="4"/>
+                    <f:selectItem itemValue="5" itemLabel="5"/>
+                    <f:selectItem itemValue="6" itemLabel="6"/>
+                    <f:selectItem itemValue="7" itemLabel="7"/>
+                    <f:selectItem itemValue="8" itemLabel="8"/>
+                    <f:selectItem itemValue="9" itemLabel="9"/>
+                    <f:selectItem itemValue="10" itemLabel="10"/>
+                    <f:selectItem itemValue="11" itemLabel="11"/>
+                    <f:selectItem itemValue="12" itemLabel="12"/>
+                  </h:selectOneMenu>
+
+                 
+                  <h:inputText id="client_sic" onkeypress="return isNumberKey(event)" style="width:70px;" maxlength="8" styleClass="camposx" requiredMessage="#{msgs.obClient_sicReqError}" value="#{ContractBemMB.client_sic}" required="false"/>
+                  <h:selectOneMenu id="commchargetype" style="width:180px;" styleClass="camposx" value="#{ContractBemMB.commchargetype}">
+                    <f:selectItems value="#{ContractBemMB.commchargetypeArray}"/>
+                  </h:selectOneMenu>
+
+                  <h:selectOneMenu styleClass="camposx"  id="quantaccown" value="#{ContractBemMB.quantaccown}" >
+                    <f:selectItem itemValue="1" itemLabel="1"/>
+                    <f:selectItem itemValue="2" itemLabel="2"/>
+                    <f:selectItem itemValue="3" itemLabel="3"/>
+                    <f:selectItem itemValue="4" itemLabel="4"/>
+                    <f:selectItem itemValue="5" itemLabel="5"/>
+                    <f:selectItem itemValue="6" itemLabel="6"/>
+                    <f:selectItem itemValue="7" itemLabel="7"/>
+                    <f:selectItem itemValue="8" itemLabel="8"/>
+                    <f:selectItem itemValue="9" itemLabel="9"/>
+                    <f:selectItem itemValue="10" itemLabel="10"/>
+                    <f:selectItem itemValue="11" itemLabel="11"/>
+                    <f:selectItem itemValue="12" itemLabel="12"/>
+                    <f:selectItem itemValue="13" itemLabel="13"/>
+                    <f:selectItem itemValue="14" itemLabel="14"/>
+                    <f:selectItem itemValue="15" itemLabel="15"/>
+                  </h:selectOneMenu>
+                  <!--  h:selectOneMenu id="quantaccothers" styleClass="camposx"  value="#{ContractBemMB.quantaccothers}">
+                    <f:selectItems value="#{ContractBemMB.quantaccothersArray}"/>
+                  </h:selectOneMenu-->
+                  <h:commandLink id="Cargar" onclick="loadOrdenBEM();" action="#{ContractBemMB.loadOrdenBEM}" immediate="false"  value="CARGAR"/>
+                  <!--  En el Onclick habia una llamada a submit(); que se elimino por que no aparecia en ningun archivo y no funcionaba -->
+                </h:panelGrid>
+              </h:panelGrid>
+
+
+              <c:if test="#{ContractBemMB.loadflag}">
+
+            <br/>
+            <br/>
+
+            <div  class="notemsg">
+                <p align="center">
+                    <br/>
+                    Recuerda que para solicitudes con condiciones comerciales especiales, deberás contar con el estudio de rentabilidad correspondiente firmado por tu Director Regional o Territorial según corresponda y anexarlo al expediente para futuras aclaraciones.
+                    <br/><br/>
+                </p>
+            </div>
+
+            <br/>
+            <br/>
+            			
+            <!--Datos Contratacion Tokens-->
+              <h:panelGrid styleClass="contractStyle" cellpadding="0" cellspacing="0" width="100%">
+                <f:facet name="header">
+                  <h:outputText value="Datos Contratación Tokens"/>
+                </f:facet>
+
+                <h:panelGrid columns="3" width="99%" border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow, tablaStyleSecondRow">
+                  <h:outputText value="Serie token 1"/>
+                  <h:outputText value="Folio 1"/>
+                  <h:outputText value="Correo electrónico 1"/>
+                  
+                  <h:inputText id="serialtoken_1" style="width:100px;" onkeypress="return isNumberKey(event);" maxlength="9" styleClass="camposx" requiredMessage="#{msgs.obSerialtoken_1ReqError}" value="#{ContractBemMB.serialtoken_1}" required="false" onblur="validSerialToken(this);" />
+                  <h:inputText id="referencetoken_1" style="width:200px;" onkeypress="return isNumberKey(event);" maxlength="7" styleClass="camposx" requiredMessage="#{msgs.obReferencetoken_1ReqError}" value="#{ContractBemMB.referencetoken_1}" required="false"/>                  
+                  <h:inputText id="emailtoken_1" style="width:200px;" onkeypress="return isEmail(event);" onblur="return checkemail('emailtoken_1');" maxlength="60" styleClass="camposx" requiredMessage="#{msgs.obEmailtoken_1ReqError}" value="#{ContractBemMB.emailtoken_1}" required="false"/>
+                  
+                  <h:outputText value="Serie token 2" />
+                  <h:outputText value="Folio 2"/>
+                  <h:outputText value="Correo electrónico 2"/>
+
+                  <h:inputText id="serialtoken_2" style="width:100px;" onkeypress="return isNumberKey(event);" maxlength="9" styleClass="camposx" requiredMessage="#{msgs.obSerialtoken_2ReqError}" value="#{ContractBemMB.serialtoken_2}" required="false" onblur="validSerialToken(this);" />
+                  <h:inputText id="referencetoken_2" style="width:200px;" onkeypress="return isNumberKey(event);" maxlength="7" styleClass="camposx" requiredMessage="#{msgs.obReferencetoken_2ReqError}" value="#{ContractBemMB.referencetoken_2}" required="false"/>
+                  <h:inputText id="emailtoken_2" style="width:200px;" onkeypress="return isEmail(event);" onblur="return checkemail('emailtoken_2');" maxlength="60" styleClass="camposx" requiredMessage="#{msgs.obEmailtoken_2}" value="#{ContractBemMB.emailtoken_2}" required="false"/>
+
+                  <c:if test="#{ContractBemMB.tokenflag[2]}">
+                  <h:outputText value="Serie token 3"/>
+                  <h:outputText value="Folio 3"/> 
+                  <h:outputText value="Correo electrónico 3"/>
+                  
+                  <h:inputText id="serialtoken_3" style="width:100px;" onkeypress="return isNumberKey(event);" maxlength="9" styleClass="camposx" value="#{ContractBemMB.serialtoken_3}" required="false" onblur="validSerialToken(this);" />
+                  <h:inputText id="referencetoken_3" style="width:200px;" onkeypress="return isNumberKey(event);" maxlength="7" styleClass="camposx" value="#{ContractBemMB.referencetoken_3}" required="false"/>                  
+                  <h:inputText id="emailtoken_3" style="width:200px;" onkeypress="return isEmail(event);" onblur="return checkemail('emailtoken_3');" maxlength="60" styleClass="camposx" value="#{ContractBemMB.emailtoken_3}" required="false"/>
+                  </c:if>
+                  
+                  <c:if test="#{ContractBemMB.tokenflag[3]}">
+                  <h:outputText value="Serie token 4"/>
+                  <h:outputText value="Folio 4"/> 
+                  <h:outputText value="Correo electrónico 4"/>
+
+                  <h:inputText id="serialtoken_4" style="width:100px;" onkeypress="return isNumberKey(event)" maxlength="9" styleClass="camposx" value="#{ContractBemMB.serialtoken_4}" required="false" onblur="validSerialToken(this);" />
+                  <h:inputText id="referencetoken_4" style="width:200px;" onkeypress="return isNumberKey(event);" maxlength="7" styleClass="camposx" value="#{ContractBemMB.referencetoken_4}" required="false"/>                
+                  <h:inputText id="emailtoken_4" style="width:200px;" onkeypress="return isEmail(event);" onblur="return checkemail('emailtoken_4');" maxlength="60" styleClass="camposx" value="#{ContractBemMB.emailtoken_4}" required="false"/>
+                  </c:if>
+                  
+                  <c:if test="#{ContractBemMB.tokenflag[4]}">
+                  <h:outputText value="Serie token 5"/>
+                  <h:outputText value="Folio 5"/>
+                  <h:outputText value="Correo electrónico 5"/>
+                                    
+                  <h:inputText id="serialtoken_5" style="width:100px;" onkeypress="return isNumberKey(event)" maxlength="9" styleClass="camposx" value="#{ContractBemMB.serialtoken_5}" required="false" onblur="validSerialToken(this);" />
+                  <h:inputText id="referencetoken_5" style="width:200px;" onkeypress="return isNumberKey(event);" maxlength="7" styleClass="camposx" value="#{ContractBemMB.referencetoken_5}" required="false"/>
+                  <h:inputText id="emailtoken_5" style="width:200px;" onkeypress="return isEmail(event);" onblur="return checkemail('emailtoken_5');" maxlength="60" styleClass="camposx" value="#{ContractBemMB.emailtoken_5}" required="false"/>
+                  </c:if>
+                  
+                  <c:if test="#{ContractBemMB.tokenflag[5]}"> 
+                  <h:outputText value="Serie token 6"/>
+                  <h:outputText value="Folio 6"/>
+                  <h:outputText value="Correo electrónico 6"/>
+
+                  <h:inputText id="serialtoken_6" style="width:100px;" onkeypress="return isNumberKey(event)" maxlength="9" styleClass="camposx" value="#{ContractBemMB.serialtoken_6}" required="false" onblur="validSerialToken(this);" />
+                  <h:inputText id="referencetoken_6" style="width:200px;" onkeypress="return isNumberKey(event);" maxlength="7" styleClass="camposx" value="#{ContractBemMB.referencetoken_6}" required="false"/>
+                  <h:inputText id="emailtoken_6" style="width:200px;" onkeypress="return isEmail(event);" onblur="return checkemail('emailtoken_6');" maxlength="60" styleClass="camposx" value="#{ContractBemMB.emailtoken_6}" required="false"/>
+                  </c:if>
+                  
+                  <c:if test="#{ContractBemMB.tokenflag[6]}">
+                  <h:outputText value="Serie token 7"/>
+                  <h:outputText value="Folio 7"/>
+                  <h:outputText value="Correo electrónico 7"/>
+
+                  <h:inputText id="serialtoken_7" style="width:100px;" onkeypress="return isNumberKey(event)" maxlength="9" styleClass="camposx" value="#{ContractBemMB.serialtoken_7}" required="false" onblur="validSerialToken(this);" />
+                  <h:inputText id="referencetoken_7" style="width:200px;" onkeypress="return isNumberKey(event);" maxlength="7" styleClass="camposx" value="#{ContractBemMB.referencetoken_7}" required="false"/>
+                  <h:inputText id="emailtoken_7" style="width:200px;" onkeypress="return isEmail(event);" onblur="return checkemail('emailtoken_6');" maxlength="60" styleClass="camposx" value="#{ContractBemMB.emailtoken_7}" required="false"/>
+                  </c:if>
+                  
+                  <c:if test="#{ContractBemMB.tokenflag[7]}">
+                  <h:outputText value="Serie token 8"/>
+                  <h:outputText value="Folio 8"/>
+                  <h:outputText value="Correo electrónico 8"/>
+
+                  <h:inputText id="serialtoken_8" style="width:100px;" onkeypress="return isNumberKey(event)" maxlength="9" styleClass="camposx" value="#{ContractBemMB.serialtoken_8}" required="false" onblur="validSerialToken(this);" />
+                  <h:inputText id="referencetoken_8" style="width:200px;" onkeypress="return isNumberKey(event);" maxlength="7" styleClass="camposx" value="#{ContractBemMB.referencetoken_8}" required="false"/>
+                  <h:inputText id="emailtoken_8" style="width:200px;" onkeypress="return isEmail(event);" onblur="return checkemail('emailtoken_6');" maxlength="60" styleClass="camposx" value="#{ContractBemMB.emailtoken_8}" required="false"/>
+                  </c:if>
+                  
+                  <c:if test="#{ContractBemMB.tokenflag[8]}">
+                  <h:outputText value="Serie token 9"/>
+                  <h:outputText value="Folio 9"/>
+                  <h:outputText value="Correo electrónico 9"/>
+
+                  <h:inputText id="serialtoken_9" style="width:100px;" onkeypress="return isNumberKey(event)" maxlength="9" styleClass="camposx" value="#{ContractBemMB.serialtoken_9}" required="false" onblur="validSerialToken(this);" />
+                  <h:inputText id="referencetoken_9" style="width:200px;" onkeypress="return isNumberKey(event);" maxlength="7" styleClass="camposx" value="#{ContractBemMB.referencetoken_9}" required="false"/>
+                  <h:inputText id="emailtoken_9" style="width:200px;" onkeypress="return isEmail(event);" onblur="return checkemail('emailtoken_6');" maxlength="60" styleClass="camposx" value="#{ContractBemMB.emailtoken_9}" required="false"/>
+                  </c:if>
+                  
+                  <c:if test="#{ContractBemMB.tokenflag[9]}">
+                  <h:outputText value="Serie token 10"/>
+                  <h:outputText value="Folio 10"/>
+                  <h:outputText value="Correo electrónico 10"/>
+
+                  <h:inputText id="serialtoken_10" style="width:100px;" onkeypress="return isNumberKey(event)" maxlength="9" styleClass="camposx" value="#{ContractBemMB.serialtoken_10}" required="false" onblur="validSerialToken(this);" />
+                  <h:inputText id="referencetoken_10" style="width:200px;" onkeypress="return isNumberKey(event);" maxlength="7" styleClass="camposx" value="#{ContractBemMB.referencetoken_10}" required="false"/>
+                  <h:inputText id="emailtoken_10" style="width:200px;" onkeypress="return isEmail(event);" onblur="return checkemail('emailtoken_6');" maxlength="60" styleClass="camposx" value="#{ContractBemMB.emailtoken_10}" required="false"/>
+                  </c:if>
+                  
+                  <c:if test="#{ContractBemMB.tokenflag[10]}">
+                  <h:outputText value="Serie token 11"/>
+                  <h:outputText value="Folio 11"/>
+                  <h:outputText value="Correo electrónico 11"/>
+
+                  <h:inputText id="serialtoken_11" style="width:100px;" onkeypress="return isNumberKey(event)" maxlength="9" styleClass="camposx" value="#{ContractBemMB.serialtoken_11}" required="false" onblur="validSerialToken(this);" />
+                  <h:inputText id="referencetoken_11" style="width:200px;" onkeypress="return isNumberKey(event);" maxlength="7" styleClass="camposx" value="#{ContractBemMB.referencetoken_11}" required="false"/>
+                  <h:inputText id="emailtoken_11" style="width:200px;" onkeypress="return isEmail(event);" onblur="return checkemail('emailtoken_6');" maxlength="60" styleClass="camposx" value="#{ContractBemMB.emailtoken_11}" required="false"/>
+                  </c:if>
+                  
+                  <c:if test="#{ContractBemMB.tokenflag[11]}">
+                  <h:outputText value="Serie token 12"/>
+                  <h:outputText value="Folio 12"/>
+                  <h:outputText value="Correo electrónico 12"/>
+
+                  <h:inputText id="serialtoken_12" style="width:100px;" onkeypress="return isNumberKey(event)" maxlength="9" styleClass="camposx" value="#{ContractBemMB.serialtoken_12}" required="false" onblur="validSerialToken(this);" />
+                  <h:inputText id="referencetoken_12" style="width:200px;" onkeypress="return isNumberKey(event);" maxlength="7" styleClass="camposx" value="#{ContractBemMB.referencetoken_12}" required="false"/>
+                  <h:inputText id="emailtoken_12" style="width:200px;" onkeypress="return isEmail(event);" onblur="return checkemail('emailtoken_6');" maxlength="60" styleClass="camposx" value="#{ContractBemMB.emailtoken_12}" required="false"/>
+                  </c:if>
+                </h:panelGrid>
+              </h:panelGrid>
+
+            <br/>
+            <br/>
+
+            <!--Cuentas autorizadas propias-->
+              <h:panelGrid styleClass="contractStyle" cellpadding="0" cellspacing="0" width="100%">
+                <f:facet name="header">
+                  <h:outputText value="Cuentas autorizadas propias"/>
+                </f:facet>
+  
+                <h:panelGrid columns="3" width="99%" border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow, tableStyleSecondRow">
+                  <h:outputText value="No. Cuenta Cargo" styleClass="textbold"/>
+                  <h:outputText value="Regimen"/>
+                  <h:outputText value="Nombre del titular , Apoderado o personas autorizadas 1 Separar con coma y espacio (, )"/>
+
+                  <h:inputText id="accountnumber" style="width:100px;" onkeypress="return isNumberKey(event)" onblur="isValidAccNum('accountnumber');" maxlength="10" styleClass="camposx" requiredMessage="#{msgs.obAccownnum_1}" value="#{ContractBemMB.accountnumber}" required="false"/>                  
+                  <h:selectOneMenu id="regimen_1" value="#{ContractBemMB.regimen_1}" style="width:180px" class="camposx" required="false">
+				  	<f:selectItems value="#{ContractBemMB.regimenArray}" />
+				  </h:selectOneMenu>
+                  <h:inputText id="accownname_1" style="width:300px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" requiredMessage="#{msgs.obAccownname_1}" value="#{ContractBemMB.accownname_1}" required="false"/>
+               
+
+
+                 <c:if test="#{ContractBemMB.accownflag[1]}">                
+                  <h:outputText value="No. cuenta 2"/>
+                  <h:outputText value="Regimen"/>
+                  <h:outputText value="Nombre del titular , Apoderado o personas autorizadas 2 Separar con coma y espacio (, )"/>
+
+                  <h:inputText id="accownnum_2" style="width:100px;" onkeypress="return isNumberKey(event)" onblur="isValidAccNum('accownnum_2');" maxlength="10" styleClass="camposx" value="#{ContractBemMB.accownnum_2}" required="false"/>
+                  <h:selectOneMenu id="regimen_2" value="#{ContractBemMB.regimen_2}" style="width:180px" class="camposx" required="false">
+				  	<f:selectItems value="#{ContractBemMB.regimenArray}" />
+				  </h:selectOneMenu>
+                  <h:inputText id="accownname_2" style="width:300px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" value="#{ContractBemMB.accownname_2}" required="false"/>                            
+                </c:if>
+                
+                <c:if test="#{ContractBemMB.accownflag[2]}">                
+                  <h:outputText value="No. cuenta 3"/>                  
+                  <h:outputText value="Regimen"/>
+                  <h:outputText value="Nombre del titular , Apoderado o personas autorizadas 3 Separar con coma y espacio (, )"/>
+
+                  <h:inputText id="accownnum_3" style="width:100px;" onkeypress="return isNumberKey(event)" onblur="isValidAccNum('accownnum_3');" maxlength="10" styleClass="camposx" value="#{ContractBemMB.accownnum_3}" required="false"/>
+                  <h:selectOneMenu id="regimen_3" value="#{ContractBemMB.regimen_3}" style="width:180px" class="camposx" required="false">
+				  	<f:selectItems value="#{ContractBemMB.regimenArray}" />
+				  </h:selectOneMenu>
+                  <h:inputText id="accownname_3" style="width:300px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" value="#{ContractBemMB.accownname_3}" required="false"/>                
+                </c:if>
+
+                <c:if test="#{ContractBemMB.accownflag[3]}">
+                  <h:outputText value="No. cuenta 4"/>
+                  <h:outputText value="Regimen"/>
+                  <h:outputText value="Nombre del titular , Apoderado o personas autorizadas 4 Separar con coma y espacio (, )"/>
+
+                  <h:inputText id="accownnum_4" style="width:100px;" onkeypress="return isNumberKey(event)" onblur="isValidAccNum('accownnum_4');" maxlength="10" styleClass="camposx" value="#{ContractBemMB.accownnum_4}" required="false"/>
+                  <h:selectOneMenu id="regimen_4" value="#{ContractBemMB.regimen_4}" style="width:180px" class="camposx" required="false">
+				  	<f:selectItems value="#{ContractBemMB.regimenArray}" />
+				  </h:selectOneMenu>
+                  <h:inputText id="accownname_4" style="width:300px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" value="#{ContractBemMB.accownname_4}" required="false"/>                
+                </c:if>
+                
+                <c:if test="#{ContractBemMB.accownflag[4]}">
+                  <h:outputText value="No. cuenta 5"/>
+                  <h:outputText value="Regimen"/>
+                  <h:outputText value="Nombre del titular , Apoderado o personas autorizadas 5 Separar con coma y espacio (, )"/>
+
+                  <h:inputText id="accownnum_5" style="width:100px;" onkeypress="return isNumberKey(event)" onblur="isValidAccNum('accownnum_5');" maxlength="10" styleClass="camposx" value="#{ContractBemMB.accownnum_5}" required="false"/>
+                  <h:selectOneMenu id="regimen_5" value="#{ContractBemMB.regimen_5}" style="width:180px" class="camposx" required="false">
+				  	<f:selectItems value="#{ContractBemMB.regimenArray}" />
+				  </h:selectOneMenu>
+                  <h:inputText id="accownname_5" style="width:300px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" value="#{ContractBemMB.accownname_5}" required="false"/>
+                </c:if>
+                
+                <c:if test="#{ContractBemMB.accownflag[5]}">
+                  <h:outputText value="No. cuenta 6"/>
+                  <h:outputText value="Regimen"/>
+                  <h:outputText value="Nombre del titular , Apoderado o personas autorizadas 6 Separar con coma y espacio (, )"/>
+
+                  <h:inputText id="accownnum_6" style="width:100px;" onkeypress="return isNumberKey(event)" onblur="isValidAccNum('accownnum_6');" maxlength="10" styleClass="camposx" requiredMessage="#{msgs.obAccownnum_6}" value="#{ContractBemMB.accownnum_6}" required="false"/>
+                  <h:selectOneMenu id="regimen_6" value="#{ContractBemMB.regimen_6}" style="width:180px" class="camposx" required="false">
+				  	<f:selectItems value="#{ContractBemMB.regimenArray}" />
+				  </h:selectOneMenu>
+                  <h:inputText id="accownname_6" style="width:300px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" requiredMessage="#{msgs.obAccownname_6}" value="#{ContractBemMB.accownname_6}" required="false"/>
+               </c:if>
+                
+                <c:if test="#{ContractBemMB.accownflag[6]}">                
+                  <h:outputText value="No. cuenta 7"/>
+                  <h:outputText value="Regimen"/>
+                  <h:outputText value="Nombre del titular , Apoderado o personas autorizadas 7 Separar con coma y espacio (, )"/>
+
+                  <h:inputText id="accownnum_7" style="width:100px;" onkeypress="return isNumberKey(event)" onblur="isValidAccNum('accownnum_7');" maxlength="10" styleClass="camposx" value="#{ContractBemMB.accownnum_7}" required="false"/>
+                  <h:selectOneMenu id="regimen_7" value="#{ContractBemMB.regimen_7}" style="width:180px" class="camposx" required="false">
+				  	<f:selectItems value="#{ContractBemMB.regimenArray}" />
+				  </h:selectOneMenu>
+                  <h:inputText id="accownname_7" style="width:300px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" value="#{ContractBemMB.accownname_7}" required="false"/>               
+                </c:if>
+                
+                <c:if test="#{ContractBemMB.accownflag[7]}">
+                  <h:outputText value="No. cuenta 8"/>
+                  <h:outputText value="Regimen"/>
+                  <h:outputText value="Nombre del titular , Apoderado o personas autorizadas 8 Separar con coma y espacio (, )"/>
+
+                  <h:inputText id="accownnum_8" style="width:100px;" onkeypress="return isNumberKey(event)" onblur="isValidAccNum('accownnum_8');" maxlength="10" styleClass="camposx" value="#{ContractBemMB.accownnum_8}" required="false"/>
+                  <h:selectOneMenu id="regimen_8" value="#{ContractBemMB.regimen_8}" style="width:180px" class="camposx" required="false">
+				  	<f:selectItems value="#{ContractBemMB.regimenArray}" />
+				  </h:selectOneMenu>
+                  <h:inputText id="accownname_8" style="width:300px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" value="#{ContractBemMB.accownname_8}" required="false"/>                
+                </c:if>
+                
+                <c:if test="#{ContractBemMB.accownflag[8]}">
+                  <h:outputText value="No. cuenta 9"/>
+                  <h:outputText value="Regimen"/>
+                  <h:outputText value="Nombre del titular , Apoderado o personas autorizadas 4 Separar con coma y espacio (, )"/>
+
+                  <h:inputText id="accownnum_9" style="width:100px;" onkeypress="return isNumberKey(event)" onblur="isValidAccNum('accownnum_9');" maxlength="10" styleClass="camposx" value="#{ContractBemMB.accownnum_9}" required="false"/>
+                  <h:selectOneMenu id="regimen_9" value="#{ContractBemMB.regimen_9}" style="width:180px" class="camposx" required="false">
+				  	<f:selectItems value="#{ContractBemMB.regimenArray}" />
+				  </h:selectOneMenu>
+                  <h:inputText id="accownname_9" style="width:300px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" value="#{ContractBemMB.accownname_9}" required="false"/>               
+                </c:if>
+                
+                <c:if test="#{ContractBemMB.accownflag[9]}">
+                  <h:outputText value="No. cuenta 10"/>
+                  <h:outputText value="Regimen"/>
+                  <h:outputText value="Nombre del titular , Apoderado o personas autorizadas 5 Separar con coma y espacio (, )"/>
+
+                  <h:inputText id="accownnum_10" style="width:100px;" onkeypress="return isNumberKey(event)" onblur="isValidAccNum('accownnum_10');" maxlength="10" styleClass="camposx" value="#{ContractBemMB.accownnum_10}" required="false"/>
+                  <h:selectOneMenu id="regimen_10" value="#{ContractBemMB.regimen_10}" style="width:180px" class="camposx" required="false">
+				  	<f:selectItems value="#{ContractBemMB.regimenArray}" />
+				  </h:selectOneMenu>
+                  <h:inputText id="accownname_10" style="width:300px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" value="#{ContractBemMB.accownname_10}" required="false"/>                
+                </c:if>
+                
+                <c:if test="#{ContractBemMB.accownflag[10]}">
+                  <h:outputText value="No. cuenta 11"/>
+                  <h:outputText value="Regimen"/>
+                  <h:outputText value="Nombre del titular , Apoderado o personas autorizadas 11 Separar con coma y espacio (, )"/>
+
+                  <h:inputText id="accownnum_11" style="width:100px;" onkeypress="return isNumberKey(event)" onblur="isValidAccNum('accownnum_11');" maxlength="10" styleClass="camposx" requiredMessage="#{msgs.obAccownnum_11}" value="#{ContractBemMB.accownnum_11}" required="false"/>
+                  <h:selectOneMenu id="regimen_11" value="#{ContractBemMB.regimen_11}" style="width:180px" class="camposx" required="false">
+				  	<f:selectItems value="#{ContractBemMB.regimenArray}" />
+				  </h:selectOneMenu>
+                  <h:inputText id="accownname_11" style="width:300px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" requiredMessage="#{msgs.obAccownname_11}" value="#{ContractBemMB.accownname_11}" required="false"/>               
+                </c:if>
+                
+                <c:if test="#{ContractBemMB.accownflag[11]}">
+                  <h:outputText value="No. cuenta 12"/>
+                  <h:outputText value="Regimen"/>
+                  <h:outputText value="Nombre del titular , Apoderado o personas autorizadas 12 Separar con coma y espacio (, )"/>
+
+                  <h:inputText id="accownnum_12" style="width:100px;" onkeypress="return isNumberKey(event)" onblur="isValidAccNum('accownnum_12');" maxlength="10" styleClass="camposx" value="#{ContractBemMB.accownnum_12}" required="false"/>
+                  <h:selectOneMenu id="regimen_12" value="#{ContractBemMB.regimen_12}" style="width:180px" class="camposx" required="false">
+				  	<f:selectItems value="#{ContractBemMB.regimenArray}" />
+				  </h:selectOneMenu>
+                  <h:inputText id="accownname_12" style="width:300px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" value="#{ContractBemMB.accownname_12}" required="false"/>
+                </c:if>
+                
+                <c:if test="#{ContractBemMB.accownflag[12]}">
+                  <h:outputText value="No. cuenta 13"/>
+                  <h:outputText value="Regimen"/>
+                  <h:outputText value="Nombre del titular , Apoderado o personas autorizadas 13 Separar con coma y espacio (, )"/>
+
+                  <h:inputText id="accownnum_13" style="width:100px;" onkeypress="return isNumberKey(event)" onblur="isValidAccNum('accownnum_13');" maxlength="10" styleClass="camposx" value="#{ContractBemMB.accownnum_13}" required="false"/>
+                  <h:selectOneMenu id="regimen_13" value="#{ContractBemMB.regimen_13}" style="width:180px" class="camposx" required="false">
+				  	<f:selectItems value="#{ContractBemMB.regimenArray}" />
+				  </h:selectOneMenu>
+                  <h:inputText id="accownname_13" style="width:300px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" value="#{ContractBemMB.accownname_13}" required="false"/>
+                </c:if>
+                
+                <c:if test="#{ContractBemMB.accownflag[13]}">
+                  <h:outputText value="No. cuenta 14"/>
+                  <h:outputText value="Regimen"/>
+                  <h:outputText value="Nombre del titular , Apoderado o personas autorizadas 14 Separar con coma y espacio (, )"/>
+
+                  <h:inputText id="accownnum_14" style="width:100px;" onkeypress="return isNumberKey(event)" onblur="isValidAccNum('accownnum_14');" maxlength="10" styleClass="camposx" value="#{ContractBemMB.accownnum_14}" required="false"/>
+                  <h:selectOneMenu id="regimen_14" value="#{ContractBemMB.regimen_14}" style="width:180px" class="camposx" required="false">
+				  	<f:selectItems value="#{ContractBemMB.regimenArray}" />
+				  </h:selectOneMenu>
+                  <h:inputText id="accownname_14" style="width:300px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" value="#{ContractBemMB.accownname_14}" required="false"/>
+                </c:if>
+                
+                <c:if test="#{ContractBemMB.accownflag[14]}">
+                  <h:outputText value="No. cuenta 15"/>
+                  <h:outputText value="Regimen"/>
+                  <h:outputText value="Nombre del titular , Apoderado o personas autorizadas 15 Separar con coma y espacio (, )"/>
+
+                  <h:inputText id="accownnum_15" style="width:100px;" onkeypress="return isNumberKey(event)" onblur="isValidAccNum('accownnum_15');" maxlength="10" styleClass="camposx" value="#{ContractBemMB.accownnum_15}" required="false"/>
+                  <h:selectOneMenu id="regimen_15" value="#{ContractBemMB.regimen_15}" style="width:180px" class="camposx" required="false">
+				  	<f:selectItems value="#{ContractBemMB.regimenArray}" />
+				  </h:selectOneMenu>
+                  <h:inputText id="accownname_15" style="width:300px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" value="#{ContractBemMB.accownname_15}" required="false"/>
+                </c:if>
+                
+               </h:panelGrid> 
+              </h:panelGrid>
+
+            <br/>
+            <br/>
+
+            <!--Cuentas de terceros-->
+              <c:if test="#{ContractBemMB.accotherflag[0]}"> 
+              <h:panelGrid styleClass="contractStyle" cellpadding="0" cellspacing="0" width="100%">
+                <f:facet name="header">
+                  <h:outputText value="Cuentas de terceros (Solo una Razón Social)"/>
+                </f:facet>
+
+                <c:if test="#{ContractBemMB.accotherflag[0]}">  
+                <h:panelGrid columns="" width="99%" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow, tableStyleSecondRow">
+                  <h:outputText value="Nombre o Razón Social de la Cuenta"/>
+                  <h:inputText id="accothersname_1" style="width:200px;" onkeypress="return isText(event)" maxlength="120" styleClass="camposx" value="#{ContractBemMB.accothersname_1}" required="false"/>
+                </h:panelGrid>
+                 </c:if>
+                 
+                <h:panelGrid columns="4" width="99%" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow, tableStyleSecondRow">
+                 <c:if test="#{ContractBemMB.accotherflag[0]}">  
+                 <h:outputText value="No. cuenta 1"/>                  
+                  <h:outputText value="Nombre del titular que autoriza 1"/>
+                  <h:outputText value="CR 1"/>
+                  <h:outputText value="Nombre sucursal 1"/>                  
+
+                  <h:inputText id="accothersnum_1" style="width:80px;" onkeypress="return isNumberKey(event)" maxlength="10" styleClass="camposx" value="#{ContractBemMB.accothersnum_1}" required="false"/>                  
+                  <h:inputText id="accothersofficername_1" style="width:200px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" value="#{ContractBemMB.accothersofficername_1}" required="false"/>
+                  <h:inputText id="accotherscr_1" style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="5" styleClass="camposx" value="#{ContractBemMB.accotherscr_1}" required="false"/>
+                  <h:inputText id="accothersbranch_1" style="width:200px;" maxlength="120" styleClass="camposx" value="#{ContractBemMB.accothersbranch_1}" required="false"/>                 
+                </c:if> 
+                
+                <c:if test="#{ContractBemMB.accotherflag[1]}">
+                  <h:outputText value="No. cuenta 2"/>                
+                  <h:outputText value="Nombre del titular que autoriza 2"/>
+                  <h:outputText value="CR 2"/>
+                  <h:outputText value="Nombre sucursal 2"/>                 
+
+                  <h:inputText id="accothersnum_2" style="width:80px;" onkeypress="return isNumberKey(event)" maxlength="10" styleClass="camposx"  value="#{ContractBemMB.accothersnum_2}" required="false"/>                
+                  <h:inputText id="accothersofficername_2" style="width:200px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" value="#{ContractBemMB.accothersofficername_2}" required="false"/>
+                  <h:inputText id="accotherscr_2" style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="5" styleClass="camposx" value="#{ContractBemMB.accotherscr_2}" required="false"/>
+                  <h:inputText id="accothersbranch_2" style="width:200px;" onkeypress="return isText(event)" maxlength="120" styleClass="camposx" value="#{ContractBemMB.accothersbranch_2}" required="false"/>
+                  </c:if>
+                
+                  <c:if test="#{ContractBemMB.accotherflag[2]}">
+                  <h:outputText value="No. cuenta 3"/>                  
+                  <h:outputText value="Nombre del titular que autoriza 3"/>
+                  <h:outputText value="CR 3"/>
+                  <h:outputText value="Nombre sucursal 3"/>
+                  
+
+                  <h:inputText id="accothersnum_3" style="width:80px;" onkeypress="return isNumberKey(event)" maxlength="10" styleClass="camposx"  value="#{ContractBemMB.accothersnum_3}" required="false"/>                  
+                  <h:inputText id="accothersofficername_3" style="width:200px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" value="#{ContractBemMB.accothersofficername_3}" required="false"/>
+                  <h:inputText id="accotherscr_3" style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="5" styleClass="camposx" value="#{ContractBemMB.accotherscr_3}" required="false"/>
+                  <h:inputText id="accothersbranch_3" style="width:200px;" onkeypress="return isText(event)" maxlength="120" styleClass="camposx" value="#{ContractBemMB.accothersbranch_3}" required="false"/>
+                  </c:if>
+                  
+                  <c:if test="#{ContractBemMB.accotherflag[3]}">
+                  <h:outputText value="No. cuenta 4"/>                  
+                  <h:outputText value="Nombre del titular que autoriza 4"/>
+                  <h:outputText value="CR 4"/>
+                  <h:outputText value="Nombre sucursal 4"/>
+                  
+
+                  <h:inputText id="accothersnum_4" style="width:80px;" onkeypress="return isNumberKey(event)" maxlength="10" styleClass="camposx"  value="#{ContractBemMB.accothersnum_4}" required="false"/>
+                  <h:inputText id="accothersofficername_4" style="width:200px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" value="#{ContractBemMB.accothersofficername_4}" required="false"/>
+                  <h:inputText id="accotherscr_4" style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="5" styleClass="camposx" value="#{ContractBemMB.accotherscr_4}" required="false"/>
+                  <h:inputText id="accothersbranch_4" style="width:200px;" onkeypress="return isText(event)" maxlength="120" styleClass="camposx" value="#{ContractBemMB.accothersbranch_4}" required="false"/>
+                  </c:if>
+
+                <c:if test="#{ContractBemMB.accotherflag[4]}">  
+                  <h:outputText value="No. cuenta 5"/>
+                  <h:outputText value="Nombre del titular que autoriza 5"/>
+                  <h:outputText value="CR 5"/>
+                  <h:outputText value="Nombre sucursal 5"/>
+                  
+                  <h:inputText id="accothersnum_5" style="width:80px;" onkeypress="return isNumberKey(event)" maxlength="10" styleClass="camposx"  value="#{ContractBemMB.accothersnum_5}" required="false"/>
+                  <h:inputText id="accothersofficername_5" style="width:200px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" value="#{ContractBemMB.accothersofficername_5}" required="false"/>
+                  <h:inputText id="accotherscr_5" style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="5" styleClass="camposx" value="#{ContractBemMB.accotherscr_5}" required="false"/>
+                  <h:inputText id="accothersbranch_5" style="width:200px;" onkeypress="return isText(event)" maxlength="120" styleClass="camposx" value="#{ContractBemMB.accothersbranch_5}" required="false"/>
+                </c:if>
+
+                </h:panelGrid>                
+              </h:panelGrid>
+           </c:if>   
+
+            <br/>
+            <br/>
+             <!--Comentarios-->
+              <h:panelGrid  rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+                <f:facet name="header">
+                  <h:outputText value="Comentarios"/>
+                </f:facet>
+
+                <h:panelGrid columns="1" width="99%" border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+                  <h:outputText value="Comentarios"/>
+                  <h:inputTextarea id="comments" style="width:95%;heigth:95%" styleClass="camposx" value="#{ContractBemMB.comments}"/>
+                </h:panelGrid>
+              </h:panelGrid>
+            <br/>
+            <br/>
+<!-- SIC -->
+            <div class="notes">* Numero de Cliente en altamira</div>
+
+            <br/>
+            <br/>
+            
+            <div class="send">
+              | x <h:commandLink id="Guardar" onclick="return loadOrdenBEM();" action="#{ContractBemMB.validateOrdenBEM}" immediate="false" value="ENVIAR"/> |
+            </div>
+
+          </c:if>
+          
+          </h:form>
+        </f:view>
+      </ui:define>
+
+    </ui:composition>
+    </body>
+</html>

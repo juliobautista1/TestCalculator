@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jstl/core">
+  <body>
+    <ui:composition template="./contractTemplate.xhtml">
+      <ui:define name="top">
+        Condiciones Especiales Comercio Electronico
+      </ui:define>
+
+      <ui:define name="content">
+        <f:view>
+        <script type="text/javascript">
+              function validate3DSecure() {
+            	  var check3d = document.getElementById("forma:affiliation_active3ds");
+            	  var integracion = document.getElementById("forma:integration");
+            	  if(integracion.value == "Hosted 3D Secure" || integracion.value == "Enterprise 3D Secure" || integracion.value=="Direct 3D"){
+            		  check3d.checked=true;
+            	  }
+              }
+              function check3d(){
+            	  var integracion = document.getElementById("forma:integration");
+            	  var check3d = document.getElementById("forma:affiliation_active3ds");
+            	  if(integracion.value != "Enterprise Revision Manual"){
+            		  check3d.checked=true;
+            	  }
+              }
+              window.onload = validate3DSecure;
+        </script>
+          <h:form id="forma">
+                      <br/>
+            <h:messages layout="table" styleClass="errorStyle"/>
+            <br/>
+            
+            
+            <c:if test="#{! empty ContractAcquirerMB.errorsList}">
+              <h:dataTable id="list" value="#{ContractAcquirerMB.errorsList}" rendered="#{! empty ContractAcquirerMB.errorsList}" var="errors" styleClass="contractStyleNone" rowClasses="tableStyleSecondRow">
+                <h:column>                  
+                  <h:outputText value="#{errors.message}" styleClass="msgValidation"/>
+                </h:column>                 
+              </h:dataTable>              
+            <br/>
+            <br/>
+            </c:if>
+            <br/>
+                     <h:inputHidden id="integration" value="#{ContractAcquirerMB.affiliation_integration}" />
+                        
+              <h:panelGrid styleClass="contractStyleSpecial" columns="1" cellpadding="0" cellspacing="0">
+                <f:facet name="header">
+                    <h:outputText value="Condiciones Especiales Comercio Electronico"/>
+                </f:facet>
+                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+                  <h:outputText value="Comercio 3D Secure"/>
+                  <h:outputText value="Pagina Web"/>
+                  <h:selectBooleanCheckbox id="affiliation_active3ds" onchange="check3d();" value="#{ContractAcquirerMB.affiliation_active3ds}"/>
+                  <h:inputText id="client_site" style="width:200px;" maxlength="120" styleClass="camposx" value="#{ContractAcquirerMB.client_site}" required="true" requiredMessage="#{msgs.clientSiteReqError}" />
+                </h:panelGrid>
+              </h:panelGrid>
+            <br/>
+            <br/>
+            <div class="send">
+                | x <h:commandLink id="Guardar" action="#{ContractAcquirerMB.goToCommerce}" immediate="false">ENVIAR</h:commandLink> |
+            </div>
+          </h:form>
+        </f:view>
+      </ui:define>
+
+    </ui:composition>
+  </body>
+</html>
+

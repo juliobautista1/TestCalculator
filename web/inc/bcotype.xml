@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Giros>
+  <Giro>011100 Cultivo de cereales y otros granos</Giro>
+  <Giro>011200 Cultivo de verduras</Giro>
+  <Giro>011300 Cultivo de plantas para alimento de ganado</Giro>
+  <Giro>011900 Cultivo de plantas frutales</Giro>
+  <Giro>012100 Cultivo de algodón</Giro>
+  <Giro>012200 Cultivo de caña de azúcar</Giro>
+  <Giro>012300 Cultivo de tabaco</Giro>
+  <Giro>012400 Cultivo de semillas aceitosas</Giro>
+  <Giro>012900 Cultivo de especias y condimentos</Giro>
+  <Giro>013000 Cultivo de flores</Giro>
+  <Giro>014100 Cultivo de café</Giro>
+  <Giro>014200 Cultivo de arboles frutales</Giro>
+  <Giro>014400 Cultivo de henequen para fibras textiles</Giro>
+  <Giro>014500 Cultivo de agave para bebidas</Giro>
+  <Giro>014600 Cultivo de palma de coco</Giro>
+  <Giro>014700 Cultivo de cacao</Giro>
+  <Giro>014900 Otros cultivos</Giro>
+  <Giro>019100 Preparación de tierras para cultivos y cosechas</Giro>
+  <Giro>021100 Cría y engorda de ganado vacuno para carne</Giro>
+  <Giro>021200 Cría y explotación de ganado vacuno para leche </Giro>
+  <Giro>021300 Cría de ganado para lidia</Giro>
+  <Giro>021400 Cría de ganado caballar</Giro>
+  <Giro>021900 Cría de ganado para trabajo</Giro>
+  <Giro>022100 Cría y explotación de ganado porcino</Giro>
+  <Giro>022200 Cría y explotación de ganado ovino</Giro>
+  <Giro>022300 Cría y explotación de ganado caprino</Giro>
+  <Giro>023100 Cría y explotación de gallinas para huevos</Giro>
+  <Giro>023200 Cría y explotación de pollos</Giro>
+  <Giro>023300 Cría y explotación de otras aves para alimentación</Giro>
+  <Giro>024100 Cría y explotación de abejas</Giro>
+  <Giro>025100 Cría y explotación de conejos</Giro>
+  <Giro>025900 producción de animales domésticos para fines no alimenticios</Giro>
+  <Giro>029100 Otros servicios de ganadería</Giro>
+  <Giro>031100 Plantación y reforestación de bosques</Giro>
+  <Giro>031200 Extracción de troncos para aserraderos</Giro>
+  <Giro>031300 Extracción de leña y producción de carbón vegetal</Giro>
+  <Giro>032000 Extracción de productos forestales no maderables</Giro>
+  <Giro>039100 Servicios de cortado, protección de bosques y otros</Giro>
+  <Giro>041000 Captura de peces marinos</Giro>
+  <Giro>042000 Captura de crustáceos y moluscos marinos</Giro>
+  <Giro>043000 Captura de animales marinos diversos</Giro>
+  <Giro>044100 Recolección de corales, perlas, conchas o esponjas</Giro>
+  <Giro>044200 Recolección de algas y otras plantas acuáticas</Giro>
+  <Giro>045100 Captura de peces de agua dulce</Giro>
+  <Giro>045200 Captura de crustáceos, moluscos, anfibios y reptiles de agua dulce</Giro>
+  <Giro>045900 Cría artificial de peces y plantas acuáticas</Giro>
+  <Giro>049000 Servicios de pesca por contrato</Giro>
+  <Giro>049500 Caza, captura y preservación de especies salvajes </Giro>
+  <Giro>051000 Extracción y beneficio de carbón mineral</Giro>
+  <Giro>052000 Fabricación de derivados del carbón mineral</Giro>
+  <Giro>053000 Extracción de petróleo y crudo y gas natural</Giro>
+  <Giro>054000 Extracción y beneficio de minerales de hierro</Giro>
+  <Giro>055000 Extracción y beneficio de metales preciosos</Giro>
+  <Giro>056000 Extracción y beneficio de otros metales no ferrosos</Giro>
+  <Giro>057000 Extracción de arena, grava y arcilla</Giro>
+  <Giro>058000 Extracción de minerales no metálicos</Giro>
+  <Giro>061000 Captación, tratamiento, conducción y distribución de agua potable</Giro>
+  <Giro>062000 Distribución de energía eléctrica</Giro>
+  <Giro>063000 Generación y suministro de energía eléctrica</Giro>
+  <Giro>070200 Productos cárnicos y lácteos</Giro>
+  <Giro>070400 Envasado de frutas y legumbres</Giro>
+  <Giro>070600 Molienda de trigo y sus productos</Giro>
+  <Giro>070800 Molienda de nixtamal y productos de maíz</Giro>
+  <Giro>071000 Procesamiento de café</Giro>
+  <Giro>071200 Azúcar y sus derivados</Giro>
+  <Giro>071400 Aceites y grasas vegetales comestibles</Giro>
+  <Giro>071600 Alimentos para animales</Giro>
+  <Giro>071800 Otros productos alimenticios</Giro>
+  <Giro>072000 Bebidas alcohólicas</Giro>
+  <Giro>072200 Cerveza</Giro>
+  <Giro>072400 Refrescos embotellados</Giro>
+  <Giro>072600 Tabaco y sus productos</Giro>
+  <Giro>072800 Hilado y tejido de fibras textiles</Giro>
+  <Giro>073000 Fabricación de telas</Giro>
+  <Giro>073200 Confección de prendas de vestir</Giro>
+  <Giro>073400 Cuero y sus productos</Giro>
+  <Giro>073600 Aserraderos</Giro>
+  <Giro>073800 Otras industrias de la madera</Giro>
+  <Giro>074000 Papel y cartón</Giro>
+  <Giro>074200 Imprentas y editoriales</Giro>
+  <Giro>074400 Refinación de petróleo</Giro>
+  <Giro>074600 Petroquímica Básica</Giro>
+  <Giro>074800 Química Básica</Giro>
+  <Giro>075000 Abonos y fertilizantes</Giro>
+  <Giro>075200 Resinas sintéticas, plásticos y hules</Giro>
+  <Giro>075400 Productos medicinales</Giro>
+  <Giro>075600 Jabones, detergentes, perfumes y cosméticos</Giro>
+  <Giro>075800 Otras industrias químicas</Giro>
+  <Giro>076000 Productos de hule</Giro>
+  <Giro>076200 Artículos de Plástico</Giro>
+  <Giro>076400 Vidrio y sus productos</Giro>
+  <Giro>076600 Cemento</Giro>
+  <Giro>076800 Otros productos de minerales no metálicos</Giro>
+  <Giro>077000 Otras industrias manufactureras</Giro>
+  <Giro>080500 Industrias básicas de hierro y acero</Giro>
+  <Giro>081000 Industrias básicas de metales no ferrosos</Giro>
+  <Giro>081500 Muebles y sus accesorios metálicos</Giro>
+  <Giro>082000 Productos metálicos estructurales</Giro>
+  <Giro>083000 Maquinaria y productos no eléctricos</Giro>
+  <Giro>083500 Maquinaria y aparatos eléctricos</Giro>
+  <Giro>084000 Aparatos electrodomésticos</Giro>
+  <Giro>084500 Equipo y accesorios electrónicos</Giro>
+  <Giro>085000 Vehículos y automóviles</Giro>
+  <Giro>085500 Carrocerías y partes automotrices</Giro>
+  <Giro>086000 Otros equipos y materiales de transporte</Giro>
+  <Giro>086500 Otros productos metálicos</Giro>
+  <Giro>091000 Asociaciones y confederaciones</Giro>
+  <Giro>092000 Cámaras de comercio</Giro>
+  <Giro>093000 Cámaras industriales</Giro>
+  <Giro>094000 Sociedades cooperativas</Giro>
+  <Giro>095000 Organizaciones de abogados, médicos y otros profesionales</Giro>
+  <Giro>095500 ORGANIZACIONES DE CARIDAD </Giro>
+  <Giro>096000 Organizaciones cívicas</Giro>
+  <Giro>097000 Organizaciones laborales y sindicales</Giro>
+  <Giro>098000 Organizaciones políticas</Giro>
+  <Giro>099000 Organizaciones religiosas</Giro>
+  <Giro>099500 Otras organizaciones</Giro>
+  <Giro>101000 Casas y edificios residenciales</Giro>
+  <Giro>102000 Carreteras, puentes, puertos y otras vías de comunicación</Giro>
+  <Giro>103000 Construcción de presas, estadios y otras obras de ingeniería</Giro>
+  <Giro>104000 Servicios vinculados a obras de ingeniería</Giro>
+  <Giro>105000 Instalaciones eléctricas, de plomería o aire acondicionado</Giro>
+  <Giro>111000 Prestamos para la adquisición de vivienda</Giro>
+  <Giro>112000 Compra venta de Casas y otros inmuebles</Giro>
+  <Giro>113000 Compra venta de terreno</Giro>
+  <Giro>114000 Alquiler de Viviendas</Giro>
+  <Giro>115000 Alquiler de terrenos, locales y edificios</Giro>
+  <Giro>116000 Corredores de Bines raíces</Giro>
+  <Giro>121000 Servicios telegráficos y radiotelegraficos</Giro>
+  <Giro>121200 Servicios telefónicos</Giro>
+  <Giro>121500 Servicios postales</Giro>
+  <Giro>121900 Usuarios menores de comunicaciones</Giro>
+  <Giro>123000 Transportes en autobús</Giro>
+  <Giro>123500 Transportes en automóvil</Giro>
+  <Giro>124000 Autotransporte escolar</Giro>
+  <Giro>124500 Autotransporte de Mudanzas</Giro>
+  <Giro>125000 Autotransporte de carga</Giro>
+  <Giro>125500 Transporte por ferrocarril</Giro>
+  <Giro>126000 Transporte marítimo</Giro>
+  <Giro>126500 Transporte fluvial</Giro>
+  <Giro>127000 Transportes en aeronaves</Giro>
+  <Giro>127500 Administración de caminos y puentes</Giro>
+  <Giro>128000 Administración de aeropuertos</Giro>
+  <Giro>128500 Administración de puertos</Giro>
+  <Giro>129000 Administración de centrales camioneras</Giro>
+  <Giro>129500 Servicios de almacenamiento y refrigeración</Giro>
+  <Giro>130500 Compraventa de Alimentos, bebidas y tabaco</Giro>
+  <Giro>131000 Compraventa de Prendas de Vestir</Giro>
+  <Giro>131500 Compraventa de artículos de uso personal</Giro>
+  <Giro>132000 Compraventa de artículos para el hogar</Giro>
+  <Giro>132500 Tiendas de autoservicio</Giro>
+  <Giro>133000 Compra venta de gas, combustibles y lubricantes</Giro>
+  <Giro>133500 Compraventa de materias primas y materiales</Giro>
+  <Giro>134000 Compraventa de maquinaria, equipo y herramienta</Giro>
+  <Giro>134500 Compraventa de automóviles y camiones</Giro>
+  <Giro>135000 Compraventa de motocicletas, bicicletas y sus accesorios</Giro>
+  <Giro>135500 Compra venta de llantas y cámaras</Giro>
+  <Giro>136000 Compra venta accesorios para automóviles y camiones</Giro>
+  <Giro>136500 Compraventa de otro tipo de transportes y sus accesorios</Giro>
+  <Giro>137000 Compraventa de Computadoras</Giro>
+  <Giro>137500 Compra venta de otro tipo de artículos</Giro>
+  <Giro>138000 COMPRA VENTA DE ANTIG Y OBJETOS DE ARTE</Giro>
+  <Giro>138500 COMP/VENT DE JOYAS, PIEDR.Y MET. PRECIOS</Giro>
+  <Giro>139000 COMPR/VTA, PROD O DIST. ARMAS Y ART.MILI </Giro>
+  <Giro>141000 Agencia Aduanal</Giro>
+  <Giro>142000 Agencia de ferrocarril</Giro>
+  <Giro>143000 Agencia de viajes</Giro>
+  <Giro>143500 CASINOS, LOTERIAS Y OTROS JUEGOS DE AZAR</Giro>
+  <Giro>144000 Alquiler de lanchas y veleros</Giro>
+  <Giro>144500 Renta de vehículos</Giro>
+  <Giro>145000 Renta de aviones</Giro>
+  <Giro>145500 CENTROS NOCTURNOS </Giro>
+  <Giro>146000 Servicios de alojamiento en hoteles y moteles</Giro>
+  <Giro>147000 Servicios de alimentos en restaurantes y cafeterias</Giro>
+  <Giro>148000 Servicios de bares y cantinas</Giro>
+  <Giro>148500 Otros servicios de turismo</Giro>
+  <Giro>151000 Servicios de la Banca Nacional </Giro>
+  <Giro>152000 Servicios de la Banca Privada</Giro>
+  <Giro>153000 Usuarios menores de servicios Bancarios</Giro>
+  <Giro>154000 Bancos extranjeros</Giro>
+  <Giro>160300 Notarias públicas</Giro>
+  <Giro>160600 Bufetes jurídicos</Giro>
+  <Giro>160900 Contaduría y auditoria</Giro>
+  <Giro>161200 Arquitectura e Ingeniería</Giro>
+  <Giro>161500 Asesoría en Administración y Organización de empresas</Giro>
+  <Giro>161800 Investigación de mercados y solvencia financiera</Giro>
+  <Giro>162100 Análisis de sistemas y procesamiento de datos</Giro>
+  <Giro>162400 Agencias de Publicidad </Giro>
+  <Giro>162700 Agencias de información</Giro>
+  <Giro>163000 Otro tipo de servicios profesionales</Giro>
+  <Giro>163300 Enseñanza preprimaria y primaria</Giro>
+  <Giro>163600 Enseñanza secundaria</Giro>
+  <Giro>163900 Enseñanza preparatoria y profesional</Giro>
+  <Giro>164200 Enseñanza con combinación de las anteriores</Giro>
+  <Giro>164500 Enseñanza comercial y de idiomas</Giro>
+  <Giro>164800 Capacitación técnica y oficios</Giro>
+  <Giro>165100 Otro tipo de enseñanzas </Giro>
+  <Giro>165400 Investigación científica</Giro>
+  <Giro>165700 Bibliotecas, museos y otro tipo difusión cultural</Giro>
+  <Giro>166000 Hospitales, clínicas, maternidades y sanatorios</Giro>
+  <Giro>166300 Consultorios y clínicas dentales</Giro>
+  <Giro>166600 Laboratorios</Giro>
+  <Giro>166900 Otros servicios médicos</Giro>
+  <Giro>167200 Casas de cuna, orfanatorios y asilos</Giro>
+  <Giro>167500 Producción, transmisión y repetición de programas de TV</Giro>
+  <Giro>167600 Cinematografia y Esparcimiento</Giro>
+  <Giro>167800 Otros servicios de esparcimiento</Giro>
+  <Giro>168100 Otros servicios sociales o personales</Giro>
+  <Giro>171000 Consulado </Giro>
+  <Giro>172000 Departamento del DF</Giro>
+  <Giro>173000 Gobierno extranjero</Giro>
+  <Giro>174000 Gobierno Federal</Giro>
+  <Giro>181000 Gobierno estatal</Giro>
+  <Giro>182000 Gobierno municipal</Giro>
+  <Giro>183000 Prestaciones de servicios públicos y sociales</Giro>
+  <Giro>191000 Uniones de Crédito</Giro>
+  <Giro>192000 Casas de cambio</Giro>
+  <Giro>193000 Servicios de Montepío</Giro>
+  <Giro>193035 TRANSMISOR Y DISPERSOR DE FONDOS  </Giro>
+  <Giro>194000 Almacenes de deposito</Giro>
+  <Giro>195000 Instituciones de fianzas</Giro>
+  <Giro>196000 Casas de Bolsa</Giro>
+  <Giro>197000 Sociedades de Inversión</Giro>
+  <Giro>198000 Instituciones de Seguros</Giro>
+  <Giro>199000 Asesoría en inversiones</Giro>
+  <Giro>199500 Otros servicios financieros</Giro>
+</Giros>

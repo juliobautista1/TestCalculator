@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core">
+  <body>
+    <ui:composition template="./contractTemplate.xhtml">
+      <ui:define name="top">
+        Bitácora
+      </ui:define>
+      <ui:define name="content">
+        <f:view >
+			<script type="text/javascript">
+	            function start() {
+	              Calendar.setup({ inputField: "forma:startBitacoraDate", ifFormat: "%d/%m/%Y"});
+	              Calendar.setup({ inputField: "forma:endBitacoraDate", ifFormat: "%d/%m/%Y"});
+	            }
+	            window.onload = start;
+          	</script>
+<h:form id="forma">
+<br />
+
+<!-- 			<c:if test="#{! empty ContractBemMB.generalInfoErrorsList}"> -->
+				<h:dataTable id="list" value="#{ContractBemMB.generalInfoErrorsList}"
+					rendered="#{! empty ContractBemMB.generalInfoErrorsList}" var="errors"
+					styleClass="contractStyleNone" rowClasses="tableStyleSecondRow">
+					<h:column>
+						<h:outputText value="#{errors.message}" styleClass="msgValidation" />
+					</h:column>
+				</h:dataTable>
+				<br />
+				<br />
+<!-- 			</c:if> -->
+
+					<h:panelGrid columns="1" styleClass="contractStyle" cellpadding="0"
+						cellspacing="0">
+						<f:facet name="header">
+							<h:outputText value="Registro de Actividades" />
+						</f:facet>
+						<h:panelGrid style="padding-left:10px;">
+							<br />
+							<h:panelGroup>
+								<h:outputText value="Fecha Inicial" /> <f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+								<h:inputText id="startBitacoraDate"
+									onkeypress="return block(evt);" style="width:80px"
+									maxlength="10" styleClass="camposx"
+									value="#{ContractBemMB.startBitacoraDate}" required="false" /> <f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+								
+								<h:outputText value="Fecha Final" /> <f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+								<h:inputText id="endBitacoraDate"
+									onkeypress="return block(evt);" style="width:80px"
+									maxlength="10" styleClass="camposx"
+									value="#{ContractBemMB.endBitacoraDate}" required="false" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<h:outputText value="Numero de Usuario" /> <f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+								<h:inputText id="numberUser" style="width:80px" maxlength="10"
+									styleClass="camposx"
+									value="#{ContractBemMB.userNumberBitacora}" required="false" />
+								<br />
+								<br/>
+								<h:commandLink id="bitacora"
+									onclick="return validateRangeDates('forma:startBitacoraDate','forma:endBitacoraDate');"
+									action="#{ContractBemMB.getInfoBitacora}" immediate="false">  Ver Bitácora</h:commandLink>
+									<br/>
+									<br/>
+								<h:commandLink id="bitacoraReport"
+									onclick="return validateRangeDates('forma:startBitacoraDate','forma:endBitacoraDate');"
+									action="#{ContractBemMB.createBitacoraReport}" immediate="false">  Generar Reporte de Bitácora</h:commandLink>
+								
+							</h:panelGroup>
+						</h:panelGrid>
+						<br />
+					</h:panelGrid>
+					<br/>
+	<h:panelGrid columns="1" styleClass="contractStyle" cellpadding="0" cellspacing="0">
+		<f:facet name="header">
+			<h:outputText value="Registro de Actividad por Folio" />
+		</f:facet>		
+<!--			<h:panelGrid border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleSecondtRow, tableStyleFirstRow">-->
+<!--				<h:outputText value="Registro de Actividad de FOLIO" style="font-weight:bold;width:460px;"></h:outputText>-->
+				<h:panelGrid style="padding-left:10px;">
+				<br/>
+					<h:panelGroup>
+						<h:inputText id="referenceNumber" style="width:90px"
+							maxlength="12" styleClass="camposx"
+							value="#{ContractBemMB.referenceNumberBitacora}"
+							required="false" /> <f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+						<h:commandLink id="bitacoraReference"
+							action="#{ContractBemMB.getInfoBitacoraFolio}"
+							immediate="false">  Buscar Folio</h:commandLink>
+					</h:panelGroup>
+					<br/>
+				</h:panelGrid>
+	</h:panelGrid>
+<br/>
+	<h:panelGrid columns="1" styleClass="contractStyle" cellpadding="0" cellspacing="0">
+		<f:facet name="header">
+			<h:outputText value="Archivos" />
+		</f:facet>	
+			<h:panelGrid style="padding-left:10px;">
+			<br/>
+				<li><a href="searchBitacoraLoadFile.jsf"><span>Ir al Registro de Archivos Generados y Leidos</span></a></li>
+			<br/>
+			</h:panelGrid>
+	</h:panelGrid>
+			
+			
+			</h:form>
+				</f:view>
+      </ui:define>
+    </ui:composition>
+
+  </body>
+</html>

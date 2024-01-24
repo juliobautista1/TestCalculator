@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="pragma" content="no-cache"/>
+	<meta http-equiv="cache-control" content="no-cache"/>
+	<meta http-equiv="expires" content="0"/>    
+    
+    <title>Herramienta e-banking</title>
+    	
+     <script type="text/javascript" src="../img_contracts/js/contratos.js"></script>
+    <script type="text/javascript" src="../img_contracts/js/common.js"></script>
+    <script type="text/javascript" src="../img_contracts/js/actb.js"></script>
+    <script type="text/javascript" src="../img_contracts/js/calendar.js"></script>
+    <script type="text/javascript" src="../img_contracts/js/calendar-es.js"></script>
+    <script type="text/javascript" src="../img_contracts/js/calendar-setup.js"></script>
+    <link href="../img_contracts/css/cssLayout.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../img_contracts/css/calendar-system.css" />
+    
+    <link rel="stylesheet" type="text/css" media="all" href="../img_contracts/css/menu2.css" />
+    
+  </head>
+
+  <body>
+  
+        <table align="center" width="800" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                  <table width="800" border="0" align="center" cellpadding="0" cellspacing="0" background="../img_contracts/images/bkg_arriba.jpg">
+                    <tr>
+                        <td width="15" rowspan="2"></td>
+                        <td width="600" height="42" colspan="2" align="left" valign="top"><img src="../img_contracts/images/contratos.gif" width="140" height="42" /></td>
+                        <td width="185" height="75" rowspan="2" bgcolor= "#cccccc"><img src="../img_contracts/images/logo.gif" width="185" height="75" /></td>
+                    </tr>
+                    <tr>
+                        <td width="400" height="33" valign="bottom">
+                            <table width="640" border="0" align="left" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td width="7"></td>
+                                    <td>
+                                        <ul class="nav">
+											<li>
+												<a href="home.jsf"><span>INICIO</span></a>
+											</li>
+											
+											<li>
+												<a href="ordenAfiliacionAdquirente.jsf?resetForm=true"><span>ADQUIRENTE</span></a>
+											</li>
+											
+											
+											
+											<li>
+												<a href="#">BEM <span class="flecha">&#9660;</span></a>
+												<ul>
+													<li><a href="ordenBEM.jsf?resetForm=true"><span>1.Nuevos Contratos</span></a></li>
+													<li>
+														<a href="#">2. Mantenimientos<span class="flecha">&#9660;</span></a>
+														<ul>
+															<li><a href="ordenMttoBEMAccounts.jsf?resetForm=true"><span>Cuentas Propias</span></a></li>
+															<li><a href="ordenMttoBEMNewPassword.jsf?resetForm=true"><span>Nueva Contraseña</span></a></li>
+															<li><a href="ordenMttoBEMAddToken.jsf?resetForm=true"><span>Tokens Adicionales</span></a></li>
+							                                <li><a href="ordenMttoBEMRenovToken.jsf?resetForm=true"><span>Reposicion de Tokens</span></a></li>
+							                                <li><a href="ordenMttoBEMUpdateAgree.jsf?resetForm=true"><span>Convenio Modifi.</span></a></li>
+							                                <li><a href="ordenMttoBEMDropCompany.jsf?resetForm=true"><span>Baja Empresa</span></a></li>
+							                                <li><a href="ordenMttoBEMDropToken.jsf?resetForm=true"><span>Baja Tokens</span></a></li>
+							                                <li><a href="ordenMttoBEMDropAccount.jsf?resetForm=true"><span>Baja Cuentas</span></a></li>
+														</ul>
+													</li>
+												</ul>
+											</li>
+											
+											
+											<li>
+												<a href="ordenNomina.jsf?resetForm=true"><span>NOMINA</span></a>
+											</li>
+                                            
+                                            <li>
+                                            	<a href="ordenCD.jsf?resetForm=true"><span>COBRANZA</span></a>
+                                            </li>
+                                            
+                                            <li>
+                                            	<a href="criteriaReport.jsf"><span>CONSULTAS</span></a>
+                                            </li>
+                                            
+                                            <li>
+                                            	<a href="#" onclick="return logOut();"><span>SALIR</span></a>
+                                            </li>
+											
+											
+											<c:if test="${UserInfoMB.roleOblix=='Staff'}">
+              									<li><a href="#">ADMIN <span class="flecha">&#9660;</span></a>
+					                            	<ul>
+														<li><a href="searchBitacoraLoadFile.jsf"><span>BITACORA ARCHIVOS</span></a></li>
+	                                              		<li><a href="ejec.jsf"><span>PROCESOS</span></a></li>
+	                                              		<li><a href="mailAdmin.jsf"><span>EMAIL</span></a></li>
+													</ul>
+	                            				</li>
+            								</c:if>
+											
+										</ul>
+                                    </td>
+                                    <td width="6"></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="800" colspan="4" align="right" class="ddcolortabsline">
+                            <span>Bienvenido <f:verbatim>&amp;nbsp;</f:verbatim>
+                                <h:outputText value="#{UserInfoMB.fullName}" escape="false"/>,
+                                <script language="javascript">
+                                    dateTime();
+                                </script>
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+          </tr>
+          <tr>
+            <td>
+                <br/>
+                <div id="top" class="title">
+                    <ui:insert name="top">Top</ui:insert>
+                </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div id="content" class="colDer">
+                <ui:insert name="content">Content</ui:insert>
+              </div>
+            </td>
+          </tr>
+          <tr><td height="10"></td></tr>
+          <tr><td width="100%" class="line"><br/></td></tr>
+      </table>      
+  </body>
+</html>

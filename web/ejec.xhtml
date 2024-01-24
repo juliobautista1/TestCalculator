@@ -1,0 +1,530 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+  <body>
+
+    <ui:composition template="./contractTemplate.xhtml">
+
+      <ui:define name="top">
+        Ejecución Manual de Procesos
+      </ui:define>
+
+      <ui:define name="content">
+        <f:view >
+			<script type="text/javascript">
+	            function start() {
+	             // Calendar.setup({ inputField: "forma:startMaintanceOperationDate", ifFormat: "%d/%m/%Y"});
+	             // Calendar.setup({ inputField: "forma:startReportDate", ifFormat: "%d/%m/%Y"});
+	             // Calendar.setup({ inputField: "forma:endReportDate", ifFormat: "%d/%m/%Y"});
+	            //  Calendar.setup({ inputField: "forma:startBitacoraDate", ifFormat: "%d/%m/%Y"});
+	            //  Calendar.setup({ inputField: "forma:endBitacoraDate", ifFormat: "%d/%m/%Y"});
+	            	iniComboProductos();
+	            }
+	            
+	            window.onload = start;
+
+          	</script>
+					<h:form id="forma">
+<br />
+<!--				<h:panelGrid columns="1" styleClass="contractStyle" cellpadding="0"-->
+<!--					cellspacing="0">-->
+<!--					<f:facet name="header">-->
+<!--						<h:outputText value="Soporte a Folios" />-->
+<!--					</f:facet>-->
+<!--					<h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">-->
+<!--						<h:panelGrid columns="1" style="padding-left:10px;">-->
+<!--							<h:panelGroup>-->
+<!--								<li><a href="support.jsf"><span>Ir a Soporte para Folios</span></a></li>-->
+<!--							</h:panelGroup>-->
+<!--						</h:panelGrid>-->
+<!--					</h:panelGrid>-->
+<!--				</h:panelGrid>-->
+<br/>				
+				<h:panelGrid columns="1" styleClass="contractStyle" cellpadding="0"
+					cellspacing="0">
+					<f:facet name="header">
+						<h:outputText value="Envío y Lectura" />
+					</f:facet>
+<!--					<h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">-->
+<!--						<h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0">-->
+							<br/>
+							<h:panelGroup>
+								<h:selectBooleanCheckbox id="procesoEnvio" styleClass="camposx" value="#{ContractBemMB.procesoEnvio}" onclick="iniComboProductos();" />
+								<h:outputText value="Generación de Layout para operaciones:   " />
+								<h:selectOneMenu id="products" value="#{ContractBemMB.productId}" styleClass="camposx">
+									<f:selectItem itemValue="99" itemLabel="Todos los productos" />
+									<f:selectItem itemValue="1" itemLabel="BEM" />
+									<f:selectItem itemValue="2" itemLabel="Nómina" />
+									<f:selectItem itemValue="3" itemLabel="Adquirente" />
+									<f:selectItem itemValue="5" itemLabel="Mantenimientos" />
+									<f:selectItem itemValue="4" itemLabel="Cobranza Domiciliada" />
+								</h:selectOneMenu>
+							</h:panelGroup>
+							<h:panelGroup>
+								<h:selectBooleanCheckbox id="procesoLectura" styleClass="camposx" value="#{ContractBemMB.procesoLectura}" onclick="iniComboProductos();" />
+								<h:outputText value="Lectura de respuestas de operaciones" />
+								<h:outputText value="" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<h:selectBooleanCheckbox id="procesoCargaCuentasMujerPyME" styleClass="camposx" value="#{ContractBemMB.procesoCargaCuentasMujerPyME}" onclick="iniComboProductos();" />
+								<h:outputText value="Carga de cuentas Mujer PyME (adquirente)" />
+								<h:outputText value="" />
+							</h:panelGroup>
+							<br/>
+							<h:panelGroup>
+								<h:outputText value="" />
+								<h:commandLink id="ejecutarProceso" 
+									onclick="return validaEjecutar();"
+									action="#{ContractBemMB.ejecutarProceso}" 
+									immediate="false" 
+									style="padding-left:100px">
+								x Ejecutar
+								</h:commandLink>
+								
+							</h:panelGroup>
+							<br/>
+<!--						</h:panelGrid>-->
+<!--					</h:panelGrid>-->
+					
+				</h:panelGrid>
+		<br/>
+				<h:panelGrid columns="1" styleClass="contractStyle" cellpadding="0"
+					cellspacing="0">
+					<f:facet name="header">
+						<h:outputText value="Notificaciones eBanking" />
+					</f:facet>
+<!--					<h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">-->
+<!--					<h:outputText value="NOTIFICACIONES" style="font-weight:bold;width:460px;"></h:outputText>-->
+						<h:panelGrid style="padding-left:10px;">
+							<br/>
+							<li><a href="http://localhost:7001/contract/mailAdmin.jsf"><span>Ir a Configuración de notificaciones (Correo electrónico)</span></a></li>
+							<br/>
+						</h:panelGrid>
+<!--					</h:panelGrid>-->
+				</h:panelGrid>
+		<br/>
+				<h:panelGrid columns="1" styleClass="contractStyle" cellpadding="0"
+					cellspacing="0">
+					<f:facet name="header">
+						<h:outputText value=" Ejecutivos " />
+					</f:facet>
+<!--					<h:panelGrid border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleSecondtRow, tableStyleFirstRow">-->
+<!--						<h:outputText value="EJECUTIVOS" style="font-weight:bold;width:460px;"></h:outputText>-->
+							<h:panelGrid style="padding-left:10px;">
+								<br/>
+								<h:commandLink id="UpdateExecutives" action="#{ContractBemMB.updateExecutives}" immediate="false">
+								Cargar Directorio de Ejecutivos</h:commandLink>
+								<br/>
+								<h:commandLink id="executiveList" action="#{ContractBemMB.goToExecutiveList}" immediate="false">
+								Mostrar Directorio de Ejecutivos </h:commandLink>
+								<br/>
+								<br/>
+								<h:commandLink id="DescargarEjecutivos" 
+									action="#{ContractBemMB.downloadFile}" 
+									immediate="false" 
+									style="color:black; font-style:italic">
+									<f:param name="descarga" value="ejecutivo" />
+								 * Descargar archivo para ejemplo de llenado del Directorio Ejecutivos</h:commandLink>
+<!--								//para manejo de perfiles: rendered="#{ContractAbstractMB.userProfile=='admin'}" -->
+							</h:panelGrid>
+<!--					</h:panelGrid>-->
+				</h:panelGrid>
+		<br/>
+				<h:panelGrid columns="1" styleClass="contractStyle" cellpadding="0"
+					cellspacing="0">
+					<f:facet name="header">
+						<h:outputText value=" Sucursales " />
+					</f:facet>
+<!--					<h:panelGrid border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleSecondtRow, tableStyleFirstRow">-->
+<!--						<h:outputText value="SUCURSALES" style="font-weight:bold;width:460px;"></h:outputText>-->
+							<h:panelGrid style="padding-left:10px;">
+								<br/>
+								<h:commandLink id="UpdateExecutiveBranch" action="#{ContractBemMB.updateExecutiveBranch}" immediate="false">Cargar Catálogo de Sucursales</h:commandLink>
+								<br/>
+								<h:commandLink id="BranchList" action="#{ContractBemMB.goToExecutiveBranchList}" immediate="false">Mostrar Directorio de Sucursales</h:commandLink>
+								<br/>
+								<br/>
+								<h:commandLink id="DescargarSucursales" 
+									action="#{ContractBemMB.downloadFile}" 
+									immediate="false" 
+									style="color:black; font-style:italic">
+									<f:param name="descarga" value="sucursal" />
+								 * Descargar archivo para ejemplo de llenado de sucursales</h:commandLink>
+							</h:panelGrid>
+<!--					</h:panelGrid>-->
+				</h:panelGrid>
+		<br/>
+				<h:panelGrid columns="1" styleClass="contractStyle" cellpadding="0"
+					cellspacing="0">
+					<f:facet name="header">
+						<h:outputText value=" Comisiones TPV " />
+					</f:facet>
+						<h:panelGrid style="padding-left:10px;">
+						<br/>
+						<h:commandLink id="ActualizarComisiones" 
+									action="#{ContractBemMB.downloadFile}" 
+									immediate="false" 
+									style="color:black; font-style:italic">
+									<f:param name="descarga" value="comision" />
+								 * Descargar archivo ejemplo para carga de Comisiones TPV</h:commandLink>
+						<h:commandLink id="Commision" action="#{ContractBemMB.readLayoutCommision}" immediate="false">Cargar Comisiones TPV</h:commandLink>
+						<br/>
+						</h:panelGrid>
+				</h:panelGrid>
+	<br/>
+	
+						
+	
+<!--				<h:panelGrid columns="1" styleClass="contractStyle" cellpadding="0"-->
+<!--					cellspacing="0">-->
+<!--					<f:facet name="header">-->
+<!--						<h:outputText value="Reportes" />-->
+<!--					</f:facet>-->
+<!--					<h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0"-->
+<!--						styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">-->
+<!--						<h:panelGroup>-->
+<!--							<h:outputText value="Fecha Inicial" />-->
+<!--							<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--							<h:inputText id="startReportDate" onkeypress="return block(evt);"-->
+<!--								style="width:80px" maxlength="10" styleClass="camposx"-->
+<!--								value="#{ContractBemMB.startReportDate}" required="false" />-->
+<!--							<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--							<h:outputText value="Fecha Final" />-->
+<!--							<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--							<h:inputText id="endReportDate" onkeypress="return block(evt);"-->
+<!--								style="width:80px" maxlength="10" styleClass="camposx"-->
+<!--								value="#{ContractBemMB.endReportDate}" required="false" />-->
+<!--						</h:panelGroup>-->
+<!--						<h:panelGroup>-->
+<!--							<h:commandLink id="AllProductsReport"-->
+<!--								onclick="return validateRangeDates('forma:startReportDate','forma:endReportDate');"-->
+<!--								action="#{ContractBemMB.getAllProductsDetailReportDTO}"-->
+<!--								immediate="false">Generar Reporte de todos los Productos</h:commandLink>-->
+<!--						</h:panelGroup>-->
+<!--					</h:panelGrid>-->
+<!--					<h:panelGrid border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleSecondtRow, tableStyleFirstRow">-->
+<!--						<h:outputText value="ADQUIRENTE" style="font-weight:bold;width:460px;"></h:outputText>-->
+<!--						<h:panelGrid border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleFirstRow">-->
+<!--							<h:panelGroup>-->
+<!--								<h:commandLink id="AdquiererReport"-->
+<!--									onclick="return validateRangeDates('forma:startReportDate','forma:endReportDate');"-->
+<!--									action="#{ContractBemMB.getAdquirerDetailReport}"-->
+<!--									immediate="false">Generar Reporte General</h:commandLink>-->
+<!--							</h:panelGroup>-->
+<!--							<h:panelGroup>-->
+<!--								<h:commandLink id="SIPReport"-->
+<!--									onclick="return validateRangeDates('forma:startReportDate','forma:endReportDate');"-->
+<!--									action="#{ContractBemMB.getSIPDetailReport}" immediate="false">Generar Reporte Solucion Integral PyME</h:commandLink>-->
+<!--							</h:panelGroup>-->
+<!--						</h:panelGrid>-->
+<!--					</h:panelGrid>-->
+<!--				</h:panelGrid>-->
+<br/>
+<!--				<h:panelGrid columns="1" styleClass="contractStyle" cellpadding="0"-->
+<!--					cellspacing="0">-->
+<!--					<f:facet name="header">-->
+<!--						<h:outputText value="Bitacora" />-->
+<!--					</f:facet>-->
+<!--					<h:panelGrid border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleSecondtRow, tableStyleFirstRow">-->
+<!--						<h:outputText value="Registro de Actividad de USUARIO" style="font-weight:bold;width:460px;"></h:outputText>-->
+<!--						<h:panelGrid border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleFirstRow">-->
+<!--							<h:panelGroup>-->
+<!--								<h:outputText value="Fecha Inicial" />-->
+<!--								<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--								<h:inputText id="startBitacoraDate" onkeypress="return block(evt);" style="width:80px" maxlength="10" styleClass="camposx"-->
+<!--									value="#{ContractBemMB.startBitacoraDate}" required="false" />-->
+<!--								<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--								<h:outputText value="Fecha Final" />-->
+<!--								<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--								<h:inputText id="endBitacoraDate" onkeypress="return block(evt);" style="width:80px" maxlength="10" styleClass="camposx"-->
+<!--									value="#{ContractBemMB.endBitacoraDate}" required="false" />-->
+<!--							</h:panelGroup>-->
+<!--							<h:panelGroup>-->
+<!--								<h:outputText value="Numero de Usuario" />-->
+<!--								<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--								<h:inputText id="numberUser" style="width:80px" maxlength="10"-->
+<!--									styleClass="camposx" value="#{ContractBemMB.userNumberBitacora}"-->
+<!--									required="false" />-->
+<!--								<h:commandLink id="bitacora"-->
+<!--									onclick="return validateRangeDates('forma:startBitacoraDate','forma:endBitacoraDate');"-->
+<!--									action="#{ContractBemMB.getInfoBitacora}" immediate="false">  Buscar Usuario</h:commandLink>-->
+<!--							</h:panelGroup>-->
+<!--						</h:panelGrid>-->
+<!--					</h:panelGrid>-->
+<!--					<h:panelGrid border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleSecondtRow, tableStyleFirstRow">-->
+<!--						<h:outputText value="Registro de Actividad de FOLIO" style="font-weight:bold;width:460px;"></h:outputText>-->
+<!--						<h:panelGrid border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleFirstRow">-->
+<!--							<h:panelGroup>-->
+<!--								<h:inputText id="referenceNumber" style="width:80px"-->
+<!--								maxlength="12" styleClass="camposx"-->
+<!--								value="#{ContractBemMB.referenceNumberBitacora}"-->
+<!--								required="false" />-->
+<!--								<h:commandLink id="bitacoraReference"-->
+<!--								action="#{ContractBemMB.getInfoBitacoraFolio}" immediate="false">  Buscar Folio</h:commandLink>-->
+<!--							</h:panelGroup>-->
+<!--						</h:panelGrid>-->
+<!--					</h:panelGrid>-->
+<!--					<h:panelGrid border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleSecondtRow, tableStyleFirstRow">-->
+<!--						<h:outputText value="Archivos" style="font-weight:bold;width:460px;"></h:outputText>-->
+<!--						<h:panelGrid border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleFirstRow">-->
+<!--							<h:panelGrid columns="1" style="padding-left:10px;">-->
+<!--								<h:panelGroup>-->
+<!--									<li><a href="searchBitacoraLoadFile.jsf"><span>Ir al Registro de Archivos Generados y Leidos</span></a></li>-->
+<!--								</h:panelGroup>-->
+<!--							</h:panelGrid>-->
+<!--						</h:panelGrid>-->
+<!--					</h:panelGrid>-->
+<!--				</h:panelGrid>-->
+<!---->
+<!--			<div id="mitigacion" >-->
+<!--				<h:panelGrid>-->
+<!--					<h:outputText value="PROCESOS PARA MITIGACIÓN RIESGOS BEM"-->
+<!--						style="font-weight:bold;width:460px;"></h:outputText>-->
+<!--					<h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0"-->
+<!--						styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">-->
+<!--						<h:panelGroup>-->
+<!--							<h:outputText value="Fecha Inicial" />-->
+<!--							<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--							<h:inputText id="startMaintanceOperationDate"-->
+<!--								onkeypress="return block(evt);" style="width:80px"-->
+<!--								maxlength="10" styleClass="camposx"-->
+<!--								value="#{ContractBemMB.startMaintanceProcessDate}"-->
+<!--								required="false" />-->
+<!--							<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--							<h:outputText value="Dias a Procesar" />-->
+<!--							<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--							<h:inputText id="processDays" style="width:70px;"-->
+<!--								onkeypress="return isNumberKey(event)" maxlength="3"-->
+<!--								styleClass="camposx" value="#{ContractBemMB.processDays}"-->
+<!--								required="false" />-->
+<!--						</h:panelGroup>-->
+<!--						<h:panelGroup>-->
+<!--							<h:commandLink id="CompleteMaintanceProcess"-->
+<!--								onclick="return validateStartMaintanceProcess('forma:CompleteMaintanceProcess');"-->
+<!--								action="#{ContractBemMB.completeMaintanceProcess}"-->
+<!--								immediate="false">Ejecutar Proceso Completo de Mitigación Riesgos BEM</h:commandLink>-->
+<!--						</h:panelGroup>-->
+<!--						<h:panelGroup>-->
+<!--							<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--							<h:commandLink id="MaintancesProcess"-->
+<!--								onclick="return validateStartMaintanceProcess('forma:MaintancesProcess');"-->
+<!--								action="#{ContractBemMB.startMaintanceProcess}"-->
+<!--								immediate="false">Ejecutar Recopilación de Mantenimientos y Activaciones</h:commandLink>-->
+<!--						</h:panelGroup>-->
+<!--						<h:panelGroup>-->
+<!--							<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--							<h:commandLink id="MaintancesSend"-->
+<!--								action="#{ContractBemMB.startMaintanceSend}" immediate="false">Ejecutar Envio de Mantenimientos a Tralix y Directa</h:commandLink>-->
+<!--						</h:panelGroup>-->
+<!--						<h:panelGroup>-->
+<!--							<h:commandLink id="ReceiveDirecta"-->
+<!--								onclick="return validateStartMaintanceProcess('forma:ReceiveDirecta');"-->
+<!--								action="#{ContractBemMB.readLayoutDirecta}" immediate="false">Ejecutar Proceso de Obtención de Resultados de Directa</h:commandLink>-->
+<!--						</h:panelGroup>-->
+<!--					</h:panelGrid>-->
+<!--				</h:panelGrid>-->
+<!--			</div>-->
+
+
+				<!--				<h:panelGrid columns="1" styleClass="content">-->
+<!--							<h:outputText value="Ejecucion Manual de Procesos" />-->
+<!--						<h:panelGrid columns="3">-->
+<!--							<h:selectOneMenu id="process" value="#{ContractBemMB.process}" styleClass="camposx">-->
+<!--									<f:selectItem itemValue="1" itemLabel="Envío y Lectura" />-->
+<!--									 <f:selectItem itemValue="2" itemLabel="Lectura" />-->
+<!--									 <f:selectItem itemValue="3" itemLabel="Envío" />-->
+<!--							</h:selectOneMenu>-->
+<!--				 			<h:selectOneMenu id="products" value="#{ContractBemMB.productId}" styleClass="camposx">-->
+<!--									<f:selectItem itemValue="99" itemLabel="Todos los productos" />-->
+<!--									 <f:selectItem itemValue="1" itemLabel="BEM" />-->
+<!--									 <f:selectItem itemValue="2" itemLabel="Nómina" />-->
+<!--									 <f:selectItem itemValue="3" itemLabel="Adquirente" />-->
+<!--									 <f:selectItem itemValue="5" itemLabel="Mantenimientos" />-->
+<!--									 <f:selectItem itemValue="4" itemLabel="Cobranza Domiciliada" />-->
+<!--							</h:selectOneMenu>-->
+<!--							<h:commandLink id="ejecutarProceso" -->
+<!--							action="#{ContractBemMB.ejecutarProceso}" -->
+<!--							immediate="false">Ejecutar</h:commandLink>-->
+<!--						</h:panelGrid>-->
+<!--							<h:commandLink id="UpdateExecutives" action="#{ContractBemMB.updateExecutives}" immediate="false">Ejecutar Actualizacion del Catalogo de Ejecutivos</h:commandLink>-->
+<!--							<br />-->
+<!--							<h:commandLink id="UpdateExecutiveBranch" action="#{ContractBemMB.updateExecutiveBranch}" immediate="false">Ejecutar Actualizacion del Catalogo de Sucursales</h:commandLink>-->
+<!--							<br />-->
+<!--							<br />-->
+<!--							<h:commandLink id="Commision" action="#{ContractBemMB.readLayoutCommision}" immediate="false">Cargar Nuevas Comisiones TPV</h:commandLink>-->
+<!--				</h:panelGrid>-->
+<!--						-->
+<!--						<h:panelGrid columns="1" styleClass="contractStyle" cellpadding="0" cellspacing="0">-->
+<!--							<f:facet name="header">-->
+<!--								<h:outputText value="Procesos para Mitigación Riesgos BEM" />-->
+<!--							</f:facet>-->
+<!--							<h:panelGrid columns="1" border="0" cellpadding="0"-->
+<!--								cellspacing="0" styleClass="contractStyleInner"-->
+<!--								rowClasses="tableStyleFirstRow">-->
+<!--								<h:panelGroup>-->
+<!--									<h:outputText value="Fecha Inicial" />-->
+<!--									<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--									<h:inputText id="startMaintanceOperationDate"-->
+<!--										onkeypress="return block(evt);" style="width:80px"-->
+<!--										maxlength="10" styleClass="camposx" -->
+<!--										value="#{ContractBemMB.startMaintanceProcessDate}" required="false" />-->
+<!--									<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--									<h:outputText value="Dias a Procesar" />-->
+<!--									<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--									<h:inputText id="processDays" style="width:70px;"-->
+<!--										onkeypress="return isNumberKey(event)" maxlength="3"-->
+<!--										styleClass="camposx" -->
+<!--										value="#{ContractBemMB.processDays}" required="false" />-->
+<!--								</h:panelGroup>								-->
+<!--								-->
+<!--								<h:panelGroup>-->
+<!--									<h:commandLink id="CompleteMaintanceProcess" onclick="return validateStartMaintanceProcess('forma:CompleteMaintanceProcess');"-->
+<!--									action="#{ContractBemMB.completeMaintanceProcess}"-->
+<!--									immediate="false">Ejecutar Proceso Completo de Mitigación Riesgos BEM</h:commandLink>-->
+<!--								</h:panelGroup>-->
+<!--								<h:panelGroup>-->
+<!--									<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--									<h:commandLink id="MaintancesProcess" onclick="return validateStartMaintanceProcess('forma:MaintancesProcess');"-->
+<!--										action="#{ContractBemMB.startMaintanceProcess}"-->
+<!--										immediate="false">Ejecutar Recopilación de Mantenimientos y Activaciones</h:commandLink>-->
+<!--								</h:panelGroup>-->
+<!--								<h:panelGroup>-->
+<!--									<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--									<h:commandLink id="MaintancesSend"-->
+<!--										action="#{ContractBemMB.startMaintanceSend}" -->
+<!--										immediate="false">Ejecutar Envio de Mantenimientos a Tralix y Directa</h:commandLink>-->
+<!--								</h:panelGroup>-->
+<!--								<h:panelGroup>-->
+<!--									<h:commandLink id="ReceiveDirecta" onclick="return validateStartMaintanceProcess('forma:ReceiveDirecta');"-->
+<!--										action="#{ContractBemMB.readLayoutDirecta}" -->
+<!--										immediate="false">Ejecutar Proceso de Obtención de Resultados de Directa</h:commandLink>-->
+<!--								</h:panelGroup>-->
+<!--							</h:panelGrid>-->
+<!--						</h:panelGrid>-->
+<!--						<br/>-->
+<!--						<br/>-->
+<!--						<h:panelGrid columns="1" styleClass="contractStyle" cellpadding="0" cellspacing="0">-->
+<!--							<f:facet name="header">-->
+<!--								<h:outputText value="Reportes de Productos" />-->
+<!--							</f:facet>-->
+<!--							<h:panelGrid columns="1" border="0" cellpadding="0"-->
+<!--								cellspacing="0" styleClass="contractStyleInner"-->
+<!--								rowClasses="tableStyleFirstRow">-->
+<!--								<h:panelGroup>-->
+<!--									<h:outputText value="Fecha Inicial" />-->
+<!--									<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--									<h:inputText id="startReportDate"-->
+<!--										onkeypress="return block(evt);" style="width:80px"-->
+<!--										maxlength="10" styleClass="camposx" -->
+<!--										value="#{ContractBemMB.startReportDate}" required="false" />-->
+<!--									<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--									<h:outputText value="Fecha Final" />-->
+<!--									<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--									<h:inputText id="endReportDate"-->
+<!--										onkeypress="return block(evt);" style="width:80px"-->
+<!--										maxlength="10" styleClass="camposx" -->
+<!--										value="#{ContractBemMB.endReportDate}" required="false" />-->
+<!--								</h:panelGroup>								-->
+<!--								-->
+<!--								<h:panelGroup>-->
+<!--									<h:commandLink id="AllProductsReport" onclick="return validateRangeDates('forma:startReportDate','forma:endReportDate');"-->
+<!--									action="#{ContractBemMB.getAllProductsDetailReportDTO}"-->
+<!--									immediate="false">Generar Reporte de todos los Productos(Richer)</h:commandLink>-->
+<!--								</h:panelGroup>-->
+<!--								<h:panelGroup>-->
+<!--									<h:commandLink id="AdquiererReport" onclick="return validateRangeDates('forma:startReportDate','forma:endReportDate');"-->
+<!--										action="#{ContractBemMB.getAdquirerDetailReport}"-->
+<!--										immediate="false">Generar Reporte de Adquierente(Esteban)</h:commandLink>-->
+<!--								</h:panelGroup>-->
+<!--								<h:panelGroup>-->
+<!--									<h:commandLink id="SIPReport" onclick="return validateRangeDates('forma:startReportDate','forma:endReportDate');"-->
+<!--										action="#{ContractBemMB.getSIPDetailReport}" -->
+<!--										immediate="false">Generar Reporte de Solucion Integral PyME(Esteban)</h:commandLink>-->
+<!--								</h:panelGroup>-->
+<!--							</h:panelGrid>-->
+<!--						</h:panelGrid>-->
+<!--						-->
+<!--						<br/>-->
+<!--						<br/>-->
+<!--						<h:panelGrid columns="1" styleClass="contractStyle" cellpadding="0" cellspacing="0">-->
+<!--							<f:facet name="header">-->
+<!--								<h:outputText value="Bitacora" />-->
+<!--							</f:facet>-->
+<!--							<h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">-->
+<!--								<h:panelGroup>-->
+<!--									<h:outputText value="Fecha Inicial" />-->
+<!--									<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--									<h:inputText id="startBitacoraDate" onkeypress="return block(evt);" style="width:80px" -->
+<!--									maxlength="10" styleClass="camposx"  value="#{ContractBemMB.startBitacoraDate}" required="false" />-->
+<!--									<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--										<h:outputText value="Fecha Final" />-->
+<!--									<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--									<h:inputText id="endBitacoraDate" onkeypress="return block(evt);" style="width:80px" -->
+<!--									maxlength="10" styleClass="camposx" value="#{ContractBemMB.endBitacoraDate}" required="false" />-->
+<!--								</h:panelGroup>	-->
+<!--								-->
+<!--								<h:panelGroup>-->
+<!--									<h:outputText value="Numero de Usuario" />-->
+<!--									<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>-->
+<!--									<h:inputText id="numberUser"  style="width:80px" -->
+<!--									maxlength="10" styleClass="camposx" value="#{ContractBemMB.userNumberBitacora}" required="false" />-->
+<!--									<h:commandLink id="bitacora" onclick="return validateRangeDates('forma:startBitacoraDate','forma:endBitacoraDate');"-->
+<!--									action="#{ContractBemMB.getInfoBitacora}"-->
+<!--									immediate="false"> Ver Bitacora</h:commandLink>-->
+<!--								</h:panelGroup>							-->
+<!--								-->
+<!--				 Para busqueda de bitacora por folio -->
+<!--								<h:panelGroup>-->
+<!--									<h:panelGrid border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleSecondtRow, tableStyleFirstRow">-->
+<!--										<h:outputText value="Buscar por numero de folio" style="font-weight:bold;width:460px;"/>-->
+<!--									</h:panelGrid>-->
+<!--									<h:outputText value="Numero de folio" />-->
+<!--									<h:inputText id="referenceNumber"  style="width:80px" -->
+<!--									maxlength="12" styleClass="camposx" value="#{ContractBemMB.referenceNumberBitacora}" required="false" />-->
+<!--									<h:commandLink id="bitacoraReference"-->
+<!--									action="#{ContractBemMB.getInfoBitacoraFolio}"-->
+<!--									immediate="false">Ver Bitacora por numero de folio</h:commandLink>-->
+<!--								</h:panelGroup>	-->
+<!--							</h:panelGrid>-->
+<!--						</h:panelGrid>-->
+<!--						-->
+<!--						<br/>-->
+<!--						<br/>-->
+<!--						-->
+<!--						<h:panelGrid columns="1" styleClass="contractStyle" cellpadding="0" cellspacing="0">-->
+<!--							<f:facet name="header">-->
+<!--								<h:outputText value="Ejecutivos" />-->
+<!--							</f:facet>					-->
+<!--								-->
+<!--								<h:panelGroup>-->
+<!--									<h:commandLink id="executiveList" -->
+<!--													action="#{ContractBemMB.goToExecutiveList}" -->
+<!--													rendered="#{ContractAbstractMB.userProfile=='admin'}" -->
+<!--													immediate="false">Lista de Ejecutivos-->
+<!--									</h:commandLink>-->
+<!--								</h:panelGroup>-->
+<!---->
+<!--								<br/>-->
+<!---->
+<!--								<h:panelGroup>-->
+<!--									<h:commandLink id="BranchList" action="#{ContractBemMB.goToExecutiveBranchList}" immediate="false">Lista de Sucursales</h:commandLink>-->
+<!--									-->
+<!--								</h:panelGroup>-->
+<!--			-->
+							
+<!--						</h:panelGrid>-->
+
+					</h:form>
+				</f:view>
+      </ui:define>
+
+      
+
+    </ui:composition>
+
+  </body>
+</html>

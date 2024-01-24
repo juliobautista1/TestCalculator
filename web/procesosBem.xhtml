@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+  <body>
+
+    <ui:composition template="./contractTemplate.xhtml">
+
+      <ui:define name="top">
+        Procesos BEM
+      </ui:define>
+
+      <ui:define name="content">
+        <f:view >
+			<script type="text/javascript">
+	            function start() {
+	              Calendar.setup({ inputField: "forma:startMaintanceOperationDate", ifFormat: "%d/%m/%Y"});
+	             // Calendar.setup({ inputField: "forma:startReportDate", ifFormat: "%d/%m/%Y"});
+	             // Calendar.setup({ inputField: "forma:endReportDate", ifFormat: "%d/%m/%Y"});
+	            //  Calendar.setup({ inputField: "forma:startBitacoraDate", ifFormat: "%d/%m/%Y"});
+	            //  Calendar.setup({ inputField: "forma:endBitacoraDate", ifFormat: "%d/%m/%Y"});
+	            }
+	            
+	            window.onload = start;
+
+          	</script>
+          	
+<h:form id="forma">
+<br />
+				<h:panelGrid columns="1" styleClass="contractStyle" cellpadding="0"
+					cellspacing="0">
+					<f:facet name="header">
+						<h:outputText value="Procesos para Mitigación Riesgos BEM" />
+					</f:facet>
+
+						<h:panelGrid columns="1" border="0" cellpadding="0"
+							cellspacing="0" styleClass="contractStyleInner"
+							rowClasses="tableStyleFirstRow">
+							<h:panelGroup>
+								<h:outputText value="Fecha Inicial" />
+								<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+								<h:inputText id="startMaintanceOperationDate"
+									onkeypress="return block(evt);" style="width:80px"
+									maxlength="10" styleClass="camposx"
+									value="#{ContractBemMB.startMaintanceProcessDate}"
+									required="false" />
+								<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+								<h:outputText value="Dias a Procesar" />
+								<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+								<h:inputText id="processDays" style="width:70px;"
+									onkeypress="return isNumberKey(event)" maxlength="3"
+									styleClass="camposx" value="#{ContractBemMB.processDays}"
+									required="false" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<h:commandLink id="CompleteMaintanceProcess"
+									onclick="return validateStartMaintanceProcess('forma:CompleteMaintanceProcess');"
+									action="#{ContractBemMB.completeMaintanceProcess}"
+									immediate="false">Ejecutar Proceso Completo de Mitigación Riesgos BEM</h:commandLink>
+							</h:panelGroup>
+							<h:panelGroup>
+								<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+								<h:commandLink id="MaintancesProcess"
+									onclick="return validateStartMaintanceProcess('forma:MaintancesProcess');"
+									action="#{ContractBemMB.startMaintanceProcess}"
+									immediate="false">Ejecutar Recopilación de Mantenimientos y Activaciones</h:commandLink>
+							</h:panelGroup>
+							<h:panelGroup>
+								<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+								<h:commandLink id="MaintancesSend"
+									action="#{ContractBemMB.startMaintanceSend}" immediate="false">Ejecutar Envio de Mantenimientos a Tralix y Directa</h:commandLink>
+							</h:panelGroup>
+							<h:panelGroup>
+								<h:commandLink id="ReceiveDirecta"
+									onclick="return validateStartMaintanceProcess('forma:ReceiveDirecta');"
+									action="#{ContractBemMB.readLayoutDirecta}" immediate="false">Ejecutar Proceso de Obtención de Resultados de Directa</h:commandLink>
+							</h:panelGroup>
+						</h:panelGrid>
+				</h:panelGrid>
+
+</h:form>
+				</f:view>
+      </ui:define>
+
+      
+
+    </ui:composition>
+
+  </body>
+</html>

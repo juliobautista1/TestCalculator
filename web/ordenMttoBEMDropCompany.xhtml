@@ -1,0 +1,413 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+	<body>
+		<ui:composition template="./contractTemplate.xhtml">
+			<ui:define name="top">
+        		Mantenimientos BEM : Baja de Empresas
+      		</ui:define>
+
+			<ui:define name="content">
+				<f:view>
+				  <script type="text/javascript">
+				  
+					  function start() {
+						 
+					  }
+              		  window.onload = start;
+          		</script>
+				
+				
+				<h:form id="forma">
+
+						<br />
+						<h:messages layout="table" styleClass="errorStyle" />
+						<br />
+						<c:if test="${param['resetForm']==true}">
+              					#{MttoBEMDropCompany.resetForm}
+            			</c:if>
+						<c:if test="${param['editForm']==true}">
+              					#{MttoBEMDropCompany.editForm}
+            			</c:if>
+            			
+            			<c:if test="#{! empty MttoBEMDropCompany.errorsList}">
+              				<h:dataTable id="list" value="#{MttoBEMDropCompany.errorsList}" rendered="#{! empty MttoBEMDropCompany.errorsList}" var="errors" styleClass="contractStyleNone" rowClasses="tableStyleSecondRow">
+                				<h:column>                  
+                  					<h:outputText value="#{errors.message}" styleClass="msgValidation"/>
+                				</h:column>                 
+              				</h:dataTable>              
+            				<br/>
+            			</c:if>
+            			
+            			
+            			<!-- SIC -->
+						<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Datos del Cliente" />
+							</f:facet>
+
+							<h:panelGrid columns="4"  border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" 
+							   rowClasses="tableStyleFirstRow">
+								
+									
+									<h:outputText value="No. Cliente" />
+									<h:outputText value="No. Empresa" />
+									<h:outputText value="CR del BEM del Cliente" />
+									<h:outputText value="" />
+									
+									
+									<h:inputText id="client_sic" value="#{MttoBEMDropCompany.client_sic}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+									maxlength="8" styleClass="camposx" requiredMessage="#{msgs.mttoSICError}" required="true" />
+									
+									
+									<h:inputText id="bemnumber" value="#{MttoBEMDropCompany.bemnumber}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+									maxlength="8" styleClass="camposx" requiredMessage="#{msgs.mttoNoEmpresaError}" required="true" />
+								
+								
+									<h:inputText id="crnumber" value="#{MttoBEMDropCompany.crnumber}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+									maxlength="8" styleClass="camposx" requiredMessage="#{msgs.mttoCRError}" required="true" />
+									
+									
+									<h:outputText value="" />
+									
+							</h:panelGrid>
+						</h:panelGrid>
+						<br/>
+						<!-- FIN SIC -->
+						
+						
+						<!-- Seccion: Baja del Servicio -->
+						
+						<h:panelGrid styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0" width="100%">
+							<f:facet name="header">
+								<h:outputText value="Baja del Servicio" />
+							</f:facet>
+							
+							
+							<!--  Row 1 -->
+							<h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+								<h:outputText value="Nombre/Denominacion/Razon Social" />
+								<h:outputText value="Motivo de Baja" />
+								<h:outputText value="Apoderado Legal" />
+								
+							</h:panelGrid>
+							
+								<!--  Row 2 -->
+								<h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" >	
+								
+									<h:inputText id="fiscalFullName" value="#{MttoBEMDropCompany.fiscalFullName}" style="width:200px;"  
+									maxlength="150" styleClass="camposx" requiredMessage="#{msgs.mttoDropCompanyName}" required="true" ></h:inputText>
+								
+									<h:selectOneMenu id="dropMotiveSelected" styleClass="camposx"  value="#{MttoBEMDropCompany.dropMotiveSelected}" required="true">
+	                  					<f:selectItem itemValue ="0" itemLabel="Seleccione un Motivo" />
+	                  					<f:selectItems value="#{MttoBEMDropCompany.motive_array}"/>
+	                				</h:selectOneMenu>
+										
+									<h:inputText id="accownname_1" value="#{MttoBEMDropCompany.legalRepresentativeFullName}"  
+										 maxlength="50" style="width:220px;"  styleClass="camposx"  requiredMessage="#{msgs.mttoDropCompanyApoderadoLegal}"  required="true"></h:inputText>
+										
+							</h:panelGrid>
+
+					</h:panelGrid>
+							
+							<br/>
+	<!--FIN Seccion: Alta de Cuentas Propias -->
+	
+	<!--Seccion: Comentarios-->
+						<h:panelGrid rowClasses="tableStyleFirstRow"
+							styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Comentarios" />
+							</f:facet>
+
+							<h:panelGrid columns="1" width="99%" border="0" cellpadding="3"
+								cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+								<h:outputText value="Comentarios" />
+								<h:inputTextarea id="comments" styleClass="camposx" cols="70"
+									rows="3" value="#{MttoBEMDropCompany.comments}" required="false" />
+							</h:panelGrid>
+						</h:panelGrid>
+						
+	<!--FIN Seccion: Comentarios -->
+	<br/>
+	
+	
+	<!-- Seccion: Funcionario que Capturo la solicitud del Mantenimiento -->
+<a name="officeInfo"></a>	
+	<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText
+									value="Datos del Funcionario que Capturo la solicitud del Mantenimiento" />
+							</f:facet>
+							<!-- Row1  -->
+							<h:panelGrid columns="1" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:panelGroup>
+									<h:outputText value="No. Empleado " />
+									<h:inputText id="officerempnumber" style="width:80px;"
+										onkeypress="return isTextNON(event)" maxlength="8"
+										styleClass="camposx"
+										requiredMessage="#{msgs.mttoofficerEmpNumberReqError}"
+										value="#{MttoBEMDropCompany.officerempnumber}" required="false" />
+									<h:commandLink id="SearchOfficerMtto"
+										actionListener="#{MttoBEMDropCompany.findOfficerInfo}"
+										immediate="false" style="text-decoration: none">
+										<h:graphicImage url="images/arrowrightmonth.gif"
+											alt="X Consultar" title="Buscar" style="border:0px" />
+										<f:param name="anchorSearchOfficerMtto" value="officeInfo" />
+									</h:commandLink>
+								</h:panelGroup>
+							</h:panelGrid>
+							<!-- Row2  -->
+							<h:panelGrid columns="4" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleSecondRow">
+								<h:outputText value="Nombre" />
+								<h:outputText value="Apellido Paterno" />
+								<h:outputText value="Apellido Materno" />
+								<h:outputText value="Puesto" />
+
+								<h:inputText id="officername"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerNameReqError}"
+									value="#{MttoBEMDropCompany.officername}" 
+									required="false"
+									disabled="#{empty MttoBEMDropCompany.officername ? 'false' : 'true'}" />
+								<h:inputText id="officerlastname"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerLastnameReqError}"
+									value="#{MttoBEMDropCompany.officerlastname}" 
+									required="false"
+									disabled="#{empty MttoBEMDropCompany.officerlastname ? 'false' : 'true'}" />
+								<h:inputText id="officermothersln"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerMothersLnReqError}"
+									value="#{MttoBEMDropCompany.officermothersln}" 
+									required="false"
+									disabled="#{empty MttoBEMDropCompany.officermothersln ? 'false' : 'true'}" />
+								<h:inputText id="officerposition"
+									onkeypress="return isText(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerPositionReqError}"
+									value="#{MttoBEMDropCompany.officerposition}" 
+									required="false"
+									disabled="#{empty MttoBEMDropCompany.officerposition ? 'false' : 'true'}" />
+							</h:panelGrid>
+						</h:panelGrid>
+	
+	<br/>
+	<!--FIN Seccion: Funcionario que Capturo la solicitud del Mantenimiento -->
+	
+	<!-- Seccion: Datos Funcionario Banorte -->
+	
+	
+			<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText
+									value="Datos Funcionario Banorte" />
+							</f:facet>
+							<!-- Row1 -->
+							<h:panelGrid columns="1" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:panelGroup>
+								<h:outputText value="No. Empleado 1 " />
+								<h:inputText id="officerrepempnumber_1"
+									onkeypress="return isTextNON(event)" style="width:80px;"
+									maxlength="8" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerRepNumber1ReqError}"
+									value="#{MttoBEMDropCompany.officerrepempnumber_1}" required="false" />
+								<h:outputText value="" />
+									<h:commandLink id="SearchOfficerRepEmp1Mtto"
+										actionListener="#{MttoBEMDropCompany.findOfficerInfo}"
+										immediate="false" style="text-decoration: none">
+										<h:graphicImage url="images/arrowrightmonth.gif"
+											alt="X Consultar" title="Buscar" style="border:0px" />
+										<f:param name="anchorSearchOfficerRepEmp1Mtto"
+											value="officeInfo" />
+									</h:commandLink>
+								</h:panelGroup>
+							</h:panelGrid>							
+							<!-- Row2 -->
+							<h:panelGrid columns="3" border="0"
+								cellpadding="0" cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:outputText value="Nombre 1" />
+								<h:outputText value="Apellido Paterno 1" />
+								<h:outputText value="Apellido Materno 1" />						
+
+								<h:inputText id="officerrepname_1"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerrepname1ReqError}"
+									value="#{MttoBEMDropCompany.officerrepname_1}" 
+									required="false"
+									disabled="#{empty MttoBEMDropCompany.officerrepname_1 ? 'false' : 'true'}" />
+								<h:inputText id="officerreplastname_1"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerLastname1ReqError}"
+									value="#{MttoBEMDropCompany.officerreplastname_1}" 
+									required="false"
+									disabled="#{empty MttoBEMDropCompany.officerreplastname_1 ? 'false' : 'true'}" />
+								<h:inputText id="officerrepmothersln_1"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerMothersLn1ReqError}"
+									value="#{MttoBEMDropCompany.officerrepmothersln_1}" 
+									required="false"
+									disabled="#{empty MttoBEMDropCompany.officerrepmothersln_1 ? 'false' : 'true'}" />
+								
+								<h:outputText value="No. de Firma 1" />
+								<h:outputText value="Puesto 1" />
+								<h:outputText value="" />
+								
+								<h:inputText id="Officerrepfirmnumber_1" style="width:80px;"
+									onkeypress="return isNumberKey(event)" maxlength="8"
+									styleClass="camposx" value="#{MttoBEMDropCompany.officerrepfirmnumber_1}"
+									required="false" />
+								<h:inputText id="officerrepposition_1"
+									onkeypress="return isText(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerPosition1ReqError}"
+									value="#{MttoBEMDropCompany.officerrepposition_1}" 
+									required="false"
+									disabled="#{empty MttoBEMDropCompany.officerrepposition_1 ? 'false' : 'true'}" />
+								<h:outputText value="" />	
+							</h:panelGrid>
+							
+						</h:panelGrid>
+						
+	<br/>
+	
+	<!--FIN  Seccion: Datos Funcionario Banorte -->
+	
+	
+	<!-- Seccion: Datos Funcionario EBanking Solicitante -->
+	
+		<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Datos del funcionario facultado (eBanking o Transaccional)" />
+							</f:facet>
+							<!-- Row1  -->
+							<h:panelGrid columns="1" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:panelGroup>
+								<h:outputText value="No. Empleado " />
+								<h:inputText id="officerebankingempnumber" style="width:80px;"
+									onkeypress="return isTextNON(event)" maxlength="8"
+									styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerebankingEmpNumberReqError}"
+									value="#{MttoBEMDropCompany.officerebankingempnumber}"
+									required="false" />
+									<h:commandLink id="SearchOfficerBankingMtto"
+										actionListener="#{MttoBEMDropCompany.findOfficerInfo}"
+										immediate="false" style="text-decoration: none">
+										<h:graphicImage url="images/arrowrightmonth.gif"
+											alt="X Consultar" title="Buscar" style="border:0px" />
+										<f:param name="anchorSearchOfficerBankingMtto" value="officeInfo" />
+									</h:commandLink>
+								</h:panelGroup>
+							</h:panelGrid>
+							<!-- Row2  -->
+							<h:panelGrid columns="3" border="0"
+								cellpadding="0" cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleSecondRow">
+								<h:outputText value="Nombre" />
+								<h:outputText value="Apellido Paterno" />
+								<h:outputText value="Apellido Materno" />
+								
+
+								<h:inputText id="officerebankingname"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerebankingNameReqError}"
+									value="#{MttoBEMDropCompany.officerebankingname}" 
+									required="false"
+									disabled="#{empty MttoBEMDropCompany.officerebankingname ? 'false' : 'true'}" />
+								<h:inputText id="officerebankinglastname"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerebankingLastnameReqError}"
+									value="#{MttoBEMDropCompany.officerebankinglastname}"
+									required="false"
+									disabled="#{empty MttoBEMDropCompany.officerebankinglastname ? 'false' : 'true'}" />
+								<h:inputText id="officerebankingmothersln"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerebankingMothersLnReqError}"
+									value="#{MttoBEMDropCompany.officerebankingmothersln}"
+									required="false"
+									disabled="#{empty MttoBEMDropCompany.officerebankingmothersln ? 'false' : 'true'}" />
+								
+							</h:panelGrid>
+							
+							<h:panelGrid columns="3" border="0"
+								cellpadding="0" cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleSecondRow">
+								
+<!--								<h:outputText value="No. De Firma" />-->
+								<h:outputText value="Puesto" />
+								<h:outputText value="" />
+
+<!--								<h:inputText id="officerebankingnumfirm"-->
+<!--									onkeypress="return isNumberKey(event)" style="width:100px;"-->
+<!--									maxlength="30" styleClass="camposx"-->
+<!--									requiredMessage="#{msgs.officerebankingNameReqError}"-->
+<!--									value="#{MttoBEMDropCompany.officerebankingnumfirm}" -->
+<!--									required="false"-->
+<!--									 />-->
+								<h:outputText value="" />
+								<h:inputText id="officerebankingposition"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerebankingNameReqError}"
+									value="#{MttoBEMDropCompany.officerebankingposition}" 
+									required="false"
+									disabled="#{empty MttoBEMDropCompany.officerebankingposition ? 'false' : 'true'}" />
+								<h:outputText value="" />
+								
+							</h:panelGrid>
+							
+						</h:panelGrid>
+	
+	<br />
+	<!--FIN  Seccion: Datos Funcionario EBanking Solicitante -->
+	
+		
+
+						<div class="send" id="divSend">
+							| x <h:commandLink id="Guardar" 
+												onclick="hideShow('divSend', 'divSending');" 
+												action="#{MttoBEMDropCompany.processInfo}"
+												immediate="false" 
+												value="ENVIAR"  />  |
+						</div>
+						<div class="cellright" id="divSending" style="visibility: hidden">
+							| x Enviando... |
+						</div>
+						<br />
+						<br />
+						<br />
+            			
+            	</h:form>
+				
+					
+				</f:view>
+			</ui:define>
+
+		</ui:composition>
+	</body>
+</html>

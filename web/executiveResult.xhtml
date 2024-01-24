@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+  <body>
+
+    <ui:composition template="./contractTemplate.xhtml">
+
+      <ui:define name="top">
+        Ejecutivos eBanking
+      </ui:define>
+
+      <ui:define name="content">
+        <f:view >
+	
+					<h:form id="forma">
+					
+					
+		
+					<!--   Executivos -->
+				
+						
+					<c:if test="#{empty ContractBemMB.executiveBranchList}">
+						
+						<c:if test="#{! empty ContractBemMB.executiveList}">
+						
+							<h:dataTable id="listMes" value="#{ContractBemMB.executiveList}"
+								rendered="#{! empty ContractBemMB.executiveList}" var="executive" 
+								styleClass="contractStyle"  headerClass="Estilo5">
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="User id" />
+									</f:facet>
+									<h:outputText value="#{executive.userid}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Puesto" />
+									</f:facet>
+									<h:outputText value="#{executive.position}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Nombre" />
+									</f:facet>
+									<h:outputText value="#{executive.name}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Id Region" />
+									</f:facet>
+									<h:outputText value="#{executive.idRegion}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Id Territorio" />
+									</f:facet>
+									<h:outputText value="#{executive.idTerritorio}" />
+								</h:column>
+								
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Coordinador" />
+									</f:facet>
+									<h:outputText value="#{executive.coordinador}" />
+								</h:column>
+								
+							</h:dataTable>
+						</c:if>
+						
+						<c:otherwise>
+							<h3>No hay Registro de Ejecutivos en la Base de Datos</h3>
+						</c:otherwise>
+						
+					</c:if>
+						
+						
+					<c:if test="#{ empty ContractBemMB.executiveList}">	
+						<c:if test="#{! empty ContractBemMB.executiveBranchList}">
+						
+						
+							<h:dataTable id="listMes" value="#{ContractBemMB.executiveBranchList}"
+								rendered="#{! empty ContractBemMB.executiveBranchList}" var="branch" 
+								styleClass="contractStyle"  headerClass="Estilo5">
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="CR" />
+									</f:facet>
+									<h:outputText value="#{branch.cr}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Numero de Empleado" />
+									</f:facet>
+									<h:outputText value="#{branch.numeroEmpleadoEjecutivo}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Sucursal" />
+									</f:facet>
+									<h:outputText value="#{branch.sucursal}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Id Region" />
+									</f:facet>
+									<h:outputText value="#{branch.idRegion}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Id Territorio" />
+									</f:facet>
+									<h:outputText value="#{branch.idTerritorio}" />
+								</h:column>
+								
+							</h:dataTable>
+						</c:if>
+						
+						<c:otherwise>
+							<h3>No hay Registro de Sucursales en la Base de Datos</h3>
+						</c:otherwise>
+								
+						</c:if>
+					
+					</h:form>
+				</f:view>
+      </ui:define>
+
+      
+
+    </ui:composition>
+
+  </body>
+</html>

@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+<faces-config version="1.2" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xi="http://www.w3.org/2001/XInclude"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+ <converter>
+  <converter-for-class>java.util.Date</converter-for-class>
+  <converter-class>com.banorte.contract.util.CustomDateTimeConverter</converter-class>
+ </converter>
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>welcome</from-outcome>
+   <to-view-id>/home.xhtml</to-view-id>
+  </navigation-case>
+<!--   <navigation-case>-->
+<!--   <from-outcome>LOGOUT</from-outcome>-->
+<!--   <to-view-id>/out.xhtml</to-view-id>-->
+<!--   <redirect />-->
+<!--  </navigation-case>-->
+ </navigation-rule>
+ <!-- managed-bean>
+        <managed-bean-name>StatusMB</managed-bean-name>
+        <managed-bean-class>com.banorte.contract.web.StatusMB</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean-->
+ <managed-bean>
+  <managed-bean-name>AttributeMB</managed-bean-name>
+  <managed-bean-class>com.banorte.contract.web.AttributeMB</managed-bean-class>
+  <managed-bean-scope>application</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>PdfBuilderMB</managed-bean-name>
+  <managed-bean-class>com.banorte.contract.web.PdfBuilderMB</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+<managed-bean>
+	<managed-bean-name>UserInfoMB</managed-bean-name>
+	<managed-bean-class>com.banorte.contract.web.UserInfoMB</managed-bean-class>
+	<managed-bean-scope>session</managed-bean-scope>
+</managed-bean>
+ <managed-bean>
+  <managed-bean-name>ContractReportMB</managed-bean-name>
+  <managed-bean-class>com.banorte.contract.web.ContractReportMB</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>attributeMB</property-name>
+   <value>#{AttributeMB}</value>
+  </managed-property>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>ContractBemMB</managed-bean-name>
+  <managed-bean-class>com.banorte.contract.web.ContractBemMB</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>attributeMB</property-name>
+   <property-class>java.lang.String</property-class>
+   <value>#{AttributeMB}</value>
+  </managed-property>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>ContractPayrollMB</managed-bean-name>
+  <managed-bean-class>com.banorte.contract.web.ContractPayrollMB</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>attributeMB</property-name>
+   <value>#{AttributeMB}</value>
+  </managed-property>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>ContractAcquirerMB</managed-bean-name>
+  <managed-bean-class>com.banorte.contract.web.ContractAcquirerMB</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>attributeMB</property-name>
+   <value>#{AttributeMB}</value>
+  </managed-property>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>OutboundReportMB</managed-bean-name>
+  <managed-bean-class>com.banorte.contract.web.OutboundReportMB</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>ContractCdMB</managed-bean-name>
+  <managed-bean-class>com.banorte.contract.web.ContractCdMB</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>attributeMB</property-name>
+   <value>#{AttributeMB}</value>
+  </managed-property>
+ </managed-bean >
+ <managed-bean>
+  <managed-bean-name>BitacoraMB</managed-bean-name>
+  <managed-bean-class>com.banorte.contract.web.BitacoraMB</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>LoadFileBitacoraMB</managed-bean-name>
+  <managed-bean-class>com.banorte.contract.web.LoadFileBitacoraMB</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>MttoBEMAccounts</managed-bean-name>
+  <managed-bean-class>com.banorte.contract.web.MttoBEMAccounts</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>attributeMB</property-name>
+   <value>#{AttributeMB}</value>
+  </managed-property>
+ </managed-bean >
+ <managed-bean>
+  <managed-bean-name>MttoBEMDropCompany</managed-bean-name>
+  <managed-bean-class>com.banorte.contract.web.MttoBEMDropCompany</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>attributeMB</property-name>
+   <value>#{AttributeMB}</value>
+  </managed-property>
+ </managed-bean >
+ <managed-bean>
+  <managed-bean-name>MttoBEMDropToken</managed-bean-name>
+  <managed-bean-class>com.banorte.contract.web.MttoBEMDropToken</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>attributeMB</property-name>
+   <value>#{AttributeMB}</value>
+  </managed-property>
+ </managed-bean >
+ <managed-bean>
+  <managed-bean-name>MttoBEMDropAccount</managed-bean-name>
+  <managed-bean-class>com.banorte.contract.web.MttoBEMDropAccount</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>attributeMB</property-name>
+   <value>#{AttributeMB}</value>
+  </managed-property>
+ </managed-bean >
+ <managed-bean>
+  <managed-bean-name>MttoBEMNewPassword</managed-bean-name>
+  <managed-bean-class>com.banorte.contract.web.MttoBEMNewPassword</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>attributeMB</property-name>
+   <value>#{AttributeMB}</value>
+  </managed-property>
+ </managed-bean >
+ <managed-bean>
+  <managed-bean-name>MttoBEMRenovToken</managed-bean-name>
+  <managed-bean-class>com.banorte.contract.web.MttoBEMRenovToken</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>attributeMB</property-name>
+   <value>#{AttributeMB}</value>
+  </managed-property>
+ </managed-bean >
+ <managed-bean>
+  <managed-bean-name>MttoBEMAddToken</managed-bean-name>
+  <managed-bean-class>com.banorte.contract.web.MttoBEMAddToken</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>attributeMB</property-name>
+   <value>#{AttributeMB}</value>
+  </managed-property>
+ </managed-bean >
+ <managed-bean>
+  <managed-bean-name>MttoBEMUpdateAgreement</managed-bean-name>
+  <managed-bean-class>com.banorte.contract.web.MttoBEMUpdateAgreement</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>attributeMB</property-name>
+   <value>#{AttributeMB}</value>
+  </managed-property>
+ </managed-bean >
+ <managed-bean>
+  <managed-bean-name>MttoTPVGeneric</managed-bean-name>
+  <managed-bean-class>com.banorte.contract.web.MttoTPVGeneric</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+  <managed-property>
+   <property-name>attributeMB</property-name>
+   <value>#{AttributeMB}</value>
+  </managed-property>
+ </managed-bean >
+ <managed-bean>
+  <managed-bean-name>MailAdminMB</managed-bean-name>
+  <managed-bean-class>com.banorte.contract.web.MailAdminMB</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean >
+ <!-- managed-bean>
+        <managed-bean-name>CitiesMB</managed-bean-name>
+        <managed-bean-class>com.banorte.contract.web.CitiesMB</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>        
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>UserInfoMB</managed-bean-name>
+        <managed-bean-class>com.banorte.contract.web.UserInfoMB</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean> 
+    <managed-bean>
+        <managed-bean-name>ContractAdminReportMB</managed-bean-name>
+        <managed-bean-class>com.banorte.contract.web.ContractAdminReportMB</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean-->
+    
+ <navigation-rule>
+  <from-view-id>/ordenBEM.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/generalInfoBem.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/ordenNomina.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/generalInfoNomina.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/ordenAfiliacionAdquirente.xhtml</from-view-id>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/ordenAfiliacionAdquirente.xhtml</from-view-id>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/ordenAfiliacionAdquirente.xhtml</from-view-id>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/ordenAfiliacionAdquirente.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+<!--   <to-view-id>/datosParametricosAdquirente.xhtml</to-view-id>-->
+   <to-view-id>/generalInfoAdquirente.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>COMERCIO_ELECTRONICO</from-outcome>
+   <to-view-id>/condicionesEspecialesCE.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>CARGOS_AUTOMATICOS</from-outcome>
+<!--   <to-view-id>/datosParametricosAdquirente.xhtml</to-view-id>-->
+   <to-view-id>/generalInfoAdquirente.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>HERRAMIENTA_COMERCIOS</from-outcome>
+   <to-view-id>/moduloHerramientaComercios.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+  <navigation-rule>
+  <from-view-id>/moduloHerramientaComercios.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/generalInfoAdquirente.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/ordenAfiliacionOIP.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>OIP</from-outcome>
+   <to-view-id>/datosParametricosAdquirente.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/datosParametricosAdquirente.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/generalInfoAdquirente.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/datosParametricosAdquirente.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>OIP</from-outcome>
+   <to-view-id>/generalInfoAdquirenteOIP.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/condicionesEspecialesCE.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+<!--   <to-view-id>/datosParametricosAdquirente.xhtml</to-view-id>-->
+   <to-view-id>/generalInfoAdquirente.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>HERRAMIENTA_COMERCIOS</from-outcome>
+   <to-view-id>/moduloHerramientaComercios.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/condicionesEspecialesTPV.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/generalInfoAdquirente.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/generalInfoAdquirente.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>BACK</from-outcome>
+   <to-view-id>/ordenAfiliacionAdquirente.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/generalInfoAdquirente.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/muestraContratos.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/generalInfoAdquirenteOIP.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>BACK</from-outcome>
+   <to-view-id>/ordenAfiliacionOIP.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/generalInfoAdquirenteOIP.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/muestraContratosOIP.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/criteriaReportOIP.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/muestraContratosOIP.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/criteriaReportOIP.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SEARCH</from-outcome>
+   <to-view-id>/criteriaReportOIP.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/criteriaReport.xhtml</from-view-id>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/criteriaReport.xhtml</from-view-id>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/criteriaReport.xhtml</from-view-id>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/enProceso.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/criteriaReport.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/generalInfoNomina.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>BACK</from-outcome>
+   <to-view-id>/ordenNomina.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/generalInfoNomina.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/muestraContratos.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/generalInfoBem.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>BACK</from-outcome>
+   <to-view-id>/ordenBEM.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/generalInfoBem.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/muestraContratos.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/contractReport.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SEARCH</from-outcome>
+   <to-view-id>/contractReport.xhtml</to-view-id> <!-- Se agrego <redirect/> -->
+   <redirect />
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>EDIT</from-outcome>
+   <to-view-id>/ordenNomina.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/muestraContratos.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>SUCCESSMTTO</from-outcome>
+   <to-view-id>/muestraContratosMttos.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/poblacion.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/poblacion.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/ordenCD.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/generalInfoCD.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/generalInfoCD.xhtml</from-view-id>
+  <navigation-case>
+   	<from-outcome>BACK</from-outcome>
+   <to-view-id>/ordenCD.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/generalInfoCD.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/muestraContratos.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+  <navigation-rule>
+  <from-view-id>/bitacoraAdmin.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>BITACORA</from-outcome>
+   <to-view-id>/bitacora.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/ordenMttoBEMAccounts.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/muestraContratosMttos.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/ordenMttoBEMDropCompany.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/muestraContratosMttos.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/ordenMttoBEMDropToken.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/muestraContratosMttos.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+  <navigation-rule>
+  <from-view-id>/ordenMttoBEMDropAccount.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/muestraContratosMttos.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/ordenMttoBEMNewPassword.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/muestraContratosMttos.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+  <navigation-rule>
+  <from-view-id>/ordenMttoBEMAddToken.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/muestraContratosMttos.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+  <navigation-rule>
+  <from-view-id>/ordenMttoBEMRenovToken.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/muestraContratosMttos.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+  <navigation-rule>
+  <from-view-id>/ordenMttoBEMUpdateAgree.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/muestraContratosMttos.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/ordenMttoTPVGeneric.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/muestraContratosMttos.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/searchBitacoraLoadFile.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>RESULT</from-outcome>
+   <to-view-id>/searchBitacoraLoadFile.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ 
+ <navigation-rule>
+  <from-view-id>/ejec.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>EXECUTIVE</from-outcome>
+   <to-view-id>/executiveResult.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+  <navigation-rule>
+  <from-view-id>/ejec.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>SUCCESS</from-outcome>
+   <to-view-id>/commissionResult.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <application>
+  <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+  <locale-config>
+   <default-locale>en</default-locale>
+  </locale-config>
+  <resource-bundle>
+   <base-name>com.banorte.contract.resources.messages</base-name>
+   <var>msgs</var>
+  </resource-bundle>
+ </application>
+ <lifecycle>
+  <phase-listener>com.banorte.contract.web.interceptor.LoginInterceptor</phase-listener>
+ </lifecycle>
+</faces-config>
+
+
+

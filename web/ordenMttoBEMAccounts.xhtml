@@ -1,0 +1,803 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+	<body>
+		<ui:composition template="./contractTemplate.xhtml">
+			<ui:define name="top">
+        		Mantenimientos BEM : Alta Cuentas propias
+      		</ui:define>
+
+			<ui:define name="content">
+				<f:view>
+				  <script type="text/javascript">
+				 // <![CDATA[
+				  
+					  function start() {
+						  activateCuentas();
+					  }
+					  
+					  function activateCuentas(){
+						  var selectQuantity 		= document.getElementById("forma:quantityAccounts");
+		            	  var quantityOptionsSelect 	= selectQuantity.selectedIndex;
+		            	  clearAccounts();
+		            	  if( selectQuantity.options[quantityOptionsSelect].value == "1" ) {
+		            		  statusCuenta2(true);
+		            		  statusCuenta3(true);
+		            		  statusCuenta4(true);
+		            		  statusCuenta5(true);
+		            		  statusCuenta6(true);
+		            		  statusCuenta7(true);
+		            		  statusCuenta8(true);
+		            		  
+		            	  }else if (selectQuantity.options[quantityOptionsSelect].value == "2"){
+		            		  statusCuenta2(false);
+		            		  statusCuenta3(true);
+		            		  statusCuenta4(true);
+		            		  statusCuenta5(true);
+		            		  statusCuenta6(true);
+		            		  statusCuenta7(true);
+		            		  statusCuenta8(true);
+		            		  
+		            	  }else if (selectQuantity.options[quantityOptionsSelect].value == "3"){
+		            		  statusCuenta2(false);
+		            		  statusCuenta3(false);
+		            		  statusCuenta4(true);
+		            		  statusCuenta5(true);
+		            		  statusCuenta6(true);
+		            		  statusCuenta7(true);
+		            		  statusCuenta8(true);
+		            		  
+		            	  }else if (selectQuantity.options[quantityOptionsSelect].value == "4"){
+		            		  statusCuenta2(false);
+		            		  statusCuenta3(false);
+		            		  statusCuenta4(false);
+		            		  statusCuenta5(true);
+		            		  statusCuenta6(true);
+		            		  statusCuenta7(true);
+		            		  statusCuenta8(true);
+		            		  
+		            	  }else if (selectQuantity.options[quantityOptionsSelect].value == "5"){
+		            		  statusCuenta2(false);
+		            		  statusCuenta3(false);
+		            		  statusCuenta4(false);
+		            		  statusCuenta5(false);
+		            		  statusCuenta6(true);
+		            		  statusCuenta7(true);
+		            		  statusCuenta8(true);
+		            		  
+		            	  }else if (selectQuantity.options[quantityOptionsSelect].value == "6"){
+		            		  statusCuenta2(false);
+		            		  statusCuenta3(false);
+		            		  statusCuenta4(false);
+		            		  statusCuenta5(false);
+		            		  statusCuenta6(false);
+		            		  statusCuenta7(true);
+		            		  statusCuenta8(true);
+		            		  
+		            	  }else if (selectQuantity.options[quantityOptionsSelect].value == "7"){
+		            		  statusCuenta2(false);
+		            		  statusCuenta3(false);
+		            		  statusCuenta4(false);
+		            		  statusCuenta5(false);
+		            		  statusCuenta6(false);
+		            		  statusCuenta7(false);
+		            		  statusCuenta8(true);
+		            		  
+		            	  }else if (selectQuantity.options[quantityOptionsSelect].value == "8"){
+		            		  statusCuenta2(false);
+		            		  statusCuenta3(false);
+		            		  statusCuenta4(false);
+		            		  statusCuenta5(false);
+		            		  statusCuenta6(false);
+		            		  statusCuenta7(false);
+		            		  statusCuenta8(false);
+		            	  }
+					  }
+					  
+					  function statusCuenta2(status){
+						  document.getElementById("forma:accownnum_2").disabled = status; 
+		            	  document.getElementById("forma:regimen_2").disabled = status; 
+		            	  document.getElementById("forma:accownname_2").disabled = status; 
+					  }
+					  
+					  function statusCuenta3(status){
+						  document.getElementById("forma:accownnum_3").disabled = status; 
+		            	  document.getElementById("forma:regimen_3").disabled = status; 
+		            	  document.getElementById("forma:accownname_3").disabled = status; 
+					  }
+					  
+					  function statusCuenta4(status){
+						  document.getElementById("forma:accownnum_4").disabled = status; 
+		            	  document.getElementById("forma:regimen_4").disabled = status; 
+		            	  document.getElementById("forma:accownname_4").disabled = status; 
+					  }
+					  
+					  function statusCuenta5(status){
+						  document.getElementById("forma:accownnum_5").disabled = status; 
+		            	  document.getElementById("forma:regimen_5").disabled = status; 
+		            	  document.getElementById("forma:accownname_5").disabled = status;
+					  }
+					  
+					  function statusCuenta6(status){
+						  document.getElementById("forma:accownnum_6").disabled = status; 
+		            	  document.getElementById("forma:regimen_6").disabled = status; 
+		            	  document.getElementById("forma:accownname_6").disabled = status;
+					  }
+					  
+					  function statusCuenta7(status){
+						  document.getElementById("forma:accownnum_7").disabled = status; 
+		            	  document.getElementById("forma:regimen_7").disabled = status; 
+		            	  document.getElementById("forma:accownname_7").disabled = status;
+					  }
+					  
+					  function statusCuenta8(status){
+						  document.getElementById("forma:accownnum_8").disabled = status; 
+		            	  document.getElementById("forma:regimen_8").disabled = status; 
+		            	  document.getElementById("forma:accownname_8").disabled = status;
+					  }
+				  
+					  function clearAccounts(){
+						var selectQuantity = document.getElementById("forma:quantityAccounts");
+		            	var quantityOptionsSelect = selectQuantity.selectedIndex;
+		            	var qty = selectQuantity.options[quantityOptionsSelect].value;
+						var acc = 8;
+						var y = 8-qty;
+						for(var i =1; i<y+1; i++){
+							document.getElementById("forma:accownnum_"+acc).value='';
+							document.getElementById("forma:regimen_"+acc).selectedIndex=0;
+							document.getElementById("forma:regimen_"+acc).value="Indistinta";
+							document.getElementById("forma:accownname_"+acc).value='';
+							/*
+							var valor=document.getElementById("forma:accownnum_"+acc).attributes.getNamedItem("value");
+							document.getElementById("forma:accownnum_"+acc).attributes.getNamedItem("value").value="";
+							var valorNuevo = document.getElementById("forma:accownnum_"+acc).attributes.getNamedItem("value");
+							*/
+							acc--;
+						}
+						/*
+						for(var i=1; i<=8; i++){
+							//     (var i=1; i &lt; 8; i++) XML+HTML
+							var cuenta = 8;
+							document.getElementById("forma:accownnum_"+cuenta).value="";
+							cuenta--;
+						}*/
+					  }
+              		  window.onload = start;
+              		//]]>
+          		</script>
+				
+				<h:form id="forma">
+
+						<br />
+						<h:messages layout="table" styleClass="errorStyle" />
+						<br />
+						<c:if test="${param['resetForm']==true}">
+              					#{MttoBEMAccounts.resetForm}
+            			</c:if>
+						<c:if test="${param['editForm']==true}">
+              					#{MttoBEMAccounts.editForm}
+            			</c:if>
+            			
+            			<c:if test="#{! empty MttoBEMAccounts.errorsList}">
+              				<h:dataTable id="list" value="#{MttoBEMAccounts.errorsList}" rendered="#{! empty MttoBEMAccounts.errorsList}" var="errors" styleClass="contractStyleNone" rowClasses="tableStyleSecondRow">
+                				<h:column>                  
+                  					<h:outputText value="#{errors.message}" styleClass="msgValidation"/>
+                				</h:column>                 
+              				</h:dataTable>              
+            				<br/>
+            			</c:if>
+            			
+            			
+            			<!-- SIC -->
+						<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Datos del Cliente" />
+							</f:facet>
+
+							<h:panelGrid columns="4"  border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" 
+							   rowClasses="tableStyleFirstRow">
+								
+									<h:outputText value="No. Cliente" />
+									<h:outputText value="No. Empresa" />
+									<h:outputText value="CR del BEM del Cliente" />
+									<h:outputText value="No. de Cuentas Propias" />
+								
+									<h:inputText id="client_sic" value="#{MttoBEMAccounts.client_sic}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+									maxlength="8" styleClass="camposx" requiredMessage="#{msgs.mttoSICError}" required="true" />
+									
+									<h:inputText id="bemnumber" value="#{MttoBEMAccounts.bemnumber}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+									maxlength="8" styleClass="camposx" requiredMessage="#{msgs.mttoNoEmpresaError}" required="true" />
+								
+									<h:inputText id="crnumber" value="#{MttoBEMAccounts.crnumber}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+									maxlength="8" styleClass="camposx" requiredMessage="#{msgs.mttoCRError}" required="true" />
+									
+									<h:selectOneMenu styleClass="camposx"  id="quantityAccounts" value="#{MttoBEMAccounts.quantityAccounts}" onchange="activateCuentas();"  >
+                    					<f:selectItem itemValue="1" itemLabel="1"/>
+                    					<f:selectItem itemValue="2" itemLabel="2"/>
+					                    <f:selectItem itemValue="3" itemLabel="3"/>
+					                    <f:selectItem itemValue="4" itemLabel="4"/>
+					                    <f:selectItem itemValue="5" itemLabel="5"/>
+					                    <f:selectItem itemValue="6" itemLabel="6"/>
+					                    <f:selectItem itemValue="7" itemLabel="7"/>
+					                    <f:selectItem itemValue="8" itemLabel="8"/>
+                  					</h:selectOneMenu>
+							</h:panelGrid>
+							
+							<h:panelGrid columns="1"  border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" >
+							
+							<h:outputText value="Nombre/Denominacion/Razon Social" />
+							   
+							   <h:inputText id="fiscalFullName" value="#{MttoBEMAccounts.fiscalFullName}" style="width:450px;"  
+									maxlength="250" styleClass="camposx" requiredMessage="#{msgs.mttoFiscalNameError}" required="true" escape="false"></h:inputText>
+								
+							   
+							   </h:panelGrid>
+							
+									
+						</h:panelGrid>
+						<br/>
+						<!-- FIN SIC -->
+						
+						
+						<!-- Seccion: Alta de Cuentas Propias -->
+						
+						<h:panelGrid styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0" width="100%">
+							<f:facet name="header">
+								<h:outputText value="Alta de Cuentas Propias" />
+							</f:facet>
+							
+							
+							<!--  Row 1 -->
+							<h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+								<h:outputText value="No. Cuenta" />
+								<h:outputText value="Regimen" />
+								<h:outputText value="Nombre del titular,apoderado o Personas Autorizadas (Separar con coma y espacio(,))" />
+								
+							</h:panelGrid>
+							
+								<!--  Row 2 -->
+							<h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" >	
+								<h:inputText id="accownnum_1" value="#{MttoBEMAccounts.accownnum_1}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+								maxlength="10" styleClass="camposx" requiredMessage="#{msgs.mttoNumAccount1Error}" required="true" onblur="isValidAccNumMtto('accownnum_1');"></h:inputText>
+								
+								<h:selectOneMenu styleClass="camposx"  id="regimen_1" value="#{MttoBEMAccounts.regimen_1}" >
+                    					<f:selectItem itemValue="Indistinta" itemLabel="Indistinta"/>
+                    					<f:selectItem itemValue="Individual" itemLabel="Individual"/>
+					                    <f:selectItem itemValue="Mancomunado" itemLabel="Mancomunado"/>
+                  				</h:selectOneMenu>
+									
+								<h:inputText id="accownname_1" value="#{MttoBEMAccounts.accownname_1}"  
+									 maxlength="250" style="width:220px;"  styleClass="camposx"  requiredMessage="#{msgs.mttoNameAccount1Error}"  required="true"></h:inputText>
+									
+							</h:panelGrid>
+								<!--  Row 3 -->
+								
+							<h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+								<h:inputText id="accownnum_2" value="#{MttoBEMAccounts.accownnum_2}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+								maxlength="10" styleClass="camposx" requiredMessage="#{msgs.mttoNumAccount2Error}" required="true" onblur="isValidAccNumMtto('accownnum_2');"></h:inputText>
+								
+								<h:selectOneMenu styleClass="camposx"  id="regimen_2" value="#{MttoBEMAccounts.regimen_2}" >
+                    					<f:selectItem itemValue="Indistinta" itemLabel="Indistinta"/>
+                    					<f:selectItem itemValue="Individual" itemLabel="Individual"/>
+					                    <f:selectItem itemValue="Mancomunado" itemLabel="Mancomunado"/>
+                  				</h:selectOneMenu>
+									
+								<h:inputText id="accownname_2" value="#{MttoBEMAccounts.accownname_2}"  
+									 maxlength="250" style="width:220px;" styleClass="camposx" requiredMessage="#{msgs.mttoNameAccount2Error}"  required="true"></h:inputText>
+									
+							</h:panelGrid>		
+								<!--  Row 4 -->
+							
+							<h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" >	
+								<h:inputText id="accownnum_3" value="#{MttoBEMAccounts.accownnum_3}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+								maxlength="10" styleClass="camposx" requiredMessage="#{msgs.mttoNumAccount3Error}" required="true" onblur="isValidAccNumMtto('accownnum_3');"></h:inputText>
+								
+								<h:selectOneMenu styleClass="camposx"  id="regimen_3" value="#{MttoBEMAccounts.regimen_3}" >
+                    					<f:selectItem itemValue="Indistinta" itemLabel="Indistinta"/>
+                    					<f:selectItem itemValue="Individual" itemLabel="Individual"/>
+					                    <f:selectItem itemValue="Mancomunado" itemLabel="Mancomunado"/>
+                  				</h:selectOneMenu>
+									
+								<h:inputText id="accownname_3" value="#{MttoBEMAccounts.accownname_3}"  
+									 maxlength="250" style="width:220px;" styleClass="camposx" requiredMessage="#{msgs.mttoNameAccount3Error}"  required="true"></h:inputText>
+									
+									
+							</h:panelGrid>		
+									
+								<!--  Row 5 -->
+								
+							<h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+								<h:inputText id="accownnum_4" value="#{MttoBEMAccounts.accownnum_4}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+								maxlength="10" styleClass="camposx" requiredMessage="#{msgs.mttoNumAccount4Error}" required="true" onblur="isValidAccNumMtto('accownnum_4');"></h:inputText>
+								
+								<h:selectOneMenu styleClass="camposx"  id="regimen_4" value="#{MttoBEMAccounts.regimen_4}" >
+                    					<f:selectItem itemValue="Indistinta" itemLabel="Indistinta"/>
+                    					<f:selectItem itemValue="Individual" itemLabel="Individual"/>
+					                    <f:selectItem itemValue="Mancomunado" itemLabel="Mancomunado"/>
+                  				</h:selectOneMenu>
+									
+								<h:inputText id="accownname_4" value="#{MttoBEMAccounts.accownname_4}"  
+									 maxlength="250" style="width:220px;" styleClass="camposx" requiredMessage="#{msgs.mttoNameAccount4Error}"  required="true"></h:inputText>
+									
+							</h:panelGrid>		
+								<!--  Row 6 -->
+								
+							<h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" >
+								<h:inputText id="accownnum_5" value="#{MttoBEMAccounts.accownnum_5}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+								maxlength="10" styleClass="camposx" requiredMessage="#{msgs.mttoNumAccount5Error}" required="true" onblur="isValidAccNumMtto('accownnum_5');"></h:inputText>
+								
+								<h:selectOneMenu styleClass="camposx"  id="regimen_5" value="#{MttoBEMAccounts.regimen_5}" >
+                    					<f:selectItem itemValue="Indistinta" itemLabel="Indistinta"/>
+                    					<f:selectItem itemValue="Individual" itemLabel="Individual"/>
+					                    <f:selectItem itemValue="Mancomunado" itemLabel="Mancomunado"/>
+                  				</h:selectOneMenu>
+									
+								<h:inputText id="accownname_5" value="#{MttoBEMAccounts.accownname_5}"  
+									 maxlength="250" style="width:220px;" styleClass="camposx" requiredMessage="#{msgs.mttoNameAccount5Error}"  required="true"></h:inputText>
+									
+								
+							</h:panelGrid>
+							
+				<!-- Row 7 (account 6) gina-->
+							<h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+								<h:inputText id="accownnum_6" value="#{MttoBEMAccounts.accownnum_6}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+								maxlength="10" styleClass="camposx" requiredMessage="#{msgs.mttoNumAccount5Error}" required="true" onblur="isValidAccNumMtto('accownnum_6');"></h:inputText>
+								<h:selectOneMenu styleClass="camposx"  id="regimen_6" value="#{MttoBEMAccounts.regimen_6}" >
+                    					<f:selectItem itemValue="Indistinta" itemLabel="Indistinta"/>
+                    					<f:selectItem itemValue="Individual" itemLabel="Individual"/>
+					                    <f:selectItem itemValue="Mancomunado" itemLabel="Mancomunado"/>
+                  				</h:selectOneMenu>
+								<h:inputText id="accownname_6" value="#{MttoBEMAccounts.accownname_6}"  
+									 maxlength="250" style="width:220px;" styleClass="camposx" requiredMessage="#{msgs.mttoNameAccount5Error}"  required="true"></h:inputText>
+							</h:panelGrid>
+							
+				<!-- Row 8 (account 7) gina -->
+							<h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" >
+								<h:inputText id="accownnum_7" value="#{MttoBEMAccounts.accownnum_7}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+								maxlength="10" styleClass="camposx" requiredMessage="#{msgs.mttoNumAccount5Error}" required="true" onblur="isValidAccNumMtto('accownnum_7');"></h:inputText>
+								<h:selectOneMenu styleClass="camposx"  id="regimen_7" value="#{MttoBEMAccounts.regimen_7}" >
+                    					<f:selectItem itemValue="Indistinta" itemLabel="Indistinta"/>
+                    					<f:selectItem itemValue="Individual" itemLabel="Individual"/>
+					                    <f:selectItem itemValue="Mancomunado" itemLabel="Mancomunado"/>
+                  				</h:selectOneMenu>
+								<h:inputText id="accownname_7" value="#{MttoBEMAccounts.accownname_7}"  
+									 maxlength="250" style="width:220px;" styleClass="camposx" requiredMessage="#{msgs.mttoNameAccount5Error}"  required="true"></h:inputText>
+							</h:panelGrid>
+							
+				<!-- Row 9 (account 8) gina -->
+							<h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+								<h:inputText id="accownnum_8" value="#{MttoBEMAccounts.accownnum_8}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+								maxlength="10" styleClass="camposx" requiredMessage="#{msgs.mttoNumAccount5Error}" required="true" onblur="isValidAccNumMtto('accownnum_8');"></h:inputText>
+								<h:selectOneMenu styleClass="camposx"  id="regimen_8" value="#{MttoBEMAccounts.regimen_8}" >
+                    					<f:selectItem itemValue="Indistinta" itemLabel="Indistinta"/>
+                    					<f:selectItem itemValue="Individual" itemLabel="Individual"/>
+					                    <f:selectItem itemValue="Mancomunado" itemLabel="Mancomunado"/>
+                  				</h:selectOneMenu>
+								<h:inputText id="accownname_8" value="#{MttoBEMAccounts.accownname_8}"  
+									 maxlength="250" style="width:220px;" styleClass="camposx" requiredMessage="#{msgs.mttoNameAccount5Error}"  required="true"></h:inputText>
+							</h:panelGrid>
+							
+					</h:panelGrid>
+							
+							<br/>
+	<!--FIN Seccion: Alta de Cuentas Propias -->
+	
+	
+	<!-- Seccion: Nombre del Cliente -->
+	
+				<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Nombre(s) Del Apoderado(s)" />
+							</f:facet>
+
+							<h:panelGrid columns="3" border="0" cellpadding="5"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:outputText value="Nombre 1" />
+								<h:outputText value="Apellido Paterno 1" />
+								<h:outputText value="Apellido Materno 1" />
+
+								<h:inputText id="legalrepresentative_name_1"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoclienteName1Error}"
+									value="#{MttoBEMAccounts.legalrepresentative_name_1}"
+									required="false" />
+								<h:inputText id="legalrepresentative_lastname_1"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoclienteLastName1Error}"
+									value="#{MttoBEMAccounts.legalrepresentative_lastname_1}"
+									required="false" />
+								<h:inputText id="legalrepresentative_mothersln_1"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoclienteMothersLn1Error}"
+									value="#{MttoBEMAccounts.legalrepresentative_mothersln_1}"
+									required="false" />
+							</h:panelGrid>
+							<h:panelGrid columns="3" border="0" cellpadding="5"
+								cellspacing="0" styleClass="contractStyleInner">
+								<h:outputText value="Nombre 2" />
+								<h:outputText value="Apellido Paterno 2" />
+								<h:outputText value="Apellido Materno 2" />
+
+								<h:inputText id="legalrepresentative_name_2"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="30" styleClass="camposx"
+									value="#{MttoBEMAccounts.legalrepresentative_name_2}"
+									required="false" />
+								<h:inputText id="legalrepresentative_lastname_2"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="30" styleClass="camposx"
+									value="#{MttoBEMAccounts.legalrepresentative_lastname_2}"
+									required="false" />
+								<h:inputText id="legalrepresentative_mothersln_2"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="30" styleClass="camposx"
+									value="#{MttoBEMAccounts.legalrepresentative_mothersln_2}"
+									required="false" />
+							</h:panelGrid>
+						</h:panelGrid>
+	
+	<br/>
+	<!--FIN Seccion: Nombre del Cliente -->
+	
+	
+	<!-- Seccion: Funcionario que Capturo la solicitud del Mantenimiento -->
+	
+	
+<a name="officeInfo"></a>
+	<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText
+									value="Datos del Funcionario que Capturo la solicitud del Mantenimiento" />
+							</f:facet>
+							<!-- Row1  -->
+							<h:panelGrid columns="1" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:panelGroup>
+									<h:outputText value="No. Empleado " />
+									<h:inputText id="officerempnumber" style="width:80px;"
+										onkeypress="return isTextNON(event)" maxlength="8"
+										styleClass="camposx"
+										requiredMessage="#{msgs.mttoofficerEmpNumberReqError}"
+										value="#{MttoBEMAccounts.officerempnumber}" required="false" />
+									<h:commandLink id="SearchOfficerMtto"
+										actionListener="#{MttoBEMAccounts.findOfficerInfo}"
+										immediate="false" style="text-decoration: none">
+										<h:graphicImage url="images/arrowrightmonth.gif"
+											alt="X Consultar" title="Buscar" style="border:0px" />
+										<f:param name="anchorSearchOfficerMtto" value="officeInfo" />
+									</h:commandLink>
+								</h:panelGroup>
+							</h:panelGrid>
+							<!-- Row2  -->
+							<h:panelGrid columns="4" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleSecondRow">
+								<h:outputText value="Nombre" />
+								<h:outputText value="Apellido Paterno" />
+								<h:outputText value="Apellido Materno" />
+								<h:outputText value="Puesto" />
+
+								<h:inputText id="officername"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerNameReqError}"
+									value="#{MttoBEMAccounts.officername}" 
+									required="false"
+									disabled="#{empty MttoBEMAccounts.officername ? 'false' : 'true'}" />
+								<h:inputText id="officerlastname"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerLastnameReqError}"
+									value="#{MttoBEMAccounts.officerlastname}" 
+									required="false"
+									disabled="#{empty MttoBEMAccounts.officerlastname ? 'false' : 'true'}" />
+								<h:inputText id="officermothersln"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerMothersLnReqError}"
+									value="#{MttoBEMAccounts.officermothersln}" 
+									required="false"
+									disabled="#{empty MttoBEMAccounts.officermothersln ? 'false' : 'true'}" />
+								<h:inputText id="officerposition"
+									onkeypress="return isText(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerPositionReqError}"
+									value="#{MttoBEMAccounts.officerposition}" 
+									required="false"
+									disabled="#{empty MttoBEMAccounts.officerposition ? 'false' : 'true'}" />
+							</h:panelGrid>
+						</h:panelGrid>
+	
+	<br/>
+	<!--FIN Seccion: Funcionario que Capturo la solicitud del Mantenimiento -->
+	
+	<!-- Seccion: Datos Funcionario Banorte -->
+	
+<a name="officeRepInfo"></a>	
+			<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText
+									value="Datos Funcionario Banorte" />
+							</f:facet>
+							<!-- Row1 -->
+							<h:panelGrid columns="1" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:panelGroup>
+								<h:outputText value="No. Empleado 1 " />
+								<h:inputText id="officerrepempnumber_1"
+									onkeypress="return isTextNON(event)" style="width:80px;"
+									maxlength="8" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerRepNumber1ReqError}"
+									value="#{MttoBEMAccounts.officerrepempnumber_1}" required="false" />
+								<h:outputText value="" />
+									<h:commandLink id="SearchOfficerRepEmp1Mtto"
+										actionListener="#{MttoBEMAccounts.findOfficerInfo}"
+										immediate="false" style="text-decoration: none">
+										<h:graphicImage url="images/arrowrightmonth.gif"
+											alt="X Consultar" title="Buscar" style="border:0px" />
+										<f:param name="anchorSearchOfficerRepEmp1Mtto"
+											value="officeRepInfo" />
+									</h:commandLink>
+								</h:panelGroup>
+							</h:panelGrid>							
+							<!-- Row2 -->
+							<h:panelGrid columns="3" border="0"
+								cellpadding="0" cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:outputText value="Nombre 1" />
+								<h:outputText value="Apellido Paterno 1" />
+								<h:outputText value="Apellido Materno 1" />						
+
+								<h:inputText id="officerrepname_1"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerrepname1ReqError}"
+									value="#{MttoBEMAccounts.officerrepname_1}" 
+									required="false"
+									disabled="#{empty MttoBEMAccounts.officerrepname_1 ? 'false' : 'true'}" />
+								<h:inputText id="officerreplastname_1"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerLastname1ReqError}"
+									value="#{MttoBEMAccounts.officerreplastname_1}" 
+									required="false"
+									disabled="#{empty MttoBEMAccounts.officerreplastname_1 ? 'false' : 'true'}" />
+								<h:inputText id="officerrepmothersln_1"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerMothersLn1ReqError}"
+									value="#{MttoBEMAccounts.officerrepmothersln_1}" 
+									required="false"
+									disabled="#{empty MttoBEMAccounts.officerrepmothersln_1 ? 'false' : 'true'}" />
+								
+								<h:outputText value="No. de Firma 1" />
+								<h:outputText value="Puesto 1" />
+								<h:outputText value="" />
+								
+								<h:inputText id="Officerrepfirmnumber_1" style="width:80px;"
+									onkeypress="return isNumberKey(event)" maxlength="8"
+									styleClass="camposx" value="#{MttoBEMAccounts.officerrepfirmnumber_1}"
+									required="false" />
+								<h:inputText id="officerrepposition_1"
+									onkeypress="return isText(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerPosition1ReqError}"
+									value="#{MttoBEMAccounts.officerrepposition_1}" 
+									required="false"
+									disabled="#{empty MttoBEMAccounts.officerrepposition_1 ? 'false' : 'true'}" />
+								<h:outputText value="" />	
+							</h:panelGrid>
+							<!-- Row3 -->
+							<h:panelGrid columns="1" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleSecondRow">
+								<h:panelGroup>
+								<h:outputText value="No. Empleado 2 " />
+								<h:inputText id="officerrepempnumber_2"
+									onkeypress="return isTextNON(event)" style="width:80px;"
+									maxlength="8" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerrepempnumber2ReqError}"
+									value="#{MttoBEMAccounts.officerrepempnumber_2}" required="false" />
+									<h:commandLink id="SearchOfficerRepEmp2Mtto"
+										actionListener="#{MttoBEMAccounts.findOfficerInfo}"
+										immediate="false" style="text-decoration: none">
+										<h:graphicImage url="images/arrowrightmonth.gif"
+											alt="X Consultar" title="Buscar" style="border:0px" />
+										<f:param name="anchorSearchOfficerRepEmp2Mtto"
+											value="officeRepInfo" />
+									</h:commandLink>
+								</h:panelGroup>
+							</h:panelGrid>
+							<!-- Row4 -->
+							<h:panelGrid columns="3" border="0"
+								cellpadding="0" cellspacing="0" styleClass="contractStyleInner">
+								<h:outputText value="Nombre 2" />
+								<h:outputText value="Apellido Paterno 2" />
+								<h:outputText value="Apellido Materno 2" />
+								
+								<h:inputText id="officerrepname_2"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerrepname2ReqError}"
+									value="#{MttoBEMAccounts.officerrepname_2}" 
+									required="false"
+									disabled="#{empty MttoBEMAccounts.officerrepname_2 ? 'false' : 'true'}" />
+								<h:inputText id="officerreplastname_2"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerreplastname2ReqError}"
+									value="#{MttoBEMAccounts.officerreplastname_2}" 
+									required="false"
+									disabled="#{empty MttoBEMAccounts.officerreplastname_2 ? 'false' : 'true'}" />
+								<h:inputText id="officerrepmothersln_2"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerrepmothersln2ReqError}"
+									value="#{MttoBEMAccounts.officerrepmothersln_2}" 
+									required="false"
+									disabled="#{empty MttoBEMAccounts.officerrepmothersln_2 ? 'false' : 'true'}" />
+
+								<h:outputText value="No. de Firma 2" />
+								<h:outputText value="Puesto 2" />
+								<h:outputText value="" />
+
+								<h:inputText id="Officerrepfirmnumber_2" style="width:80px;"
+									onkeypress="return isNumberKey(event)" maxlength="8"
+									styleClass="camposx" value="#{MttoBEMAccounts.officerrepfirmnumber_2}"
+									required="false" />
+								<h:inputText id="officerrepposition_2"
+									onkeypress="return isText(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerrepposition2ReqError}"
+									value="#{MttoBEMAccounts.officerrepposition_2}" 
+									required="false"
+									disabled="#{empty MttoBEMAccounts.officerrepposition_2 ? 'false' : 'true'}" />
+								<h:outputText value="" />	
+							</h:panelGrid>
+						</h:panelGrid>
+						
+	<br/>
+	
+	<!--FIN  Seccion: Datos Funcionario Banorte -->
+	
+	
+	<!-- Seccion: Datos Funcionario EBanking Solicitante -->
+	
+		<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Datos del funcionario facultado (eBanking o Transaccional)" />
+							</f:facet>
+							<!-- Row1  -->
+							<h:panelGrid columns="1" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:panelGroup>
+								<h:outputText value="No. Empleado " />
+								<h:inputText id="officerebankingempnumber" style="width:80px;"
+									onkeypress="return isTextNON(event)" maxlength="8"
+									styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerebankingEmpNumberReqError}"
+									value="#{MttoBEMAccounts.officerebankingempnumber}"
+									required="false" />
+									<h:commandLink id="SearchOfficerBankingMtto"
+										actionListener="#{MttoBEMAccounts.findOfficerInfo}"
+										immediate="false" style="text-decoration: none">
+										<h:graphicImage url="images/arrowrightmonth.gif"
+											alt="X Consultar" title="Buscar" style="border:0px" />
+										<f:param name="anchorSearchOfficerBankingMtto" value="officeInfo" />
+									</h:commandLink>
+								</h:panelGroup>
+							</h:panelGrid>
+							<!-- Row2  -->
+							<h:panelGrid columns="3" border="0"
+								cellpadding="0" cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleSecondRow">
+								<h:outputText value="Nombre" />
+								<h:outputText value="Apellido Paterno" />
+								<h:outputText value="Apellido Materno" />
+								
+
+								<h:inputText id="officerebankingname"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerebankingNameReqError}"
+									value="#{MttoBEMAccounts.officerebankingname}" 
+									required="false"
+									disabled="#{empty MttoBEMAccounts.officerebankingname ? 'false' : 'true'}" />
+								<h:inputText id="officerebankinglastname"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerebankingLastnameReqError}"
+									value="#{MttoBEMAccounts.officerebankinglastname}"
+									required="false"
+									disabled="#{empty MttoBEMAccounts.officerebankinglastname ? 'false' : 'true'}" />
+								<h:inputText id="officerebankingmothersln"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerebankingMothersLnReqError}"
+									value="#{MttoBEMAccounts.officerebankingmothersln}"
+									required="false"
+									disabled="#{empty MttoBEMAccounts.officerebankingmothersln ? 'false' : 'true'}" />
+								
+							</h:panelGrid>
+							
+							<h:panelGrid columns="3" border="0"
+								cellpadding="0" cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleSecondRow">
+								
+<!--								<h:outputText value="No. De Firma" />-->
+								<h:outputText value="Puesto" />
+								<h:outputText value="" />
+
+<!--								<h:inputText id="officerebankingnumfirm"-->
+<!--									onkeypress="return isNumberKey(event)" style="width:80px;"-->
+<!--									maxlength="8" styleClass="camposx"-->
+<!--									requiredMessage="#{msgs.officerebankingNameReqError}"-->
+<!--									value="#{MttoBEMAccounts.officerebankingnumfirm}" -->
+<!--									required="false"-->
+<!--									 />-->
+								<h:outputText value="" />
+								<h:inputText id="officerebankingposition"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerebankingNameReqError}"
+									value="#{MttoBEMAccounts.officerebankingposition}" 
+									required="false"
+									disabled="#{empty MttoBEMAccounts.officerebankingposition ? 'false' : 'true'}" />
+								<h:outputText value="" />
+								
+							</h:panelGrid>
+							
+						</h:panelGrid>
+	
+	<br />
+	<!--FIN  Seccion: Datos Funcionario EBanking Solicitante -->
+	
+						
+						
+						
+						
+						<!-- SIC -->
+						<div class="notes"> * Numero de Cliente en altamira</div>
+
+						<br />
+						
+
+						<div class="send" id="divSend">
+							| x <h:commandLink id="Guardar" 
+												onclick="hideShow('divSend', 'divSending');" 
+												action="#{MttoBEMAccounts.processInfo}" 
+												immediate="false" 
+												value="ENVIAR"  />  |
+						</div>
+						<div class="cellright" id="divSending" style="visibility: hidden">
+							| x Enviando... |
+						</div>
+						
+						<br />
+						<br />
+						<br/>
+            			
+            	</h:form>
+				
+					
+				</f:view>
+			</ui:define>
+
+		</ui:composition>
+	</body>
+</html>

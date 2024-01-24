@@ -1,0 +1,468 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+
+	<body>
+		<ui:composition template="./contractTemplate.xhtml">
+		<!--  Se Agrego Comentario para que aumentara su tamaño y subirlo al SVN -->
+		
+
+		<ui:define name="top">
+		
+        	Consulta de Contratos
+      	</ui:define>
+			<ui:define name="content">
+				<f:view>
+				<!-- 
+				
+				<c:if test="${ContractReportMB.bem}">
+					<c:if test="${!ContractReportMB.licenseBEM}">
+						<script type="text/javascript">
+							alert("No cuenta con los Permisos Necesarios Para visualizar Toda la Informacion");
+						</script>
+					</c:if>
+				</c:if>
+				-->
+				
+					<h:form id="forma">
+						<h:panelGrid styleClass="contractStyleSpecial" columns="1"
+							cellpadding="1" cellspacing="1">
+							<f:facet name="header">
+								<h:outputText value="Consulta de Contratos" />
+							</f:facet>
+							<h:column>
+								<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+								<h:outputText value="Busqueda por" />
+								<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+								<h:selectOneMenu id="searchoption"
+									onchange="return searchOption('searchoption','reference');"
+									value="#{ContractReportMB.searchoption}" style="width:60px;"
+									styleClass="camposx">
+									<f:selectItem itemValue="Folio" itemLabel="Folio" />
+									<f:selectItem itemValue="SIC" itemLabel="SIC" />
+								</h:selectOneMenu>
+								<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+								<h:inputText style="width:110px;" maxlength="12" id="reference"
+									value="#{ContractReportMB.reference}" required="false"
+									class="camposx" />
+								<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;| X </f:verbatim>
+								<h:commandLink styleClass="search" id="Consultar"
+									action="#{ContractReportMB.getReportResult}" immediate="false">CONSULTAR</h:commandLink>
+								<f:verbatim>&amp;nbsp;|</f:verbatim>
+							</h:column>
+						</h:panelGrid>
+						<br />
+						<br />
+
+						<br />
+						<div style="width: 850px;overflow: auto;">
+						
+					
+						<c:if test="#{! empty ContractReportMB.contractList}">
+						
+						<!-- RESULTADOS ALTA DE CONTRATOS -->	
+						<c:if test="${!ContractReportMB.contractMtto}">
+						
+						<h:dataTable id="list" value="#{ContractReportMB.contractList}"
+								rendered="#{! empty ContractReportMB.contractList}"
+								var="contractSearch" styleClass="contractStyle"
+								rowClasses="tableStyleFirstRow, tableStyleSecondRow"
+								headerClass="Estilo5">
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Folio" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.contract.reference}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Producto" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.product}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Fecha de Captura" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.contract.creationdate}">
+										<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"
+											timeZone="America/Mexico_City" />
+									</h:outputText>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Fecha de Formalización" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.formalDate}">
+										<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"
+											timeZone="America/Mexico_City" />
+									</h:outputText>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Versión" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.contract.version}">
+									</h:outputText>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Empresa" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.fiscalName}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Comentarios" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.operationComments}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Emisora / Afiliación" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.emitter}" />
+								</h:column>
+								
+								
+								<c:if test="${ContractReportMB.licenseBEM}">
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="No. Token/Usuario/Folio" />
+										</f:facet>
+										<h:dataTable value="#{contractSearch.contract.listUsersToken}"
+											rendered="#{! empty contractSearch.contract.listUsersToken}"
+											var="userToken" style="width:130px;" >
+											
+												<h:column>
+													<h:outputText value="#{userToken}" />
+												</h:column>
+											
+										</h:dataTable>
+									</h:column>
+								</c:if>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Estatus" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.statusDetail}" />
+								</h:column>
+								
+							
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Formatos" />
+									</f:facet>
+									<h:commandLink id="contractVerify"
+										action="#{ContractReportMB.toShow}" immediate="true"
+										value="Ver Formatos">
+										<f:param name="contractId" value="#{contractSearch.contract.contractId}"></f:param>
+									</h:commandLink>
+								</h:column>
+								
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Formalización" />
+									</f:facet>
+									<h:column>
+										<div class="cellright" id="divWait" style="visibility: hidden">
+											  Espere... 
+										</div>
+										<div class="cellright" id="divLink" style="visibility: visible; float:left">
+											<h:commandLink id="contractAuth" 
+												action="#{ContractReportMB.toAuthorize}"
+												rendered="#{contractSearch.enable}" immediate="true"
+												value="Formalizar"
+												onclick="hideShow('divLink', 'divWait');">
+											<f:param name="contractId" 
+													value="#{contractSearch.contract.contractId}"></f:param>
+											</h:commandLink>
+											
+<!-- 											onclick="return confirm('Confirmo que tengo el formato original de Recibo de Conformidad de Contraseñas BEM firmado por el cliente.')" -->
+<!-- 											onclick="return confirm('Se enviará a Operaciones la solicitud de activación de cuentas. Confirmo que validé el formato de Recibo de Conformidad de Contraseñas BEM firmado por el Cliente.')" -->
+												
+											<h:commandLink id="contractActivate"
+												action="#{ContractReportMB.toActivate}"
+												rendered="#{contractSearch.activate}"
+												onclick="return confirmActivate()"
+												immediate="true" value="Activar Cuentas">
+												<f:param name="contractId"
+													value="#{contractSearch.contract.contractId}"></f:param>
+											</h:commandLink>
+											<h:commandLink id="contractActivate2user"
+												action="#{ContractReportMB.toActivate}"
+												rendered="#{contractSearch.activate2user}"
+												immediate="true" value="Activar Cuentas"
+												onclick="return confirmActivate2()">
+												<f:param name="contractId"
+													value="#{contractSearch.contract.contractId}"></f:param>
+											</h:commandLink>
+										</div>
+										
+									</h:column>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Edición / Consulta" />
+									</f:facet>
+									<h:column>
+										<h:outputLink id="editAuth"
+											rendered="#{contractSearch.editContract}"
+											value="#{contractSearch.navigationUrl}">
+											<f:param name="contractId" value="#{contractSearch.contract.contractId}" />
+											<f:param name="editForm" value="true" />
+											<h:outputText value="Editar" />
+										</h:outputLink>
+									</h:column>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Cancelar" />
+									</f:facet>
+									<h:column>
+										<h:commandLink id="cancel"
+											action="#{ContractReportMB.toCancel}"
+											rendered="#{contractSearch.cancelContract}"
+											onclick="return confirm('Aviso importante: Una vez cancelado el Folio no podrás realizar ninguna modificación ¿Deseas continuar?')"
+											value="Cancelar">
+											<f:param name="contractId"
+												value="#{contractSearch.contract.contractId}"></f:param>
+										</h:commandLink>
+									</h:column>
+								</h:column>
+						    	<h:column>
+									<f:facet name="header">
+										<h:outputText value="Confirmación Cliente" />
+									</f:facet>
+									<h:column>
+										<h:outputLink id="toOutboundReport"
+											rendered="#{contractSearch.toOutboundReport}"
+											value="#{contractSearch.outboundReportUrl}">
+											<f:param name="merchantNumber"
+												value="#{contractSearch.contract.merchantNumber}" />
+											<f:param name="beginSearch" value="true" />
+											<h:outputText value="Resultado Directa" />
+										</h:outputLink>
+									</h:column>
+								</h:column>
+							</h:dataTable>
+						
+						</c:if>
+						
+						<!-- RESULTADO MTTO -->
+						<c:if test="${ContractReportMB.contractMtto}">
+
+							<h:dataTable id="list" value="#{ContractReportMB.contractList}"
+								rendered="#{! empty ContractReportMB.contractList}"
+								var="contractSearch" styleClass="contractStyle"
+								rowClasses="tableStyleFirstRow, tableStyleSecondRow"
+								headerClass="Estilo5">
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Folio" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.contract.reference}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Producto" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.product}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Fecha de Captura" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.contract.creationdate}">
+										<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"
+											timeZone="America/Mexico_City" />
+									</h:outputText>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Fecha de Formalización" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.formalDate}">
+										<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"
+											timeZone="America/Mexico_City" />
+									</h:outputText>
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Versión" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.contract.version}">
+									</h:outputText>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Empresa" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.fiscalName}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Comentarios" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.operationComments}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Emisora / Afiliación" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.emitter}" />
+								</h:column>
+						
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Estatus" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.statusDetail}" />
+								</h:column>
+								
+								
+							<c:if test="${ContractReportMB.licenseBEM}">
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Formatos" />
+									</f:facet>
+									<h:commandLink id="contractVerify"
+										action="#{ContractReportMB.toShowMtto}" immediate="true"
+										value="Ver Formatos">
+										<f:param name="contractId" value="#{contractSearch.contract.contractId}"></f:param>
+									</h:commandLink>
+								</h:column>
+								</c:if>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Formalización" />
+									</f:facet>
+									<h:column>
+										<h:commandLink id="contractAuth"
+											action="#{ContractReportMB.toAuthorize}"
+											rendered="#{contractSearch.enable}" immediate="true"
+											value="Formalizar">
+											<f:param name="contractId" value="#{contractSearch.contract.contractId}"></f:param>
+										</h:commandLink>
+										<h:commandLink id="contractActivate"
+											action="#{ContractReportMB.toActivate}"
+											rendered="#{contractSearch.activate}"
+											onclick="return confirm('Confirmo que tengo el formato original de Recibo de Conformidad de Contraseñas BEM firmado por el cliente.')"
+											immediate="true" value="Activar Cuentas">
+											<f:param name="contractId"
+												value="#{contractSearch.contract.contractId}"></f:param>
+										</h:commandLink>
+										<h:commandLink id="contractActivate2user"
+											action="#{ContractReportMB.toActivate}"
+											rendered="#{contractSearch.activate2user}"
+											onclick="return confirm('Se enviará a Operaciones la solicitud de activación de cuentas. Confirmo que validé el formato de Recibo de Conformidad de Contraseñas BEM firmado por el Cliente.')"
+											immediate="true" value="Activar Cuentas">
+											<f:param name="contractId"
+												value="#{contractSearch.contract.contractId}"></f:param>
+										</h:commandLink>
+									</h:column>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Edición / Consulta" />
+									</f:facet>
+									<h:column>
+										<h:outputLink id="editAuth"
+											rendered="#{contractSearch.editContract}"
+											value="#{contractSearch.navigationUrl}">
+											<f:param name="contractId" value="#{contractSearch.contract.contractId}" />
+											<f:param name="editForm" value="true" />
+											<h:outputText value="Editar" />
+										</h:outputLink>
+									</h:column>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Cancelar" />
+									</f:facet>
+									<h:column>
+										<h:commandLink id="cancel"
+											action="#{ContractReportMB.toCancel}"
+											rendered="#{contractSearch.cancelContract}"
+											onclick="return confirm('Aviso importante: Una vez cancelado el Folio no podrás realizar ninguna modificación ¿Deseas continuar?')"
+											value="Cancelar">
+											<f:param name="contractId"
+												value="#{contractSearch.contract.contractId}"></f:param>
+										</h:commandLink>
+									</h:column>
+								</h:column>
+						    	<h:column>
+									<f:facet name="header">
+										<h:outputText value="Confirmación Cliente" />
+									</f:facet>
+									<h:column>
+										<h:outputLink id="toOutboundReport"
+											rendered="#{contractSearch.toOutboundReport}"
+											value="#{contractSearch.outboundReportUrl}">
+											<f:param name="merchantNumber"
+												value="#{contractSearch.contract.merchantNumber}" />
+											<f:param name="beginSearch" value="true" />
+											<h:outputText value="Resultado Directa" />
+										</h:outputLink>
+									</h:column>
+								</h:column>
+							</h:dataTable>
+							
+							<br />
+							
+							</c:if>
+							
+						</c:if>
+						
+						
+						</div>
+						<c:if test="#{empty ContractReportMB.contractList}">
+							<h:outputText styleClass="content" value="No hay registros" />
+						</c:if>
+						<br />
+						<br />
+						<br />
+						<br />
+					</h:form>
+
+					<script type="text/javascript">
+            /* <![CDATA[ */
+              function start() {
+                var query = window.location.search.substring(1);
+                var parms = query.split('&');
+                for (var i=0; i<parms.length; i++) {
+                    var pos = parms[i].indexOf('=');
+                    if (pos > 0) {
+                        var key = parms[i].substring(0,pos);
+                        var val = parms[i].substring(pos+1);
+                        if ( key == 'referencia' ) {
+                            document.getElementById('forma:reference').value = val;
+                            if(typeof jsfcljs == 'function'){
+                                jsfcljs(document.forms['forma'],'forma:Consultar,forma:Consultar','');
+                            }
+                            return false
+                        }
+                    }
+                }
+              }
+              window.onload = start;
+            /* ]]> */
+          </script>
+				</f:view>
+			</ui:define>
+
+		</ui:composition>
+	</body>
+</html>

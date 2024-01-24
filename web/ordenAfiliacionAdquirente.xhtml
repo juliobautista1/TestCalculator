@@ -1,0 +1,1167 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jstl/core">
+
+  <body>
+    <ui:composition template="./contractTemplate.xhtml">
+      <ui:define name="top">
+        Orden Afiliación Adquirente
+      </ui:define>
+ 
+      <ui:define name="content">
+        <f:view>
+          <script type="text/javascript" src="js/adquirente.js"></script> <!-- ../img_contracts/ -->
+		   <script type="text/javascript">	    	
+              function start() {            	
+//             	loadCoType('inc/cotype.xml', 'forma:client_categorycode');
+            	Calendar.setup({ inputField: "forma:affiliation_duedate", ifFormat: "%d/%m/%Y"});
+            	//var tpvPayroll=document.getElementById("forma:affiliation_tpv_payroll");
+            	var OptMonthlyRateMn=document.getElementById("forma:optionMonthlyratemn");
+            	var OptMonthlyRateDlls=document.getElementById("forma:optionMonthlyratedlls");
+            	//var tpvPenalty=document.getElementById("forma:tpv_penalty");
+            	//var tpvNumEmployee=document.getElementById("forma:tpv_number_employee");
+            	var loaded = document.getElementById("forma:loaded");
+        		var reCalculate = document.getElementById("forma:recalculateCommisionTable");
+            	//tpvPayroll.disabled=true;
+              	OptMonthlyRateMn.disabled=true;
+              	OptMonthlyRateDlls.disabled=true;
+              	//tpvPenalty.disabled=true;
+              	//tpvNumEmployee.disabled=true;
+        		edFill('forma:affiliation_servicetype','forma:affiliation_currentbank', 'Cambio de Banco Adquirente');
+        		edFills('forma:affiliation_servicetype','forma:affiliation_numaffilmn','forma:affiliation_numaffildlls','Alta');
+        		
+        		inicioAdquirente();
+        		document.getElementById("forma:red:0").focus();
+        		
+        		if(loaded.value == 'true'){
+        			reCalculate.value = false;
+                }else{
+                	reCalculate.value = true;
+                }
+        		
+              }
+          
+              window.onload = start;
+             
+           </script>
+
+          <h:form id="forma">
+            <br/>
+            <h:messages layout="table" styleClass="errorStyle"/>
+            <br/>
+            <c:if test="${param['resetForm']==true}">
+           	#{ContractAcquirerMB.resetForm}
+            </c:if>
+            <c:if test="${param['pyme']==true}">
+           	#{ContractAcquirerMB.pyme}
+            </c:if>            
+            <c:if test="${param['editForm']==true}"> 
+              #{ContractAcquirerMB.editForm}
+            </c:if>
+            <c:if test="#{! empty ContractAcquirerMB.errorsList}">
+              <h:dataTable id="list" value="#{ContractAcquirerMB.errorsList}" rendered="#{! empty ContractAcquirerMB.errorsList}" var="errors" styleClass="contractStyleNone" rowClasses="tableStyleSecondRow">
+                <h:column>                  
+                  <h:outputText value="#{errors.message}" styleClass="msgValidation"/>
+                </h:column>                 
+              </h:dataTable>              
+            <br/>
+            <br/>
+            </c:if>
+            	<h:inputHidden id="isOIP" value="#{ContractAcquirerMB.isOIP}"></h:inputHidden>
+             <!-- RED --> 
+              <h:panelGrid  rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+                  <f:facet name="header">
+                    <h:outputText value="Red"/>
+                  </f:facet>
+                    <h:panelGroup styleClass="contractStyleInner" rowClasses="tableStyleSecondRow">
+                    <h:selectOneRadio id="red" value="#{ContractAcquirerMB.red}" onchange="onchangeRed();" name="redes"> 
+							<f:selectItem itemLabel="Banorte" itemValue="0" />
+  							<!-- <f:selectItem itemLabel="Ixe" itemValue="1" /> -->
+						</h:selectOneRadio>
+                    </h:panelGroup>
+                </h:panelGrid>
+                <br/>
+              <!-- SIC -->
+                <h:panelGrid  rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+                  <f:facet name="header">
+                    <h:outputText value="Número de Cliente"/>
+                  </f:facet>
+
+                  <h:panelGrid columns="2" width="10%" border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+                    <h:outputText value="No. Cliente" />
+                    <h:inputText id="client_sic" style="width:100px;" onkeypress="return isNumberKey(event)" onchange="onchangeNoCliente();" maxlength="8" styleClass="camposx" requiredMessage="#{msgs.clientSicReqError}" value="#{ContractAcquirerMB.client_sic}" required="true"/>
+                  </h:panelGrid>
+                </h:panelGrid>
+                
+                
+              <br/>
+              <!-- Campo que recibe "SLP o OCDT o ALL para mostrar los paquetes especiales de campaña -->
+              <h:inputHidden id="userState" value="#{ContractAcquirerMB.userState}"></h:inputHidden>
+              <br/>
+
+            <h:panelGrid styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0" width="100%">
+              <f:facet name="header">
+                <h:outputText value="Orden de afiliación"/>
+              </f:facet>
+
+              <h:panelGrid columns="6" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+                <h:outputText value="Producto"/>
+                <h:outputText value="Tipo de Solución"/>
+                <h:outputText value="Modalidad"/>
+                <h:outputText value="Divisa"/>
+                <h:outputText value="Trámite"/>
+                <h:outputText value="Banco Actual"/>
+
+                  <h:selectOneMenu id="affiliation_productdesc" styleClass="camposx" onchange="onchangeProducto();" requiredMessage="#{msgs.oaAffiliation_productdescReqError}" value="#{ContractAcquirerMB.affiliation_productdesc}" required="true">
+                  <f:selectItems value="#{ContractAcquirerMB.affiliation_productdescArray}"/>
+                </h:selectOneMenu>
+                  <h:selectOneMenu id="affiliation_soluciontype" style="width:80px;" onchange="onchangeSolucion();" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_soluciontypeReqError}" value="#{ContractAcquirerMB.affiliation_soluciontype}" required="false">
+                  <f:selectItems value="#{ContractAcquirerMB.affiliation_soluciontypeArray}"/>
+                </h:selectOneMenu>
+                <h:selectOneMenu id="affiliation_modality" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_modalityReqError}" value="#{ContractAcquirerMB.affiliation_modality}" required="false">
+                  <f:selectItems value="#{ContractAcquirerMB.affiliation_modalityArray}"/>
+                </h:selectOneMenu>
+                <h:selectOneMenu id="affiliation_currency" styleClass="camposx" onchange="onChangeDivisa();" requiredMessage="#{msgs.oaAffiliation_currencyReqError}" value="#{ContractAcquirerMB.affiliation_currency}" required="true">
+                  <f:selectItems value="#{ContractAcquirerMB.affiliation_currencyArray}"/>
+                </h:selectOneMenu>
+                <h:selectOneMenu id="affiliation_servicetype" styleClass="camposx" onchange="edFill('forma:affiliation_servicetype','forma:affiliation_currentbank', 'Cambio de Banco Adquirente');edFills('forma:affiliation_servicetype', 'forma:affiliation_numaffilmn', 'forma:affiliation_numaffildlls', 'Alta');" requiredMessage="#{msgs.oaAffiliation_servicetypeReqError}" value="#{ContractAcquirerMB.affiliation_servicetype}" required="true">
+                  <f:selectItems value="#{ContractAcquirerMB.affiliation_servicetypeArray}"/>
+                </h:selectOneMenu>
+                <h:inputText id="affiliation_currentbank" style="width:90px;" onkeypress="isTextNON(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_currentbankReqError}" value="#{ContractAcquirerMB.affiliation_currentbank}" required="true"></h:inputText>
+              </h:panelGrid>
+
+              <h:panelGrid columns="6" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" >
+                <h:outputText value="Afiliación Pesos"/>
+                <h:outputText value="Afiliación Dólares"/>
+                <h:outputText value="No. Cuenta Concentradora Pesos"/>
+                <h:outputText value="No. Cuenta Concentradora Dólares"/>
+                <h:outputText value="Buro Interno"/>
+                <h:outputText value="Buro Externo"/>
+                
+                <h:inputText id="affiliation_numaffilmn" style="width:100px;" onkeypress="return isNumberKey(event)" maxlength="8" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_numaffilmnReqError}" value="#{ContractAcquirerMB.affiliation_numaffilmn}" required="false"></h:inputText>
+                <h:inputText id="affiliation_numaffildlls" style="width:100px;" onkeypress="return isNumberKey(event)" maxlength="8" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_numaffildllsReqError}" value="#{ContractAcquirerMB.affiliation_numaffildlls}" required="false"></h:inputText>
+                <h:inputText id="affiliation_accountnumbermn" style="width:100px;" onkeypress="return isNumberKey(event)" onblur="isValidAccNumPesos('affiliation_accountnumbermn');" onchange="onchangeAffiliation_accountnumbermn();" maxlength="10" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_accountnumbermnReqError}" value="#{ContractAcquirerMB.affiliation_accountnumbermn}" required="false"></h:inputText>
+                <h:inputText id="affiliation_accountnumberdlls" style="width:100px;" onkeypress="return isNumberKey(event)" onblur="isValidAccNumDll('affiliation_accountnumberdlls');" onchange="onchangeAffiliation_accountnumberdlls();" maxlength="10" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_accountnumberdllsReqError}" value="#{ContractAcquirerMB.affiliation_accountnumberdlls}" required="false"></h:inputText>
+                
+                <h:selectOneMenu id="affiliation_internalcredithistory" onchange="onchangeBuroInterno();" styleClass="camposx"  value="#{ContractAcquirerMB.affiliation_internalcredithistory}" required="false">
+                  <f:selectItem itemValue="Bueno" itemLabel="Bueno"/>
+                  <f:selectItem itemValue="Regular" itemLabel="Regular"/>
+                  <f:selectItem itemValue="Malo" itemLabel="Malo"/>
+                  <f:selectItem itemValue="Sin Información" itemLabel="Sin Información"/>
+                </h:selectOneMenu>               
+                
+                  <h:selectOneMenu id="affiliation_externalcredithistory" onchange="onchangeBuroExterno();" 
+                  														styleClass="camposx"  
+                  														value="#{ContractAcquirerMB.affiliation_externalcredithistory}" 
+                  														required="false">
+                  <f:selectItem itemValue="Bueno" itemLabel="Bueno"/>
+                  <f:selectItem itemValue="Regular" itemLabel="Regular"/>
+                  <f:selectItem itemValue="Malo" itemLabel="Malo"/>
+                  <f:selectItem itemValue="Sin Información" itemLabel="Sin Información"/>
+                </h:selectOneMenu>  
+              </h:panelGrid>
+
+              <h:panelGrid columns="7" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+                <!-- <h:outputText value="Antigüedad menor a 6 meses"/> -->
+                
+                <h:outputText value="No. Giro y Nombre (seleccione el giro)"/>
+                <h:outputText value="Impulso Captación"/> 
+                <h:outputText value="Alianza"/>
+                <h:outputText value=""/>
+                <h:outputText value="Integracion"/>
+                <h:outputText value=""/>
+                <h:outputText value="Renta en Dolares"/>
+                
+                <!--
+                <h:outputText value="Requiere fianza"/>
+                <h:outputText value="Exentar fianza"/> 
+                <h:outputText value="Compañia fianza"/>
+                <h:outputText value="Nombre de quien autoriza exentar la fianza"/>
+                <h:outputText value="Monto fianza"/>
+                <h:outputText value="Fecha de vencimiento"/>
+                
+                <h:selectOneMenu id="antiguedad"  style="width:80px;" onchange="onchangeAntiqueness();"
+                		styleClass="camposx" value="#{ContractAcquirerMB.antiguedad}" required="false">
+                  	<f:selectItem itemValue="6" itemLabel="No"/>
+                	<f:selectItem itemValue="-6" itemLabel="Si"/>
+                </h:selectOneMenu> -->
+                
+                <h:inputText id="client_categorycode"
+									onkeypress="return isText(event)" style="width:240px;"
+									maxlength="100" styleClass="camposx"
+									requiredMessage="#{msgs.clientCategoryCodeReqError}"
+									value="#{ContractAcquirerMB.client_categorycode}"
+									required="false" onblur="onchangeGiro();"/>
+                
+                <h:selectBooleanCheckbox id="impulsoCaptacion" value="#{ContractAcquirerMB.aff_impulsoCaptacion}" onclick="onchangePlan();"/>
+                
+                <h:selectOneMenu id="affiliation_alliance" styleClass="camposx" onchange="onchangeAlianza();" value="#{ContractAcquirerMB.affiliation_alliance}"> 
+                	<f:selectItem itemValue ="Ninguna" itemLabel="Ninguna" />
+                	<f:selectItem itemValue ="Micros" itemLabel="Micros" />
+                	<f:selectItem itemValue ="Netpay" itemLabel="Netpay" />
+                	<f:selectItem itemValue ="Cybersource" itemLabel="Cybersource" />
+                	<f:selectItem itemValue ="Agregador" itemLabel="Agregador" />
+                	<f:selectItem itemValue ="Tradicional" itemLabel="Tradicional" />
+                	<f:selectItem itemValue ="Hosted" itemLabel="Hosted" />
+                	<f:selectItem itemValue ="Call Center" itemLabel="Call Center" />
+                </h:selectOneMenu>
+                
+                <h:inputHidden value="#{ContractAcquirerMB.affiliation_alliance_hidd}" id="affiliation_alliance_hidd" />
+                
+                <h:selectOneMenu id="affiliation_integration" styleClass="camposx" onchange="onchangeIntegracion();" value="#{ContractAcquirerMB.affiliation_integration}"> 
+                	<f:selectItem itemValue ="Sin Cybersource / Sin 3D" itemLabel="Sin Cybersource / Sin 3D" />
+                	<f:selectItem itemValue ="Sin Cybersource / Con 3D" itemLabel="Sin Cybersource / Con 3D" />
+                	<f:selectItem itemValue ="Cybersource Enterprise Revision Manual" itemLabel="Cybersource Enterprise Revision Manual" />
+                	<f:selectItem itemValue ="Cybersource Enterprise Autenticación Selectiva" itemLabel="Cybersource Enterprise Autenticación Selectiva" />
+                	<f:selectItem itemValue ="Cybersource Direct" itemLabel="Cybersource Direct" />
+                	<f:selectItem itemValue ="Payworks Hosted" itemLabel="Payworks Hosted" />
+                	<f:selectItem itemValue ="Cybersource Hosted" itemLabel="Cybersource Hosted" />
+                	<f:selectItem itemValue ="Payworks Punto de Venta" itemLabel="Payworks Punto de Venta" />
+                	<f:selectItem itemValue ="Cybersource Call Center" itemLabel="Cybersource Call Center" />
+                	<f:selectItem itemValue ="Cybersource Enterprise Call Center" itemLabel="Cybersource Enterprise Call Center" />
+                </h:selectOneMenu>
+                
+                
+				<h:graphicImage id="ayudaIntegracionCyberSource" url="images/arrowrightmonth.gif" alt="X Ayuda" title="Ayuda" style="border:0px" onclick="alertIntegracionCyberSource()"/>
+                <!-- ../img_contracts/ -->
+                <h:selectOneMenu id="affiliation_rentaDolar" styleClass="camposx" value="#{ContractAcquirerMB.affiliation_rentaDolar}">
+                	<f:selectItem itemValue ="0" itemLabel="Seleccione..." /> 
+                	<f:selectItem itemValue ="2,100 USD" itemLabel="2,100 USD" />
+                	<f:selectItem itemValue ="4,000 USD" itemLabel="4,000 USD" />
+                </h:selectOneMenu>
+                
+                <!--
+                <h:selectOneMenu id="affiliation_havedepositcompany"  
+                		styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_havedepositcompanyReqError}" 
+                		onchange="inicializarFianza();"
+                		value="#{ContractAcquirerMB.affiliation_havedepositcompany}" required="false">
+                  	<f:selectItem itemValue="0" itemLabel="No"/>
+                	<f:selectItem itemValue="1" itemLabel="Si"/>
+                </h:selectOneMenu>
+                <h:selectBooleanCheckbox id="exentDep" styleClass="camposx" value="#{ContractAcquirerMB.aff_exentDep}" onclick="onchangeExentDeposit();" required="false"/>
+                <h:inputText id="affiliation_depositcompany" style="width:190px;" maxlength="60" styleClass="camposx" value="#{ContractAcquirerMB.affiliation_depositcompany}" required="false" />
+                <h:inputText id="affiliation_officerdepositexent" style="width:190px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" value="#{ContractAcquirerMB.affiliation_officerdepositexent}" required="false"/>
+                <h:inputText id="affiliation_depositamount" onkeypress="return isNumberKey(event)" style="width:100px;" maxlength="10" styleClass="camposx" value="#{ContractAcquirerMB.affiliation_depositamount}" required="false"/>
+                <h:inputText id="affiliation_duedate" onkeypress="return block(event);" style="width:60px;" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_duedateReqError}"  value="#{ContractAcquirerMB.affiliation_duedate}" required="false"/>
+                -->
+              </h:panelGrid>
+
+              <h:panelGrid columns="7" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" >
+ <!--                 <h:outputText value="No. Giro y Nombre (seleccione el giro)"/>
+                <h:outputText value="Impulso Captación"/> 
+                <h:outputText value="Alianza"/>
+                <h:outputText value=""/>
+                <h:outputText value="Integracion"/>
+                <h:outputText value=""/>
+                <h:outputText value="Renta en Dolares"/>
+  -->
+                <!-- <h:outputText value=""/> -->
+<!--  
+                <h:inputText id="client_categorycode"
+									onkeypress="return isText(event)" style="width:240px;"
+									maxlength="100" styleClass="camposx"
+									requiredMessage="#{msgs.clientCategoryCodeReqError}"
+									value="#{ContractAcquirerMB.client_categorycode}"
+									required="false" onblur="onchangeGiro();"/>
+                
+                <h:selectBooleanCheckbox id="impulsoCaptacion" value="#{ContractAcquirerMB.aff_impulsoCaptacion}" onclick="onchangePlan();"/>
+                
+                <h:selectOneMenu id="affiliation_alliance" styleClass="camposx" onchange="onchangeAlianza();" value="#{ContractAcquirerMB.affiliation_alliance}"> 
+                	<f:selectItem itemValue ="Ninguna" itemLabel="Ninguna" />
+                	<f:selectItem itemValue ="Micros" itemLabel="Micros" />
+                	<f:selectItem itemValue ="Netpay" itemLabel="Netpay" />
+                	<f:selectItem itemValue ="Cybersource" itemLabel="Cybersource" />
+                	<f:selectItem itemValue ="Agregador" itemLabel="Agregador" />
+                	<f:selectItem itemValue ="Tradicional" itemLabel="Tradicional" />
+                	<f:selectItem itemValue ="Hosted" itemLabel="Hosted" />
+                	<f:selectItem itemValue ="Call Center" itemLabel="Call Center" />
+                </h:selectOneMenu>
+                
+                <h:inputHidden value="#{ContractAcquirerMB.affiliation_alliance_hidd}" id="affiliation_alliance_hidd" />
+                
+                <h:selectOneMenu id="affiliation_integration" styleClass="camposx" onchange="onchangeIntegracion();" value="#{ContractAcquirerMB.affiliation_integration}"> 
+                	<f:selectItem itemValue ="Sin Cybersource / Sin 3D" itemLabel="Sin Cybersource / Sin 3D" />
+                	<f:selectItem itemValue ="Sin Cybersource / Con 3D" itemLabel="Sin Cybersource / Con 3D" />
+                	<f:selectItem itemValue ="Cybersource Enterprise Revision Manual" itemLabel="Cybersource Enterprise Revision Manual" />
+                	<f:selectItem itemValue ="Cybersource Enterprise Autenticación Selectiva" itemLabel="Cybersource Enterprise Autenticación Selectiva" />
+                	<f:selectItem itemValue ="Cybersource Direct" itemLabel="Cybersource Direct" />
+                	<f:selectItem itemValue ="Payworks Hosted" itemLabel="Payworks Hosted" />
+                	<f:selectItem itemValue ="Cybersource Hosted" itemLabel="Cybersource Hosted" />
+                	<f:selectItem itemValue ="Payworks Punto de Venta" itemLabel="Payworks Punto de Venta" />
+                	<f:selectItem itemValue ="Cybersource Call Center" itemLabel="Cybersource Call Center" />
+                	<f:selectItem itemValue ="Cybersource Enterprise Call Center" itemLabel="Cybersource Enterprise Call Center" />
+                </h:selectOneMenu>
+                
+             
+				<h:graphicImage id="ayudaIntegracionCyberSource" url="images/arrowrightmonth.gif" alt="X Ayuda" title="Ayuda" style="border:0px" onclick="alertIntegracionCyberSource()"/>
+  --> 
+                <!-- ../img_contracts/ -->
+    <!--             <h:selectOneMenu id="affiliation_rentaDolar" styleClass="camposx" value="#{ContractAcquirerMB.affiliation_rentaDolar}">
+                	<f:selectItem itemValue ="0" itemLabel="Seleccione..." /> 
+                	<f:selectItem itemValue ="2,100 USD" itemLabel="2,100 USD" />
+                	<f:selectItem itemValue ="4,000 USD" itemLabel="4,000 USD" />
+                </h:selectOneMenu>
+                --> 
+              </h:panelGrid>
+              
+<!--   <h:panelGrid columns="6" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">           -->
+<!--              -->
+<!--  </h:panelGrid> -->
+              
+              
+              
+              <h:panelGrid columns="6" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner">
+                
+                <h:outputText value="Paquete"/>
+				<h:panelGroup>
+					<h:outputText value="Plan o esquema comercial" style="text-align:center"/><br/>
+					<h:panelGroup>
+						<h:outputText id="banorteLabel" value="Banorte " style="width:50%;"/>
+						<h:outputText id="ixeLabel" value=" IXE" style="width:50%; "/>
+					</h:panelGroup>
+				</h:panelGroup>
+                <h:outputText value="Especifique"/>
+                <h:outputText value="Renta por"/>
+                <h:outputText value="No. de Grupo"/>
+                <h:outputText value="Antigüedad menor a 6 meses en Hacienda"/>
+                
+                
+
+		              <h:selectOneMenu id="affiliation_chargeType" styleClass="camposx" onchange="onchangePaquete();" 
+		              					value="#{ContractAcquirerMB.affiliation_chargeType}">
+		                	<f:selectItem itemValue ="0" itemLabel="Seleccione un Paquete" />
+		                	<f:selectItem itemValue ="(+)0.15% en tasa" itemLabel="(+)0.15% en tasa" />
+		                	<f:selectItem itemValue ="(+)$1.4 por transaccion" itemLabel="(+)$1.4 por transaccion" />
+		                	<f:selectItem itemValue ="Estudio de Rentabilidad" itemLabel="Estudio de Rentabilidad" />
+		               		<f:selectItem itemValue ="(+)% en tasa" itemLabel="(+)% en tasa" />
+		               		<f:selectItem itemValue ="(+)$1 por transaccion" itemLabel="(+)$1 por transaccion" />
+		               		<f:selectItem itemValue ="(+)$75 Renta Ad. por Eq" itemLabel="(+)$75 Renta Ad. por Eq" />
+		               		<f:selectItem itemValue ="Estudio de Rentabilidad" itemLabel="Estudio de Rentabilidad" />
+		               		<f:selectItem itemValue ="(+)% en tasa" itemLabel="(+)% en tasa" />
+		               		<f:selectItem itemValue ="(+)$1 por transaccion" itemLabel="(+)$1 por transaccion" />
+		               		<f:selectItem itemValue ="Estudio de Rentabilidad" itemLabel="Estudio de Rentabilidad" />
+		               		<f:selectItem itemValue ="(+)0.1% en tasa" itemLabel="(+)0.1% en tasa" />
+		               		<f:selectItem itemValue ="(+)$1.10 por transaccion" itemLabel="(+)$1.10 por transaccion" />
+		               		<f:selectItem itemValue ="4- Estudio de Rentabilidad" itemLabel="4- Estudio de Rentabilidad" />
+		               		<f:selectItem itemValue ="1- GPRS" itemLabel="1- GPRS" />
+		               		<f:selectItem itemValue ="2- 1 a 20 afiliaciones" itemLabel="2- 1 a 20 afiliaciones" />
+		               		<f:selectItem itemValue ="3- (+)de 20 afiliaciones" itemLabel="3- (+)de 20 afiliaciones" />
+		               		<f:selectItem itemValue ="4- Estudio de Rentabilidad" itemLabel="4- Estudio de Rentabilidad" />
+		               		<f:selectItem itemValue ="5- Otro" itemLabel="5- Otro" />
+		               		<f:selectItem itemValue ="SLP 2014" itemLabel="SLP 2014" />
+		               		<f:selectItem itemValue ="OCCIDENTE 2016" itemLabel="OCCIDENTE 2016" />
+		               		<f:selectItem itemValue ="Ninguno" itemLabel="Ninguno" />
+		               		<f:selectItem itemValue ="(+)0.5% en tasa" itemLabel="(+)0.5% en tasa" />
+		               		<f:selectItem itemValue ="Renta Mensual $200 por equipo + 0.05% en tasa" itemLabel="Renta Mensual $200 por equipo + 0.05% en tasa" />
+		               		<f:selectItem itemValue ="(+)$1.40 por transaccion" itemLabel="(+)$1.40 por transaccion" />
+		               		<f:selectItem itemValue ="RCRC" itemLabel="RCRC"  />
+		               		<f:selectItem itemValue ="(+)0.1 ppb en tasa" itemLabel="(+)0.1 ppb en tasa" />
+		               		<f:selectItem itemValue ="(+)0.15 ppb en tasa" itemLabel="(+)0.15 ppb en tasa" />
+		               		<f:selectItem itemValue ="Renta Mensual $200 por equipo + 0.05 ppb en tasa" itemLabel="Renta Mensual $200 por equipo + 0.05 ppb en tasa" />
+		               		<f:selectItem itemValue ="(+)0.5 ppb en tasa" itemLabel="(+)0.5 ppb en tasa" />
+		               		<f:selectItem itemValue ="Otro" itemLabel="Otro" />
+		               		<f:selectItem itemValue ="Tasa + $0.40 por tx" itemLabel="Tasa + $0.40 por tx" />
+		               		<f:selectItem itemValue ="Tasa + 25 ppb" itemLabel="Tasa + 25 ppb" />
+		              </h:selectOneMenu>
+                	<h:panelGroup>
+                		<h:selectOneMenu id="affiliation_comercialplan"
+		                	styleClass="camposx"  
+		                	requiredMessage="#{msgs.oaAffiliation_comercialPlanReqError}" 
+		                	value="#{ContractAcquirerMB.banortePlan}" 
+		                	onchange="onchangePlan();"
+		                	style="display:inline-block; width:60%;">
+	                	<f:selectItems value="#{ContractAcquirerMB.affiliation_comercialplanArray}"/>
+	                	</h:selectOneMenu>
+<!--	                se agrega combo para planes IXE  -->
+	                	<h:selectOneMenu id="affiliation_comercialplanIxe" 
+		                	styleClass="camposx"  
+		                	value="#{ContractAcquirerMB.ixePlan}" 
+		                	onchange="onchangePlan();"
+		                	style="display:none; width:60%;">
+	                	<f:selectItems value="#{ContractAcquirerMB.commercialPlanArrayIxe}"/>
+	                	</h:selectOneMenu>
+	                	<h:outputText id="errorRed" value="Seleccione RED" style="display:none; color:red;"/>
+                	</h:panelGroup>
+                 	<h:inputText id="otherCommercialPlan" styleClass="camposx" value="#{ContractAcquirerMB.affiliation_otherComercialPlan}" required="false"/>
+	            	
+	            	<h:selectOneMenu id="rentBy" styleClass="camposx" value="#{ContractAcquirerMB.rentBy}" onchange="onchangeRentBy();">
+	                	<f:selectItem itemValue ="0" itemLabel="Seleccione..." /> 
+	                	<f:selectItem itemValue ="Grupo" itemLabel="Grupo" />
+	                	<f:selectItem itemValue ="Afiliación" itemLabel="Afiliación" />
+                	</h:selectOneMenu>
+                	<h:inputText id="groupNo" style="width:50px;" styleClass="camposx" onkeypress="return isTextNON(event)" onblur="onchangeGroupNo();" value="#{ContractAcquirerMB.groupNo}" required="false"/>
+	            	<h:selectOneMenu id="antiguedad"  style="width:80px;" onchange="onchangeAntiqueness();"
+                		styleClass="camposx" value="#{ContractAcquirerMB.antiguedad}" required="false">
+                  	<f:selectItem itemValue="6" itemLabel="No"/>
+                	<f:selectItem itemValue="-6" itemLabel="Si"/>
+                </h:selectOneMenu>
+               </h:panelGrid>
+               
+               <h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+                	<h:outputText value="Ventas Estimadas Mensuales"/>
+					<h:outputText value="Monto Estimado de Transacción"/>
+					<!--<h:outputText value="Mujer PyME"/>-->
+					<h:outputText value=""/>
+					<!--<h:inputText id="affiliation_accountnumbermn"  style="width:100px;" onkeypress="return isNumberKey(event)" onblur="isValidAccNumPesos('affiliation_accountnumbermn');" maxlength="10" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_accountnumbermnReqError}" value="#{ContractAcquirerMB.affiliation_accountnumbermn}" required="false"></h:inputText> -->
+					<h:inputText id="aff_ventasEstimadasMensuales" style="width:100px;" onkeypress="return isNumberKey(event)" onblur="isValidVentasMensuales();" styleClass="camposx" value="#{ContractAcquirerMB.aff_ventasEstimadasMensuales}" required="false"/>
+                 	<h:inputText id="aff_montoEstimadoDeTransaccion" style="width:100px;" styleClass="camposx" onkeypress="return isDecimalKey(event)" onblur="validateCommTA('affiliation_telcel')" value="#{ContractAcquirerMB.aff_montoEstimadoDeTransaccion}" required="false"/>
+	            	
+					<!--  <h:selectBooleanCheckbox id="mujerPyME" value="#{ContractAcquirerMB.mujerPyME}" onclick="onchangemujerPyME();" required="true"/> -->
+					<h:inputHidden  id="mujerPyME" value="#{ContractAcquirerMB.mujerPyME}" onclick="onchangemujerPyME();" required="true"/>
+					
+					<h:commandButton id="hdnBtn" actionListener="#{ContractAcquirerMB.findCuentaMujerPyME}" style="display: none;" />
+					<h:inputHidden id="esCuentaMujerPyME" value="#{ContractAcquirerMB.esCuentaMujerPyME}" />
+					<h:inputHidden id="cuentaMujerPyMEValidada" value="#{ContractAcquirerMB.cuentaMujerPyMEValidada}" />
+					<h:inputHidden id="noEsCuentaMujerPyMEValidada" value="#{ContractAcquirerMB.noEsCuentaMujerPyMEValidada}" />
+					<h:inputHidden id="isMsgMujerPyME" value="#{ContractAcquirerMB.isMsgMujerPyME}" />
+					<h:inputHidden id="desactivarMujerPyME" value="#{ContractAcquirerMB.desactivarMujerPyME}" />
+					<h:inputHidden id="listaCuentaMujerPyMEVacia" value="#{ContractAcquirerMB.listaCuentaMujerPyMEVacia}" />
+					<h:inputHidden id="esCuentaMujerPyMEDlls" value="#{ContractAcquirerMB.esCuentaMujerPyMEDlls}" />
+					<h:inputHidden id="cuentaMujerPyMEValidadaDlls" value="#{ContractAcquirerMB.cuentaMujerPyMEValidadaDlls}" />
+					<h:inputHidden id="noEsCuentaMujerPyMEValidadaDlls" value="#{ContractAcquirerMB.noEsCuentaMujerPyMEValidadaDlls}" />
+					<h:inputHidden id="esClienteMujerPyME" value="#{ContractAcquirerMB.esClienteMujerPyME}" />
+					<h:inputHidden id="clienteMujerPyMEValidado" value="#{ContractAcquirerMB.clienteMujerPyMEValidado}" />
+					<h:inputHidden id="noEsClienteMujerPyMEValidado" value="#{ContractAcquirerMB.noEsClienteMujerPyMEValidado}" />
+					<h:outputText value=""/>
+					<h:outputText value=""/>
+               </h:panelGrid>
+               <h:inputHidden id="isMostrarMsjNoGrupo" value="#{ContractAcquirerMB.isMostrarMsjNoGrupo}" />
+               
+            </h:panelGrid><!-- fin orden afiliacion -->
+            
+              <h:inputHidden value="#{ContractAcquirerMB.affiliation_chargeType_hidd}" id="affiliation_chargeType_hidd" />
+            
+                        <br/>
+            
+
+<!--            <h:panelGrid styleClass="contractStyleMiddle" columns="2" cellpadding="0" cellspacing="0" width="100%">-->
+<!--              <h:panelGrid styleClass="contractStyleSpecial" columns="1" cellpadding="0" cellspacing="0" width="100%">-->
+<!--                <f:facet name="header">-->
+<!--                  <h:outputText value="Certificación de Documentos"/>-->
+<!--                </f:facet>-->
+<!---->
+<!--                <h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">-->
+<!--                  <h:outputText value="Identificación Oficial Vigente"/>-->
+<!--                  <h:outputText value="Cédula Fiscal"/>-->
+<!--                  <h:outputText value="Alta de Hacienda"/>-->
+<!---->
+<!--                  <h:selectBooleanCheckbox id="affiliation_validid" value="#{ContractAcquirerMB.affiliation_validid}" />-->
+<!--                  <h:selectBooleanCheckbox id="affiliation_fiscaldoc" value="#{ContractAcquirerMB.affiliation_fiscaldoc}"/>-->
+<!--                  <h:selectBooleanCheckbox id="affiliation_fiscalenrolment" value="#{ContractAcquirerMB.affiliation_fiscalenrolment}"/>-->
+<!--                </h:panelGrid>-->
+<!---->
+<!--                 <h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">-->
+<!--                  <h:outputText value="Dictamen Juridico (personas morales)"/>-->
+<!--                  <h:outputText value="Contrato Cuenta de Cheques M. N."/>-->
+<!--                  <h:outputText value="Contrato Cuenta de Cheques Dólares"/>-->
+<!---->
+<!--                  <h:selectBooleanCheckbox id="affiliation_legalopinion" value="#{ContractAcquirerMB.affiliation_legalopinion}" required="true"/>-->
+<!--                  <h:selectBooleanCheckbox id="affiliation_checkingaccountmn" value="#{ContractAcquirerMB.affiliation_checkingaccountmn}" required="true"/>-->
+<!--                  <h:selectBooleanCheckbox id="affiliation_checkingaccountdlls" value="#{ContractAcquirerMB.affiliation_checkingaccountdlls}" required="true"/>-->
+<!--                </h:panelGrid>-->
+<!---->
+<!--              </h:panelGrid>-->
+<!-- 			<h:panelGrid styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0" width="100%">
+                <f:facet name="header">
+                  <h:outputText value="Geolocalización"/>
+                </f:facet>
+                <h:panelGrid columns="3" border="0" cellpadding="0"
+					cellspacing="0" rowClasses="tableStyleFirstRow"
+					styleClass="contractStyleInner">
+					<h:outputText value="Latitud" />
+					<h:outputText value="Longitud" />
+					<h:outputText value="" />
+
+					<h:inputText id="latitude"
+						onkeypress="return isDecimalKey(event)" style="width:100px;"
+						maxlength="10" styleClass="camposx"
+						value="#{ContractAcquirerMB.affiliation_latitude}" required="false" />
+					
+					<h:inputText id="length"
+						onkeypress="return isDecimalKey(event)" style="width:100px;"
+						maxlength="10" styleClass="camposx"
+						value="#{ContractAcquirerMB.affiliation_length}" required="false" />
+					<h:outputText value="" />
+				</h:panelGrid>
+            </h:panelGrid>
+            
+            <br/>
+            <br/> -->
+              
+              
+<!--            </h:panelGrid>-->
+
+<!-- F-83585 HeB - Garantia Liquida:: Inicio Option Garantia Liquida --> 
+            
+           <h:panelGrid id="seleccionGarantiaLiquida" rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0" >
+                <!-- <h:panelGrid columns="1" width="99%" border="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow"> -->
+                  <h:selectOneRadio id="seleccionGarantia" value="#{ContractAcquirerMB.aff_garantiaLiquida}" onchange="onchangeSeleccionGL();" name="seleccionGarantiaLiquida" > 
+							<f:selectItem itemLabel="Garantía Líquida" itemValue="0"/>
+  							<f:selectItem itemLabel="Fianza" itemValue="1" />
+					</h:selectOneRadio>
+                <!--</h:panelGrid> -->
+            </h:panelGrid>
+            <!-- F-83585 HeB - Garantia Liquida:: fin checkbox Garantia Liquida-->  
+            <!-- F-83585 HeB - Garantia Liquida:: Inicio apartado Garantia Liquida --> 
+            <br/>
+            
+            <h:panelGrid id="apartadoGarantiaLiquida" rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+                <f:facet name="header">
+                  <h:outputText value="Garantía Líquida"/>
+                </f:facet>
+
+                <h:panelGrid columns="4" width="99%" border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+ 
+                 <h:outputText value="Monto Inicial (SI/NO)"/>
+                  <h:selectOneMenu id="aff_montoInicial"  style="width:100px;" onchange="onchangeMontoInicial();"
+                		styleClass="camposx" value="#{ContractAcquirerMB.aff_montoInicial}" required="false" disabled="true">
+                  	<f:selectItem itemValue="false" itemLabel="No"/>
+                	<f:selectItem itemValue="true" itemLabel="Si"/>
+                  </h:selectOneMenu>                                           
+               	  <h:outputText value="Monto Inicial GL"/>
+                  <h:inputText id="aff_montoInicialGL" style="width:100px;" styleClass="camposx"  onkeypress="return isDecimalKey(event)" onblur="validateCommTA('affiliation_iusacell')" value="#{ContractAcquirerMB.aff_montoInicialGL}" required="false" disabled="true"/>
+                  
+                  <h:outputText value="Monto Promedio Diario"/>
+                  <h:inputText id="aff_montoPromDiario" style="width:100px;" styleClass="camposx" onkeypress="return isDecimalKey(event)" onblur="validateCommTA('affiliation_movistar')" value="#{ContractAcquirerMB.aff_montoPromDiario}" required="false" disabled="true"/>
+                  <h:outputText value="% Restante GL"/>
+                  <h:inputText id="aff_porcentajeRestanteGL" style="width:100px;" styleClass="camposx" onkeypress="return isDecimalKey(event)" onblur="validateCommTA('affiliation_nextel')" value="#{ContractAcquirerMB.aff_porcentajeRestanteGL}" required="false" disabled="true"/>
+                  
+                  <h:outputText value="% GL"/>
+                  <h:selectOneMenu id="aff_porcentajeGL"  style="width:100px;" onchange="onchangePorcentajeGL();" onclick="onclickPorcentajeGL();"
+                		styleClass="camposx" value="#{ContractAcquirerMB.aff_porcentajeGL}" required="false">
+                  	<f:selectItem itemValue="10" itemLabel="10%"/>
+                	<f:selectItem itemValue="5" itemLabel="5%"/>
+                	<f:selectItem itemValue="excepcion" itemLabel="Excepcion"/>
+                	<!-- <f:selectItem itemValue="disminucion" itemLabel="Disminucion"/>-->
+                  </h:selectOneMenu>
+               	  <h:outputText value="Monto Restante GL"/>
+                  <h:inputText id="aff_montoRestanteGL" style="width:100px;" styleClass="camposx" onkeypress="return isDecimalKey(event)" onblur="validateCommTA('affiliation_telcel')" value="#{ContractAcquirerMB.aff_montoRestanteGL}" required="false" disabled="true"/>
+               	  
+               	  <h:outputText value="Disminucion % GL"/>
+               	  <h:inputText id="aff_excepcionPorceGL" style="width:100px;" styleClass="camposx" onkeypress="return isDecimalKey(event)" onblur="calcularGarantiaLiquida();" value="#{ContractAcquirerMB.aff_excepcionPorceGL}"/>
+               	  <h:outputText value="% Ventas Diarias"/>
+               	  <h:selectOneRadio id="optionPorcentajeVentasDiarias" style="width: 100px; " value="#{ContractAcquirerMB.optionPorcentajeVentasDiarias}" name="optionPorcentajeVentasDiarias" disabled="true"> 
+							<f:selectItem itemLabel="" itemValue="0" />
+				  </h:selectOneRadio>
+               	  
+               	  <h:outputText value=""/>
+               	  <h:outputText value=""/>
+               	  <h:outputText value="Monto Fijo Diario"/>
+               	  <h:selectOneRadio id="optionMontoFijoDiario" style="width: 100px; " value="#{ContractAcquirerMB.optionMontoFijoDiario}" name="optionMontoFijoDiario" disabled="true"> 
+							<f:selectItem itemLabel="" itemValue="0" />
+				  </h:selectOneRadio>
+               	  
+               	  <h:outputText value="Monto GL"/>
+                  <h:inputText id="aff_montoGL" style="width:100px;" styleClass="camposx" onkeypress="return isDecimalKey(event)" onblur="calcularGarantiaLiquida();" value="#{ContractAcquirerMB.aff_montoGL}" required="false" disabled="true"/>
+               	  <h:outputText value="Prom Monto Diario GL"/>
+                  <h:inputText id="aff_promMontoDiarioGL" style="width:100px;" styleClass="camposx" onkeypress="return isDecimalKey(event)" onblur="calcularGarantiaLiquida();" value="#{ContractAcquirerMB.aff_promMontoDiarioGL}" required="false" disabled="true"/>
+               	  
+               	  <h:outputText value="% Inicial GL"/>
+                  <h:inputText id="aff_porcentajeInicialGL" style="width:100px;" styleClass="camposx" onkeypress="return isDecimalKey(event)" onblur="calcularGarantiaLiquida();" value="#{ContractAcquirerMB.aff_porcentajeInicialGL}" required="false" disabled="true"/>
+               	  <h:outputText value="% Diario GL"/>
+                  <h:inputText id="aff_porcentajeDiarioGL" style="width:100px;" styleClass="camposx" onkeypress="return isDecimalKey(event)" onblur="calcularGarantiaLiquida();" value="#{ContractAcquirerMB.aff_porcentajeDiarioGL}" required="false" disabled="true"/>
+                	  
+               	  <h:outputText value="GL  original"/>
+               	  <h:inputText id="aff_glOriginal" style="width:100px;" styleClass="camposx" onkeypress="return isDecimalKey(event)" onblur="calcularGarantiaLiquida();" value="#{ContractAcquirerMB.aff_glOriginal}" required="false" disabled="true"/>
+               	  <h:outputText value="Dias aprox GL"/>
+               	  <h:inputText id="aff_diasAproxGL" style="width:100px;" styleClass="camposx" onkeypress="return isDecimalKey(event)" onblur="calcularGarantiaLiquida();" value="#{ContractAcquirerMB.aff_diasAproxGL}" required="false" disabled="true"/>
+               	  
+               	  <h:inputHidden id="seleccionGiroAltoRiesgoGL" value="#{ContractAcquirerMB.seleccionGiroAltoRiesgoGL}" />
+               	  <h:inputHidden id="aff_auxMontoGL" value="#{ContractAcquirerMB.aff_auxMontoGL}" />
+               	  <h:inputHidden id="aff_auxMontoPromDiario" value="#{ContractAcquirerMB.aff_auxMontoPromDiario}" />
+                  <h:inputHidden id="aff_auxMontoInicial" value="#{ContractAcquirerMB.aff_auxMontoInicial}" />
+                  <h:inputHidden id="aff_auxPorcentajeInicialGL" value="#{ContractAcquirerMB.aff_auxPorcentajeInicialGL}" />
+                  <h:inputHidden id="aff_auxMontoInicialGL" value="#{ContractAcquirerMB.aff_auxMontoInicialGL}" />
+                  <h:inputHidden id="aff_auxPorcentajeRestanteGL" value="#{ContractAcquirerMB.aff_auxPorcentajeRestanteGL}" />
+                  <h:inputHidden id="aff_auxMontoRestanteGL" value="#{ContractAcquirerMB.aff_auxMontoRestanteGL}" />
+                  <h:inputHidden id="aff_auxPromMontoDiarioGL" value="#{ContractAcquirerMB.aff_auxPromMontoDiarioGL}" />
+                  <h:inputHidden id="aff_auxPorcentajeDiarioGL" value="#{ContractAcquirerMB.aff_auxPorcentajeDiarioGL}" />
+                  <h:inputHidden id="auxOptionPorcentajeVentasDiarias" value="#{ContractAcquirerMB.auxOptionPorcentajeVentasDiarias}" />
+                  <h:inputHidden id="auxOptionMontoFijoDiario" value="#{ContractAcquirerMB.auxOptionMontoFijoDiario}" />
+                  <h:inputHidden id="aff_auxDiasAproxGL" value="#{ContractAcquirerMB.aff_auxDiasAproxGL}" />
+                  <h:inputHidden id="fianzaOculta" value="#{ContractAcquirerMB.fianzaOculta}" />
+           		  <h:inputHidden id="aff_auxGlOriginal" value="#{ContractAcquirerMB.aff_auxGlOriginal}" />
+                </h:panelGrid>
+
+            </h:panelGrid>
+            <!-- F-83585 HeB - Garantia Liquida:: fin apartado Garantia Liquida--> 
+             
+            <br/>
+            <!--Comentarios Motivos Disminución o Excepción de GL-->
+              <h:panelGrid id="apartadoComentariosDisminucionExcepcionGL" rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+                <f:facet name="header">
+                  <h:outputText value=" Motivos Disminución o Exención de Garantía Líquida"/>
+                </f:facet>
+                <h:inputHidden id="aff_comentariosDisminucionExcepcionGL" value="#{ContractAcquirerMB.aff_comentariosDisminucionExcepcionGL}" />
+<!--
+                <h:panelGrid columns="1" width="99%" border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+                  <h:outputText value="Comentarios"/>
+                  <h:inputTextarea id="aff_comentariosDisminucionExcepcionGL" styleClass="camposx" cols="70" rows="3" 
+                  					value="#{ContractAcquirerMB.aff_comentariosDisminucionExcepcionGL}" maxlength="450"/>
+                  <h:outputText value=""/>
+                  <h:outputText value=""/>
+                  
+                
+              </h:panelGrid>
+-->                
+                <h:panelGrid columns="4" width="99%" border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+<!--                  <h:column>-->
+                    <h:outputText value="Por Conveniencia Comercial (VIP)"/>
+<!--                <h:inputText id="affiliation_otherconcept1des" style="width:100px;" onkeypress="return isText(event)" maxlength="50" styleClass="camposx" value="#{ContractAcquirerMB.affiliation_otherconcept1des}" required="false"/>-->
+					<h:selectBooleanCheckbox id="exencionConvenienciaComercialVIP" value="#{ContractAcquirerMB.exencionConvenienciaComercialVIP}" required="true"/>
+<!--                  </h:column>-->
+<!--              <h:outputText value="Por Conveniencia Comercial (VIP)" style="width:395px;"/>-->
+<!--              <h:selectBooleanCheckbox id="exencionConvenienciaComercialVIP" value="#{ContractAcquirerMB.exencionConvenienciaComercialVIP}" required="true"/>-->
+<!--                  <h:column>-->
+                  <h:outputText value="Otros:"/>
+				  <h:inputText id="exencionOtros" onkeypress="return isText(event)" style="width:395px;" maxlength="70" styleClass="camposx" value="#{ContractAcquirerMB.exencionOtros}" required="false" />
+<!--				  </h:column>-->
+                </h:panelGrid>
+                   
+                <h:panelGrid columns="1" width="99%" border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+                  <h:outputText value="Proporcione Detalle de la Justificación:"/>
+                  <h:inputTextarea id="exencionJustificacion" styleClass="camposx" cols="70" rows="2" value="#{ContractAcquirerMB.exencionJustificacion}" maxlength="200"/>
+                </h:panelGrid>
+                
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" >
+                	<h:outputText value="Conocimiento del Cliente" style="font-weight:bold;"/>
+                	
+                </h:panelGrid>
+<!--              <h:panelGrid columns="2" width="99%" border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow" columnClasses="colStyle1, colStyle2"> -->
+                
+              <h:panelGrid columns="1" width="99%" border="0" cellpadding="3" cellspacing="0" > 
+              	<h:column>
+                  	<h:outputText value="El Cliente cuenta con solvencia económica para cubrir posibles quebrantos:  " />
+<!--                   	<h:column>--> 
+                  		<h:outputText value="Si"/> <h:selectBooleanCheckbox id="solvenciaEconimicaSi" value="#{ContractAcquirerMB.solvenciaEconimicaSi}" onclick="validarSolvenciaEconimicaSi();" required="true"/>
+                  		<h:outputText value="No"/> <h:selectBooleanCheckbox id="solvenciaEconimicaNo" value="#{ContractAcquirerMB.solvenciaEconimicaNo}" onclick="validarSolvenciaEconimicaNo();" required="true"/>
+<!--                   	</h:column>--> 
+				</h:column>
+				<h:column>
+                   	<h:outputText value="Se realizó Visita Ocular reciente (menor a 3 meses) y se tiene pleno conocimiento del Cliente:  "/>
+ <!--                 	<h:column>--> 
+                  		<h:outputText value="Si"/> <h:selectBooleanCheckbox id="visitaOcularRecienteSi" value="#{ContractAcquirerMB.visitaOcularRecienteSi}" onclick="validarVisitaOcularRecienteSi();" required="true"/>
+                  		<h:outputText value="No"/> <h:selectBooleanCheckbox id="visitaOcularRecienteNo" value="#{ContractAcquirerMB.visitaOcularRecienteNo}" onclick="validarVisitaOcularRecienteNo();" required="true"/>
+<!--                   	</h:column>--> 
+				</h:column>
+				<h:column>
+                   	<h:outputText value="El Cliente ofrece bienes y servicios legales que no representen Riesgo Reputacional y Operacional al Banco (Contracargos, Fraudes, Multas):  "/>
+<!--                  	<h:column>-->
+                  		<h:outputText value="Si"/> <h:selectBooleanCheckbox id="riesgoReputacionalOperacionalSi" value="#{ContractAcquirerMB.riesgoReputacionalOperacionalSi}" onclick="validarRiesgoReputacionalOperacionalSi();" required="true"/>
+                  		<h:outputText value="No"/> <h:selectBooleanCheckbox id="riesgoReputacionalOperacionalNo" value="#{ContractAcquirerMB.riesgoReputacionalOperacionalNo}" onclick="validarRiesgoReputacionalOperacionalNo();" required="true"/>
+<!--                   	</h:column>-->
+				</h:column>
+				</h:panelGrid>
+				<h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" >
+                	<h:outputText value="Describe que tipo (s) de producto (s) o servicio (s) ofrece el comercio al tarjetahabiente:"/>
+                	<h:inputText id="descBienServicioOfrece" onkeypress="return isText(event)" style="width:720px;" maxlength="100" styleClass="camposx" value="#{ContractAcquirerMB.descBienServicioOfrece}" required="false" />
+					<h:outputText value=""/>
+				</h:panelGrid>	
+				<h:panelGrid columns="4" width="99%" border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">	
+					<h:outputText value="¿El servicio se ofrece dentro del Territorio Nacional?:" style="width:600px;"/>
+                	<h:column>
+                  		<h:outputText value="Si"/> <h:selectBooleanCheckbox id="territorioNacionalSi" value="#{ContractAcquirerMB.territorioNacionalSi}" onclick="validarTerritorioNacionalSi();" required="true"/>
+                  		<h:outputText value="No"/> <h:selectBooleanCheckbox id="territorioNacionalNo" value="#{ContractAcquirerMB.territorioNacionalNo}" onclick="validarTerritorioNacionalNo();" required="true"/>
+                   	</h:column>
+					<h:outputText value="En caso que NO especifique:"/>
+					<h:inputText id="territorioNacionalEspecificacion" onkeypress="return isText(event)" style="width: 300px; " maxlength="50" styleClass="camposx" value="#{ContractAcquirerMB.territorioNacionalEspecificacion}" required="false" />
+					<h:outputText value="¿El servicio brindado se ofrece en nombre de un tercero?:" style="width:600px;"/>
+                	<h:column>
+                  		<h:outputText value="Si"/> <h:selectBooleanCheckbox id="enNombreDeUnTerceroSi" value="#{ContractAcquirerMB.enNombreDeUnTerceroSi}" onclick="validarEnNombreDeUnTerceroSi();" required="true"/>
+                  		<h:outputText value="No"/> <h:selectBooleanCheckbox id="enNombreDeUnTerceroNo" value="#{ContractAcquirerMB.enNombreDeUnTerceroNo}" onclick="validarEnNombreDeUnTerceroNo();" required="true"/>
+                   	</h:column>
+					<h:outputText value="En caso que SI especifique:"/>
+					<h:inputText id="enNombreDeUnTerceroEspecificacion" onkeypress="return isText(event)" style="width:300px;" maxlength="50" styleClass="camposx" value="#{ContractAcquirerMB.enNombreDeUnTerceroEspecificacion}" required="false" />
+                </h:panelGrid>
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" >
+                	<h:column>
+						<h:outputText value="Antigüedad con el banco: "/>
+						<h:inputText id="antiguedadAnio" onkeypress="return isNumberKey(event)" style="width:20px;" maxlength="2" styleClass="camposx" value="#{ContractAcquirerMB.antiguedadAnio}" required="false" />
+						<h:outputText value=" años "/>
+						<h:inputText id="antiguedadMeses" onkeypress="return isNumberKey(event)" style="width:20px;" maxlength="2" styleClass="camposx" value="#{ContractAcquirerMB.antiguedadMeses}" required="false" />
+						<h:outputText value=" meses"/>
+                	</h:column>
+                	<h:outputText id="commMessage2" value=""/>
+                </h:panelGrid>
+              </h:panelGrid>
+            <br/>
+            
+            <!-- F-83585 HeB - Garantia Liquida:: Inicio apartado Fianza -->
+           <h:panelGrid id="apartadoFianza" rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+                <f:facet name="header">
+                  <h:outputText value="Fianza"/>
+                </f:facet>
+
+                <h:panelGrid columns="6" width="99%" border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+                  <h:outputText value="Requiere fianza"/>
+                  <h:outputText value="Exentar fianza"/>
+                  <h:outputText value="Compañia fianza"/>
+                  <h:outputText value="Nombre de quien autoriza exentar la fianza"/>
+                  <h:outputText value="Monto fianza"/>
+                  <h:outputText value="Fecha de vencimiento"/>
+                  <h:selectOneMenu id="affiliation_havedepositcompany"  
+                		styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_havedepositcompanyReqError}" 
+                		onchange="inicializarFianza();"
+                		value="#{ContractAcquirerMB.affiliation_havedepositcompany}" required="false">
+                  	<f:selectItem itemValue="0" itemLabel="No"/>
+                	<f:selectItem itemValue="1" itemLabel="Si"/>
+                </h:selectOneMenu>
+                  <h:selectBooleanCheckbox id="exentDep" styleClass="camposx" value="#{ContractAcquirerMB.aff_exentDep}" onclick="onchangeExentDeposit();" required="false"/>
+                  <h:inputText id="affiliation_depositcompany" style="width:190px;" maxlength="60" styleClass="camposx" value="#{ContractAcquirerMB.affiliation_depositcompany}" required="false" />
+                <h:inputText id="affiliation_officerdepositexent" style="width:190px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" value="#{ContractAcquirerMB.affiliation_officerdepositexent}" required="false"/>
+                <h:inputText id="affiliation_depositamount" onkeypress="return isNumberKey(event)" style="width:100px;" maxlength="10" styleClass="camposx" value="#{ContractAcquirerMB.affiliation_depositamount}" onblur="isValidMontoFianza();" required="false"/>
+                <h:inputText id="affiliation_duedate" onkeypress="return block(event);" style="width:60px;" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_duedateReqError}"  value="#{ContractAcquirerMB.affiliation_duedate}" required="false"/>
+                </h:panelGrid>
+            </h:panelGrid>
+            <!-- F-83585 HeB - Garantia Liquida:: fin apartado Fianza--> 
+            
+
+
+            <br/>
+            <h:panelGrid styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0" width="100%">
+                <f:facet name="header">
+                  <h:outputText value="Servicios Especiales"/>
+                </f:facet>
+
+                <h:panelGrid columns="6" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+                  <h:outputText value="Teclado abierto"/>
+                  <h:outputText value="Venta Forzada"/>
+                  <h:outputText value="QPS"/>
+				  <h:outputText value="Venta de Tiempo Aire"/>
+<!-- 				  <h:outputText value="Paquete TPV-Nomina"/> -->
+                  <h:outputText value="Paga y Retira Efectivo"/>
+<!--                   <h:outputText value="3D Secure"/> -->
+				  <h:outputText value="CGB"/>
+                  
+                  <h:selectBooleanCheckbox id="affiliation_openkey" value="#{ContractAcquirerMB.affiliation_openkey}" onclick="onchangeTecladoAbeirto();" required="true"/>
+                  <h:selectBooleanCheckbox id="affiliation_forceauth"  value="#{ContractAcquirerMB.affiliation_forceauth}" required="true"/>
+                  <h:selectBooleanCheckbox id="affiliation_qps" value="#{ContractAcquirerMB.affiliation_qps}" required="true"/>
+                  <h:selectBooleanCheckbox id="affiliation_tiempoaire"  value="#{ContractAcquirerMB.affiliation_tiempoaire}" onclick="activateTA()" required="true"/>
+<!--                   <h:selectBooleanCheckbox id="affiliation_tpv_payroll"  value="#{ContractAcquirerMB.affiliation_tpv_payroll}" onclick="paqueteTPVNomina();" required="false"/> -->
+                  <h:selectBooleanCheckbox id="aff_cashback"  value="#{ContractAcquirerMB.aff_cashback}" required="false" onclick="isGiroCashBack()" onchange="onchangeCashback()"/>
+<!--                   <h:selectBooleanCheckbox id="opcion3dSecure"  value="#{ContractAcquirerMB.option3dSecure}" required="false"  /> -->
+                  <h:selectBooleanCheckbox id="dcc"  value="#{ContractAcquirerMB.dcc}"/>
+                  
+                  <h:outputText value="AMEX"/>
+                  <h:outputText value="TPV Desatendida"/>
+                  <h:outputText value="Modulo de conciliacion de transacciones"/>
+                  <h:outputText value="Modulo de solicitud de pagares"/>
+                  <h:outputText value="Pago móvil"/>
+				  <h:outputText value=""/>
+                  
+                  <h:selectBooleanCheckbox id="amex"  value="#{ContractAcquirerMB.amex}" onclick="onchangeAmex()"/>
+                  <h:selectBooleanCheckbox id="tvpUnattended"  value="#{ContractAcquirerMB.tvpUnattended}"/>
+                  <h:selectBooleanCheckbox id="transConciliation"  value="#{ContractAcquirerMB.transConciliation}"/>
+                  <h:selectBooleanCheckbox id="promNoteRqst" value="#{ContractAcquirerMB.promNoteRqst}" />
+                  <h:selectBooleanCheckbox id="mobilePymnt" value="#{ContractAcquirerMB.mobilePymnt}" />
+                  <h:outputText value=""/>
+                  
+                </h:panelGrid> 
+              <h:inputHidden value="#{ContractAcquirerMB.flag3dSelected}" id="flag3dSelected" />
+              </h:panelGrid>
+            <br/>
+ 			<h:panelGrid  rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+                <f:facet name="header">
+                  <h:outputText value="Comisiones para cada compañia telefonica"/>
+                </f:facet>
+
+                <h:panelGrid columns="4" width="99%" border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+                  <h:outputText value="Telcel"/>
+                  <h:inputText id="affiliation_telcel" style="width:100px;" styleClass="camposx" onkeypress="return isDecimalKey(event)" onblur="validateCommTA('affiliation_telcel')" value="#{ContractAcquirerMB.affiliation_telcel}" required="false"/>
+               	  <h:outputText value="Iusacell"/>
+                  <h:inputText id="affiliation_iusacell" style="width:100px;" styleClass="camposx"  onkeypress="return isDecimalKey(event)" onblur="validateCommTA('affiliation_iusacell')" value="#{ContractAcquirerMB.affiliation_iusacell}" required="false"/>
+                  <h:outputText value="Movistar"/>
+                  <h:inputText id="affiliation_movistar" style="width:100px;" styleClass="camposx" onkeypress="return isDecimalKey(event)" onblur="validateCommTA('affiliation_movistar')" value="#{ContractAcquirerMB.affiliation_movistar}" required="false"/>
+                  <h:outputText value="Nextel"/>
+                  <h:inputText id="affiliation_nextel" style="width:100px;" styleClass="camposx" onkeypress="return isDecimalKey(event)" onblur="validateCommTA('affiliation_nextel')" value="#{ContractAcquirerMB.affiliation_nextel}" required="false"/>
+                  
+                </h:panelGrid>
+            </h:panelGrid>
+            <br/>
+            <br/>    
+            
+            <!-- <h:panelGrid  rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+                <f:facet name="header">
+                  <h:outputText value="Paquete TPV-Nómina"/>
+                </f:facet>
+
+                <h:panelGrid columns="4" width="99%" border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+                  
+                  <h:outputText value="Empleados activos requeridos"/>
+                  <h:inputText id="tpv_number_employee" style="width:100px;" styleClass="camposx" value="#{ContractAcquirerMB.tpv_number_employee}" required="false" onkeypress="return notEditable(event)" />
+                  
+               	  <h:outputText value="Penalización por no cumplir empleados activos"/>
+                  <h:inputText id="tpv_penalty" style="width:100px;" styleClass="camposx"   value="#{ContractAcquirerMB.tpv_penalty}" required="false" onkeypress="return notEditable(event)" />
+                  
+                </h:panelGrid>
+            </h:panelGrid> -->
+            <br/>
+            <br/>       
+
+            <div  class="notemsg">
+                <p align="center">
+                    <br/>
+                    Recuerda que para solicitudes con condiciones comerciales especiales, deberás contar con el estudio de rentabilidad correspondiente firmado por tu Director Regional o Territorial y enviarlo al área de operaciones para continuar con el alta.
+                    <br/><br/>
+                </p>
+            </div>
+            <br/>
+
+            <div id="divCotizaBanorte" style="display:none" class="send">
+              | x <a href="http://intrafilew3k/productosic/prd/archivospb/ligas/STB/TPV/Cotizador_TPV.xls" target="_blank">Realice su cotización aquí</a> |
+            </div>
+            <br/>
+            <div id="divCotizaIxe" style="display:none" class="send">
+              | x <a href="http://intrafilew3k/productosic/prd/archivospb/ligas/STB/TPV/Cotizador_TPV_IXE.xls" target="_blank">Realice su cotización aquí</a> |
+            </div>
+            <br/>
+
+
+<!-- 
+PRUEBA EQUIPOS
+ -->
+<h:panelGrid id="equipmentDetail" columns="2" width="99%" cellpadding="0" cellspacing="0">
+			  
+			<h:panelGrid id="equipmentDetailFixed" styleClass="contractStyleSpecial" cellpadding="0" cellspacing="0">
+           		<f:facet name="header" >
+   		           <h:dataTable>
+						<h:column id="col1GINA">
+							<f:facet name="header">
+								<h:outputText value="Fija"/>
+							</f:facet>
+						</h:column>
+					</h:dataTable> 
+                </f:facet> 
+              	<h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleSecondtRow, tableStyleFirstRow">
+                	<h:outputText value="MODELO" style="font-weight:bold;width:460px;"/>
+                	<h:outputText value="No. EQUIPOS" style="font-weight:bold;width:120px;"/>
+              	</h:panelGrid>
+
+                <!-- COLUMNA EQUIPOS --> 
+                <h:panelGrid columns="2" width="99%" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow, tableStyleSecondRow">
+                  
+                  <h:outputText value="TPV con conexión telefónica (fija)"/>
+                  <h:inputText  style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="3" id="tpvTel" 
+                  value="#{ContractAcquirerMB.affiliation.tpvTel}" onblur="onkeyupEquipment(this.id);" onchange="recalculateCommisionTable();"/>
+                  
+                  <h:outputText value="TPV con conexión celular (fija)"/>
+                  <h:inputText  style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="3" id="tpvMovil" 
+                  value="#{ContractAcquirerMB.affiliation.tpvMovil}" onblur="onkeyupEquipment(this.id);" onchange="recalculateCommisionTable();"/>
+                  
+                  <h:outputText value="TPV con conexión a internet (fija)"/>
+                  <h:inputText  style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="3" id="tpvInternet" 
+                  value="#{ContractAcquirerMB.affiliation.tpvInternet}" onblur="onkeyupEquipment(this.id);" onchange="recalculateCommisionTable();"/>
+                  
+                  <h:outputText value="TPV con conexión a internet con respaldo telefónica (Fija)"/>
+                  <h:inputText  style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="3" id="tpvInternetTel" 
+                  value="#{ContractAcquirerMB.affiliation.tpvInternetTel}" onblur="onkeyupEquipment(this.id);" onchange="recalculateCommisionTable();"/>
+                  
+                  <h:outputText value="PinPad"/>
+                  <h:inputText style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="3" id="affiliation_quantpinpad" 
+                  value="#{ContractAcquirerMB.affiliation_quantpinpad}" onblur="onkeyupEquipment(this.id);" onchange="onchangeQuantEquipment();"/>
+                  
+                </h:panelGrid>  
+                <!-- COLUMNA EQUIPOS --> 
+                
+            </h:panelGrid>
+           
+<!-- COLUMNA moviles -->
+      		<h:panelGrid  id="equipmentDetailMobile" styleClass="contractStyleSpecial" cellpadding="0" cellspacing="0">
+                  <f:facet name="header" >
+   		           <h:dataTable>
+						<h:column id="collum1GINA">
+							<f:facet name="header">
+								<h:outputText value="Movil"/>
+							</f:facet>
+						</h:column>
+					</h:dataTable> 
+                </f:facet>
+                
+                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleSecondtRow, tableStyleFirstRow ">
+                	<h:outputText value="MODELO" style="font-weight:bold;width:460px;"/>
+                	<h:outputText value="No. EQUIPOS" style="font-weight:bold;width:120px;"/>
+              	</h:panelGrid>
+              	
+                <!-- COLUMNA EQUIPOS -->
+                <h:panelGrid  columns="2" width="99%" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow, tableStyleSecondRow">
+<!--                  	  
+                	  <h:outputText value="TPV inalámbrica (bluetooth) con conexión telefónica"/>
+	                  <h:inputText  style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="3" id="tpvBlueTel" 
+	                  value="#{ContractAcquirerMB.affiliation.tpvBlueTel}" onblur="onkeyupEquipment(this.id);" onchange="recalculateCommisionTable();"/>
+-->	                  
+	                  <h:outputText value="TPV con conexión celular"/>
+	                  <h:inputText  style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="3" id="tpvGprs" 
+	                  value="#{ContractAcquirerMB.affiliation.quantgprs}" onblur="onkeyupEquipment(this.id);" onchange="onchangeQuantEquipment();"/>
+	                  
+<!--	                  <h:outputText value="TPV inalámbrica (bluetooth) con conexión internet"/>
+	                  <h:inputText  style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="3" id="tpvBlueInternet" 
+	                  value="#{ContractAcquirerMB.affiliation.tpvBlueInternet}" onblur="onkeyupEquipment(this.id);" onchange="recalculateCommisionTable();"/>
+-->	                  
+	                  <h:outputText value="WiFi"/>
+	                  <h:inputText  style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="3" id="wifiMovil" 
+	                  value="#{ContractAcquirerMB.affiliation.quantwifi}" onblur="onkeyupEquipment(this.id);" onchange="recalculateCommisionTable();"/>
+	                  
+	                  <h:outputText value="WiFi con respaldo telefónico"/>
+	                  <h:inputText  style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="3" id="wifiTel" 
+	                  value="#{ContractAcquirerMB.affiliation.wifiTel}" onblur="onkeyupEquipment(this.id);" onchange="recalculateCommisionTable();"/>
+	                  <h:outputText value=""/>
+	                  <h:outputText value=""/>
+	                  <h:outputText value=""/>
+	                  <h:outputText value=""/>
+	                  <h:outputText value=""/>
+	                  <h:outputText value=""/>
+	                  <h:outputText value=""/>
+	                  <h:outputText value=""/>
+	                  <h:outputText value=""/>
+	                  <h:outputText value=""/>
+	                  <h:outputText value=""/>
+	                  <h:outputText value=""/>
+	                  <h:outputText value=""/>
+	                  <h:outputText value=""/>
+	                  <h:outputText value=""/>
+	                  <h:outputText value=""/>
+	                  <h:inputHidden id="tpvBlueTel" value="#{ContractAcquirerMB.affiliation.tpvBlueTel}" />
+	                  <h:inputHidden id="tpvBlueInternet" value="#{ContractAcquirerMB.affiliation.tpvBlueInternet}" />
+                </h:panelGrid>
+                <!-- COLUMNA EQUIPOS -->
+            </h:panelGrid>
+
+            <h:panelGrid columns="2" width="99%" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleSecondtRow">
+<!-- 			  	 <h:outputText value="Maquina transcriptora"/>
+			  	 
+                 <h:inputText  style="width:50px;" onkeyup="onkeyupEquipment(this.id);" 
+                 									onkeypress="return isNumberKey(event)" 
+                 									maxlength="3" 
+                 									id="affiliation_quantmanual" 
+                 									value="#{ContractAcquirerMB.affiliation_quantmanual}" 
+                 									onchange="recalculateCommisionTable();"
+                 									onblur="onchangeManTranscriptor();"/>
+-->
+                 <h:outputText value="TPV/Pinpad propia"/>
+                 <h:selectBooleanCheckbox id="ownTpvPinpad" value="#{ContractAcquirerMB.ownTpvPinpad}" />
+                 <h:inputHidden id="affiliation_quantmanual" value="#{ContractAcquirerMB.affiliation_quantmanual}" />
+			</h:panelGrid>
+</h:panelGrid>
+			<h:panelGrid  id="equipmentMpos" rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+				<f:facet name="header" >
+					<h:dataTable>
+						<h:column id="col1GINA">
+							<f:facet name="header">
+								<h:outputText value="Mpos"/>
+							</f:facet>
+						</h:column>
+					</h:dataTable> 
+                </f:facet> 
+              	<h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleSecondtRow, tableStyleFirstRow">
+                	<h:outputText value="MODELO" style="font-weight:bold;width:460px;"/>
+                	<h:outputText value="No. EQUIPOS" style="font-weight:bold;width:120px;"/>
+              	</h:panelGrid>
+
+                	<!-- COLUMNA EQUIPOS --> 
+				<h:panelGrid columns="2" width="99%" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow, tableStyleSecondRow">
+                  <!--F-92512 Esquemas 2019 RF_002_QuitarRenta_MPOS-->
+<!--					<h:outputText value="Terminal Personal Banorte MPOS con Renta Mensual"/>-->
+<!--					<h:inputText  style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="3" id="mposMonthlyrate" 
+						value="#{ContractAcquirerMB.affiliation.mposMonthlyRate}" onblur="onkeyupEquipment(this.id);" onchange="recalculateCommisionTable();" title="Costo de la renta por $65 mensuales"/>-->
+	                  
+	                
+					<h:outputText value="Terminal Personal Banorte MPOS con Costo por Equipo"/>
+					<h:inputText  style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="3" id="mposEquipment" 
+						value="#{ContractAcquirerMB.affiliation.mposRateByEquipment}" onblur="onkeyupEquipment(this.id);" onchange="recalculateCommisionTable();" title="Costo por equipo $799"/>
+					<!--//F-92512 Esquemas 2019 RF_002_QuitarRenta_MPOS-->	
+					<h:inputHidden id="mposMonthlyrate" value="#{ContractAcquirerMB.affiliation.mposMonthlyRate}" />
+				</h:panelGrid>
+			</h:panelGrid>
+            <br/>
+            <table cellpadding="0" cellspacing="0" width="100%" border="0" >
+            	<tr>
+            	<td align="center">
+            	<h:commandLink id="calculate" action="#{ContractAcquirerMB.getCalculateComissionPlan}" onclick="return activatePlan();" immediate="false">
+            		<h:graphicImage url="images/btnCalcularComisiones.jpg"  alt="Calcular Comisiones" title="Calcular Comisiones" style="border:0px" />
+				</h:commandLink><!-- ../img_contracts/ -->
+            	</td>
+            	</tr>
+            </table>
+            <h:panelGrid styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0" width="100%" >
+              <f:facet name="header">
+                <h:outputText value="Tabla de comisiones"/>
+              </f:facet>
+              <h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleFirstRow, tableStyleSecondtRow">
+                <h:outputText value=""/><h:outputText value=""/><h:outputText value=""/>
+                
+                <h:outputText value="Concepto" style="font-weight:bold;width:460px;"/>
+                <h:outputText value="Moneda Nacional" style="font-weight:bold;width:120px;"/>
+                <h:outputText value="Dólares" style="font-weight:bold;width:120px;"/>
+              </h:panelGrid>
+
+              <h:column>
+                    <h:panelGrid columns="5" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleFirstRow, tableStyleSecondtRow">
+                    <h:outputText value="" style="width:460px;"/>
+                    <h:outputText value="% Tasa de Descuento" style="width:460px;"/>
+                    <h:outputText value="Tarifa por Transacción" style="width:460px;"/>
+                    <h:outputText value="% Tasa de Descuento" style="width:460px;"/>
+                    <h:outputText value="Tarifa por Transacción" style="width:460px;"/>
+                    
+                    <h:outputText value="Comisión por T.C." style="width:460px;"/>
+                    <h:inputText id="affiliation_avcommisiontcmn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_avcommisiontcmnReqError}" value="#{ContractAcquirerMB.affiliation_avcommisiontcmn}" required="false"/>
+                    <h:inputText id="affiliation_commisiontcmn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_avcommisiontcmnReqError}" value="#{ContractAcquirerMB.affiliation_commisiontcmn}" required="false"/>
+                    <h:inputText id="affiliation_avcommisiontcdlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_avcommisiontcdllsReqError}" value="#{ContractAcquirerMB.affiliation_avcommisiontcdlls}" required="false"/>
+                    <h:inputText id="affiliation_commisiontcdlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_avcommisiontcmnReqError}" value="#{ContractAcquirerMB.affiliation_commisiontcdlls}" required="false"/>
+
+                    <h:outputText value="Comisión por T.D."/>
+                    <h:inputText id="affiliation_avcommisiontdmn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_avcommisiontdmn}" value="#{ContractAcquirerMB.affiliation_avcommisiontdmn}" required="false"/>
+                    <h:inputText id="affiliation_commisiontdmn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_avcommisiontddllsReqError}" value="#{ContractAcquirerMB.affiliation_commisiontdmn}" required="false"/>
+                    <h:inputText id="affiliation_avcommisiontddlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_avcommisiontddllsReqError}" value="#{ContractAcquirerMB.affiliation_avcommisiontddlls}" required="false"/>
+                    <h:inputText id="affiliation_commisiontddlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_avcommisiontddllsReqError}" value="#{ContractAcquirerMB.affiliation_commisiontddlls}" required="false"/>
+                    
+                    <h:outputText value="Comisión Internacional" style="width:460px;"/>
+                	<h:inputText id="affiliation_avcommisionintnlmn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_avcommisionintnlmnreqError}" value="#{ContractAcquirerMB.affiliation_avcommisionintnlmn}" required="false"/>
+                	<h:inputText id="affiliation_commisionintnlmn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_avcommisiontddllsReqError}" value="#{ContractAcquirerMB.affiliation_commisionintnlmn}" required="false"/>
+                	<h:inputText id="affiliation_avcommisionintnldlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_avcommisionintnldllsReqError}" value="#{ContractAcquirerMB.affiliation_avcommisionintnldlls}" required="false"/>
+                    <h:inputText id="affiliation_commisionintnldlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_avcommisiontddllsReqError}" value="#{ContractAcquirerMB.affiliation_commisionintnldlls}" required="false"/>
+                </h:panelGrid>                
+              </h:column>
+                              
+              <h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleFirstRow, tableStyleSecondtRow">
+                <h:outputText value="Cuota de afiliación" style="width:460px;"/>
+                <h:inputText id="affiliation_affiliationratemn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_affiliationratemnReqError}" value="#{ContractAcquirerMB.affiliation_affiliationratemn}" required="false"/>
+                <h:inputText id="affiliation_affiliationratedlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_affiliationratedllsReqError}" value="#{ContractAcquirerMB.affiliation_affiliationratedlls}" required="false"/>
+
+                <h:outputText value="Por cada Maquina Transcriptora/placa"/>
+                <h:inputText id="affiliation_transcriptorratemn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_transcriptorratemnReqError}" value="#{ContractAcquirerMB.affiliation_transcriptorratemn}" required="false"/>
+                <h:inputText id="affiliation_transcriptorratedlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_transcriptorratedllsReqError}" value="#{ContractAcquirerMB.affiliation_transcriptorratedlls}" required="false"/>
+				
+				<h:outputText value="Costo Equipo Terminal Personal Banorte"/>
+                <h:inputText id="affiliation_rateMposmn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_transcriptorratemnReqError}" value="#{ContractAcquirerMB.affiliation_rateMposmn}" required="false"/>
+                <h:inputText id="affiliation_rateMposdlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_transcriptorratedllsReqError}" value="#{ContractAcquirerMB.affiliation_rateMposdlls}" required="false"/>
+				
+                <h:outputText value="Renta Mensual"/>
+                <h:column>
+                	<h:inputText id="affiliation_monthlyratemn" style="width:100px;" onkeypress="return isDecimalKey(event)" onclick="onKeyPressRentaMensual();" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_monthlyratemnReqError}" value="#{ContractAcquirerMB.affiliation_monthlyratemn}" required="false"/>
+                	<h:selectOneMenu id="optionMonthlyratemn" style="width:125px;" styleClass="camposx" value="#{ContractAcquirerMB.optionMonthlyratemn}" required="false" onchange="checkOptionMonthlyRateMN();">
+	                  <f:selectItem itemValue="No" itemLabel="No Sustituir"/>
+	                  <f:selectItem itemValue="SiSaldo" itemLabel="Sustituir por Saldo"/>
+	                  <f:selectItem itemValue="SiFac" itemLabel="Sustituir por Facturacion"/>
+                </h:selectOneMenu>     
+                </h:column>
+                <h:column>
+                	<h:inputText id="affiliation_monthlyratedlls" style="width:100px;" onkeypress="return isDecimalKey(event)" onclick="onKeyPressRentaMensual();" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_monthlyratedllsReqError}" value="#{ContractAcquirerMB.affiliation_monthlyratedlls}" required="false"/>
+                	<h:selectOneMenu id="optionMonthlyratedlls" style="width:125px;" styleClass="camposx" value="#{ContractAcquirerMB.optionMonthlyratedlls}" required="false" onchange="checkOptionMonthlyRateDLLS();">
+	                  <f:selectItem itemValue="No" itemLabel="No Sustituir"/>
+	                  <f:selectItem itemValue="SiSaldo" itemLabel="Sustituir por Saldo"/>
+	                  <f:selectItem itemValue="SiFac" itemLabel="Sustituir por Facturacion"/>
+                </h:selectOneMenu>     
+                </h:column>
+                
+                
+                <h:outputText value="Informe el monto de Renta a sustituir"/>
+                <h:inputText id="replaceAmountratemn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_monthlyinvoicingminmnReqError}" value="#{ContractAcquirerMB.replaceAmountratemn}" required="false"/>
+                <h:inputText id="replaceAmountratedlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_monthlyinvoicingmindlls}" value="#{ContractAcquirerMB.replaceAmountratedlls}" required="false"/>
+
+                <h:outputText value="Facturación Mensual Mínima Exigida"/>
+                <h:inputText id="affiliation_monthlyinvoicingminmn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_monthlyinvoicingminmnReqError}" value="#{ContractAcquirerMB.affiliation_monthlyinvoicingminmn}" required="false"/>
+                <h:inputText id="affiliation_monthlyinvoicingmindlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_monthlyinvoicingmindlls}" value="#{ContractAcquirerMB.affiliation_monthlyinvoicingmindlls}" required="false"/>
+
+                <h:outputText value="Comisión por no cubrir Facturación Mensual"/>
+                <h:inputText id="affiliation_failmonthlyinvoicingmn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_failmonthlyinvoicingmnReqError}" value="#{ContractAcquirerMB.affiliation_failmonthlyinvoicingmn}" required="false"/>
+                <h:inputText id="affiliation_failmonthlyinvoicingdlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_failmonthlyinvoicingdllsReqError}" value="#{ContractAcquirerMB.affiliation_failmonthlyinvoicingdlls}" required="false"/>
+
+                <h:outputText value="Saldo Promedio Mensual Cuenta(s) Cheques Mínimo Exigido" />
+                <h:inputText id="affiliation_minimiunbalancemn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_minimiunbalancemnReqError}" value="#{ContractAcquirerMB.affiliation_minimiunbalancemn}" required="false"/>
+                <h:inputText id="affiliation_minimiunbalancedlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_minimiunbalancedllsReqError}" value="#{ContractAcquirerMB.affiliation_minimiunbalancedlls}" required="false"/>
+
+                <h:outputText value="Comisión por incumplimiento Saldo Promedio Mensual" />
+                <h:inputText id="affiliation_failminimiunbalancemn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_failminimiunbalancemnReqError}" value="#{ContractAcquirerMB.affiliation_failminimiunbalancemn}" required="false"/>
+                <h:inputText id="affiliation_failminimiunbalancedlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_failminimiunbalancedllsReqError}" value="#{ContractAcquirerMB.affiliation_failminimiunbalancedlls}" required="false"/>
+
+
+<!-- Cashback -->
+<!--				<h:outputText value="Comision por pago  Paga y Retira Efectivo"/>-->
+<!--                <h:inputText id="aff_commCashBackPymt" style="width:100px;" maxlength="50" styleClass="camposx" value="#{ContractAcquirerMB.aff_commCbPymt}" required="false" disabled="false"/>-->
+<!--                <h:inputText id="aff_commCashBackPymtDll" style="width:100px;" maxlength="50" styleClass="camposx" value="0" required="false" disabled="true"/>-->
+                
+				<h:outputText value="Paga y Retira Efectivo"/>
+                <h:inputText id="aff_commCbChrg" style="width:100px;" maxlength="50" onkeypress="return isDecimalKey(event)" styleClass="camposx" value="#{ContractAcquirerMB.aff_commCbChrg}" required="false" disabled="false">
+                </h:inputText>
+                <h:inputText id="aff_commCbChrgDll" style="width:100px;" maxlength="50" styleClass="camposx" value="#{ContractAcquirerMB.aff_commCbChrgDll}" required="false" disabled="true"/>
+<!--                -->
+<!-- Cashback -->                
+
+
+                <h:outputText value="Pagare Mínimo"/>
+                <h:inputText id="affiliation_promnotemn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_promnotemnReqError}" value="#{ContractAcquirerMB.affiliation_promnotemn}" required="false"/>
+                <h:inputText id="affiliation_promnotedlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_promnotedllsReqError}" value="#{ContractAcquirerMB.affiliation_promnotedlls}" required="false"/>
+
+                <h:outputText value="Comisión por incumplimiento Pagare mínimo"/>
+                <h:inputText id="affiliation_failpromnotemn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_failpromnotemnReqError}" value="#{ContractAcquirerMB.affiliation_failpromnotemn}" required="false"/>
+                <h:inputText id="affiliation_failpormnotedlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_failpormnotedllsReqError}" value="#{ContractAcquirerMB.affiliation_failpormnotedlls}" required="false"/>
+
+                <h:outputText value="Servicio de verificación de domicilio por cada consulta" />
+                <h:inputText id="affiliation_avsmn" style="width:100px;" maxlength="50" onkeypress="return isDecimalKey(event)" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_avsmnReqError}" value="#{ContractAcquirerMB.affiliation_avsmn}" required="false"/>
+                <h:inputText id="affiliation_avsdlls" style="width:100px;" maxlength="50" onkeypress="return isDecimalKey(event)" styleClass="camposx" requiredMessage="#{msgs.oaAffiliation_avsdllsReqError}" value="#{ContractAcquirerMB.affiliation_avsdlls}" required="false"/>
+
+                <h:outputText value="Renta Mensual 3D Secure  (Solo para Comercio Electrónico)"/>
+                <h:inputText id="affiliation_monthlyrate3dsmn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" value="#{ContractAcquirerMB.affiliation_monthlyrate3dsmn}" required="false"/>
+                <h:inputText id="affiliation_monthlyrate3dsdlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" value="#{ContractAcquirerMB.affiliation_monthlyrate3dsdlls}" required="false"/>
+<!-- Cybersource y Micros cuotas -->
+				<h:outputText value="Cybersource cuota por transaccion"/>
+                <h:inputText id="transactionFeeCyberMn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" value="#{ContractAcquirerMB.transactionFeeCyberMn}" required="false"/>
+                <h:inputText id="transactionFeeCyberDlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" value="#{ContractAcquirerMB.transactionFeeCyberDlls}" required="false"/>
+                
+                <h:outputText value="Cybersource cobertura limitada"/>
+                <h:inputText id="limitedCoverageCyberMn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" value="#{ContractAcquirerMB.limitedCoverageCyberMn}" required="false"/>
+                <h:inputText id="limitedCoverageCyberDlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" value="#{ContractAcquirerMB.limitedCoverageCyberDlls}" required="false"/>
+                
+                <h:outputText value="Cybersource cobertura amplia"/>
+                <h:inputText id="wideCoverageCyberMn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" value="#{ContractAcquirerMB.wideCoverageCyberMn}" required="false"/>
+                <h:inputText id="wideCoverageCyberDlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" value="#{ContractAcquirerMB.wideCoverageCyberDlls}" required="false"/>
+                
+                <h:outputText value="Micros Cuota por transaccion"/>
+                <h:inputText id="transactionFeeMicrosMn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" value="#{ContractAcquirerMB.transactionFeeMicrosMn}" required="false"/>
+                <h:inputText id="transactionFeeMicrosDlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" value="#{ContractAcquirerMB.transactionFeeMicrosDlls}" required="false"/>
+<!-- ... cyber y micros ...-->				
+                <h:column>
+                  <h:outputText value="Otros Conceptos"/>
+                  <h:inputText id="affiliation_otherconcept1des" style="width:100px;" onkeypress="return isText(event)" maxlength="50" styleClass="camposx" value="#{ContractAcquirerMB.affiliation_otherconcept1des}" required="false"/>
+                </h:column>
+                <h:inputText id="affiliation_otherconcept1mn" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" value="#{ContractAcquirerMB.affiliation_otherconcept1mn}" required="false"/>
+                <h:inputText id="affiliation_otherconcept1dlls" style="width:100px;" onkeypress="return isDecimalKey(event)" maxlength="50" styleClass="camposx" value="#{ContractAcquirerMB.affiliation_otherconcept1dlls}" required="false"/>
+				
+				</h:panelGrid>
+            </h:panelGrid>
+            <br/>
+            <br/>
+            <!--Comentarios-->
+              <h:panelGrid  rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+                <f:facet name="header">
+                  <h:outputText value=" Observaciones (Tipo de Conexión, referencia y horario):"/>
+                </f:facet>
+
+                <h:panelGrid columns="1" width="99%" border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+                  <h:outputText value="Comentarios"/>
+                  <h:inputTextarea id="comments" styleClass="camposx" cols="70" rows="3" 
+                  					value="#{ContractAcquirerMB.comments}"/>
+                  <h:outputText id="commMessage" value=""/>
+                </h:panelGrid>
+              </h:panelGrid>
+            <br/>
+            <h:inputHidden id="recalculateCommisionTable" value="#{ContractAcquirerMB.recalculateCommisionTable}"></h:inputHidden>
+            <h:inputHidden id="loaded" value="#{ContractAcquirerMB.orderFormLoaded}"></h:inputHidden>
+            <br/>
+            <div id="send" class="send">
+              | x <h:commandLink id="Guardar" action="#{ContractAcquirerMB.navigation_ordenAfiliacionAction}" 
+              onclick="return validateSend();" 
+              immediate="false" >ENVIAR</h:commandLink> |
+            </div>
+          </h:form>
+        </f:view>
+      </ui:define>
+
+    </ui:composition>
+  </body>
+  </html>

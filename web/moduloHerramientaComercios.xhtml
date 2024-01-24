@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jstl/core">
+  <body>
+    <ui:composition template="./contractTemplate.xhtml">
+      <ui:define name="top">
+        Módulo Herramienta Comercios
+      </ui:define>
+
+      <ui:define name="content">
+        <f:view>
+        <script type="text/javascript">
+        </script>
+        
+          <h:form id="forma">
+            <br/>
+            <h:messages layout="table" styleClass="errorStyle"/>
+            <br/>
+            
+            
+            <c:if test="#{! empty ContractAcquirerMB.errorsList}">
+              <h:dataTable id="list" value="#{ContractAcquirerMB.errorsList}" rendered="#{! empty ContractAcquirerMB.errorsList}" var="errors" styleClass="contractStyleNone" rowClasses="tableStyleSecondRow">
+                <h:column>                  
+                  <h:outputText value="#{errors.message}" styleClass="msgValidation"/>
+                </h:column>                 
+              </h:dataTable>              
+            <br/>
+            <br/>
+            </c:if>
+            <br/>
+                        
+              <h:panelGrid styleClass="contractStyleSpecial" columns="1" cellpadding="0" cellspacing="0" style="width:100%;">
+                <f:facet name="header">
+                    <h:outputText value="Contacto administrador"/>
+                </f:facet>
+                <h:panelGrid columns="5" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow" style="width:100%;">
+								<h:outputText value="Nombre" />
+								<h:outputText value="Apellido Paterno" />
+								<h:outputText value="Apellido Materno" />
+								<h:outputText value="Correo electrónico" />
+								<h:outputText value="Teléfono" />
+								<h:inputText id="adminName"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									value="#{ContractAcquirerMB.adminName}" 
+									required="false"/>
+								<h:inputText id="adminFLastName"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									value="#{ContractAcquirerMB.adminFLastName}"
+									required="false"/>
+								<h:inputText id="adminMLastName"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									value="#{ContractAcquirerMB.adminMLastName}"
+									required="false"/>
+								<h:inputText id="adminEmail"
+									onkeypress="return isEmail(event)"
+									onblur="return checkemail('adminEmail');" maxlength="60"
+									style="width:300px;" styleClass="camposx"
+									value="#{ContractAcquirerMB.adminEmail}"
+									required="false"/>
+								<h:inputText id="adminPhone"
+									onkeypress="return isNumberKey(event)"
+									maxlength="8" styleClass="camposx"
+									value="#{ContractAcquirerMB.adminPhone}"
+									required="false" />
+				</h:panelGrid>
+              </h:panelGrid>
+              
+              <br/>
+              <br/>
+              
+              <h:panelGrid styleClass="contractStyleSpecial" columns="1" cellpadding="0" cellspacing="0">
+                <f:facet name="header">
+                    <h:outputText value="Contactos adicionales para el modulo de petición de pagarés"/>
+                </f:facet>
+                <h:panelGrid columns="5" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow" >
+								<h:outputText value="Nombre 1" />
+								<h:outputText value="Apellido Paterno 1" />
+								<h:outputText value="Apellido Materno 1" />
+								<h:outputText value="Correo electrónico 1" />
+								<h:outputText value="Teléfono 1" />
+								<h:inputText id="promNoteRqstName1"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									value="#{ContractAcquirerMB.promNoteRqstName1}" 
+									required="false"/>
+								<h:inputText id="promNoteRqstFLastName1"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									value="#{ContractAcquirerMB.promNoteRqstFLastName1}"
+									required="false"/>
+								<h:inputText id="promNoteRqstMLastName1"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									value="#{ContractAcquirerMB.promNoteRqstMLastName1}"
+									required="false"/>
+								<h:inputText id="promNoteRqstEmail1"
+									onkeypress="return isEmail(event)"
+									onblur="return checkemail('promNoteRqstEmail1');" maxlength="60"
+									style="width:300px;" styleClass="camposx"
+									value="#{ContractAcquirerMB.promNoteRqstEmail1}"
+									required="false"/>
+								<h:inputText id="promNoteRqstPhone1"
+									onkeypress="return isNumberKey(event)" style="width:150px;"
+									maxlength="8" styleClass="camposx"
+									value="#{ContractAcquirerMB.promNoteRqstPhone1}"
+									required="false"/>
+				</h:panelGrid>
+				<h:panelGrid columns="5" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleSecondRow">
+									<h:outputText value="Nombre 2" />
+									<h:outputText value="Apellido Paterno 2" />
+									<h:outputText value="Apellido Materno 2" />
+									<h:outputText value="Correo electrónico 2" />
+									<h:outputText value="Teléfono 2" />
+									<h:inputText id="promNoteRqstName2"
+										onkeypress="return isTextNAN(event)" style="width:150px;"
+										maxlength="30" styleClass="camposx"
+										value="#{ContractAcquirerMB.promNoteRqstName2}" 
+										required="false"/>
+									<h:inputText id="promNoteRqstFLastName2"
+										onkeypress="return isTextNAN(event)" style="width:150px;"
+										maxlength="30" styleClass="camposx"
+										value="#{ContractAcquirerMB.promNoteRqstFLastName2}"
+										required="false"/>
+									<h:inputText id="promNoteRqstMLastName2"
+										onkeypress="return isTextNAN(event)" style="width:150px;"
+										maxlength="30" styleClass="camposx"
+										value="#{ContractAcquirerMB.promNoteRqstMLastName2}"
+										required="false"/>
+									<h:inputText id="promNoteRqstEmail2"
+										onkeypress="return isEmail(event)"
+										onblur="return checkemail('promNoteRqstEmail2');" maxlength="60"
+										style="width:300px;" styleClass="camposx"
+										value="#{ContractAcquirerMB.promNoteRqstEmail2}"
+										required="false"/>
+									<h:inputText id="promNoteRqstPhone2"
+										onkeypress="return isNumberKey(event)" style="width:150px;"
+										maxlength="8" styleClass="camposx"
+										value="#{ContractAcquirerMB.promNoteRqstPhone2}"
+										required="false"/>
+				</h:panelGrid>
+              </h:panelGrid>
+              
+            <br/>
+            <br/>
+            <div class="send">
+                | x <h:commandLink id="enviar" action="#{ContractAcquirerMB.validateCommerce}"  immediate="false">ENVIAR</h:commandLink> |
+            </div>
+          </h:form>
+        </f:view>
+      </ui:define>
+
+    </ui:composition>
+  </body>
+</html>
+

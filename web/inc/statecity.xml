@@ -1,0 +1,2537 @@
+<Mexico>
+  <State name="DISTRITO FEDERAL">
+    <City id="0001" name="ALVARO OBREGON" />
+    <City id="0002" name="AZCAPOTZALCO" />
+    <City id="0003" name="BENITO JUAREZ" />
+    <City id="0004" name="COYOACAN" />
+    <City id="0005" name="CUAJIMALPA" />
+    <City id="0006" name="CUAUHTEMOC" />
+    <City id="0007" name="GUSTAVO A. MADERO" />
+    <City id="0008" name="IZTACALCO" />
+    <City id="0009" name="IZTAPALAPA" />
+    <City id="0010" name="MAGDALENA CONTRERAS" />
+    <City id="0011" name="MIGUEL HIDALGO" />
+    <City id="0012" name="MILPA ALTA" />
+    <City id="0013" name="TLAHUAC" />
+    <City id="0014" name="TLALPAN" />
+    <City id="0015" name="VENUSTIANO CARRANZA" />
+    <City id="0016" name="XOCHIMILCO" />
+
+  </State>
+  <State name="AGUASCALIENTES">
+    <City id="1000" name="AGUASCALIENTES" />
+    <City id="1014" name="ASIENTOS" />
+    <City id="1002" name="CALVILLO" />
+    <City id="1016" name="COSIO" />
+    <City id="1013" name="JESUS MARIA" />
+    <City id="1001" name="PABELLON DE ARTEAGA" />
+    <City id="1004" name="RINCON DE ROMOS" />
+    <City id="1015" name="SAN JOSE DE GRACIA" />
+    <City id="1017" name="TEPEZALA" />
+  </State>
+  <State name="BAJA CALIFORNIA NORTE">
+    <City id="2036" name="ENSENADA" />
+    <City id="2054" name="MEXICALI" />
+    <City id="2060" name="ROSARITO" />
+    <City id="2066" name="TECATE" />
+    <City id="2000" name="TIJUANA" />
+  </State>
+  <State name="BAJA CALIFORNIA SUR">
+    <City id="2504" name="CABO SAN LUCAS" />
+    <City id="2506" name="CD CONSTITUCION" />
+    <City id="2507" name="COMONDU" />
+    <City id="2510" name="LA PAZ" />
+    <City id="2536" name="LOS CABOS" />
+    <City id="2515" name="MULEGE" />
+    <City id="2524" name="SAN JOSE DEL CABO" />
+    <City id="2526" name="LORETO" />    
+  </State>
+  <State name="CAMPECHE">
+    <City id="3002" name="CALKINI" />
+    <City id="3000" name="CAMPECHE" />
+    <City id="3017" name="CARMEN" />
+    <City id="3005" name="CD DEL CARMEN" />
+    <City id="3006" name="CHAMPOTON" />
+    <City id="3007" name="ESCARCEGA" />
+    <City id="3008" name="HECELCHAKAN" />
+    <City id="3009" name="HOPELCHEN" />
+    <City id="3010" name="PALIZADA" />
+    <City id="3018" name="TENABO" />
+  </State>
+  <State name="CHIAPAS">
+    <City id="6097" name="ACACOYAGUA" />
+    <City id="6042" name="ACALA" />
+    <City id="6001" name="ACAPETAHUA" />
+    <City id="6095" name="ALTAMIRANO" />
+    <City id="6098" name="AMATAN" />
+    <City id="6099" name="AMATENANGO DE LA FRONTERA" />
+    <City id="6100" name="AMATENANGO DEL VALLE" />
+    <City id="6002" name="ANGEL ALBINO CORZO" />
+    <City id="6003" name="ARRIAGA" />
+    <City id="6101" name="BEJUCAL DE OCAMPO" />
+    <City id="6102" name="BELLA VISTA" />
+    <City id="6040" name="BERRIOZABAL" />
+    <City id="6052" name="BOCHIL" />
+    <City id="6004" name="CACAHOATAN" />
+    <City id="6038" name="CATAZAJA" />
+    <City id="6103" name="CHALCHIHUITAN" />
+    <City id="6104" name="CHAMULA" />
+    <City id="6105" name="CHANAL" />
+    <City id="6106" name="CHAPULTENANGO" />
+    <City id="6107" name="CHENALHO" />
+    <City id="6010" name="CHIAPA DE CORZO" />
+    <City id="6108" name="CHIAPILLA" />
+    <City id="6056" name="CHICOASEN" />
+    <City id="6061" name="CHICOMUSELO" />
+    <City id="6093" name="CHILON" />
+    <City id="6005" name="CINTALAPA" />
+    <City id="6109" name="COAPILLA" />
+    <City id="6008" name="COMITAN DE DOMINGUEZ" />
+    <City id="6009" name="COPAINALA" />
+    <City id="6110" name="EL BOSQUE" />
+    <City id="6111" name="EL PORVENIR" />
+    <City id="6011" name="ESCUINTLA" />
+    <City id="6112" name="FRANCISCO LEON" />
+    <City id="6007" name="FRONTERA COMALAPA" />
+    <City id="6006" name="FRONTERA HIDALGO" />
+    <City id="6041" name="HUEHUETAN" />
+    <City id="6113" name="HUITIUPAN" />
+    <City id="6114" name="HUIXTAN" />
+    <City id="6012" name="HUIXTLA" />
+    <City id="6064" name="IXHUATAN" />
+    <City id="6081" name="IXTACOMITAN" />
+    <City id="6088" name="IXTAPA" />
+    <City id="6115" name="IXTAPANGAJOYA" />
+    <City id="6085" name="JIQUIPILAS" />
+    <City id="6116" name="JITOTOL" />
+    <City id="6069" name="JUAREZ" />
+    <City id="6013" name="LA CONCORDIA" />
+    <City id="6117" name="LA GRANDEZA" />
+    <City id="6118" name="LA INDEPENDENCIA" />
+    <City id="6119" name="LA LIBERTAD" />
+    <City id="6087" name="LA TRINITARIA" />
+    <City id="6120" name="LARRAINZAR" />
+    <City id="6060" name="LAS MARGARITAS" />
+    <City id="6086" name="LAS ROSAS" />
+    <City id="6014" name="MAPASTEPEC" />
+    <City id="6122" name="MAZAPA DE MADERO" />
+    <City id="6044" name="MAZATAN" />
+    <City id="6123" name="METAPA" />
+    <City id="6124" name="MITONTIC" />
+    <City id="6015" name="MOTOZINTLA" />
+    <City id="6125" name="NICOLAS RUIZ" />
+    <City id="6016" name="OCOSINGO" />
+    <City id="6126" name="OCOTEPEC" />
+    <City id="6017" name="OCOZOCOAUTLA DE ESPINOSA" />
+    <City id="6127" name="OSTUACAN" />
+    <City id="6091" name="OSUMACINTA" />
+    <City id="6128" name="OXCHUC" />
+    <City id="6018" name="PALENQUE" />
+    <City id="6129" name="PANTELHO" />
+    <City id="6130" name="PANTEPEC" />
+    <City id="6019" name="PICHUCALCO" />
+    <City id="6020" name="PIJIJIAPAN" />
+    <City id="6131" name="PUEBLO NVO SOLISTAHUACAN" />
+    <City id="6132" name="RAYON" />
+    <City id="6046" name="REFORMA" />
+    <City id="6082" name="SABANILLA" />
+    <City id="6022" name="SALTO DE AGUA" />
+    <City id="6024" name="SAN CRISTOBAL DLAS CASAS" />
+    <City id="6054" name="SAN FERNANDO" />
+    <City id="6133" name="SAN JUAN CANCUC" />
+    <City id="6134" name="SAN LUCAS" />
+    <City id="6050" name="SILTEPEC" />
+    <City id="6023" name="SIMOJOVEL" />
+    <City id="6135" name="SITALA" />
+    <City id="6136" name="SOCOLTENANGO" />
+    <City id="6137" name="SOLOSUCHIAPA" />
+    <City id="6063" name="SOYALO" />
+    <City id="6055" name="SUCHIAPA" />
+    <City id="6138" name="SUCHIATE" />
+    <City id="6139" name="SUNUAPA" />
+    <City id="6025" name="TAPACHULA" />
+    <City id="6140" name="TAPALAPA" />
+    <City id="6051" name="TAPILULA" />
+    <City id="6049" name="TECPATAN" />
+    <City id="6141" name="TENEJAPA" />
+    <City id="6053" name="TEOPISCA" />
+    <City id="6094" name="TILA" />
+    <City id="6026" name="TONALA" />
+    <City id="6142" name="TOTOLAPA" />
+    <City id="6143" name="TUMBALA" />
+    <City id="6035" name="TUXTLA CHICO" />
+    <City id="6027" name="TUXTLA GUTIERREZ" />
+    <City id="6062" name="TUZANTAN" />
+    <City id="6089" name="TZIMOL" />
+    <City id="6144" name="UNION JUAREZ" />
+    <City id="6029" name="VENUSTIANO CARRANZA" />
+    <City id="6021" name="VILLA COMALTITLAN" />
+    <City id="6068" name="VILLA CORZO" />
+    <City id="6030" name="VILLAFLORES" />
+    <City id="6031" name="YAJALON" />
+    <City id="6145" name="ZINACANTAN" />
+  </State>
+  <State name="CHIHUAHUA">
+    <City id="7038" name="AHUMADA" />
+    <City id="7039" name="ALDAMA" />
+    <City id="7118" name="ALLENDE" />
+    <City id="7001" name="AQUILES SERDAN" />
+    <City id="7002" name="ASCENSION" />
+    <City id="7058" name="BACHINIVA" />
+    <City id="7064" name="BALLEZA" />
+    <City id="7003" name="BATOPILAS" />
+    <City id="7145" name="BOCOYNA" />
+    <City id="7004" name="BUENAVENTURA" />
+    <City id="7006" name="CAMARGO" />
+    <City id="7098" name="CARICHI" />
+    <City id="7005" name="CASAS GRANDES" />
+    <City id="7149" name="CD CAMARGO" />
+    <City id="7148" name="CD CUAUHTEMOC" />
+    <City id="7023" name="CD DELICIAS" />
+    <City id="7009" name="CD JUAREZ" />
+    <City id="7000" name="CHIHUAHUA" />
+    <City id="7014" name="CHINIPAS" />
+    <City id="7094" name="CORONADO" />
+    <City id="7141" name="COYAME" />
+    <City id="7011" name="CUAUHTEMOC" />
+    <City id="7012" name="CUSIHUIRIACHI" />
+    <City id="7134" name="DOCTOR BELISARIO DOMINGUEZ" />
+    <City id="7119" name="EL TULE" />
+    <City id="7133" name="GALEANA" />
+    <City id="7048" name="GENERAL TRIAS" />
+    <City id="7044" name="GOMEZ FARIAS" />
+    <City id="7056" name="GRAN MORELOS" />
+    <City id="7055" name="GUACHOCHI" />
+    <City id="7113" name="GUADALUPE" />
+    <City id="7017" name="GUADALUPE Y CALVO" />
+    <City id="7142" name="GUAZAPARES" />
+    <City id="7112" name="GUERRERO" />
+    <City id="7018" name="HIDALGO DEL PARRAL" />
+    <City id="7122" name="HUEJOTITAN" />
+    <City id="7129" name="IGNACIO ZARAGOZA" />
+    <City id="7019" name="JANOS" />
+    <City id="7008" name="JIMENEZ" />
+    <City id="7054" name="JULIMES" />
+    <City id="7052" name="LA CRUZ" />
+    <City id="7081" name="LOPEZ" />
+    <City id="7024" name="MADERA" />
+    <City id="7025" name="MAGUARICHI" />
+    <City id="7131" name="MANUEL BENAVIDES" />
+    <City id="7026" name="MATACHI" />
+    <City id="7100" name="MATAMOROS" />
+    <City id="7027" name="MEOQUI" />
+    <City id="7143" name="MORELOS" />
+    <City id="7107" name="MORIS" />
+    <City id="7130" name="NAMIQUIPA" />
+    <City id="7127" name="NONOAVA" />
+    <City id="7147" name="NUEVO CASAS GRANDES" />
+    <City id="7030" name="OCAMPO" />
+    <City id="7031" name="OJINAGA" />
+    <City id="6235" name="PARRAL" />
+    <City id="7084" name="PRAXEDIS G GUERRERO" />
+    <City id="7076" name="RIVA PALACIO" />
+    <City id="7077" name="ROSALES" />
+    <City id="7132" name="ROSARIO" />
+    <City id="7111" name="SAN FRANCISCO DE BORJA" />
+    <City id="7042" name="SAN FRANCISCO DE CONCHOS" />
+    <City id="7032" name="SAN FRANCISCO DEL ORO" />
+    <City id="7033" name="SANTA BARBARA" />
+    <City id="7102" name="SATEVO" />
+    <City id="7034" name="SAUCILLO" />
+    <City id="7035" name="TEMOSACHI" />
+    <City id="7144" name="URIQUE" />
+    <City id="7036" name="URUACHI" />
+    <City id="7082" name="VALLE DE ZARAGOZA" />
+  </State>
+  <State name="COAHUILA">
+    <City id="4062" name="ABASOLO" />
+    <City id="4003" name="ACUNA" />
+    <City id="4004" name="ALLENDE" />
+    <City id="4037" name="ARTEAGA" />
+    <City id="4001" name="CANDELA" />
+    <City id="4002" name="CASTANOS" />
+    <City id="4073" name="CD SABINAS" />
+    <City id="4006" name="CUATROCIENEGAS" />
+    <City id="4066" name="ESCOBEDO" />
+    <City id="4045" name="FRANCISCO I MADERO" />
+    <City id="4048" name="FRONTERA" />
+    <City id="4008" name="GENERAL CEPEDA" />
+    <City id="4029" name="GUERRERO" />
+    <City id="4067" name="HIDALGO" />
+    <City id="4068" name="JIMENEZ" />
+    <City id="4069" name="JUAREZ" />
+    <City id="4049" name="LAMADRID" />
+    <City id="4059" name="MATAMOROS" />
+    <City id="4012" name="MATAMOROS DE LA LAGUNA" />
+    <City id="4013" name="MONCLOVA" />
+    <City id="4014" name="MORELOS" />
+    <City id="4005" name="MUZQUIZ" />
+    <City id="4015" name="NADADORES" />
+    <City id="4044" name="NAVA" />
+    <City id="4016" name="NUEVA ROSITA" />
+    <City id="4036" name="OCAMPO" />
+    <City id="4070" name="PARRAS" />
+    <City id="4019" name="PIEDRAS NEGRAS" />
+    <City id="4050" name="PROGRESO" />
+    <City id="4021" name="RAMOS ARIZPE" />
+    <City id="4022" name="SABINAS" />
+    <City id="4052" name="SACRAMENTO" />
+    <City id="4023" name="SALTILLO" />
+    <City id="4024" name="SAN BUENAVENTURA" />
+    <City id="4055" name="SAN JUAN DE SABINAS" />
+    <City id="4025" name="SAN PEDRO" />
+    <City id="4071" name="SIERRA MOJADA" />
+    <City id="4026" name="TORREON" />
+    <City id="4027" name="VIESCA" />
+    <City id="4030" name="VILLA UNION" />
+    <City id="4072" name="ZARAGOZA" />
+  </State>
+  <State name="COLIMA">
+    <City id="5001" name="ARMERIA" />
+    <City id="5000" name="COLIMA" />
+    <City id="5009" name="COMALA" />
+    <City id="5008" name="COQUIMATLAN" />
+    <City id="5005" name="CUAUHTEMOC" />
+    <City id="5044" name="IXTLAHUACAN" />
+    <City id="5003" name="MANZANILLO" />
+    <City id="5035" name="MINATITLAN" />
+    <City id="5004" name="TECOMAN" />
+    <City id="5042" name="VILLA DE ALVAREZ" />
+  </State>
+  <State name="DURANGO">
+    <City id="9001" name="CANATLAN" />
+    <City id="9002" name="CANELAS" />
+    <City id="9104" name="CD LERDO" />
+    <City id="9097" name="CONETO DE COMONFORT" />
+    <City id="9006" name="CUENCAME" />
+    <City id="9000" name="DURANGO" />
+    <City id="9029" name="EL ORO" />
+    <City id="9098" name="GENERAL SIMON BOLIVAR" />
+    <City id="9013" name="GOMEZ PALACIO" />
+    <City id="9014" name="GUADALUPE VICTORIA" />
+    <City id="9015" name="GUANACEVI" />
+    <City id="9072" name="HIDALGO" />
+    <City id="9016" name="INDE" />
+    <City id="9004" name="LERDO" />
+    <City id="9018" name="MAPIMI" />
+    <City id="9096" name="MEZQUITAL" />
+    <City id="9082" name="NAZAS" />
+    <City id="9020" name="NOMBRE DE DIOS" />
+    <City id="9021" name="NUEVO IDEAL" />
+    <City id="9038" name="OCAMPO" />
+    <City id="9099" name="OTAEZ" />
+    <City id="9053" name="PANUCO DE CORONADO" />
+    <City id="9024" name="PENON BLANCO" />
+    <City id="9067" name="POANAS" />
+    <City id="9092" name="PUEBLO NUEVO" />
+    <City id="9025" name="RODEO" />
+    <City id="9100" name="SAN BERNARDO" />
+    <City id="9095" name="SAN DIMAS" />
+    <City id="9026" name="SAN JUAN DE GUADALUPE" />
+    <City id="9085" name="SAN JUAN DEL RIO" />
+    <City id="9101" name="SAN LUIS DEL CORDERO" />
+    <City id="9102" name="SAN PEDRO DEL GALLO" />
+    <City id="9103" name="SANTA CLARA" />
+    <City id="9030" name="SANTIAGO PAPASQUIARO" />
+    <City id="9031" name="SUCHIL" />
+    <City id="9064" name="TAMAZULA" />
+    <City id="9034" name="TEPEHUANES" />
+    <City id="9035" name="TLAHUALILO" />
+    <City id="9061" name="TOPIA" />
+    <City id="9039" name="VICENTE GUERRERO" />
+  </State>
+  <State name="ESTADO DE MEXICO">
+    <City id="14001" name="ACAMBAY" />
+    <City id="14159" name="ACOLMAN" />
+    <City id="14071" name="ACULCO" />
+    <City id="14479" name="ALMOLOYA DE ALQUISIRAS" />
+    <City id="14078" name="ALMOLOYA DE JUAREZ" />
+    <City id="14955" name="ALMOLOYA DEL RIO" />
+    <City id="14396" name="AMANALCO" />
+    <City id="14292" name="AMATEPEC" />
+    <City id="14002" name="AMECAMECA" />
+    <City id="14034" name="APAXCO" />
+    <City id="14362" name="ATENCO" />
+    <City id="14046" name="ATIZAPAN" />
+    <City id="14504" name="ATIZAPAN DE ZARAGOZA" />
+    <City id="14003" name="ATLACOMULCO" />
+    <City id="14073" name="ATLAUTLA" />
+    <City id="14426" name="AXAPUSCO" />
+    <City id="14383" name="AYAPANGO" />
+    <City id="14249" name="CALIMAYA" />
+    <City id="14055" name="CAPULHUAC" />
+    <City id="14006" name="CHALCO" />
+    <City id="14389" name="CHAPA DE MOTA" />
+    <City id="14480" name="CHAPULTEPEC" />
+    <City id="14043" name="CHIAUTLA" />
+    <City id="14044" name="CHICONCUAC" />
+    <City id="14107" name="CHIMALHUACAN" />
+    <City id="14109" name="COACALCO" />
+    <City id="14035" name="COATEPEC HARINAS" />
+    <City id="14085" name="COCOTITLAN" />
+    <City id="14065" name="COYOTEPEC" />
+    <City id="14191" name="CUAUTITLAN" />
+    <City id="14005" name="CUAUTITLAN IZCALLI" />
+    <City id="14481" name="DONATO GUERRA" />
+    <City id="14060" name="ECATEPEC" />
+    <City id="14482" name="ECATZINGO" />
+    <City id="14038" name="EL ORO" />
+    <City id="14058" name="HUEHUETOCA" />
+    <City id="14483" name="HUEYPOXTLA" />
+    <City id="14512" name="HUIXQUILUCAN" />
+    <City id="14484" name="ISIDRO FABELA" />
+    <City id="14207" name="IXTAPALUCA" />
+    <City id="14008" name="IXTAPAN DE LA SAL" />
+    <City id="14485" name="IXTAPAN DEL ORO" />
+    <City id="14339" name="IXTLAHUACA" />
+    <City id="14486" name="JALATLACO" />
+    <City id="14236" name="JALTENCO" />
+    <City id="14010" name="JILOTEPEC" />
+    <City id="14993" name="JILOTZINGO" />
+    <City id="14069" name="JIQUIPILCO" />
+    <City id="14011" name="JOCOTITLAN" />
+    <City id="14320" name="JOQUICINGO" />
+    <City id="14115" name="JUCHITEPEC" />
+    <City id="14487" name="LA PAZ" />
+    <City id="14012" name="LERMA" />
+    <City id="14923" name="MALINALCO" />
+    <City id="14049" name="MELCHOR OCAMPO" />
+    <City id="14047" name="METEPEC" />
+    <City id="14297" name="MEXICALCINGO" />
+    <City id="14406" name="MORELOS" />
+    <City id="14505" name="NAUCALPAN" />
+    <City id="14342" name="NEXTLALPAN" />
+    <City id="14510" name="NEZAHUALCOYOTL" />
+    <City id="14507" name="NICOLAS ROMERO" />
+    <City id="14488" name="NOPALTEPEC" />
+    <City id="14211" name="OCOYOACAC" />
+    <City id="14996" name="OCUILAN" />
+    <City id="14014" name="OTUMBA" />
+    <City id="14489" name="OTZOLOAPAN" />
+    <City id="14490" name="OTZOLOTEPEC" />
+    <City id="14015" name="OZUMBA" />
+    <City id="14157" name="PAPALOTLA" />
+    <City id="14016" name="POLOTITLAN" />
+    <City id="14310" name="RAYON" />
+    <City id="14331" name="SAN ANTONIO LA ISLA" />
+    <City id="14928" name="SAN FELIPE DEL PROGRESO" />
+    <City id="14278" name="SAN MARTIN DE LAS PIRAMIDES" />
+    <City id="14054" name="SAN MATEO ATENCO" />
+    <City id="14491" name="SAN SIMON DE GUERRERO" />
+    <City id="14180" name="SAN VICENTE CHICOLOAPAN" />
+    <City id="14492" name="SANTO TOMAS" />
+    <City id="14493" name="SOYANIQUILPAN DE JUAREZ" />
+    <City id="14022" name="SULTEPEC" />
+    <City id="14212" name="TECAMAC" />
+    <City id="14508" name="TEJUPILCO" />
+    <City id="14494" name="TEMAMATLA" />
+    <City id="14325" name="TEMASCALAPA" />
+    <City id="14025" name="TEMASCALCINGO" />
+    <City id="14495" name="TEMASCALTEPEC" />
+    <City id="14410" name="TEMOAYA" />
+    <City id="14026" name="TENANCINGO" />
+    <City id="14496" name="TENANGO DEL AIRE" />
+    <City id="14027" name="TENANGO DEL VALLE" />
+    <City id="14062" name="TEOLOYUCAN" />
+    <City id="14179" name="TEOTIHUACAN" />
+    <City id="10161" name="TEPETLACALCO" />
+    <City id="14429" name="TEPETLAOXTOC" />
+    <City id="14251" name="TEPETLIXPA" />
+    <City id="14057" name="TEPOTZOTLAN" />
+    <City id="14080" name="TEQUIXQUIAC" />
+    <City id="14082" name="TEXCALTITLAN" />
+    <City id="14497" name="TEXCALYACAC" />
+    <City id="14028" name="TEXCOCO" />
+    <City id="14513" name="TEXCOCO DE MORA" />
+    <City id="14344" name="TEZOYUCA" />
+    <City id="14021" name="TIANGUISTENCO" />
+    <City id="14498" name="TIMILPAN" />
+    <City id="14181" name="TLALMANALCO" />
+    <City id="14045" name="TLALNEPANTLA" />
+    <City id="14499" name="TLATLAYA" />
+    <City id="14030" name="TOLUCA" />
+    <City id="14514" name="TOLUCA DE LERDO" />
+    <City id="14138" name="TONATICO" />
+    <City id="14074" name="TULTEPEC" />
+    <City id="14515" name="TULTITLAN" />
+    <City id="14503" name="VALLE CHALCO SOLIDARIDAD" />
+    <City id="14031" name="VALLE DE BRAVO" />
+    <City id="14500" name="VILLA DE ALLENDE" />
+    <City id="14164" name="VILLA DEL CARBON" />
+    <City id="14262" name="VILLA GUERRERO" />
+    <City id="14986" name="VILLA VICTORIA" />
+    <City id="14149" name="XONACATLAN" />
+    <City id="14501" name="ZACAZONAPAN" />
+    <City id="14032" name="ZACUALPAN" />
+    <City id="14042" name="ZINACANTEPEC" />
+    <City id="14502" name="ZUMPAHUACAN" />
+    <City id="14033" name="ZUMPANGO" />
+  </State>
+  <State name="GUANAJUATO">
+    <City id="10039" name="ABASOLO" />
+    <City id="10001" name="ACAMBARO" />
+    <City id="10092" name="ALLENDE" />
+    <City id="10041" name="APASEO EL ALTO" />
+    <City id="10046" name="APASEO EL GRANDE" />
+    <City id="10093" name="ATARJEA" />
+    <City id="10004" name="CELAYA" />
+    <City id="10006" name="COMONFORT" />
+    <City id="10048" name="CORONEO" />
+    <City id="10007" name="CORTAZAR" />
+    <City id="10008" name="CUERAMARO" />
+    <City id="10053" name="DOCTOR MORA" />
+    <City id="10010" name="DOLORES HIDALGO" />
+    <City id="10012" name="GUANAJUATO" />
+    <City id="10013" name="HUANIMARO" />
+    <City id="10014" name="IRAPUATO" />
+    <City id="10015" name="JARAL DEL PROGRESO" />
+    <City id="10016" name="JERECUARO" />
+    <City id="10017" name="LEON" />
+    <City id="10096" name="LEON DE LOS ALDAMA" />
+    <City id="10005" name="MANUEL DOBLADO" />
+    <City id="10018" name="MOROLEON" />
+    <City id="10036" name="OCAMPO" />
+    <City id="10019" name="PENJAMO" />
+    <City id="10040" name="PUEBLO NUEVO" />
+    <City id="10094" name="PURISIMA DEL RINCON" />
+    <City id="10021" name="ROMITA" />
+    <City id="10022" name="SALAMANCA" />
+    <City id="10023" name="SALVATIERRA" />
+    <City id="10024" name="SAN DIEGO DE LA UNION" />
+    <City id="10029" name="SAN FELIPE" />
+    <City id="10043" name="SAN FRANCISCO DEL RINCON" />
+    <City id="10027" name="SAN JOSE ITURBIDE" />
+    <City id="10026" name="SAN LUIS DE LA PAZ" />
+    <City id="10028" name="SAN MIGUEL ALLENDE" />
+    <City id="10091" name="SANTA CATARINA" />
+    <City id="10030" name="SANTA CRUZ DE JUVENTINO ROSAS" />
+    <City id="10081" name="SANTIAGO MARAVATIO" />
+    <City id="10031" name="SILAO" />
+    <City id="11354" name="STA CRUZ DE JUVENTINO" />
+    <City id="10032" name="TARANDACUAO" />
+    <City id="10033" name="TARIMORO" />
+    <City id="10095" name="TIERRA BLANCA" />
+    <City id="10034" name="URIANGATO" />
+    <City id="10035" name="VALLE DE SANTIAGO" />
+    <City id="10061" name="VICTORIA" />
+    <City id="10052" name="VILLAGRAN" />
+    <City id="10090" name="XICHU" />
+    <City id="10037" name="YURIRIA" />
+  </State>
+  <State name="GUERRERO">
+    <City id="11001" name="ACAPULCO" />
+    <City id="11102" name="AHUACUOTZINGO" />
+    <City id="11002" name="AJUCHITLAN DEL PROGRESO" />
+    <City id="11103" name="ALCOZAUCA DE GUERRERO" />
+    <City id="11084" name="ALPOYECA" />
+    <City id="11042" name="APAXTLA" />
+    <City id="11003" name="ARCELIA" />
+    <City id="11104" name="ATENANGO DEL RIO" />
+    <City id="11105" name="ATLAMAJALCINGO DEL MONTE" />
+    <City id="11106" name="ATLIXTAC" />
+    <City id="11004" name="ATOYAC DE ALVAREZ" />
+    <City id="11005" name="AYUTLA DE LOS LIBRES" />
+    <City id="11006" name="AZOYU" />
+    <City id="11107" name="BENITO JUAREZ" />
+    <City id="11007" name="BUENAVISTA DE CUELLAR" />
+    <City id="11012" name="CHILAPA DE ALVAREZ" />
+    <City id="11013" name="CHILPANCINGO DE LOS BRAVO" />
+    <City id="11108" name="COAHUAYUTLA JOSE MARIA I" />
+    <City id="11035" name="COCULA" />
+    <City id="11044" name="COPALA" />
+    <City id="11109" name="COPALILLO" />
+    <City id="11110" name="COPANATOYAC" />
+    <City id="11058" name="COYUCA DE BENITEZ" />
+    <City id="11092" name="COYUCA DE CATALAN" />
+    <City id="11046" name="CUAJINICUILAPA" />
+    <City id="11111" name="CUALAC" />
+    <City id="11112" name="CUAUTEPEC" />
+    <City id="11113" name="CUETZALA DEL PROGRESO" />
+    <City id="11011" name="CUTZAMALA DE PINZON" />
+    <City id="11114" name="EDUARDO NERI" />
+    <City id="11115" name="FLORENCIO VILLARREAL" />
+    <City id="11116" name="GENERAL CANUTO A NERI" />
+    <City id="11098" name="GENERAL HELIODORO CASTILLO" />
+    <City id="11014" name="HUAMUXTITLAN" />
+    <City id="11015" name="HUITZUCO DE LOS FIGUEROA" />
+    <City id="11016" name="IGUALA DE LA INDEPENDENCIA" />
+    <City id="11117" name="IGUALAPA" />
+    <City id="11118" name="IXCATEOPAN DE CUAUHTEMOC" />
+    <City id="11054" name="IXTAPA ZIHUATANEJO" />
+    <City id="11100" name="JOSE AZUETA" />
+    <City id="11119" name="JUAN R ESCUDERO" />
+    <City id="11017" name="LA UNION" />
+    <City id="11120" name="LEONARDO BRAVO" />
+    <City id="11121" name="MALINALTEPEC" />
+    <City id="11122" name="MARTIR DE CUILAPAN" />
+    <City id="11123" name="METLATONOC" />
+    <City id="11088" name="MOCHITLAN" />
+    <City id="11018" name="OLINALA" />
+    <City id="11019" name="OMETEPEC" />
+    <City id="11124" name="PEDRO ASCENCIO ALQUISIRAS" />
+    <City id="11020" name="PETATLAN" />
+    <City id="11037" name="PILCAYA" />
+    <City id="11101" name="PUNGARABATO" />
+    <City id="11089" name="QUECHULTENANGO" />
+    <City id="11023" name="SAN LUIS ACATLAN" />
+    <City id="11049" name="SAN MARCOS" />
+    <City id="11125" name="SAN MIGUEL TOTOLAPAN" />
+    <City id="11027" name="TAXCO DE ALARCON" />
+    <City id="11126" name="TECOANAPA" />
+    <City id="11028" name="TECPAN DE GALEANA" />
+    <City id="11029" name="TELOLOAPAN" />
+    <City id="11064" name="TEPECOACUILCO DE TRUJANO" />
+    <City id="11127" name="TETIPAC" />
+    <City id="11031" name="TIXTLA DE GUERRERO" />
+    <City id="11128" name="TLACOACHISTLAHUACA" />
+    <City id="11129" name="TLACOAPA" />
+    <City id="11091" name="TLALCHAPA" />
+    <City id="11130" name="TLALIXTAQUILLA MALDONADO" />
+    <City id="11032" name="TLAPA DE COMONFORT" />
+    <City id="11068" name="TLAPEHUALA" />
+    <City id="11131" name="XALPATLAHUAC" />
+    <City id="11132" name="XOCHIHUEHUETLAN" />
+    <City id="11133" name="XOCHISTLAHUACA" />
+    <City id="11134" name="ZAPOTITLAN TABLAS" />
+    <City id="11033" name="ZIHUATANEJO" />
+    <City id="11039" name="ZIRANDARO" />
+    <City id="11135" name="ZITLALA" />
+    <City id="11136" name="MARQUELIAAA" />
+  </State>
+  <State name="HIDALGO">
+    <City id="12031" name="ACATLAN" />
+    <City id="12004" name="ACAXOCHITLAN" />
+    <City id="12001" name="ACTOPAN" />
+    <City id="12079" name="AGUA BLANCA DE ITURBIDE" />
+    <City id="12087" name="AJACUBA" />
+    <City id="12122" name="ALFAJAYUCAN" />
+    <City id="12091" name="ALMOLOYA" />
+    <City id="12002" name="APAN" />
+    <City id="12056" name="ATITALAQUIA" />
+    <City id="12108" name="ATLAPEXCO" />
+    <City id="12084" name="ATOTONILCO DE TULA" />
+    <City id="12076" name="ATOTONILCO EL GRANDE" />
+    <City id="12121" name="CALNALI" />
+    <City id="12123" name="CARDONAL" />
+    <City id="12150" name="CD FRAY BERNARDINO S" />
+    <City id="12124" name="CHAPANTONGO" />
+    <City id="12005" name="CHAPULHUACAN" />
+    <City id="12125" name="CHILCUAUTLA" />
+    <City id="12025" name="CUAUTEPEC DE HINOJOSA" />
+    <City id="12083" name="EL ARENAL" />
+    <City id="12126" name="ELOXOCHITLAN" />
+    <City id="12117" name="EMILIANO ZAPATA" />
+    <City id="12127" name="EPAZOYUCAN" />
+    <City id="12128" name="FRANCISCO I MADERO" />
+    <City id="12129" name="HUASCA DE OCAMPO" />
+    <City id="12109" name="HUAUTLA" />
+    <City id="12112" name="HUAZALINGO" />
+    <City id="12099" name="HUEHUETLA" />
+    <City id="12006" name="HUEJUTLA DE REYES" />
+    <City id="12007" name="HUICHAPAN" />
+    <City id="12008" name="IXMIQUILPAN" />
+    <City id="12009" name="JACALA DE LEDEZMA" />
+    <City id="12111" name="JALTOCAN" />
+    <City id="12130" name="JUAREZ HIDALGO" />
+    <City id="12131" name="LA MISION" />
+    <City id="12132" name="LOLOTLA" />
+    <City id="12090" name="METEPEC" />
+    <City id="12042" name="METZTITLAN" />
+    <City id="12133" name="MINERAL DE LA REFORMA" />
+    <City id="12134" name="MINERAL DEL CHICO" />
+    <City id="12010" name="MINERAL DEL MONTE" />
+    <City id="12011" name="MIXQUIAHUALA DE JUAREZ" />
+    <City id="12012" name="MOLANGO DE ESCAMILLA" />
+    <City id="12135" name="NICOLAS FLORES" />
+    <City id="12013" name="NOPALA DE VILLAGRAN" />
+    <City id="12075" name="OMITLAN DE JUAREZ" />
+    <City id="12136" name="PACHUCA DE SOTO" />
+    <City id="12137" name="PACULA" />
+    <City id="12138" name="PISAFLORES" />
+    <City id="12078" name="PROGRESO DE OBREGON" />
+    <City id="12139" name="SAN AGUSTIN METZQUITITLAN" />
+    <City id="12086" name="SAN AGUSTIN TLAXIACA" />
+    <City id="12140" name="SAN BARTOLO TUTOTEPEC" />
+    <City id="12026" name="SAN FELIPE ORIZATLAN" />
+    <City id="12141" name="SAN SALVADOR" />
+    <City id="12142" name="SANTIAGO DE ANAYA" />
+    <City id="12033" name="SANTIAGO TULANTEPEC D L G" />
+    <City id="12041" name="SINGUILUCAN" />
+    <City id="12082" name="TASQUILLO" />
+    <City id="12143" name="TECOZAUTLA" />
+    <City id="12144" name="TENANGO DE DORIA" />
+    <City id="12043" name="TEPEAPULCO" />
+    <City id="12101" name="TEPEHUACAN DE GUERRERO" />
+    <City id="12015" name="TEPEJI DEL RIO DE OCAMPO" />
+    <City id="12145" name="TEPETITLAN" />
+    <City id="12146" name="TETEPANGO" />
+    <City id="12080" name="TEZONTEPEC DE ALDAMA" />
+    <City id="12016" name="TIANGUISTENGO" />
+    <City id="12032" name="TIZAYUCA" />
+    <City id="12027" name="TLAHUELILPAN" />
+    <City id="12147" name="TLAHUILTEPA" />
+    <City id="12057" name="TLANALAPA" />
+    <City id="12106" name="TLANCHINOL" />
+    <City id="12037" name="TLAXCOAPAN" />
+    <City id="12067" name="TOLCAYUCA" />
+    <City id="12018" name="TULA DE ALLENDE" />
+    <City id="12149" name="TULANCINGO" />
+    <City id="12019" name="TULANCINGO DE BRAVO" />
+    <City id="12074" name="VILLA DE TEZONTEPEC" />
+    <City id="12113" name="XOCHIATIPAN" />
+    <City id="12148" name="XOCHICOATLAN" />
+    <City id="12107" name="YAHUALICA" />
+    <City id="12020" name="ZACUALTIPAN DE ANGELES" />
+    <City id="12073" name="ZAPOTLAN DE JUAREZ" />
+    <City id="12021" name="ZEMPOALA" />
+    <City id="12022" name="ZIMAPAN" />
+  </State>
+  <State name="JALISCO">
+    <City id="13089" name="ACATIC" />
+    <City id="13001" name="ACATLAN DE JUAREZ" />
+    <City id="13002" name="AHUALULCO DE MERCADO" />
+    <City id="13207" name="AMACUECA" />
+    <City id="13195" name="AMATITAN" />
+    <City id="13003" name="AMECA" />
+    <City id="13204" name="ANTONIO ESCOBEDO" />
+    <City id="13004" name="ARANDAS" />
+    <City id="13201" name="ARENAL" />
+    <City id="13087" name="ATEMAJAC DE BRIZUELA" />
+    <City id="13282" name="ATENGO" />
+    <City id="13005" name="ATENGUILLO" />
+    <City id="13280" name="ATOTONILCO EL ALTO" />
+    <City id="13008" name="ATOYAC" />
+    <City id="13009" name="AUTLAN DE NAVARRO" />
+    <City id="13261" name="AYOTLAN" />
+    <City id="13011" name="AYUTLA" />
+    <City id="13233" name="BOLANOS" />
+    <City id="13283" name="CABO CORRIENTES" />
+    <City id="13250" name="CANADAS DE OBREGON" />
+    <City id="13082" name="CASIMIRO CASTILLO" />
+    <City id="13013" name="CD GUZMAN" />
+    <City id="13014" name="CD VENUSTIANO CARRANZA" />
+    <City id="13018" name="CHAPALA" />
+    <City id="13284" name="CHIMALTITAN" />
+    <City id="13212" name="CHIQUILISTLAN" />
+    <City id="13012" name="CIHUATLAN" />
+    <City id="13015" name="COCULA" />
+    <City id="13016" name="COLOTLAN" />
+    <City id="13251" name="CONCEPCION DE BUENOS AIRES" />
+    <City id="13285" name="CUAUTITLAN" />
+    <City id="13187" name="CUAUTLA" />
+    <City id="13017" name="CUQUIO" />
+    <City id="13019" name="DEGOLLADO" />
+    <City id="13286" name="EJUTLA" />
+    <City id="13020" name="EL GRULLO" />
+    <City id="13094" name="EL LIMON" />
+    <City id="13109" name="EL SALTO" />
+    <City id="13022" name="ENCARNACION DE DIAZ" />
+    <City id="13023" name="ETZATLAN" />
+    <City id="13253" name="GOMEZ FARIAS" />
+    <City id="13287" name="GUACHINANGO" />
+    <City id="13024" name="GUADALAJARA" />
+    <City id="13025" name="HOSTOTIPAQUILLO" />
+    <City id="13026" name="HUEJUCAR" />
+    <City id="13288" name="HUEJUQUILLA EL ALTO" />
+    <City id="13193" name="IXTLAHUACAN DEL RIO" />
+    <City id="13111" name="IXTLAHUACAN LOS MEMBRILLOS" />
+    <City id="13027" name="JALOSTOTITLAN" />
+    <City id="13028" name="JAMAY" />
+    <City id="13085" name="JESUS MARIA" />
+    <City id="13289" name="JILOTLAN DE LOS DOLORES" />
+    <City id="13029" name="JOCOTEPEC" />
+    <City id="13219" name="JUANACATLAN" />
+    <City id="13092" name="JUCHITLAN" />
+    <City id="13031" name="LA BARCA" />
+    <City id="13075" name="LA HUERTA" />
+    <City id="13032" name="LAGOS DE MORENO" />
+    <City id="13033" name="MAGDALENA" />
+    <City id="13086" name="MANUEL M DIEGUEZ" />
+    <City id="13165" name="MANZANILLA DE LA PAZ" />
+    <City id="13034" name="MASCOTA" />
+    <City id="13035" name="MAZAMITLA" />
+    <City id="13036" name="MEXTICACAN" />
+    <City id="13030" name="MEZQUITIC" />
+    <City id="13275" name="MIXTLAN" />
+    <City id="13037" name="OCOTLAN" />
+    <City id="13105" name="OJUELOS DE JALISCO" />
+    <City id="13038" name="PIHUAMO" />
+    <City id="13039" name="PONCITLAN" />
+    <City id="13040" name="PUERTO VALLARTA" />
+    <City id="13245" name="QUITUPAN" />
+    <City id="13290" name="SAN CRISTOBAL DE LA BARRANCA" />
+    <City id="13155" name="SAN DIEGO DE ALEJANDRIA" />
+    <City id="13041" name="SAN JUAN DE LOS LAGOS" />
+    <City id="13042" name="SAN JULIAN" />
+    <City id="13043" name="SAN MARCOS" />
+    <City id="13296" name="SAN MARTIN DE BOLANOS" />
+    <City id="13239" name="SAN MARTIN HIDALGO" />
+    <City id="13044" name="SAN MIGUEL EL ALTO" />
+    <City id="13258" name="SAN SEBASTIAN DEL OESTE" />
+    <City id="13292" name="SANTA MARIA DE LOS ANGELES" />
+    <City id="13047" name="SAYULA" />
+    <City id="13048" name="TALA" />
+    <City id="13049" name="TALPA DE ALLENDE" />
+    <City id="13050" name="TAMAZULA DE GORDIANO" />
+    <City id="13051" name="TAPALPA" />
+    <City id="13052" name="TECALITLAN" />
+    <City id="13293" name="TECHALUTA DE MONTENEGRO" />
+    <City id="13053" name="TECOLOTLAN" />
+    <City id="13054" name="TENAMAXTLAN" />
+    <City id="13055" name="TEOCALTICHE" />
+    <City id="13056" name="TEOCUITATLAN DE CORONA" />
+    <City id="13057" name="TEPATITLAN" />
+    <City id="13058" name="TEQUILA" />
+    <City id="13198" name="TEUCHITLAN" />
+    <City id="13059" name="TIZAPAN EL ALTO" />
+    <City id="13090" name="TLAJOMULCO DE ZUNIGA" />
+    <City id="13077" name="TLAQUEPAQUE" />
+    <City id="13182" name="TOLIMAN" />
+    <City id="13060" name="TOMATLAN" />
+    <City id="13100" name="TONALA" />
+    <City id="13061" name="TONAYA" />
+    <City id="13062" name="TONILA" />
+    <City id="13063" name="TOTATICHE" />
+    <City id="13064" name="TOTOTLAN" />
+    <City id="13107" name="TUXCACUESCO" />
+    <City id="13114" name="TUXCUECA" />
+    <City id="13065" name="TUXPAN" />
+    <City id="13066" name="UNION DE SAN ANTONIO" />
+    <City id="13067" name="UNION DE TULA" />
+    <City id="13294" name="VALLE DE GUADALUPE" />
+    <City id="13216" name="VALLE DE JUAREZ" />
+    <City id="13173" name="VILLA CORONA" />
+    <City id="13295" name="VILLA GUERRERO" />
+    <City id="13136" name="VILLA HIDALGO" />
+    <City id="13104" name="VILLA PURIFICACION" />
+    <City id="13069" name="YAHUALICA DE GONZALEZ GALLO" />
+    <City id="13070" name="ZACOALCO DE TORRES" />
+    <City id="13071" name="ZAPOPAN" />
+    <City id="13072" name="ZAPOTILTIC" />
+    <City id="13137" name="ZAPOTITLAN DE VADILLO" />
+    <City id="13267" name="ZAPOTLAN DEL REY" />
+    <City id="13073" name="ZAPOTLANEJO" />
+  </State>
+  <State name="MICHOACAN">
+    <City id="15166" name="ACUITZIO" />
+    <City id="15002" name="AGUILILLA" />
+    <City id="15087" name="ALVARO OBREGON" />
+    <City id="15004" name="ANGAMACUTIRO" />
+    <City id="15005" name="ANGANGUEO" />
+    <City id="15006" name="APATZINGAN" />
+    <City id="15201" name="APATZINGAN D CONSTITUCION" />
+    <City id="15167" name="APORO" />
+    <City id="15168" name="AQUILA" />
+    <City id="15169" name="ARIO" />
+    <City id="15008" name="ARTEAGA" />
+    <City id="15093" name="BRISENAS" />
+    <City id="15170" name="BUENAVISTA" />
+    <City id="15171" name="CARACUARO" />
+    <City id="15009" name="CD HIDALGO" />
+    <City id="15068" name="CD LAZARO CARDENAS" />
+    <City id="15172" name="CHARAPAN" />
+    <City id="15173" name="CHARO" />
+    <City id="15125" name="CHAVINDA" />
+    <City id="15090" name="CHERAN" />
+    <City id="15067" name="CHILCHOTA" />
+    <City id="15174" name="CHINICUILA" />
+    <City id="15144" name="CHUCANDIRO" />
+    <City id="15016" name="CHURINTZIO" />
+    <City id="15175" name="CHURUMUCO" />
+    <City id="15033" name="COAHUAYANA" />
+    <City id="15010" name="COALCOMAN DE VAZQUEZ P" />
+    <City id="15149" name="COENEO" />
+    <City id="15012" name="COJUMATLAN DE REGULES" />
+    <City id="15013" name="CONTEPEC" />
+    <City id="15176" name="COPANDARO" />
+    <City id="15014" name="COTIJA" />
+    <City id="15091" name="CUITZEO" />
+    <City id="15017" name="ECUANDUREO" />
+    <City id="15177" name="EPITACIO HUERTA" />
+    <City id="15019" name="ERONGARICUARO" />
+    <City id="15020" name="GABRIEL ZAMORA" />
+    <City id="15154" name="HUANDACAREO" />
+    <City id="15021" name="HUANIQUEO" />
+    <City id="15022" name="HUETAMO" />
+    <City id="15178" name="HUIRAMBA" />
+    <City id="15151" name="INDAPARAPEO" />
+    <City id="15179" name="IRIMBO" />
+    <City id="15023" name="IXTLAN" />
+    <City id="15024" name="JACONA" />
+    <City id="15200" name="JACONA DE PLANCARTE" />
+    <City id="15180" name="JIMENEZ" />
+    <City id="15025" name="JIQUILPAN" />
+    <City id="15181" name="JOSE SIXTO VERDUZCO" />
+    <City id="15182" name="JUAREZ" />
+    <City id="15127" name="JUNGAPEO" />
+    <City id="15026" name="LA HUACANA" />
+    <City id="15028" name="LA PIEDAD" />
+    <City id="15199" name="LA PIEDAD DE CAVADAS" />
+    <City id="15089" name="LAGUNILLAS" />
+    <City id="15029" name="LOS REYES" />
+    <City id="15198" name="LOS REYES DE SALGADO" />
+    <City id="15183" name="MADERO" />
+    <City id="15030" name="MARAVATIO" />
+    <City id="15184" name="MARCOS CASTELLANOS" />
+    <City id="15032" name="MORELIA" />
+    <City id="15185" name="MORELOS" />
+    <City id="15186" name="MUGICA" />
+    <City id="15142" name="NAHUATZEN" />
+    <City id="15187" name="NOCUPETARO" />
+    <City id="15134" name="NUEVO PARANGARICUTIRO" />
+    <City id="15188" name="NUEVO URECHO" />
+    <City id="15112" name="NUMARAN" />
+    <City id="15126" name="OCAMPO" />
+    <City id="15034" name="PAJACUARAN" />
+    <City id="15035" name="PANINDICUARO" />
+    <City id="15037" name="PARACHO" />
+    <City id="15036" name="PARACUARO" />
+    <City id="15038" name="PATZCUARO" />
+    <City id="15039" name="PENJAMILLO" />
+    <City id="15113" name="PERIBAN" />
+    <City id="15040" name="PUREPERO" />
+    <City id="15041" name="PURUANDIRO" />
+    <City id="15042" name="QUERENDARO" />
+    <City id="15043" name="QUIROGA" />
+    <City id="15044" name="SAHUAYO" />
+    <City id="15197" name="SAHUAYO DE MORELOS" />
+    <City id="15189" name="SALVADOR ESCALANTE" />
+    <City id="15190" name="SAN LUCAS" />
+    <City id="15045" name="SANTA ANA MAYA" />
+    <City id="15191" name="SENGUIO" />
+    <City id="15192" name="SUSUPUATO" />
+    <City id="15046" name="TACAMBARO" />
+    <City id="15047" name="TANCITARO" />
+    <City id="15128" name="TANGAMANDAPIO" />
+    <City id="15048" name="TANGANCICUARO" />
+    <City id="15049" name="TANHUATO" />
+    <City id="15072" name="TARETAN" />
+    <City id="15108" name="TARIMBARO" />
+    <City id="15050" name="TEPALCATEPEC" />
+    <City id="15133" name="TINGAMBATO" />
+    <City id="15137" name="TINGUINDIN" />
+    <City id="15143" name="TIQUICHEO NICOLAS ROMERO" />
+    <City id="15052" name="TLALPUJAHUA" />
+    <City id="15159" name="TLAZAZALCA" />
+    <City id="15193" name="TOCUMBO" />
+    <City id="15194" name="TUMBISCATIO" />
+    <City id="15195" name="TURICATO" />
+    <City id="15053" name="TUXPAN" />
+    <City id="15077" name="TUZANTLA" />
+    <City id="15018" name="TZINTZUNTZAN" />
+    <City id="15152" name="TZITZIO" />
+    <City id="15054" name="URUAPAN" />
+    <City id="15059" name="VENUSTIANO CARRANZA" />
+    <City id="15157" name="VILLAMAR" />
+    <City id="15061" name="VISTA HERMOSA" />
+    <City id="15062" name="YURECUARO" />
+    <City id="15063" name="ZACAPU" />
+    <City id="15064" name="ZAMORA" />
+    <City id="15196" name="ZAMORA DE HIDALGO" />
+    <City id="15100" name="ZINAPARO" />
+    <City id="15065" name="ZINAPECUARO" />
+    <City id="15105" name="ZIRACUARETIRO" />
+    <City id="15066" name="ZITACUARO" />
+  </State>
+  <State name="MORELOS">
+    <City id="16026" name="AMACUZAC" />
+    <City id="16040" name="ATLATLAHUCAN" />
+    <City id="16001" name="AXOCHIAPAN" />
+    <City id="16021" name="AYALA" />
+    <City id="16024" name="COATLAN DEL RIO" />
+    <City id="16002" name="CUAUTLA" />
+    <City id="16003" name="CUERNAVACA" />
+    <City id="16049" name="EMILIANO ZAPATA" />
+    <City id="16028" name="HUITZILAC" />
+    <City id="16087" name="JANTETELCO" />
+    <City id="16022" name="JIUTEPEC" />
+    <City id="16004" name="JOJUTLA" />
+    <City id="16005" name="JONACATEPEC" />
+    <City id="16062" name="MAZATEPEC" />
+    <City id="16063" name="MIACATLAN" />
+    <City id="16042" name="OCUITUCO" />
+    <City id="16006" name="PUENTE DE IXTLA" />
+    <City id="16012" name="TEMIXCO" />
+    <City id="16088" name="TEMOAC" />
+    <City id="16055" name="TEPALCINGO" />
+    <City id="16018" name="TEPOZTLAN" />
+    <City id="16008" name="TETECALA" />
+    <City id="16089" name="TETELA DEL VOLCAN" />
+    <City id="16081" name="TLALNEPANTLA" />
+    <City id="16037" name="TLALTIZAPAN" />
+    <City id="16064" name="TLAQUILTENANGO" />
+    <City id="16076" name="TLAYACAPAN" />
+    <City id="16084" name="TOTOLAPAN" />
+    <City id="16009" name="YAUTEPEC" />
+    <City id="16019" name="YECAPIXTLA" />
+    <City id="16010" name="ZACATEPEC" />
+    <City id="16041" name="ZACUALPAN" />
+  </State>
+  <State name="NAYARIT">
+    <City id="17001" name="ACAPONETA" />
+    <City id="17002" name="AHUACATLAN" />
+    <City id="17003" name="AMATLAN DE CANAS" />
+    <City id="17028" name="BAHIA DE BANDERAS" />
+    <City id="17004" name="COMPOSTELA" />
+    <City id="17035" name="EL NAYAR" />
+    <City id="17066" name="HUAJICORI" />
+    <City id="17006" name="IXTLAN DEL RIO" />
+    <City id="17007" name="JALA" />
+    <City id="17067" name="LA YESCA" />
+    <City id="17068" name="ROSAMORADA" />
+    <City id="17009" name="RUIZ" />
+    <City id="17010" name="SAN BLAS" />
+    <City id="17069" name="SAN PEDRO LAGUNILLAS" />
+    <City id="17021" name="SANTA MARIA DEL ORO" />
+    <City id="17011" name="SANTIAGO IXCUINTLA" />
+    <City id="17012" name="TECUALA" />
+    <City id="17013" name="TEPIC" />
+    <City id="17014" name="TUXPAN" />
+    <City id="17058" name="XALISCO" />
+  </State>
+  <State name="NUEVO LEON">
+    <City id="18095" name="ABASOLO" />
+    <City id="18042" name="AGUALEGUAS" />
+    <City id="18024" name="ALLENDE" />
+    <City id="18004" name="ANAHUAC" />
+    <City id="18036" name="APODACA" />
+    <City id="18092" name="ARAMBERRI" />
+    <City id="18001" name="BUSTAMANTE" />
+    <City id="18002" name="CADEREYTA JIMENEZ" />
+    <City id="18062" name="CARMEN" />
+    <City id="18058" name="CD. BENITO JUAREZ" />
+    <City id="18003" name="CERRALVO" />
+    <City id="18020" name="CHINA" />
+    <City id="18037" name="CIENEGA DE FLORES" />
+    <City id="18013" name="COLOMBIA" />
+    <City id="18048" name="DOCTOR COSS" />
+    <City id="18006" name="DR ARROYO" />
+    <City id="18029" name="DR GONZALEZ" />
+    <City id="18089" name="EL CERCADO" />
+    <City id="18007" name="GALEANA" />
+    <City id="18049" name="GARCIA" />
+    <City id="18055" name="GENERAL ESCOBEDO" />
+    <City id="18028" name="GENERAL TREVINO" />
+    <City id="18069" name="GENERAL ZARAGOZA" />
+    <City id="18040" name="GENERAL ZUAZUA" />
+    <City id="18026" name="GRAL BRAVO" />
+    <City id="18089" name="GRAL TERAN" />
+    <City id="18057" name="GUADALUPE" />
+    <City id="18009" name="HIDALGO" />
+    <City id="18077" name="HIGUERAS" />
+    <City id="18025" name="HUALAHUISES" />
+    <City id="18096" name="ITURBIDE" />
+    <City id="18080" name="JUAREZ" />
+    <City id="18010" name="LAMPAZOS DE NARANJO" />
+    <City id="18011" name="LINARES" />
+    <City id="18039" name="LOS ALDAMAS" />
+    <City id="18012" name="LOS HERRERA" />
+    <City id="18041" name="LOS RAMONES" />
+    <City id="18061" name="MARIN" />
+    <City id="18097" name="MELCHOR OCAMPO" />
+    <City id="18098" name="MIER Y NORIEGA" />
+    <City id="18018" name="MINA" />
+    <City id="18013" name="MONTEMORELOS" />
+    <City id="18014" name="MONTERREY" />
+    <City id="18053" name="PARAS" />
+    <City id="18068" name="PESQUERIA" />
+    <City id="18085" name="RAYONES" />
+    <City id="18016" name="SABINAS HIDALGO" />
+    <City id="18021" name="SALINAS VICTORIA" />
+    <City id="18031" name="SAN NICOLAS DE LOS GARZA" />
+    <City id="18033" name="SAN PEDRO GARZA GARCIA" />
+    <City id="18030" name="SANTA CATARINA" />
+    <City id="18081" name="SANTIAGO" />
+    <City id="18099" name="VALLECILLO" />
+    <City id="18034" name="VILLALDAMA" />
+  </State>
+  <State name="OAXACA">
+    <City id="19115" name="ABEJONES" />
+    <City id="19096" name="ACATLAN DE PEREZ FIGUEROA" />
+    <City id="19116" name="ANIMAS TRUJANO" />
+    <City id="19117" name="ASUNCION CACALOTEPEC" />
+    <City id="19118" name="ASUNCION CUYOTEPEJI" />
+    <City id="19058" name="ASUNCION IXTALTEPEC" />
+    <City id="19119" name="ASUNCION NOCHIXTLAN" />
+    <City id="19120" name="ASUNCION OCOTLAN" />
+    <City id="19121" name="ASUNCION TLACOLULITA" />
+    <City id="19122" name="AYOQUEZCO DE ALDAMA" />
+    <City id="19123" name="AYOTZINTEPEC" />
+    <City id="19260" name="BAHIAS DE HUATULCO" />
+    <City id="19124" name="CALIHUALA" />
+    <City id="19125" name="CANDELARIA LOXICHA" />
+    <City id="19126" name="CAPULALPAM DE MENDEZ" />
+    <City id="19003" name="CD IXTEPEC" />
+    <City id="19062" name="CHAHUITES" />
+    <City id="19007" name="CHALCATONGO DE HIDALGO" />
+    <City id="19127" name="CIENEGA DE ZIMATLAN" />
+    <City id="19128" name="COATECAS ALTAS" />
+    <City id="19129" name="COICOYAN DE LAS FLORES" />
+    <City id="19130" name="CONCEPCION BUENAVISTA" />
+    <City id="19131" name="CONCEPCION PAPALO" />
+    <City id="19132" name="CONSTANCIA DEL ROSARIO" />
+    <City id="19005" name="COSOLAPA" />
+    <City id="19133" name="COSOLTEPEC" />
+    <City id="19134" name="CUILAPAM DE GUERRERO" />
+    <City id="19135" name="CUYAMECALCO VILLA DE ZARAGOZA" />
+    <City id="19008" name="EJUTLA DE CRESPO" />
+    <City id="19136" name="EL BARRIO DE LA SOLEDAD" />
+    <City id="19072" name="EL ESPINAL" />
+    <City id="19137" name="ELOXOCHITLAN DE FLORES MAGON" />
+    <City id="19138" name="FRESNILLO DE TRUJANO" />
+    <City id="19009" name="GUADALUPE ETLA" />
+    <City id="19139" name="GUADALUPE RAMIREZ" />
+    <City id="19140" name="GUELATAO DE JUAREZ" />
+    <City id="19141" name="GUEVEA DE HUMBOLDT" />
+    <City id="19048" name="HEROICA CIUDAD DE TLAXIACO" />
+    <City id="19010" name="HUAJUAPAN DE LEON" />
+    <City id="19142" name="HUAUTEPEC" />
+    <City id="19011" name="HUAUTLA DE JIMENEZ" />
+    <City id="19143" name="IXPANTEPEC NIEVES" />
+    <City id="19077" name="IXTLAN DE JUAREZ" />
+    <City id="19616" name="JUCHITAN" />
+    <City id="19015" name="JUCHITAN DE ZARAGOZA" />
+    <City id="19144" name="LA COMPANIA" />
+    <City id="19145" name="LA PE" />
+    <City id="19146" name="LA REFORMA" />
+    <City id="19147" name="LA TRINIDAD VISTA HERMOSA" />
+    <City id="19020" name="LOMA BONITA" />
+    <City id="19148" name="MAGDALENA APASCO" />
+    <City id="19149" name="MAGDALENA JALPETEC" />
+    <City id="19150" name="MAGDALENA MIXTEPEC" />
+    <City id="19151" name="MAGDALENA OCOTLAN" />
+    <City id="19152" name="MAGDALENA PENASCO" />
+    <City id="19153" name="MAGDALENA TEITIPAC" />
+    <City id="19066" name="MAGDALENA TEQUISISTLAN" />
+    <City id="19154" name="MAGDALENA TLACOTEPEC" />
+    <City id="19155" name="MAGDALENA YODOCONO DE P D" />
+    <City id="19156" name="MAGDALENA ZAHUATLAN" />
+    <City id="19109" name="MARISCALA DE JUAREZ" />
+    <City id="19157" name="MARTIRES DE TACUBAYA" />
+    <City id="19021" name="MATIAS ROMERO" />
+    <City id="19158" name="MAZATLAN VILLA DE FLORES" />
+    <City id="19159" name="MESONES HIDALGO" />
+    <City id="19022" name="MIAHUATLAN DE PORFIRIO D" />
+    <City id="19160" name="MIXISTLAN DE LA REFORMA" />
+    <City id="19161" name="MONJAS" />
+    <City id="19019" name="NATIVIDAD" />
+    <City id="19162" name="NAZARENO ETLA" />
+    <City id="19163" name="NEJAPA DE MADERO" />
+    <City id="19164" name="NUEVO SOYALTEPEC" />
+    <City id="19165" name="NUEVO ZOQUIAPAM" />
+    <City id="19000" name="OAXACA" />
+    <City id="19025" name="OAXACA DE JUAREZ" />
+    <City id="19026" name="OCOTLAN DE MORELOS" />
+    <City id="19166" name="PINOTEPA DE DON LUIS" />
+    <City id="19031" name="PLUMA HIDALGO" />
+    <City id="19002" name="PUERTO ESCONDIDO" />
+    <City id="19033" name="PUTLA VILLA DE GUERRERO" />
+    <City id="19034" name="REFORMA DE PINEDA" />
+    <City id="19167" name="REYES ETLA" />
+    <City id="19614" name="RIO GRANDE" />
+    <City id="19168" name="ROJAS DE CUAUHTEMOC" />
+    <City id="19035" name="SALINA CRUZ" />
+    <City id="19169" name="SAN AGUSTIN AMATENGO" />
+    <City id="19170" name="SAN AGUSTIN ATENANGO" />
+    <City id="19171" name="SAN AGUSTIN CHAYUCO" />
+    <City id="19172" name="SAN AGUSTIN DE LAS JUNTAS" />
+    <City id="19173" name="SAN AGUSTIN ETLA" />
+    <City id="19174" name="SAN AGUSTIN LOXICHA" />
+    <City id="19175" name="SAN AGUSTIN TLACOTEPEC" />
+    <City id="19176" name="SAN AGUSTIN YATARENI" />
+    <City id="19177" name="SAN ANDRES CABECERA NUEVA" />
+    <City id="19178" name="SAN ANDRES DINICUITI" />
+    <City id="19179" name="SAN ANDRES HUAXPALTEPEC" />
+    <City id="19180" name="SAN ANDRES HUAYAPAM" />
+    <City id="19181" name="SAN ANDRES IXTLAHUACA" />
+    <City id="19018" name="SAN ANDRES LAGUNAS" />
+    <City id="19182" name="SAN ANDRES NUXINO" />
+    <City id="19183" name="SAN ANDRES PAXTLAN" />
+    <City id="19184" name="SAN ANDRES SINAXTLA" />
+    <City id="19185" name="SAN ANDRES SOLAGA" />
+    <City id="19186" name="SAN ANDRES TEOTILALPAM" />
+    <City id="19187" name="SAN ANDRES TEPETLAPA" />
+    <City id="19188" name="SAN ANDRES YAA" />
+    <City id="19189" name="SAN ANDRES ZABACHE" />
+    <City id="19190" name="SAN ANDRES ZAUTLA" />
+    <City id="19191" name="SAN ANTONINO CASTILLO V" />
+    <City id="19192" name="SAN ANTONINO EL ALTO" />
+    <City id="19193" name="SAN ANTONINO MONTE VERDE" />
+    <City id="19194" name="SAN ANTONIO ACUTLA" />
+    <City id="19195" name="SAN ANTONIO DE LA CAL" />
+    <City id="19196" name="SAN ANTONIO HUITEPEC" />
+    <City id="19197" name="SAN ANTONIO NANAHUATIPAM" />
+    <City id="19198" name="SAN ANTONIO SINICAHUA" />
+    <City id="19199" name="SAN ANTONIO TEPETLAPA" />
+    <City id="19200" name="SAN BALTAZAR CHICHICAPAM" />
+    <City id="19201" name="SAN BALTAZAR LOXICHA" />
+    <City id="19202" name="SAN BALTAZAR YATZACHI EL B" />
+    <City id="19203" name="SAN BARTOLO COYOTEPEC" />
+    <City id="19204" name="SAN BARTOLO SOYALTEPEC" />
+    <City id="19205" name="SAN BARTOLO YAUTEPEC" />
+    <City id="19206" name="SAN BARTOLOME AYAUTLA" />
+    <City id="19207" name="SAN BARTOLOME LOXICHA" />
+    <City id="19208" name="SAN BARTOLOME QUIALANA" />
+    <City id="19209" name="SAN BARTOLOME YUCUANE" />
+    <City id="19210" name="SAN BARTOLOME ZOOGOCHO" />
+    <City id="19004" name="SAN BAUTISTA COIXTLAHUACA" />
+    <City id="19211" name="SAN BAUTISTA TLACHICHILCO" />
+    <City id="19212" name="SAN BERNARDO MIXTEPEC" />
+    <City id="19213" name="SAN BLAS ATEMPA" />
+    <City id="19036" name="SAN CARLOS YAUTEPEC" />
+    <City id="19214" name="SAN CRISTOBAL AMATLAN" />
+    <City id="19215" name="SAN CRISTOBAL AMOLTEPEC" />
+    <City id="19216" name="SAN CRISTOBAL LACHIRIOAG" />
+    <City id="19217" name="SAN CTOBAL SUCHIXTLAHUACA" />
+    <City id="19218" name="SAN DIONISIO DEL MAR" />
+    <City id="19219" name="SAN DIONISIO OCOTEPEC" />
+    <City id="19220" name="SAN DIONISIO OCOTLAN" />
+    <City id="19221" name="SAN ESTEBAN ATATLAHUCA" />
+    <City id="19060" name="SAN FCO TELIXTLAHUACA" />
+    <City id="19222" name="SAN FELIPE JALAPA DE DIAZ" />
+    <City id="19223" name="SAN FELIPE TEJALAPAM" />
+    <City id="19224" name="SAN FELIPE USILA" />
+    <City id="19225" name="SAN FRANCISCO CAHUACUA" />
+    <City id="19323" name="SAN FRANCISCO CAJONOS" />
+    <City id="19227" name="SAN FRANCISCO CHAPULAPA" />
+    <City id="19228" name="SAN FRANCISCO CHINDUA" />
+    <City id="19229" name="SAN FRANCISCO DEL MAR" />
+    <City id="19230" name="SAN FRANCISCO HUEHUETLAN" />
+    <City id="19057" name="SAN FRANCISCO IXHUATAN" />
+    <City id="19231" name="SAN FRANCISCO JALTEPETONGO" />
+    <City id="19232" name="SAN FRANCISCO LACHIGOLO" />
+    <City id="19233" name="SAN FRANCISCO LOGUECHE" />
+    <City id="19234" name="SAN FRANCISCO NUXANO" />
+    <City id="19235" name="SAN FRANCISCO OZOLOTEPEC" />
+    <City id="19236" name="SAN FRANCISCO SOLA" />
+    <City id="19237" name="SAN FRANCISCO TEOPAN" />
+    <City id="19238" name="SAN FRANCISCO TLAPANCINGO" />
+    <City id="19239" name="SAN GABRIEL MIXTEPEC" />
+    <City id="19240" name="SAN ILDEFONSO AMATLAN" />
+    <City id="19241" name="SAN ILDEFONSO SOLA" />
+    <City id="19052" name="SAN ILDEFONSO VILLA ALTA" />
+    <City id="19243" name="SAN J BAUTISTA ATATLAHUCA" />
+    <City id="19245" name="SAN J BAUTISTA GUELACHE" />
+    <City id="19246" name="SAN J BAUTISTA JAYACATLAN" />
+    <City id="19247" name="SAN J BAUTISTA LO DE SOTO" />
+    <City id="19248" name="SAN J BAUTISTA SUCHITEPEC" />
+    <City id="19242" name="SAN J BAUTISTA TLACOATZINTEPEC" />
+    <City id="19249" name="SAN J EVANGELISTA ANALCO" />
+    <City id="19017" name="SAN J MIXTEPEC JUXTLAHUACA" />
+    <City id="19250" name="SAN J MIXTEPEC MIAHUATLAN" />
+    <City id="19251" name="SAN JACINTO AMILPAS" />
+    <City id="19252" name="SAN JACINTO TLACOTEPEC" />
+    <City id="19253" name="SAN JERONIMO COATLAN" />
+    <City id="19254" name="SAN JERONIMO SOSOLA" />
+    <City id="19255" name="SAN JERONIMO TAVICHE" />
+    <City id="19256" name="SAN JERONIMO TECOATL" />
+    <City id="19257" name="SAN JERONIMO TLACOCHAHUAYA" />
+    <City id="19258" name="SAN JNIMO SILACAYOAPILLA" />
+    <City id="19259" name="SAN JORGE NUCHITA" />
+    <City id="19111" name="SAN JOSE AYUQUILA" />
+    <City id="19100" name="SAN JOSE CHILTEPEC" />
+    <City id="19260" name="SAN JOSE DEL PENASCO" />
+    <City id="19261" name="SAN JOSE DEL PROGRESO" />
+    <City id="19262" name="SAN JOSE ESTANCIA GRANDE" />
+    <City id="19263" name="SAN JOSE INDEPENDENCIA" />
+    <City id="19264" name="SAN JOSE LACHIGUIRI" />
+    <City id="19265" name="SAN JOSE TENANGO" />
+    <City id="19266" name="SAN JUAN ACHIUTLA" />
+    <City id="19267" name="SAN JUAN ATEPEC" />
+    <City id="19244" name="SAN JUAN BAUTISTA CUICATLAN" />
+    <City id="19050" name="SAN JUAN BAUTISTA TUXTEPEC" />
+    <City id="19268" name="SAN JUAN BAUTISTA VALLE NACION" />
+    <City id="19001" name="SAN JUAN CACAHUATEPEC" />
+    <City id="19269" name="SAN JUAN CHICOMEZUCHIL" />
+    <City id="19270" name="SAN JUAN CHILATECA" />
+    <City id="19271" name="SAN JUAN CHIQUIHUITLAN" />
+    <City id="19272" name="SAN JUAN CIENEGUILLA" />
+    <City id="19273" name="SAN JUAN COATZOSPAM" />
+    <City id="19274" name="SAN JUAN COLORADO" />
+    <City id="19275" name="SAN JUAN COMALTEPEC" />
+    <City id="19276" name="SAN JUAN COTZOCON" />
+    <City id="19277" name="SAN JUAN DE LOS CUES" />
+    <City id="19278" name="SAN JUAN DEL ESTADO" />
+    <City id="19279" name="SAN JUAN DEL RIO" />
+    <City id="19280" name="SAN JUAN DIUXI" />
+    <City id="19281" name="SAN JUAN GUELAVIA" />
+    <City id="19282" name="SAN JUAN GUICHICOVI" />
+    <City id="19283" name="SAN JUAN IHUALTEPEC" />
+    <City id="19016" name="SAN JUAN JUQUILA MIXES" />
+    <City id="19284" name="SAN JUAN JUQUILA VIJANOS" />
+    <City id="19285" name="SAN JUAN LACHAO" />
+    <City id="19286" name="SAN JUAN LACHIGALLA" />
+    <City id="19287" name="SAN JUAN LAJARCIA" />
+    <City id="19288" name="SAN JUAN LALANA" />
+    <City id="19289" name="SAN JUAN MAZATLAN" />
+    <City id="19290" name="SAN JUAN NUMI" />
+    <City id="19291" name="SAN JUAN OZOLOTEPEC" />
+    <City id="19292" name="SAN JUAN PETLAPA" />
+    <City id="19293" name="SAN JUAN QUIAHIJE" />
+    <City id="19294" name="SAN JUAN QUIOTEPEC" />
+    <City id="19295" name="SAN JUAN SAYULTEPEC" />
+    <City id="19296" name="SAN JUAN TABAA" />
+    <City id="19297" name="SAN JUAN TAMAZOLA" />
+    <City id="19298" name="SAN JUAN TEITA" />
+    <City id="19299" name="SAN JUAN TEITIPAC" />
+    <City id="19300" name="SAN JUAN TEPEUXILA" />
+    <City id="19046" name="SAN JUAN TEPOSCOLULA" />
+    <City id="19301" name="SAN JUAN YAE" />
+    <City id="19302" name="SAN JUAN YATZONA" />
+    <City id="19303" name="SAN JUAN YUCUITA" />
+    <City id="19306" name="SAN LORENZO" />
+    <City id="19304" name="SAN LORENZO ALBARRADAS" />
+    <City id="19305" name="SAN LORENZO CACAOTEPEC" />
+    <City id="19309" name="SAN LORENZO CUAUNECUILTITLA" />
+    <City id="19307" name="SAN LORENZO TEXMELUCAN" />
+    <City id="19308" name="SAN LORENZO VICTORIA" />
+    <City id="19310" name="SAN LUCAS CAMOTLAN" />
+    <City id="19027" name="SAN LUCAS OJITLAN" />
+    <City id="19311" name="SAN LUCAS QUIAVINI" />
+    <City id="19324" name="SAN LUCAS ZOQUIAPAM" />
+    <City id="19312" name="SAN LUIS AMATLAN" />
+    <City id="19313" name="SAN MARCIAL OZOLOTEPEC" />
+    <City id="19314" name="SAN MARCOS ARTEAGA" />
+    <City id="19315" name="SAN MARTIN DE LOS CANSECOS" />
+    <City id="19316" name="SAN MARTIN HUAMELULPAM" />
+    <City id="19317" name="SAN MARTIN ITUNYOSO" />
+    <City id="19318" name="SAN MARTIN LACHILA" />
+    <City id="19319" name="SAN MARTIN PERAS" />
+    <City id="19320" name="SAN MARTIN TILCAJETE" />
+    <City id="19321" name="SAN MARTIN TOXPALAN" />
+    <City id="19322" name="SAN MARTIN ZACATEPEC" />
+    <City id="19226" name="SAN MATEO CAJONOS" />
+    <City id="19325" name="SAN MATEO DEL MAR" />
+    <City id="19326" name="SAN MATEO ETLATONGO" />
+    <City id="19327" name="SAN MATEO NEJAPAM" />
+    <City id="19328" name="SAN MATEO PENASCO" />
+    <City id="19329" name="SAN MATEO PINAS" />
+    <City id="19330" name="SAN MATEO RIO HONDO" />
+    <City id="19331" name="SAN MATEO SINDIHUI" />
+    <City id="19332" name="SAN MATEO TLAPILTEPEC" />
+    <City id="19333" name="SAN MATEO YOLOXOCHITLAN" />
+    <City id="19334" name="SAN MELCHOR BETAZA" />
+    <City id="19335" name="SAN MIGUEL ACHIUTLA" />
+    <City id="19336" name="SAN MIGUEL AHUEHUETITLAN" />
+    <City id="19337" name="SAN MIGUEL ALOAPAM" />
+    <City id="19338" name="SAN MIGUEL AMATITLAN" />
+    <City id="19339" name="SAN MIGUEL AMATLAN" />
+    <City id="19340" name="SAN MIGUEL CHICAHUA" />
+    <City id="19341" name="SAN MIGUEL CHIMALAPA" />
+    <City id="19342" name="SAN MIGUEL COATLAN" />
+    <City id="19343" name="SAN MIGUEL DEL PUERTO" />
+    <City id="19344" name="SAN MIGUEL DEL RIO" />
+    <City id="19345" name="SAN MIGUEL EJUTLA" />
+    <City id="19346" name="SAN MIGUEL EL GRANDE" />
+    <City id="19347" name="SAN MIGUEL HUAUTLA" />
+    <City id="19348" name="SAN MIGUEL MIXTEPEC" />
+    <City id="19349" name="SAN MIGUEL PANIXTLAHUACA" />
+    <City id="19350" name="SAN MIGUEL PERAS" />
+    <City id="19351" name="SAN MIGUEL PIEDRAS" />
+    <City id="19352" name="SAN MIGUEL QUETZALTEPEC" />
+    <City id="19353" name="SAN MIGUEL SANTA FLOR" />
+    <City id="19354" name="SAN MIGUEL SUCHIXTEPEC" />
+    <City id="19355" name="SAN MIGUEL TALEA DE CASTRO" />
+    <City id="19356" name="SAN MIGUEL TECOMATLAN" />
+    <City id="19357" name="SAN MIGUEL TENANGO" />
+    <City id="19358" name="SAN MIGUEL TEQUIXTEPEC" />
+    <City id="19359" name="SAN MIGUEL TILQUIAPAM" />
+    <City id="19360" name="SAN MIGUEL TLACAMAMA" />
+    <City id="19361" name="SAN MIGUEL TLACOTEPEC" />
+    <City id="19362" name="SAN MIGUEL TULANCINGO" />
+    <City id="19363" name="SAN MIGUEL YOTAO" />
+    <City id="19365" name="SAN NICOLAS" />
+    <City id="19364" name="SAN NICOLAS HIDALGO" />
+    <City id="19412" name="SAN P MARTIR QUIECHAPA" />
+    <City id="19367" name="SAN P MARTIR YUCUXACO" />
+    <City id="19091" name="SAN P MIXTEPEC JUQUILA" />
+    <City id="19369" name="SAN PABLO COATLAN" />
+    <City id="19370" name="SAN PABLO CUATRO VENADOS" />
+    <City id="19371" name="SAN PABLO ETLA" />
+    <City id="19069" name="SAN PABLO HUITZO" />
+    <City id="19372" name="SAN PABLO HUIXTEPEC" />
+    <City id="19373" name="SAN PABLO MACUILTIANGUIS" />
+    <City id="19374" name="SAN PABLO TIJALTEPEC" />
+    <City id="19059" name="SAN PABLO VILLA DE MITLA" />
+    <City id="19375" name="SAN PABLO YAGANIZA" />
+    <City id="19376" name="SAN PEDRO AMUZGOS" />
+    <City id="19377" name="SAN PEDRO APOSTOL" />
+    <City id="19378" name="SAN PEDRO ATOYAC" />
+    <City id="19379" name="SAN PEDRO C COXCALTEPEC" />
+    <City id="19380" name="SAN PEDRO CAJONOS" />
+    <City id="19381" name="SAN PEDRO COMITANCILLO" />
+    <City id="19382" name="SAN PEDRO EL ALTO" />
+    <City id="19383" name="SAN PEDRO HUAMELULA" />
+    <City id="19384" name="SAN PEDRO HUILOTEPEC" />
+    <City id="19012" name="SAN PEDRO IXCATLAN" />
+    <City id="19385" name="SAN PEDRO IXTLAHUACA" />
+    <City id="19386" name="SAN PEDRO JALTEPETONGO" />
+    <City id="19387" name="SAN PEDRO JICAYAN" />
+    <City id="19388" name="SAN PEDRO JOCOTIPAC" />
+    <City id="19389" name="SAN PEDRO JUCHATENGO" />
+    <City id="19366" name="SAN PEDRO MARTIR" />
+    <City id="19413" name="SAN PEDRO MIXTEPEC M" />
+    <City id="19390" name="SAN PEDRO MOLINOS" />
+    <City id="19391" name="SAN PEDRO NOPALA" />
+    <City id="19392" name="SAN PEDRO OCOPETATILLO" />
+    <City id="19393" name="SAN PEDRO OCOTEPEC" />
+    <City id="19032" name="SAN PEDRO POCHUTLA" />
+    <City id="19394" name="SAN PEDRO QUIATONI" />
+    <City id="19395" name="SAN PEDRO SOCHIAPAM" />
+    <City id="19042" name="SAN PEDRO TAPANATEPEC" />
+    <City id="19396" name="SAN PEDRO TAVICHE" />
+    <City id="19397" name="SAN PEDRO TEOZACOALCO" />
+    <City id="19398" name="SAN PEDRO TEUTILA" />
+    <City id="19399" name="SAN PEDRO TIDAA" />
+    <City id="19400" name="SAN PEDRO TOPILTEPEC" />
+    <City id="19401" name="SAN PEDRO TOTOLAPA" />
+    <City id="19049" name="SAN PEDRO TUTUTEPEC" />
+    <City id="19402" name="SAN PEDRO Y SAN PABLO A" />
+    <City id="19403" name="SAN PEDRO Y SAN PABLO T" />
+    <City id="19404" name="SAN PEDRO Y SAN PABLO TE" />
+    <City id="19405" name="SAN PEDRO YANERI" />
+    <City id="19406" name="SAN PEDRO YOLOX" />
+    <City id="19407" name="SAN PEDRO YUCUNAMA" />
+    <City id="19408" name="SAN RAYMUNDO JALPAN" />
+    <City id="19409" name="SAN S TECOMAXTLAHUACA" />
+    <City id="19410" name="SAN SEBASTIAN ABASOLO" />
+    <City id="19411" name="SAN SEBASTIAN COATLAN" />
+    <City id="19414" name="SAN SEBASTIAN IXCAPA" />
+    <City id="19415" name="SAN SEBASTIAN NICANANDUTA" />
+    <City id="19416" name="SAN SEBASTIAN RIO HONDO" />
+    <City id="19417" name="SAN SEBASTIAN TEITIPAC" />
+    <City id="19418" name="SAN SEBASTIAN TUTLA" />
+    <City id="19419" name="SAN SIMON ALMOLONGAS" />
+    <City id="19446" name="SAN SIMON ZAHUATLAN" />
+    <City id="19080" name="SAN VICENTE COATLAN" />
+    <City id="19420" name="SAN VICENTE LACHIXIO" />
+    <City id="19421" name="SAN VICENTE NUNU" />
+    <City id="19425" name="SANTA ANA" />
+    <City id="19422" name="SANTA ANA ATEIXTLAHUACA" />
+    <City id="19423" name="SANTA ANA CUAUHTEMOC" />
+    <City id="19424" name="SANTA ANA DEL VALLE" />
+    <City id="19426" name="SANTA ANA TAVELA" />
+    <City id="19427" name="SANTA ANA TLAPACOYAN" />
+    <City id="19428" name="SANTA ANA YARENI" />
+    <City id="19429" name="SANTA ANA ZEGACHE" />
+    <City id="19430" name="SANTA CATALINA QUIERI" />
+    <City id="19431" name="SANTA CATARINA CUIXTLA" />
+    <City id="19432" name="SANTA CATARINA IXTEPEJI" />
+    <City id="19433" name="SANTA CATARINA JUQUILA" />
+    <City id="19434" name="SANTA CATARINA LACHATAO" />
+    <City id="19435" name="SANTA CATARINA LOXICHA" />
+    <City id="19436" name="SANTA CATARINA MECHOACAN" />
+    <City id="19437" name="SANTA CATARINA MINAS" />
+    <City id="19438" name="SANTA CATARINA QUIANE" />
+    <City id="19439" name="SANTA CATARINA QUIOQUITANI" />
+    <City id="19440" name="SANTA CATARINA TAYATA" />
+    <City id="19441" name="SANTA CATARINA TICUA" />
+    <City id="19442" name="SANTA CATARINA YOSONOTU" />
+    <City id="19443" name="SANTA CATARINA ZAPOQUILA" />
+    <City id="19444" name="SANTA CRUZ ACATEPEC" />
+    <City id="19108" name="SANTA CRUZ AMILPAS" />
+    <City id="19445" name="SANTA CRUZ DE BRAVO" />
+    <City id="19447" name="SANTA CRUZ ITUNDUJIA" />
+    <City id="19448" name="SANTA CRUZ MIXTEPEC" />
+    <City id="19449" name="SANTA CRUZ NUNDACO" />
+    <City id="19450" name="SANTA CRUZ PAPALUTLA" />
+    <City id="19451" name="SANTA CRUZ TACACHE DE MINA" />
+    <City id="19452" name="SANTA CRUZ TACAHUA" />
+    <City id="19453" name="SANTA CRUZ TAYATA" />
+    <City id="19454" name="SANTA CRUZ XITLA" />
+    <City id="19089" name="SANTA CRUZ XOXOCOTLAN" />
+    <City id="19455" name="SANTA CRUZ ZENZONTEPEC" />
+    <City id="19456" name="SANTA GERTRUDIS" />
+    <City id="19457" name="SANTA INES DE ZARAGOZA" />
+    <City id="19458" name="SANTA INES DEL MONTE" />
+    <City id="19459" name="SANTA INES YATZECHE" />
+    <City id="19460" name="SANTA LUCIA DEL CAMINO" />
+    <City id="19461" name="SANTA LUCIA MIAHUATLAN" />
+    <City id="19462" name="SANTA LUCIA MONTEVERDE" />
+    <City id="19463" name="SANTA LUCIA OCOTLAN" />
+    <City id="19065" name="SANTA M JALAPA D MARQUES" />
+    <City id="19464" name="SANTA MAGDALENA JICOTLAN" />
+    <City id="19465" name="SANTA MARIA ALOTEPEC" />
+    <City id="19466" name="SANTA MARIA APAZCO" />
+    <City id="19467" name="SANTA MARIA ATZOMPA" />
+    <City id="19468" name="SANTA MARIA CAMOTLAN" />
+    <City id="19469" name="SANTA MARIA CHACHOAPAM" />
+    <City id="19105" name="SANTA MARIA CHILAPA DE D" />
+    <City id="19470" name="SANTA MARIA CHILCHOTLA" />
+    <City id="19471" name="SANTA MARIA CHIMALAPA" />
+    <City id="19472" name="SANTA MARIA COLOTEPEC" />
+    <City id="19473" name="SANTA MARIA CORTIJO" />
+    <City id="19474" name="SANTA MARIA COYOTEPEC" />
+    <City id="19475" name="SANTA MARIA DEL ROSARIO" />
+    <City id="19078" name="SANTA MARIA DEL TULE" />
+    <City id="19476" name="SANTA MARIA ECATEPEC" />
+    <City id="19477" name="SANTA MARIA GUELACE" />
+    <City id="19478" name="SANTA MARIA GUIENAGATI" />
+    <City id="19114" name="SANTA MARIA HUATULCO" />
+    <City id="19479" name="SANTA MARIA HUAZOLOTITLAN" />
+    <City id="19480" name="SANTA MARIA IPALAPA" />
+    <City id="19481" name="SANTA MARIA IXCATLAN" />
+    <City id="19482" name="SANTA MARIA JACATEPEC" />
+    <City id="19483" name="SANTA MARIA JALTIANGUIS" />
+    <City id="19484" name="SANTA MARIA LA ASUNCION" />
+    <City id="19485" name="SANTA MARIA LACHIXIO" />
+    <City id="19486" name="SANTA MARIA MIXTEQUILLA" />
+    <City id="19487" name="SANTA MARIA NATIVITAS" />
+    <City id="19488" name="SANTA MARIA NDUAYACO" />
+    <City id="19489" name="SANTA MARIA OZOLOTEPEC" />
+    <City id="19490" name="SANTA MARIA PAPALO" />
+    <City id="19491" name="SANTA MARIA PENOLES" />
+    <City id="19492" name="SANTA MARIA PETAPA" />
+    <City id="19493" name="SANTA MARIA QUIEGOLANI" />
+    <City id="19494" name="SANTA MARIA SOLA" />
+    <City id="19495" name="SANTA MARIA TATALTEPEC" />
+    <City id="19496" name="SANTA MARIA TECOMAVACA" />
+    <City id="19497" name="SANTA MARIA TEMAXCALAPA" />
+    <City id="19498" name="SANTA MARIA TEMAXCALTEPEC" />
+    <City id="19499" name="SANTA MARIA TEOPOXCO" />
+    <City id="19500" name="SANTA MARIA TEPANTLALI" />
+    <City id="19501" name="SANTA MARIA TEXCATITLAN" />
+    <City id="19502" name="SANTA MARIA TLAHUITOLTEPEC" />
+    <City id="19503" name="SANTA MARIA TLALIXTAC" />
+    <City id="19504" name="SANTA MARIA TONAMECA" />
+    <City id="19505" name="SANTA MARIA TOTOLAPILLA" />
+    <City id="19506" name="SANTA MARIA XADANI" />
+    <City id="19507" name="SANTA MARIA YALINA" />
+    <City id="19508" name="SANTA MARIA YAVESIA" />
+    <City id="19509" name="SANTA MARIA YOLOTEPEC" />
+    <City id="19510" name="SANTA MARIA YOSOYUA" />
+    <City id="19511" name="SANTA MARIA YUCUHITI" />
+    <City id="19512" name="SANTA MARIA ZACATEPEC" />
+    <City id="19513" name="SANTA MARIA ZANIZA" />
+    <City id="19514" name="SANTA MARIA ZOQUITLAN" />
+    <City id="19515" name="SANTIAGO AMOLTEPEC" />
+    <City id="19516" name="SANTIAGO APOALA" />
+    <City id="19517" name="SANTIAGO APOSTOL" />
+    <City id="19518" name="SANTIAGO ASTATA" />
+    <City id="19519" name="SANTIAGO ATITLAN" />
+    <City id="19520" name="SANTIAGO AYUQUILILLA" />
+    <City id="19521" name="SANTIAGO CACALOXTEPEC" />
+    <City id="19522" name="SANTIAGO CAMOTLAN" />
+    <City id="19083" name="SANTIAGO CHAZUMBA" />
+    <City id="19523" name="SANTIAGO CHOAPAM" />
+    <City id="19524" name="SANTIAGO COMALTEPEC" />
+    <City id="19525" name="SANTIAGO DEL RIO" />
+    <City id="19107" name="SANTIAGO HUAJOLOTITLAN" />
+    <City id="19526" name="SANTIAGO HUAUCLILLA" />
+    <City id="19527" name="SANTIAGO IHUITLAN PLUMAS" />
+    <City id="19528" name="SANTIAGO IXCUINTEPEC" />
+    <City id="19529" name="SANTIAGO IXTAYUTLA" />
+    <City id="19014" name="SANTIAGO JAMILTEPEC" />
+    <City id="19530" name="SANTIAGO JOCOTEPEC" />
+    <City id="19531" name="SANTIAGO JUXTLAHUACA" />
+    <City id="19532" name="SANTIAGO LACHIGUIRI" />
+    <City id="19533" name="SANTIAGO LALOPA" />
+    <City id="19534" name="SANTIAGO LAOLLAGA" />
+    <City id="19535" name="SANTIAGO LAXOPA" />
+    <City id="19536" name="SANTIAGO LLANO GRANDE" />
+    <City id="19537" name="SANTIAGO MATATLAN" />
+    <City id="19538" name="SANTIAGO MILTEPEC" />
+    <City id="19539" name="SANTIAGO MINAS" />
+    <City id="19540" name="SANTIAGO NACALTEPEC" />
+    <City id="19541" name="SANTIAGO NEJAPILLA" />
+    <City id="19023" name="SANTIAGO NILTEPEC" />
+    <City id="19542" name="SANTIAGO NUNDICHE" />
+    <City id="19543" name="SANTIAGO NUYOO" />
+    <City id="19030" name="SANTIAGO PINOTEPA NACIONAL" />
+    <City id="19544" name="SANTIAGO SUCHILQUITONGO" />
+    <City id="19545" name="SANTIAGO TAMAZOLA" />
+    <City id="19546" name="SANTIAGO TAPEXTLA" />
+    <City id="19547" name="SANTIAGO TENANGO" />
+    <City id="19548" name="SANTIAGO TEPETLAPA" />
+    <City id="19549" name="SANTIAGO TETEPEC" />
+    <City id="19550" name="SANTIAGO TEXCALCINGO" />
+    <City id="19551" name="SANTIAGO TEXTITLAN" />
+    <City id="19552" name="SANTIAGO TILANTONGO" />
+    <City id="19553" name="SANTIAGO TILLO" />
+    <City id="19554" name="SANTIAGO TLAZOYALTEPEC" />
+    <City id="19555" name="SANTIAGO XANICA" />
+    <City id="19556" name="SANTIAGO XIACUI" />
+    <City id="19557" name="SANTIAGO YAITEPEC" />
+    <City id="19558" name="SANTIAGO YAVEO" />
+    <City id="19110" name="SANTIAGO YOLOMECATL" />
+    <City id="19559" name="SANTIAGO YOSONDUA" />
+    <City id="19560" name="SANTIAGO YUCUYACHI" />
+    <City id="19561" name="SANTIAGO ZACATEPEC" />
+    <City id="19562" name="SANTIAGO ZOOCHILA" />
+    <City id="19043" name="SANTO D TEHUANTEPEC" />
+    <City id="19563" name="SANTO D TEOJOMULCO" />
+    <City id="19564" name="SANTO D TEPUXTEPEC" />
+    <City id="19565" name="SANTO D TLATAYAPAM" />
+    <City id="19566" name="SANTO D TOMALTEPEC" />
+    <City id="19567" name="SANTO DOMINGO ALBARRADAS" />
+    <City id="19568" name="SANTO DOMINGO ARMENTA" />
+    <City id="19569" name="SANTO DOMINGO CHIHUITAN" />
+    <City id="19570" name="SANTO DOMINGO DE MORELOS" />
+    <City id="19571" name="SANTO DOMINGO INGENIO" />
+    <City id="19572" name="SANTO DOMINGO IXCATLAN" />
+    <City id="19573" name="SANTO DOMINGO NUXAA" />
+    <City id="19574" name="SANTO DOMINGO OZOLOTEPEC" />
+    <City id="19575" name="SANTO DOMINGO PETAPA" />
+    <City id="19576" name="SANTO DOMINGO ROAYAGA" />
+    <City id="19577" name="SANTO DOMINGO TONALA" />
+    <City id="19578" name="SANTO DOMINGO TONALTEPEC" />
+    <City id="19579" name="SANTO DOMINGO XAGACIA" />
+    <City id="19580" name="SANTO DOMINGO YANHUITLAN" />
+    <City id="19581" name="SANTO DOMINGO YODOHINO" />
+    <City id="19054" name="SANTO DOMINGO ZANATEPEC" />
+    <City id="19582" name="SANTO TOMAS JALIEZA" />
+    <City id="19583" name="SANTO TOMAS MAZALTEPEC" />
+    <City id="19584" name="SANTO TOMAS OCOTEPEC" />
+    <City id="19585" name="SANTO TOMAS TAMAZULAPAM" />
+    <City id="19586" name="SANTOS REYES NOPALA" />
+    <City id="19587" name="SANTOS REYES PAPALO" />
+    <City id="19588" name="SANTOS REYES TEPEJILLO" />
+    <City id="19589" name="SANTOS REYES YUCUNA" />
+    <City id="19590" name="SILACAYOAPAM" />
+    <City id="19591" name="SITIO DE XITLAPEHUA" />
+    <City id="19592" name="SOLEDAD ETLA" />
+    <City id="19593" name="TAMAZULAPAM DEL ESPIRITU S" />
+    <City id="19594" name="TANETZE DE ZARAGOZA" />
+    <City id="19595" name="TANICHE" />
+    <City id="19596" name="TATALTEPEC DE VALDES" />
+    <City id="19597" name="TEOCOCUILCO DE MARCOS P" />
+    <City id="19103" name="TEOTITLAN DE FLORES MAGON" />
+    <City id="19070" name="TEOTITLAN DEL VALLE" />
+    <City id="19104" name="TEOTONGO" />
+    <City id="19598" name="TEPELMEME VILLA DE MORELOS" />
+    <City id="19067" name="TEZOATLAN DE SEGURA Y LUNA" />
+    <City id="19047" name="TLACOLULA DE MATAMOROS" />
+    <City id="19599" name="TLACOTEPEC PLUMAS" />
+    <City id="19101" name="TLALIXTAC DE CABRERA" />
+    <City id="19600" name="TOTONTEPEC V DE MORELOS" />
+    <City id="19071" name="TRINIDAD ZAACHILA" />
+    <City id="19615" name="TUXTEPEC" />
+    <City id="19051" name="UNION HIDALGO" />
+    <City id="19601" name="VALERIO TRUJANO" />
+    <City id="19602" name="VILLA DE ETLA" />
+    <City id="19603" name="VILLA DE TAMAZULAPAM DEL P" />
+    <City id="19604" name="VILLA DE ZAACHILA" />
+    <City id="19605" name="VILLA DIAZ ORDAZ" />
+    <City id="19606" name="VILLA HIDALGO" />
+    <City id="19040" name="VILLA SOLA DE VEGA" />
+    <City id="19607" name="VILLA TEJUPAM DE LA UNION" />
+    <City id="19608" name="YAXE" />
+    <City id="19609" name="YOGANA" />
+    <City id="19610" name="YUTANDUCHI DE GUERRERO" />
+    <City id="19611" name="ZAPOTITLAN DEL RIO" />
+    <City id="19612" name="ZAPOTITLAN LAGUNAS" />
+    <City id="19613" name="ZAPOTITLAN PALMAS" />
+    <City id="19055" name="ZIMATLAN DE ALVAREZ" />
+  </State>
+  <State name="PUEBLA">
+    <City id="20076" name="ACAJETE" />
+    <City id="20026" name="ACATENO" />
+    <City id="20001" name="ACATLAN" />
+    <City id="20002" name="ACATZINGO" />
+    <City id="20222" name="ACTEOPAN" />
+    <City id="20223" name="AHUACATLAN" />
+    <City id="20022" name="AHUATLAN" />
+    <City id="20059" name="AHUAZOTEPEC" />
+    <City id="20224" name="AHUEHUETITLA" />
+    <City id="20051" name="AJALPAN" />
+    <City id="20225" name="ALBINO ZERTUCHE" />
+    <City id="20226" name="ALJOJUCA" />
+    <City id="20149" name="ALTEPEXI" />
+    <City id="20227" name="AMIXTLAN" />
+    <City id="20003" name="AMOZOC" />
+    <City id="20228" name="AQUIXTLA" />
+    <City id="20135" name="ATEMPAN" />
+    <City id="20229" name="ATEXCAL" />
+    <City id="20006" name="ATLIXCO" />
+    <City id="20230" name="ATOYATEMPAN" />
+    <City id="20231" name="ATZALA" />
+    <City id="20232" name="ATZITZIHUACAN" />
+    <City id="20233" name="ATZITZINTLA" />
+    <City id="20157" name="AXUTLA" />
+    <City id="20234" name="AYOTOXCO DE GUERRERO" />
+    <City id="20235" name="CALPAN" />
+    <City id="20236" name="CALTEPEC" />
+    <City id="20237" name="CAMOCUAUTLA" />
+    <City id="20201" name="CANADA MORELOS" />
+    <City id="20238" name="CAXHUACAN" />
+    <City id="20239" name="CHALCHICOMULA DE SESMA" />
+    <City id="20088" name="CHAPULCO" />
+    <City id="20010" name="CHIAUTLA" />
+    <City id="20240" name="CHIAUTZINGO" />
+    <City id="20241" name="CHICHIQUILA" />
+    <City id="20242" name="CHICONCUAUTLA" />
+    <City id="20125" name="CHIETLA" />
+    <City id="20243" name="CHIGMECATITLAN" />
+    <City id="20012" name="CHIGNAHUAPAN" />
+    <City id="20244" name="CHIGNAUTLA" />
+    <City id="20170" name="CHILA" />
+    <City id="20172" name="CHILA DE LA SAL" />
+    <City id="20245" name="CHILA HONEY" />
+    <City id="20220" name="CHILCHOTLA" />
+    <City id="20246" name="CHINANTLA" />
+    <City id="20247" name="COATEPEC" />
+    <City id="20248" name="COATZINGO" />
+    <City id="20249" name="COHETZALA" />
+    <City id="20250" name="COHUECAN" />
+    <City id="20251" name="CORONANGO" />
+    <City id="20084" name="COXCATLAN" />
+    <City id="20252" name="COYOMEAPAN" />
+    <City id="20253" name="COYOTEPEC" />
+    <City id="20123" name="CUAPIAXTLA DE MADERO" />
+    <City id="20254" name="CUAUTEMPAN" />
+    <City id="20255" name="CUAUTINCHAN" />
+    <City id="20221" name="CUAUTLANCINGO" />
+    <City id="20256" name="CUAYUCA DE ANDRADE" />
+    <City id="20009" name="CUETZALAN DEL PROGRESO" />
+    <City id="20074" name="CUYOACO" />
+    <City id="20257" name="DOMINGO ARENAS" />
+    <City id="20258" name="ELOXOCHITLAN" />
+    <City id="20259" name="EPATLAN" />
+    <City id="20014" name="ESPERANZA" />
+    <City id="20260" name="FRANCISCO Z MENA" />
+    <City id="20261" name="GENERAL FELIPE ANGELES" />
+    <City id="20262" name="GUADALUPE" />
+    <City id="20090" name="GUADALUPE VICTORIA" />
+    <City id="20263" name="HERMENEGILDO GALEANA" />
+    <City id="20180" name="HUAQUECHULA" />
+    <City id="20264" name="HUATLATLAUCA" />
+    <City id="20015" name="HUAUCHINANGO" />
+    <City id="20016" name="HUEHUETLA" />
+    <City id="20204" name="HUEHUETLAN EL CHICO" />
+    <City id="20265" name="HUEHUETLAN EL GRANDE" />
+    <City id="20017" name="HUEJOTZINGO" />
+    <City id="20266" name="HUEYAPAN" />
+    <City id="20115" name="HUEYTAMALCO" />
+    <City id="20267" name="HUEYTLALPAN" />
+    <City id="20268" name="HUITZILAN DE SERDAN" />
+    <City id="20269" name="HUITZILTEPEC" />
+    <City id="20270" name="IGNACIO ALLENDE" />
+    <City id="20271" name="IXCAMILPA DE GUERRERO" />
+    <City id="20272" name="IXCAQUIXTLA" />
+    <City id="20273" name="IXTACAMAXTITLAN" />
+    <City id="20274" name="IXTEPEC" />
+    <City id="20018" name="IZUCAR DE MATAMOROS" />
+    <City id="20075" name="JALPAN" />
+    <City id="20150" name="JOLALPAN" />
+    <City id="20275" name="JONOTLA" />
+    <City id="20276" name="JOPALA" />
+    <City id="20277" name="JUAN C BONILLA" />
+    <City id="20278" name="JUAN GALINDO" />
+    <City id="20279" name="JUAN N MENDEZ" />
+    <City id="20349" name="LA MAGDALENA TLATLAUQUITEPEC" />
+    <City id="20280" name="LAFRAGUA" />
+    <City id="20178" name="LAZARO CARDENAS" />
+    <City id="20019" name="LIBRES" />
+    <City id="20281" name="LOS REYES DE JUAREZ" />
+    <City id="20282" name="MAZAPILTEPEC DE JUAREZ" />
+    <City id="20283" name="MIXTLA" />
+    <City id="20284" name="MOLCAXAC" />
+    <City id="20285" name="NAUPAN" />
+    <City id="20286" name="NAUZONTLA" />
+    <City id="20287" name="NEALTICAN" />
+    <City id="20288" name="NICOLAS BRAVO" />
+    <City id="20121" name="NOPALUCAN" />
+    <City id="20165" name="OCOTEPEC" />
+    <City id="20289" name="OCOYUCAN" />
+    <City id="20290" name="OLINTLA" />
+    <City id="20021" name="ORIENTAL" />
+    <City id="20291" name="PAHUATLAN" />
+    <City id="20079" name="PALMAR DE BRAVO" />
+    <City id="20292" name="PANTEPEC" />
+    <City id="20023" name="PETLALCINGO" />
+    <City id="20068" name="PIAXTLA" />
+    <City id="20000" name="PUEBLA" />
+    <City id="20293" name="QUECHOLAC" />
+    <City id="20294" name="QUIMIXTLAN" />
+    <City id="20039" name="RAFAEL LARA GRAJALES" />
+    <City id="20080" name="SAN ANDRES CHOLULA" />
+    <City id="20295" name="SAN ANTONIO CANADA" />
+    <City id="20348" name="SAN DIEGO LA MESA TOCHIMILTZI" />
+    <City id="20212" name="SAN FELIPE TEOTLALCINGO" />
+    <City id="20296" name="SAN FELIPE TEPATLAN" />
+    <City id="20050" name="SAN GABRIEL CHILAC" />
+    <City id="20297" name="SAN GREGORIO ATZOMPA" />
+    <City id="20298" name="SAN JERONIMO TECUANIPAN" />
+    <City id="20299" name="SAN JERONIMO XAYACATLAN" />
+    <City id="20142" name="SAN JOSE CHIAPA" />
+    <City id="20300" name="SAN JOSE MIAHUATLAN" />
+    <City id="20047" name="SAN JUAN ATENCO" />
+    <City id="20301" name="SAN JUAN ATZOMPA" />
+    <City id="20028" name="SAN MARTIN TEXMELUCAN" />
+    <City id="20302" name="SAN MARTIN TOTOLTEPEC" />
+    <City id="20109" name="SAN MATIAS TLALANCALECA" />
+    <City id="20303" name="SAN MIGUEL IXITLAN" />
+    <City id="20139" name="SAN MIGUEL XOXTLA" />
+    <City id="20044" name="SAN NICOLAS BUENOS AIRES" />
+    <City id="20304" name="SAN NICOLAS DE LOS RANCHOS" />
+    <City id="20305" name="SAN PABLO ANICANO" />
+    <City id="20306" name="SAN PEDRO CHOLULA" />
+    <City id="20307" name="SAN PEDRO YELOIXTLAHUACA" />
+    <City id="20029" name="SAN SALVADOR EL SECO" />
+    <City id="20308" name="SAN SALVADOR EL VERDE" />
+    <City id="20099" name="SAN SALVADOR HUIXCOLOTLA" />
+    <City id="20036" name="SAN SEBASTIAN TLACOTEPEC" />
+    <City id="20309" name="SANTA CATARINA TLALTEMPAN" />
+    <City id="20310" name="SANTA INES AHUATEMPAN" />
+    <City id="20311" name="SANTA ISABEL CHOLULA" />
+    <City id="20108" name="SANTIAGO MIAHUATLAN" />
+    <City id="20126" name="SANTO TOMAS HUEYOTLIPAN" />
+    <City id="20366" name="SN PEDRO CHOLULA" />
+    <City id="20025" name="SOLTEPEC" />
+    <City id="20082" name="TECALI DE HERRERA" />
+    <City id="20030" name="TECAMACHALCO" />
+    <City id="20218" name="TECOMATLAN" />
+    <City id="20031" name="TEHUACAN" />
+    <City id="20312" name="TEHUITZINGO" />
+    <City id="20101" name="TENAMPULCO" />
+    <City id="20313" name="TEOPANTLAN" />
+    <City id="20314" name="TEOTLALCO" />
+    <City id="20315" name="TEPANCO DE LOPEZ" />
+    <City id="20316" name="TEPANGO DE RODRIGUEZ" />
+    <City id="20194" name="TEPATLAXCO DE HIDALGO" />
+    <City id="20032" name="TEPEACA" />
+    <City id="20317" name="TEPEMAXALCO" />
+    <City id="20127" name="TEPEOJUMA" />
+    <City id="20318" name="TEPETZINTLA" />
+    <City id="20216" name="TEPEXCO" />
+    <City id="20319" name="TEPEXI DE RODRIGUEZ" />
+    <City id="20161" name="TEPEYAHUALCO" />
+    <City id="20320" name="TEPEYAHUALCO DE CUAUHTEMOC" />
+    <City id="20034" name="TETELA DE OCAMPO" />
+    <City id="20057" name="TETELES DE AVILA CASTILLO" />
+    <City id="20035" name="TEZIUTLAN" />
+    <City id="20321" name="TIANGUISMANALCO" />
+    <City id="20211" name="TILAPA" />
+    <City id="20054" name="TLACHICHUCA" />
+    <City id="20322" name="TLACOTEPEC DE BENITO JUAREZ" />
+    <City id="20323" name="TLACUILOTEPEC" />
+    <City id="20324" name="TLAHUAPAN" />
+    <City id="20178" name="TLALTENANGO" />
+    <City id="20325" name="TLANEPANTLA" />
+    <City id="20326" name="TLAOLA" />
+    <City id="20086" name="TLAPACOYA" />
+    <City id="20091" name="TLAPANALA" />
+    <City id="20037" name="TLATLAUQUITEPEC" />
+    <City id="20327" name="TLAXCO" />
+    <City id="20328" name="TOCHIMILCO" />
+    <City id="20055" name="TOCHTEPEC" />
+    <City id="20329" name="TOTOLTEPEC DE GUERRERO" />
+    <City id="20330" name="TULCINGO" />
+    <City id="20331" name="TUZAMAPAN DE GALEANA" />
+    <City id="20332" name="TZICATLACOYAN" />
+    <City id="20042" name="VENUSTIANO CARRANZA" />
+    <City id="20333" name="VICENTE GUERRERO" />
+    <City id="20334" name="XAYACATLAN DE BRAVO" />
+    <City id="20049" name="XICOTEPEC" />
+    <City id="20335" name="XICOTLAN" />
+    <City id="20177" name="XIUTETELCO" />
+    <City id="20117" name="XOCHIAPULCO" />
+    <City id="20336" name="XOCHILTEPEC" />
+    <City id="20136" name="XOCHITLAN DE VICENTE S" />
+    <City id="20337" name="XOCHITLAN TODOS SANTOS" />
+    <City id="20338" name="YAONAHUAC" />
+    <City id="20339" name="YEHUALTEPEC" />
+    <City id="20340" name="ZACAPALA" />
+    <City id="20040" name="ZACAPOAXTLA" />
+    <City id="20041" name="ZACATLAN" />
+    <City id="20342" name="ZAPOTITLAN" />
+    <City id="20341" name="ZAPOTITLAN DE MENDEZ" />
+    <City id="20140" name="ZARAGOZA" />
+    <City id="20343" name="ZAUTLA" />
+    <City id="20344" name="ZIHUATEUTLA" />
+    <City id="20105" name="ZINACATEPEC" />
+    <City id="20346" name="ZONGOZOTLA" />
+    <City id="20345" name="ZOQUIAPAN" />
+    <City id="20347" name="ZOQUITLAN" />
+  </State>
+  <State name="QUERETARO">
+    <City id="21001" name="AMEALCO DE BONFIL" />
+    <City id="21032" name="ARROYO SECO" />
+    <City id="21033" name="CADEREYTA DE MONTES" />
+    <City id="21005" name="COLON" />
+    <City id="21012" name="CORREGIDORA" />
+    <City id="21017" name="EL MARQUES" />
+    <City id="21019" name="EZEQUIEL MONTES" />
+    <City id="21023" name="HUIMILPAN" />
+    <City id="21003" name="JALPAN DE SERRA" />
+    <City id="21034" name="LANDA DE MATAMOROS" />
+    <City id="21009" name="PEDRO ESCOBEDO" />
+    <City id="21011" name="PENAMILLER" />
+    <City id="21010" name="PINAL DE AMOLES" />
+    <City id="21000" name="QUERETARO" />
+    <City id="21014" name="SAN JOAQUIN" />
+    <City id="21013" name="SAN JUAN DEL RIO" />
+    <City id="21004" name="SANTIAGO DE QUERETARO" />
+    <City id="21015" name="TEQUISQUIAPAN" />
+    <City id="21007" name="TOLIMAN" />
+  </State>
+  <State name="QUINTANA ROO">
+    <City id="22057" name="BENITO JUAREZ" />
+    <City id="22005" name="CANCUN" />
+    <City id="22001" name="CHETUMAL" />
+    <City id="22002" name="COZUMEL" />
+    <City id="22003" name="FELIPE CARRILLO PUERTO" />
+    <City id="22041" name="ISLA MUJERES" />
+    <City id="22046" name="JOSE MA MORELOS" />
+    <City id="22055" name="LAZARO CARDENAS" />
+    <City id="22056" name="OTHON P BLANCO" />
+    <City id="22045" name="PLAYA DEL CARMEN" />
+    <City id="22013" name="SOLIDARIDAD" />
+    <City id="22181" name="TULUM" />
+  </State>
+  <State name="SAN LUIS POTOSI">
+    <City id="23056" name="AHUALULCO" />
+    <City id="23065" name="ALAQUINES" />
+    <City id="23038" name="AQUISMON" />
+    <City id="23066" name="ARMADILLO DE LOS INFANTE" />
+    <City id="23023" name="AXTLA DE TERRAZAS" />
+    <City id="23051" name="CARDENAS" />
+    <City id="23002" name="CATORCE" />
+    <City id="23005" name="CD DEL MAIZ" />
+    <City id="23046" name="CD FERNANDEZ" />
+    <City id="23007" name="CD VALLES" />
+    <City id="23003" name="CEDRAL" />
+    <City id="23004" name="CERRITOS" />
+    <City id="23067" name="CERRO DE SAN PEDRO" />
+    <City id="23008" name="CHARCAS" />
+    <City id="23024" name="COXCATLAN" />
+    <City id="23009" name="EBANO" />
+    <City id="23057" name="GUADALCAZAR" />
+    <City id="23068" name="HUEHUETLAN" />
+    <City id="23069" name="LAGUNILLAS" />
+    <City id="23011" name="MATEHUALA" />
+    <City id="23064" name="MEXQUITIC DE CARMONA" />
+    <City id="23012" name="MOCTEZUMA" />
+    <City id="23026" name="RAYON" />
+    <City id="23368" name="REAL DE CATORCE" />
+    <City id="23013" name="RIO VERDE" />
+    <City id="23014" name="SALINAS" />
+    <City id="23070" name="SAN ANTONIO" />
+    <City id="23050" name="SAN CIRO DE ACOSTA" />
+    <City id="23000" name="SAN LUIS POTOSI" />
+    <City id="23042" name="SAN MARTIN CHALCHICUAUTLA" />
+    <City id="23071" name="SAN NICOLAS TOLENTINO" />
+    <City id="23072" name="SAN VICENTE TANCUAYALAB" />
+    <City id="23073" name="SANTA CATARINA" />
+    <City id="23029" name="SANTA MARIA DEL RIO" />
+    <City id="23074" name="SANTO DOMINGO" />
+    <City id="23075" name="SOLEDAD DE GRACIANO SANCHEZ" />
+    <City id="23044" name="TAMASOPO" />
+    <City id="23016" name="TAMAZUNCHALE" />
+    <City id="23076" name="TAMPACAN" />
+    <City id="23077" name="TAMPAMOLON CORONA" />
+    <City id="23018" name="TAMUIN" />
+    <City id="23078" name="TANCANHUITZ DE SANTOS" />
+    <City id="23079" name="TANLAJAS" />
+    <City id="23039" name="TANQUIAN DE ESCOBEDO" />
+    <City id="23080" name="TIERRANUEVA" />
+    <City id="23081" name="VANEGAS" />
+    <City id="23020" name="VENADO" />
+    <City id="23031" name="VILLA DE ARISTA" />
+    <City id="23033" name="VILLA DE ARRIAGA" />
+    <City id="23063" name="VILLA DE GUADALUPE" />
+    <City id="23025" name="VILLA DE LA PAZ" />
+    <City id="23082" name="VILLA DE RAMOS" />
+    <City id="23021" name="VILLA DE REYES" />
+    <City id="23048" name="VILLA HIDALGO" />
+    <City id="23083" name="VILLA JUAREZ" />
+    <City id="23022" name="XILITLA" />
+    <City id="23061" name="ZARAGOZA" />
+  </State>
+  <State name="SINALOA">
+    <City id="24001" name="AHOME" />
+    <City id="24002" name="ANGOSTURA" />
+    <City id="24003" name="BADIRAGUATO" />
+    <City id="24009" name="CHOIX" />
+    <City id="24005" name="CONCORDIA" />
+    <City id="24006" name="COSALA" />
+    <City id="24008" name="CULIACAN" />
+    <City id="24011" name="EL FUERTE" />
+    <City id="24023" name="EL ROSARIO" />
+    <City id="24052" name="ELOTA" />
+    <City id="24012" name="ESCUINAPA" />
+    <City id="24013" name="GUAMUCHIL" />
+    <City id="24014" name="GUASAVE" />
+    <City id="24017" name="LOS MOCHIS" />
+    <City id="24018" name="MAZATLAN" />
+    <City id="24019" name="MOCORITO" />
+    <City id="24021" name="NAVOLATO" />
+    <City id="24058" name="SALVADOR ALVARADO" />
+    <City id="24025" name="SAN IGNACIO" />
+    <City id="24000" name="SINALOA" />
+    <City id="24140" name="V. UNION" />
+  </State>
+  <State name="SONORA">
+    <City id="25105" name="ACONCHI" />
+    <City id="25001" name="AGUA PRIETA" />
+    <City id="25002" name="ALAMOS" />
+    <City id="25003" name="ALTAR" />
+    <City id="25106" name="ARIVECHI" />
+    <City id="25004" name="ARIZPE" />
+    <City id="25005" name="ATIL" />
+    <City id="25093" name="BACADEHUACHI" />
+    <City id="25107" name="BACANORA" />
+    <City id="25067" name="BACERAC" />
+    <City id="25073" name="BACOACHI" />
+    <City id="25052" name="BACUM" />
+    <City id="25006" name="BANAMICHI" />
+    <City id="25007" name="BAVIACORA" />
+    <City id="25094" name="BAVISPE" />
+    <City id="25008" name="BENJAMIN HILL" />
+    <City id="25009" name="CABORCA" />
+    <City id="25104" name="CAJEME" />
+    <City id="25010" name="CANANEA" />
+    <City id="25011" name="CARBO" />
+    <City id="25012" name="CD OBREGON" />
+    <City id="25108" name="CUCURPE" />
+    <City id="25095" name="CUMPAS" />
+    <City id="25109" name="DIVISADEROS" />
+    <City id="25015" name="EMPALME" />
+    <City id="25047" name="ETCHOJOA" />
+    <City id="25110" name="FRONTERAS" />
+    <City id="25111" name="GENERAL PLUTARCO ELIAS C" />
+    <City id="25074" name="GRANADOS" />
+    <City id="25018" name="GUAYMAS" />
+    <City id="25019" name="HERMOSILLO" />
+    <City id="25066" name="HUACHINERA" />
+    <City id="25075" name="HUASABAS" />
+    <City id="25020" name="HUATABAMPO" />
+    <City id="25081" name="HUEPAC" />
+    <City id="25021" name="IMURIS" />
+    <City id="25112" name="LA COLORADA" />
+    <City id="25091" name="MAGDALENA" />
+    <City id="25129" name="MAZATAN" />
+    <City id="25080" name="MOCTEZUMA" />
+    <City id="25024" name="NACO" />
+    <City id="25077" name="NACORI CHICO" />
+    <City id="25025" name="NACOZARI DE GARCIA" />
+    <City id="25026" name="NAVOJOA" />
+    <City id="25027" name="NOGALES" />
+    <City id="25113" name="ONAVAS" />
+    <City id="25114" name="OPODEPE" />
+    <City id="25115" name="OQUITOA" />
+    <City id="25030" name="PITIQUITO" />
+    <City id="25032" name="PUERTO PENASCO" />
+    <City id="25023" name="QUIRIEGO" />
+    <City id="25014" name="RAYON" />
+    <City id="25116" name="ROSARIO" />
+    <City id="25033" name="SAHUARIPA" />
+    <City id="25117" name="SAN FELIPE DE JESUS" />
+    <City id="25118" name="SAN JAVIER" />
+    <City id="25034" name="SAN LUIS RIO COLORADO" />
+    <City id="25119" name="SAN MIGUEL DE HORCASITAS" />
+    <City id="25120" name="SAN PEDRO DE LA CUEVA" />
+    <City id="25035" name="SANTA ANA" />
+    <City id="25036" name="SANTA CRUZ" />
+    <City id="25121" name="SARIC" />
+    <City id="25122" name="SOYOPA" />
+    <City id="25123" name="SUAQUI GRANDE" />
+    <City id="25124" name="TEPACHE" />
+    <City id="25125" name="TRINCHERAS" />
+    <City id="25060" name="TUBUTAMA" />
+    <City id="25038" name="URES" />
+    <City id="25126" name="VILLA HIDALGO" />
+    <City id="25127" name="VILLA PESQUEIRA" />
+    <City id="25128" name="YECORA" />
+  </State>
+  <State name="TABASCO">
+    <City id="26001" name="BALANCAN" />
+    <City id="26002" name="CARDENAS" />
+    <City id="26036" name="CENTLA" />
+    <City id="26003" name="COMALCALCO" />
+    <City id="26004" name="CUNDUACAN" />
+    <City id="26032" name="EMILIANO ZAPATA" />
+    <City id="26026" name="HUIMANGUILLO" />
+    <City id="26021" name="JALAPA" />
+    <City id="26008" name="JALPA DE MENDEZ" />
+    <City id="26009" name="JONUTA" />
+    <City id="26011" name="MACUSPANA" />
+    <City id="26033" name="NACAJUCA" />
+    <City id="26012" name="PARAISO" />
+    <City id="26015" name="TACOTALPA" />
+    <City id="26016" name="TEAPA" />
+    <City id="26017" name="TENOSIQUE" />
+    <City id="26018" name="VILLAHERMOSA" />
+  </State>
+  <State name="TAMAULIPAS">
+    <City id="27052" name="ABASOLO" />
+    <City id="27050" name="ALDAMA" />
+    <City id="27001" name="ALTAMIRA" />
+    <City id="27068" name="ANTIGUO MORELOS" />
+    <City id="27098" name="BURGOS" />
+    <City id="27099" name="BUSTAMANTE" />
+    <City id="27074" name="CASAS" />
+    <City id="27069" name="CD CAMARGO" />
+    <City id="27005" name="CD MADERO" />
+    <City id="27106" name="CD MANTE" />
+    <City id="27010" name="CD VICTORIA" />
+    <City id="27100" name="CRUILLAS" />
+    <City id="27006" name="EL MANTE" />
+    <City id="27077" name="GOMEZ FARIAS" />
+    <City id="27078" name="GONZALEZ" />
+    <City id="27101" name="GUEMEZ" />
+    <City id="27066" name="GUERRERO" />
+    <City id="27085" name="GUSTAVO DIAZ ORDAZ" />
+    <City id="27038" name="HIDALGO" />
+    <City id="27088" name="JAUMAVE" />
+    <City id="27045" name="JIMENEZ" />
+    <City id="27032" name="LLERA" />
+    <City id="27102" name="MAINERO" />
+    <City id="27016" name="MATAMOROS" />
+    <City id="27103" name="MENDEZ" />
+    <City id="27007" name="MIER" />
+    <City id="27008" name="MIGUEL ALEMAN" />
+    <City id="27104" name="MIQUIHUANA" />
+    <City id="27017" name="NUEVO LAREDO" />
+    <City id="27095" name="NUEVO MORELOS" />
+    <City id="27093" name="NUEVO PROGRESO" />
+    <City id="27009" name="OCAMPO" />
+    <City id="27030" name="PADILLA" />
+    <City id="27073" name="PALMILLAS" />
+    <City id="27019" name="REYNOSA" />
+    <City id="27020" name="RIO BRAVO" />
+    <City id="27046" name="SAN CARLOS" />
+    <City id="27021" name="SAN FERNANDO" />
+    <City id="27105" name="SAN NICOLAS" />
+    <City id="27053" name="SOTO LA MARINA" />
+    <City id="27023" name="TAMPICO" />
+    <City id="27024" name="TULA" />
+    <City id="27061" name="VALADECES TAMPS." />
+    <City id="27025" name="VALLE HERMOSO" />
+    <City id="27031" name="VILLAGRAN" />
+    <City id="27121" name="VILLAREAL" />
+    <City id="27027" name="XICOTENCATL" />
+  </State>
+  <State name="TLAXCALA">
+    <City id="28077" name="ACUAMANALA DE MIGUEL HIDALGO" />
+    <City id="28054" name="ALTZAYANCA" />
+    <City id="28019" name="AMAXAC DE GUERRERO" />
+    <City id="28078" name="APETATITLAN DE A CARBAJAL" />
+    <City id="28002" name="APIZACO" />
+    <City id="28079" name="ATLANGATEPEC" />
+    <City id="28003" name="CALPULALPAN" />
+    <City id="28378" name="CARBAJAL" />
+    <City id="28005" name="CHIAUTEMPAN" />
+    <City id="28080" name="CONTLA DE JUAN CUAMATZI" />
+    <City id="28051" name="CUAPIAXTLA" />
+    <City id="28081" name="CUAXOMULCO" />
+    <City id="28070" name="EL CARMEN TEQUEXQUITLA" />
+    <City id="28082" name="ESPANITA" />
+    <City id="28004" name="HUAMANTLA" />
+    <City id="28083" name="HUEYOTLIPAN" />
+    <City id="28042" name="IXTACUIXTLA DE M MATAMOROS" />
+    <City id="28031" name="IXTENCO" />
+    <City id="28084" name="MAZATECOCHCO J M MORELOS" />
+    <City id="28085" name="MUNOZ DE DOMINGO ARENAS" />
+    <City id="28101" name="NANACAMILPA DE M ARISTA" />
+    <City id="28011" name="NATIVITAS" />
+    <City id="28037" name="PANOTLA" />
+    <City id="28018" name="PAPALOTLA DE XICOHTENCATL" />
+    <City id="28009" name="SAN PABLO DEL MONTE" />
+    <City id="28087" name="SANCTORUM DE LAZARO CARDENAS" />
+    <City id="28174" name="SANTA ANA CHIAUTEMPAN" />
+    <City id="28045" name="SANTA CRUZ TLAXCALA" />
+    <City id="28088" name="TENANCINGO" />
+    <City id="28025" name="TEOLOCHOLCO" />
+    <City id="28089" name="TEPETITLA DE LARDIZABAL" />
+    <City id="28090" name="TEPEYANCO" />
+    <City id="28091" name="TERRENATE" />
+    <City id="28092" name="TETLA" />
+    <City id="28093" name="TETLATLAHUCA" />
+    <City id="28000" name="TLAXCALA" />
+    <City id="28015" name="TLAXCO" />
+    <City id="28094" name="TOCATLAN" />
+    <City id="28040" name="TOTOLAC" />
+    <City id="28095" name="TZOMPANTEPEC" />
+    <City id="28102" name="VILLA VICENTE GUERRERO" />
+    <City id="28096" name="XALOZTOC" />
+    <City id="28097" name="XALTOCAN" />
+    <City id="28098" name="XICOTZINGO" />
+    <City id="28099" name="YAUHQUEMEHCAN" />
+    <City id="28100" name="Z DE TRINIDAD SANCHEZ SANTOS" />
+    <City id="28030" name="ZACATELCO" />
+  </State>
+  <State name="VERACRUZ">
+    <City id="29352" name="ACAJETE" />
+    <City id="29353" name="ACATLAN" />
+    <City id="29001" name="ACAYUCAN" />
+    <City id="29166" name="ACTOPAN" />
+    <City id="29159" name="ACULA" />
+    <City id="29258" name="ACULTZINGO" />
+    <City id="29002" name="AGUA DULCE" />
+    <City id="29354" name="ALPATLAHUAC" />
+    <City id="29261" name="ALTO LUCERO" />
+    <City id="29004" name="ALTOTONGA" />
+    <City id="29005" name="ALVARADO" />
+    <City id="29171" name="AMATITLAN" />
+    <City id="29256" name="AMATLAN DE LOS REYES" />
+    <City id="29095" name="AMATLAN TUXPAN" />
+    <City id="29268" name="ANGEL R CABADA" />
+    <City id="29355" name="APAZAPAN" />
+    <City id="29356" name="AQUILA" />
+    <City id="29357" name="ASTACINGA" />
+    <City id="29358" name="ATLAHUILCO" />
+    <City id="29007" name="ATOYAC" />
+    <City id="29327" name="ATZACAN" />
+    <City id="29215" name="ATZALAN" />
+    <City id="29359" name="AYAHUALULCO" />
+    <City id="29009" name="BANDERILLA" />
+    <City id="29164" name="BENITO JUAREZ" />
+    <City id="29039" name="BOCA DEL RIO" />
+    <City id="29349" name="CALCAHUALCO" />
+    <City id="29280" name="CAMARON DE TEJEDA" />
+    <City id="29360" name="CAMERINO Z MENDOZA" />
+    <City id="29011" name="CARLOS A CARRILLO" />
+    <City id="29361" name="CARRILLO PUERTO" />
+    <City id="29244" name="CASTILLO DE TEAYO" />
+    <City id="29012" name="CATEMACO" />
+    <City id="29013" name="CAZONES DE HERRERA" />
+    <City id="29014" name="CERRO AZUL" />
+    <City id="29027" name="CHACALTIANGUIS" />
+    <City id="29140" name="CHALMA" />
+    <City id="29362" name="CHICONAMEL" />
+    <City id="29363" name="CHICONQUIACO" />
+    <City id="29025" name="CHICONTEPEC" />
+    <City id="29029" name="CHINAMECA" />
+    <City id="29319" name="CHINAMPA DE GOROSTIZA" />
+    <City id="29165" name="CHOCAMAN" />
+    <City id="29274" name="CHONTLA" />
+    <City id="29364" name="CHUMATLAN" />
+    <City id="29298" name="CITLALTEPETL" />
+    <City id="29365" name="COACOATZINTLA" />
+    <City id="29366" name="COAHUITLAN" />
+    <City id="29016" name="COATEPEC" />
+    <City id="29017" name="COATZACOALCOS" />
+    <City id="29139" name="COATZINTLA" />
+    <City id="29367" name="COETZALA" />
+    <City id="29018" name="COLIPA" />
+    <City id="29117" name="COMAPA" />
+    <City id="29020" name="CORDOBA" />
+    <City id="29021" name="COSAMALOAPAN" />
+    <City id="29413" name="COSAMALOAPAN DE CARPIO" />
+    <City id="29368" name="COSAUTLAN DE CARVAJAL" />
+    <City id="29022" name="COSCOMATEPEC" />
+    <City id="29295" name="COSOLEACAQUE" />
+    <City id="29369" name="COTAXTLA" />
+    <City id="29370" name="COXQUIHUI" />
+    <City id="29023" name="COYUTLA" />
+    <City id="29309" name="CUICHAPA" />
+    <City id="29026" name="CUITLAHUAC" />
+    <City id="29030" name="EL HIGO" />
+    <City id="29371" name="EMILIANO ZAPATA" />
+    <City id="29343" name="ESPINAL" />
+    <City id="29372" name="FILOMENO MATA" />
+    <City id="29033" name="FORTIN" />
+    <City id="29034" name="GUTIERREZ ZAMORA" />
+    <City id="29228" name="HIDALGOTITLAN" />
+    <City id="29035" name="HUATUSCO" />
+    <City id="29036" name="HUAYACOCOTLA" />
+    <City id="29118" name="HUEYAPAN DE OCAMPO" />
+    <City id="29185" name="HUILOAPAN DE CUAUHTEMOC" />
+    <City id="29037" name="IGNACIO DE LA LLAVE" />
+    <City id="29373" name="ILAMATLAN" />
+    <City id="29038" name="ISLA" />
+    <City id="29323" name="IXCATEPEC" />
+    <City id="29374" name="IXHUACAN DE LOS REYES" />
+    <City id="29040" name="IXHUATLAN DE MADERO" />
+    <City id="29163" name="IXHUATLAN DEL CAFE" />
+    <City id="29375" name="IXHUATLAN DEL SURESTE" />
+    <City id="29376" name="IXHUATLANCILLO" />
+    <City id="29170" name="IXMATLAHUACAN" />
+    <City id="29162" name="IXTACZOQUITLAN" />
+    <City id="29216" name="JALACINGO" />
+    <City id="29163" name="JALAPA" />
+    <City id="29313" name="JALCOMULCO" />
+    <City id="29043" name="JALTIPAN" />
+    <City id="29416" name="JALTIPAN DE MORELOS" />
+    <City id="29377" name="JAMAPA" />
+    <City id="29044" name="JESUS CARRANZA" />
+    <City id="29378" name="JILOTEPEC" />
+    <City id="29008" name="JOSE AZUETA" />
+    <City id="29046" name="JUAN RODRIGUEZ CLARA" />
+    <City id="29047" name="JUCHIQUE DE FERRER" />
+    <City id="29120" name="LA ANTIGUA" />
+    <City id="29238" name="LA PERLA" />
+    <City id="29379" name="LANDERO Y COSS" />
+    <City id="29048" name="LAS CHOAPAS" />
+    <City id="29138" name="LAS MINAS" />
+    <City id="29404" name="LAS VIGAS DE RAMIREZ" />
+    <City id="29049" name="LERDO DE TEJADA" />
+    <City id="29411" name="LOS REYES" />
+    <City id="29380" name="MAGDALENA" />
+    <City id="29050" name="MALTRATA" />
+    <City id="29234" name="MANLIO FABIO ALTAMIRANO" />
+    <City id="29333" name="MARIANO ESCOBEDO" />
+    <City id="29052" name="MARTINEZ DE LA TORRE" />
+    <City id="29381" name="MECATLAN" />
+    <City id="29382" name="MECAYAPAN" />
+    <City id="29149" name="MEDELLIN" />
+    <City id="29383" name="MIAHUATLAN" />
+    <City id="29053" name="MINATITLAN" />
+    <City id="29054" name="MISANTLA" />
+    <City id="29384" name="MIXTLA DE ALTAMIRANO" />
+    <City id="29385" name="MOLOACAN" />
+    <City id="29055" name="NANCHITAL DE LAZARO CDNAS" />
+    <City id="29056" name="NAOLINCO" />
+    <City id="29386" name="NARANJAL" />
+    <City id="29057" name="NARANJOS" />
+    <City id="29058" name="NAUTLA" />
+    <City id="29059" name="NOGALES" />
+    <City id="29137" name="OLUTA" />
+    <City id="29061" name="OMEALCA" />
+    <City id="29062" name="ORIZABA" />
+    <City id="29063" name="OTATITLAN" />
+    <City id="29250" name="OTEAPAN" />
+    <City id="29064" name="OZULUAMA" />
+    <City id="29387" name="PAJAPAN" />
+    <City id="29065" name="PANUCO" />
+    <City id="29066" name="PAPANTLA" />
+    <City id="29113" name="PASO DE OVEJAS" />
+    <City id="29069" name="PASO DEL MACHO" />
+    <City id="29070" name="PEROTE" />
+    <City id="29073" name="PLATON SANCHEZ" />
+    <City id="29074" name="PLAYA VICENTE" />
+    <City id="29415" name="POZA RICA" />
+    <City id="29076" name="POZA RICA DE HIDALGO" />
+    <City id="29316" name="PUEBLO VIEJO" />
+    <City id="29388" name="PUENTE NACIONAL" />
+    <City id="29334" name="RAFAEL DELGADO" />
+    <City id="29389" name="RAFAEL LUCIO" />
+    <City id="29077" name="RIO BLANCO" />
+    <City id="29292" name="SALTABARRANCA" />
+    <City id="29341" name="SAN ANDRES TENEJAPAN" />
+    <City id="29079" name="SAN ANDRES TUXTLA" />
+    <City id="29080" name="SAN JUAN EVANGELISTA" />
+    <City id="29082" name="SANTIAGO TUXTLA" />
+    <City id="29155" name="SAYULA DE ALEMAN" />
+    <City id="29391" name="SOCHIAPA" />
+    <City id="29297" name="SOCONUSCO" />
+    <City id="29338" name="SOLEDAD ATZOMPA" />
+    <City id="29083" name="SOLEDAD DE DOBLADO" />
+    <City id="29392" name="SOTEAPAN" />
+    <City id="29320" name="TAMALIN" />
+    <City id="29084" name="TAMIAHUA" />
+    <City id="29195" name="TAMPICO ALTO" />
+    <City id="29322" name="TANCOCO" />
+    <City id="29299" name="TANTIMA" />
+    <City id="29085" name="TANTOYUCA" />
+    <City id="29393" name="TATATILA" />
+    <City id="29108" name="TECOLUTLA" />
+    <City id="29344" name="TEHUIPANGO" />
+    <City id="29351" name="TEMAPACHE" />
+    <City id="29087" name="TEMPOAL" />
+    <City id="29394" name="TENAMPA" />
+    <City id="29301" name="TENOCHTITLAN" />
+    <City id="29088" name="TEOCELO" />
+    <City id="29257" name="TEPATLAXCO" />
+    <City id="29395" name="TEPETLAN" />
+    <City id="29310" name="TEPETZINTLA" />
+    <City id="29326" name="TEQUILA" />
+    <City id="29396" name="TEXCATEPEC" />
+    <City id="29397" name="TEXHUACAN" />
+    <City id="29157" name="TEXISTEPEC" />
+    <City id="29106" name="TEZONAPA" />
+    <City id="29089" name="TIERRA BLANCA" />
+    <City id="29090" name="TIHUATLAN" />
+    <City id="29398" name="TLACHICHILCO" />
+    <City id="29091" name="TLACOJALPAN" />
+    <City id="29328" name="TLACOLULAN" />
+    <City id="29092" name="TLACOTALPAN" />
+    <City id="29329" name="TLACOTEPEC DE MEJIA" />
+    <City id="29223" name="TLALIXCOYAN" />
+    <City id="29399" name="TLALNELHUAYOCAN" />
+    <City id="29400" name="TLALTETELA" />
+    <City id="29093" name="TLAPACOYAN" />
+    <City id="29401" name="TLAQUILPAN" />
+    <City id="29336" name="TLILAPAN" />
+    <City id="29169" name="TOMATLAN" />
+    <City id="29402" name="TONAYAN" />
+    <City id="29150" name="TOTUTLA" />
+    <City id="29094" name="TRES VALLES" />
+    <City id="29403" name="TUXPAN" />
+    <City id="29412" name="TUXPAN DE RODRIGUEZ CANO" />
+    <City id="29245" name="TUXTILLA" />
+    <City id="29133" name="URSULO GALVAN" />
+    <City id="29096" name="VEGA DE ALATORRE" />
+    <City id="29000" name="VERACRUZ" />
+    <City id="29405" name="VILLA ALDAMA" />
+    <City id="29042" name="XALAPA" />
+    <City id="29414" name="XALAPA DE ENRIQUEZ" />
+    <City id="29115" name="XICO" />
+    <City id="29406" name="XOXOCOTLA" />
+    <City id="29100" name="YANGA" />
+    <City id="29101" name="YECUATLAN" />
+    <City id="29407" name="ZACUALPAN" />
+    <City id="29408" name="ZARAGOZA" />
+    <City id="29146" name="ZENTLA" />
+    <City id="29103" name="ZONGOLICA" />
+    <City id="29409" name="ZONTECOMATLAN" />
+    <City id="29410" name="ZOZOCOLCO DE HIDALGO" />
+  </State>
+  <State name="YUCATAN">
+    <City id="30055" name="ABALA" />
+    <City id="30017" name="ACANCEH" />
+    <City id="30056" name="AKIL" />
+    <City id="30018" name="BACA" />
+    <City id="30057" name="BOKOBA" />
+    <City id="30021" name="BUCTZOTZ" />
+    <City id="30058" name="CACALCHEN" />
+    <City id="30059" name="CALOTMUL" />
+    <City id="30014" name="CANSAHCAB" />
+    <City id="30060" name="CANTAMAYEC" />
+    <City id="30053" name="CELESTUN" />
+    <City id="30061" name="CENOTILLO" />
+    <City id="30062" name="CHACSINKIN" />
+    <City id="30063" name="CHANKOM" />
+    <City id="30064" name="CHAPAB" />
+    <City id="30065" name="CHEMAX" />
+    <City id="30066" name="CHICHIMILA" />
+    <City id="30052" name="CHICXULUB PUEBLO" />
+    <City id="30067" name="CHIKINDZONOT" />
+    <City id="30068" name="CHOCHOLA" />
+    <City id="30069" name="CHUMAYEL" />
+    <City id="30070" name="CONKAL" />
+    <City id="30071" name="CUNCUNUL" />
+    <City id="30072" name="CUZAMA" />
+    <City id="30073" name="DZAN" />
+    <City id="30050" name="DZEMUL" />
+    <City id="30015" name="DZIDZANTUN" />
+    <City id="30074" name="DZILAM DE BRAVO" />
+    <City id="30075" name="DZILAM GONZALEZ" />
+    <City id="30001" name="DZITAS" />
+    <City id="30076" name="DZONCAUICH" />
+    <City id="30002" name="ESPITA" />
+    <City id="30042" name="HALACHO" />
+    <City id="30077" name="HOCABA" />
+    <City id="30020" name="HOCTUN" />
+    <City id="30054" name="HOMUN" />
+    <City id="30078" name="HUHI" />
+    <City id="30003" name="HUNUCMA" />
+    <City id="30079" name="IXIL" />
+    <City id="30004" name="IZAMAL" />
+    <City id="30043" name="KANASIN" />
+    <City id="30080" name="KANTUNIL" />
+    <City id="30081" name="KAUA" />
+    <City id="30082" name="KINCHIL" />
+    <City id="30083" name="KOPOMA" />
+    <City id="30084" name="MAMA" />
+    <City id="30085" name="MANI" />
+    <City id="30005" name="MAXCANU" />
+    <City id="30086" name="MAYAPAN" />
+    <City id="30006" name="MERIDA" />
+    <City id="30087" name="MOCOCHA" />
+    <City id="30041" name="MOTUL" />
+    <City id="30019" name="MUNA" />
+    <City id="30088" name="MUXUPIP" />
+    <City id="30089" name="OPICHEN" />
+    <City id="30049" name="OXKUTZCAB" />
+    <City id="30044" name="PANABA" />
+    <City id="30008" name="PETO" />
+    <City id="30009" name="PROGRESO" />
+    <City id="30090" name="QUINTANA ROO" />
+    <City id="30046" name="RIO LAGARTOS" />
+    <City id="30091" name="SACALUM" />
+    <City id="30092" name="SAMAHIL" />
+    <City id="30093" name="SAN FELIPE" />
+    <City id="30094" name="SANAHCAT" />
+    <City id="30095" name="SANTA ELENA" />
+    <City id="30096" name="SEYE" />
+    <City id="30097" name="SINANCHE" />
+    <City id="30098" name="SOTUTA" />
+    <City id="30099" name="SUCILA" />
+    <City id="30100" name="SUDZAL" />
+    <City id="30101" name="SUMA" />
+    <City id="30102" name="TAHDZIU" />
+    <City id="30103" name="TAHMEK" />
+    <City id="30104" name="TEABO" />
+    <City id="30023" name="TECOH" />
+    <City id="30105" name="TEKAL DE VENEGAS" />
+    <City id="30106" name="TEKANTO" />
+    <City id="30010" name="TEKAX" />
+    <City id="30036" name="TEKIT" />
+    <City id="30107" name="TEKOM" />
+    <City id="30025" name="TELCHAC PUEBLO" />
+    <City id="30108" name="TELCHAC PUERTO" />
+    <City id="30026" name="TEMAX" />
+    <City id="30109" name="TEMOZON" />
+    <City id="30110" name="TEPAKAN" />
+    <City id="30111" name="TETIZ" />
+    <City id="30112" name="TEYA" />
+    <City id="30011" name="TICUL" />
+    <City id="30113" name="TIMUCUY" />
+    <City id="30114" name="TINUM" />
+    <City id="30115" name="TIXCACALCUPUL" />
+    <City id="30016" name="TIXKOKOB" />
+    <City id="30116" name="TIXMEUAC" />
+    <City id="30117" name="TIXPEUAL" />
+    <City id="30012" name="TIZIMIN" />
+    <City id="30051" name="TUNKAS" />
+    <City id="30028" name="TZUCACAB" />
+    <City id="30118" name="UAYMA" />
+    <City id="30119" name="UCU" />
+    <City id="30029" name="UMAN" />
+    <City id="30013" name="VALLADOLID" />
+    <City id="30120" name="XOCCHEL" />
+    <City id="30121" name="YAXCABA" />
+    <City id="30122" name="YAXKUKUL" />
+    <City id="30123" name="YOBAIN" />
+  </State>
+  <State name="ZACATECAS">
+    <City id="31033" name="APOZOL" />
+    <City id="31044" name="APULCO" />
+    <City id="31027" name="ATOLINGA" />
+    <City id="31045" name="BENITO JUAREZ" />
+    <City id="31001" name="CALERA" />
+    <City id="31002" name="CANITAS DE FELIPE PESCADOR" />
+    <City id="31004" name="CHALCHIHUITES" />
+    <City id="31003" name="CONCEPCION DEL ORO" />
+    <City id="31046" name="CUAUHTEMOC" />
+    <City id="31040" name="EL SALVADOR" />
+    <City id="31005" name="FRESNILLO" />
+    <City id="31047" name="GENARO CODINA" />
+    <City id="31048" name="GENERAL ENRIQUE ESTRADA" />
+    <City id="31050" name="GENERAL JOAQUIN AMARO" />
+    <City id="31051" name="GENERAL PANFILO NATERA" />
+    <City id="31049" name="GRAL FRANCISCO R MURGUIA" />
+    <City id="31006" name="GUADALUPE" />
+    <City id="31052" name="HUANUSCO" />
+    <City id="31007" name="JALPA" />
+    <City id="31008" name="JEREZ" />
+    <City id="31053" name="JIMENEZ DEL TEUL" />
+    <City id="31009" name="JUAN ALDAMA" />
+    <City id="31010" name="JUCHIPILA" />
+    <City id="31011" name="LORETO" />
+    <City id="31034" name="LUIS MOYA" />
+    <City id="31012" name="MAZAPIL" />
+    <City id="31054" name="MELCHOR OCAMPO" />
+    <City id="31013" name="MEZQUITAL DEL ORO" />
+    <City id="31014" name="MIGUEL AUZA" />
+    <City id="31035" name="MOMAX" />
+    <City id="31015" name="MONTE ESCOBEDO" />
+    <City id="31029" name="MORELOS" />
+    <City id="31055" name="MOYAHUA DE ESTRADA" />
+    <City id="31017" name="NOCHISTLAN DE MEJIA" />
+    <City id="31056" name="NORIA DE ANGELES" />
+    <City id="31018" name="OJOCALIENTE" />
+    <City id="31057" name="PANUCO" />
+    <City id="31019" name="PINOS" />
+    <City id="31020" name="RIO GRANDE" />
+    <City id="31058" name="SAIN ALTO" />
+    <City id="31025" name="SOMBRERETE" />
+    <City id="31059" name="SUSTICACAN" />
+    <City id="31028" name="TABASCO" />
+    <City id="31026" name="TEPECHITLAN" />
+    <City id="31030" name="TEPETONGO" />
+    <City id="31031" name="TEUL DE GONZALEZ ORTEGA" />
+    <City id="31021" name="TLALTENANGO DE SANCHEZ R" />
+    <City id="31036" name="TRINIDAD GARCIA DE LA CADENA" />
+    <City id="31022" name="VALPARAISO" />
+    <City id="31060" name="VETAGRANDE" />
+    <City id="31041" name="VILLA DE COS" />
+    <City id="31037" name="VILLA GARCIA" />
+    <City id="31061" name="VILLA GONZALEZ ORTEGA" />
+    <City id="31062" name="VILLA HIDALGO" />
+    <City id="31023" name="VILLANUEVA" />
+    <City id="31000" name="ZACATECAS" />
+  </State>
+</Mexico>

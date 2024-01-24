@@ -1,0 +1,3 @@
+CAMBIOS POR MANTENIMIENTOS EN PDF
+07/06/2019	-	F-92512 Esquemas 2019 RF_007_CARTA_DISMINUCION: AdquirenteCartaDisminucionExencionGL.pdf
+				En el formato de “Carta de Disminución o Exención de Garantía Líquida” eliminar el campo de “El Cliente Representado por”

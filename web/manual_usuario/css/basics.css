@@ -1,0 +1,288 @@
+#apDiv1 {
+	position:absolute;
+	width:800px;
+	height:94px;
+	z-index:1;
+}
+.camposx {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-style: normal;
+	line-height: normal;
+}
+body{
+	text-align:center;
+	margin:0 0 0 0;
+	padding:0;
+	background-color:#FFF
+}
+.blok{display:block}
+img{border:none}
+.mRight10{margin-right:10px}
+.mTop10{margin-Top:10px}
+.mTop25{margin-Top:25px}
+.mTop30{margin-Top:30px}
+.mBot10{margin-bottom:10px}
+
+.fLeft{float:left}
+.fRight{float:right}
+.blok{display:block}
+.clear{clear:both}
+.clearfix:after{    content:".";     display:block;     height:0;     clear:both;     visibility:hidden}
+.clearfix{display:inline-table;  clear:both}
+* html .clearfix{height:1%;  clear:both}
+.clearfix{display:block; clear:both}
+
+.dHeader{float:right; margin:37px 20px 0 0}
+.dHeader a, #footer a{text-decoration:none; color:#999; font-size:9px; line-height:11px; font-weight:bold}
+#nav .bt1menu{
+	width:121px;
+	text-align:center;
+	padding-top: 6px;
+	padding-right: 0;
+	padding-bottom: 12px;
+	padding-left: 0;
+}
+#it1{background:url(../images/bg_navizq.jpg) center left no-repeat}
+#nav .bt2menu{padding:6px 0 12px 0; width:151px; }
+#nav .bt3menu{padding:6px 0 12px 0; width:106px; text-align:center;}
+#nav .bt4menu{padding:6px 0 12px 0; width:131px; text-align:center;}
+#nav .bt5menu{padding:6px 0 12px 0; width:113px; text-align:center;}
+#nav .bt6menu{padding:6px 0 12px 0; width:129px; text-align:center;}
+#nav .bt7menu{text-align:center; padding:6px 0 12px 0; width:147px; background-image: none;}
+#it7 {background-image: url(../images/bg_navder.jpg) center left no-repeat}
+.dUbica{color:#333; font-size:9px}
+.dUbicaa{text-decoration:none; color:#333; font-size:9px; line-height:11px}
+.dTituprin{
+	margin-top:5px;
+	border-bottom:solid 1px #CCC;
+	border-top:solid 1px #CCC;
+	padding-top: 2px;
+	padding-right: 0;
+	padding-bottom: 2px;
+	padding-left: 0;
+}
+.tTitulo2{float:right; padding:8px 0 0 0}
+.bgline{background:url(../images/bg_content.gif) repeat-y}
+.colIzq{
+	float:left;
+	width:165px;
+	margin-right:10px;
+	padding-top: 10px;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-left: 0;
+}
+.colDer{
+	float:left;
+	width:770px;
+	margin-left:15px;
+	padding-top: 5px;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-left: 0;
+}
+.hRojo{background:url(../images/rojo.gif) no-repeat 0 5px; padding:0 0 0 7px; color:#900; font-size:9px; line-height:11px}
+.first{background-color:#FFF}
+.second{background-color:#E6E6E6; }
+
+.bgtext{background:url(../images/bg_input.jpg) repeat-x; width:220px; border-left:solid 1px #666; border-top:solid 1px #666; border-bottom:solid 1px #CCC; border-right:solid 1px #CCC; font-size:11px; line-height:13px}
+.gbamari{float:left; padding:3px; margin:0; color:#900}
+.btn{background:url(../images/bg_btnenvia.jpg) repeat-x; border:solid 1px #CCC; color:#FFFFFF; font:bold 10px Verdana,Arial,Helvetica,sans-serif; width:74px; height:22px}
+.btnbem{background:url(../images/bg_btnenviabem.jpg) repeat-x; border:none; border-bottom-width:1px; border-bottom-color:#FFFFFF; color:#FFFFFF; font:bold 10px Verdana,Arial,Helvetica,sans-serif; width:74px; height:20px}
+.btancho{width:158px}
+.mLeftbo{margin-left:198px; color:#900; font-size:11px; line-height:13px}
+.th1b{width:183px; padding:3px 0 3px 13px}
+. b{width:305px; padding:3px 0 3px 13px}
+#main{text-align:left; display:block; margin:0 auto; background-color:#FFF; width:934px}
+.bgnav{
+	background:url(../images/bg_navgene.jpg) repeat-x;
+	clear:both;
+	width:100%;
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 18px;
+	padding-top: 2px;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-left: 0;
+}
+#nav{margin:0; padding:0; list-style:none; background:url(../images/bg_navder.jpg) center right no-repeat}
+#footer{background-color:#F8F8F2; border-bottom:solid 1px #E9E9E4; border-top:solid 1px #E9E9E4; text-align:center; margin-top:20px; padding:16px 0 15px 0; clear:both}
+#content{display:block; clear:both; padding:2px 10px 5px 20px}
+/*nav*/
+#nav ul{padding:0; margin:0; list-style:none; border-top:solid 1px #fffff; background-color:#cccccc; width:300px; color: #990000;}
+#nav a{font-size:12px; line-height:14px; font-weight:bold; color:#FFF; text-decoration:none; display:block; background:url(../images/back_menu.gif) center right no-repeat;}
+#nav a.daddy{background:url(../images/blanco.gif) center right no-repeat;}
+#nav ul li a{font-size:9px; padding:5px; border-left:solid 1px #ccc; border-right:solid 1px #ffffff; border-bottom:solid 1px #ffffff; width:158px; display:block; background-image:none; color: #000000; font-weight: normal;}
+#nav ul li ul a{border-left:solid 1px #fff; border-right:solid 1px #fff; border-bottom:solid 1px #fff;}
+#nav ul li ul li a{background-image:none;}
+#nav ul li ul li ul{/*margin:-26px 0 0 170px*/}
+#nav ul li a:hover{background-color:#999999; color: #990000;}
+#nav ul li{width:170px}
+/* #nav ul li ul{border:solid 1px #CCC;} */
+
+#nav li{float:left}
+#nav li ul{
+	position:absolute;
+	width:170px;
+	left:-999em;
+	margin:-4px 0 0 0;
+}
+#nav li:hover ul{left:auto}
+#nav li:hover ul, #nav li.sfhover ul{left:auto}
+#nav li ul ul, #nav li ul ul ul{margin:-23px 0 0 170px; border: none; border-top:solid 1px #ffffff; border-right: solid 1px #ffffff;}
+#nav li:hover ul ul, #nav li:hover ul ul ul, #nav li.sfhover ul ul, #nav li.sfhover ul ul ul{left:-999em}
+#nav li:hover ul, #nav li li:hover ul, #nav li li li:hover ul, #nav li.sfhover ul, #nav li li.sfhover ul, #nav li li li.sfhover ul{left:auto}
+#nav li:hover, #nav li.sfhover, #nav #it1.sfhover{background-color:#990000; }
+#nav li li:hover, #nav li li.sfhover{background-color:#999999;}
+
+h1, h2, h3, h4, p, span{padding-top:0; padding-bottom:0px; margin-top:0; margin-bottom:10px}
+body{
+	line-height:12px;
+	color:#FFFFFF;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:9px;
+}
+h1, h1 a{font-family:Verdana, Arial, Helvetica, sans-serif; font-size:18px; font-style:normal; line-height:23px; font-weight:normal; font-variant:normal; text-transform:none; color:#333}
+h2, h2 a{font-size:11px; font-weight:normal; font-variant:normal; text-transform:none; color:#333; line-height:13px}
+p, h3{color:#333; font-size:9px; font-style:normal; line-height:11px; font-weight:normal}
+h4{font-size:9px; font-style:normal; line-height:5px; font-variant:normal}
+.tTitulo{
+	float:left;
+	font:20px/22px Verdana, Arial, Helvetica, sans-serif;
+	width:760px;
+	color:#900
+}
+.tRojo{color:#900}
+.tVerde{color:#666}
+.dAvisos h3, .colIzq h3{margin-bottom:4px}
+.tRight{text-align:right}
+.linkIt{text-decoration:none; color:#990000; text-decoration:underline;}
+
+.tbalterno{
+	width:100%;
+	margin-bottom:20px;
+	clear:both;
+	font-size: 10px;
+}
+.tbalternoCH{
+	width:80%;
+	margin-bottom:20px;
+	clear:both;
+	font-size: 10px;
+}
+.tbalterno td{padding:3px;  }
+.tbalterno th{padding:6px; font-size:9px; line-height:11px; color:#000}
+.tbalterno select{
+	background:url(../images/bg_input.jpg) repeat-x;
+	border-left:solid 1px #666;
+	border-top:solid 1px #666;
+	border-bottom:solid 1px #CCC;
+	border-right:none;
+	font-size:11px;
+	line-height:13px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+.tbalterno th{border:solid 1px #999; border-bottom:#999; border-bottom-style:inset; border-left:#999; border-left-style:outset; background:url(../images/bg_tablec.jpg) repeat-x; padding:3px}
+
+a{color:#333}
+a:hover{color:#666}
+
+.lista{
+	margin:0;
+	padding:2px 0 0 0;
+	list-style:none;
+	border-top:solid 1px #CCC;
+	font-size: 9px;
+}
+.lista li{ margin:3px 0 3px 0; }
+.lista #active{ border-bottom:dashed 1px #CCC; padding:5px 2px 5px 2px; font-weight:bold }
+.lista a{
+	border-bottom:dashed 1px #CCC;
+	width:160px;
+	;
+	display:block;
+	font-size:9px;
+	line-height:11px;
+	color:#666;
+	text-decoration:none;
+	padding-top: 2px;
+	padding-right: 2px;
+	padding-bottom: 2px;
+	padding-left: 2px;
+}
+.lista a:hover{ background-color: #F5F5F5;}
+
+.tTitulo3 .a {
+	float: left;
+}
+.tTitulo3 {
+	clear: both;
+}
+.pesos {
+	background-image: url((../images/bg_input.jpg);
+	background-repeat: repeat-x;
+	border-bottom: solid 1px #CCC;
+	border-left: solid 1px #666;
+	border-right: solid 1px #CCC;
+	border-top: solid 1px #666;
+	font-size: 11px;
+	line-height: 13px;
+	width: 200px;
+}
+.tbalterno2 {
+	width:100%;
+	margin-bottom:20px;
+	clear:both;
+	font-size: 10px;
+}
+.btnGde {
+background:url(../images/bg_btnenvia.jpg) repeat-x; border:solid 1px #CCC; color:#FFFFFF; font:bold 10px Verdana,Arial,Helvetica,sans-serif; width:180px; height:22px
+}
+
+#nav li ul {
+	border: 0;
+}
+
+#nav li li:hover a, #nav li li.sfhover a {
+	color: #990000;
+}
+
+#nav li li:hover li a, #nav li li.sfhover li a {
+	color: #000000;
+}
+
+#nav li li:hover li a:hover, #nav li li.sfhover li a:hover {
+	color: #990000;
+}
+
+#nav li li li:hover a, #nav li li li.sfhover a {
+	color: #990000;
+}
+
+#nav li li li:hover li a, #nav li li li.sfhover li a {
+	color: #000000;
+}
+
+
+#nav #it1:hover, #nav #it1.sfhover  {
+	background:url(../images/bg_navizq_on.jpg) center left no-repeat;
+	background-color: #990000;
+}
+
+#nav #it7:hover, #nav #it7.sfhover  {
+	background:url(../images/bg_navder_on.jpg) center right no-repeat;
+	background-color: #990000;
+}.bgtextCH {
+background:url(../images/bg_input.jpg) repeat-x; width:200px; border-left:solid 1px #666; border-top:solid 1px #666; border-bottom:solid 1px #CCC; border-right:solid 1px #CCC; font-size:11px; line-height:13px
+}
+.bgtextGde {
+background:url(../images/bg_input.jpg) repeat-x; width:320px; border-left:solid 1px #666; border-top:solid 1px #666; border-bottom:solid 1px #CCC; border-right:solid 1px #CCC; font-size:11px; line-height:13px
+}
+.dAvisos h3, .colIzq h3{margin-bottom:4px}
+.dAvisos{background-color:#FAFAFA; border:solid 1px #9C9C9C; padding:5px}
+.dAvisostitulo{background-color:#E8E8E8;}
+.dAvisostit{background-color:#E8E8E8; border-top:solid 1px #9C9C9C; border-left:solid 1px #9C9C9C; border-right:solid 1px #9C9C9C; padding:3px}
+.dAvisosmas{background:url(../images/dwn_avisos.gif); height:18px; width:89px; padding:2px; font-family:Verdana, Arial, Helvetica, sans-serif; font-weight:bold; font-size:9px; color:#990000; text-align:right; padding:3px}

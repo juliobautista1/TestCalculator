@@ -1,0 +1,537 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+
+	<body>
+		<ui:composition template="./contractTemplate.xhtml">
+
+		<ui:define name="top">
+        	Consulta Detallada de Contratos para Soporte
+      	</ui:define>
+			<ui:define name="content">
+				<f:view>
+					<h:form id="forma">
+					<a name="topPage"></a>	
+						<h:panelGrid styleClass="contractStyleSpecial" columns="1"
+							cellpadding="1" cellspacing="1">
+							<f:facet name="header">
+								<h:outputText value="Consulta de Contratos" />
+							</f:facet>
+							<h:column>
+								<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+								<h:outputText value="Busqueda por" />
+								<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+								<h:selectOneMenu id="searchoption"
+									onchange="return searchOption('searchoption','reference');"
+									value="#{ContractReportMB.searchoption}" style="width:60px;"
+									styleClass="camposx">
+									<f:selectItem itemValue="Folio" itemLabel="Folio" />
+								</h:selectOneMenu>
+								<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+								<h:inputText style="width:110px;" maxlength="12" id="reference"
+									value="#{ContractReportMB.reference}" required="false"
+									class="camposx" />
+								<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;| X </f:verbatim>
+								<h:commandLink styleClass="search" id="Consultar"
+									action="#{ContractReportMB.getSupportReportResult}" immediate="false">CONSULTAR</h:commandLink>
+								<f:verbatim>&amp;nbsp;|</f:verbatim>
+							</h:column>
+						</h:panelGrid>
+						<br />
+						<br />
+
+						<br />
+						<c:if test="#{! empty ContractReportMB.contractList}">
+							<h:dataTable id="list" value="#{ContractReportMB.contractList}"
+								rendered="#{! empty ContractReportMB.contractList}"
+								var="contractSearch" styleClass="contractStyle"
+								rowClasses="tableStyleFirstRow, tableStyleSecondRow"
+								headerClass="Estilo5">
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Id" />
+									</f:facet>
+									<h:commandLink id="getcontractDetail"
+										action="#{ContractReportMB.getContractDetail}"
+										value="#{contractSearch.contract.contractId}">
+										<f:param name="contractId"
+											value="#{contractSearch.contract.contractId}" />
+									</h:commandLink>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Folio" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.contract.reference}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Versión" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.contract.version}">
+									</h:outputText>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Estatus" />
+									</f:facet>
+									<h:outputText value ="#{contractSearch.contract.status.description}" title="#{contractSearch.contract.status.statusid}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Producto" />
+									</f:facet>
+									<h:outputText value ="#{contractSearch.contract.product.name}" title="#{contractSearch.contract.product.productid}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="No. Comercio" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.contract.merchantNumber}" />
+								</h:column>
+								 <h:column>
+									<f:facet name="header">
+										<h:outputText value="Cliente" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.contract.client.fiscalname}" title="#{contractSearch.contract.client.clientid}" />
+								</h:column>  
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Fecha de Creación" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.contract.creationdate}">
+										<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"
+											timeZone="America/Mexico_City" />
+									</h:outputText>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="No. Empleado" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.contract.creationoffempnum}" title="#{contractSearch.contract.creationoffname}"/>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="No. Emp. Autorizacion 1" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.contract.authoffempnum1}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="No. Emp. Autorizacion 2" />
+									</f:facet>
+									<h:outputText value="#{contractSearch.contract.authoffempnum2}" />
+								</h:column>
+							</h:dataTable>
+							<br />
+							<br />
+						</c:if>
+						<c:if test="#{empty ContractReportMB.contractList}">
+							<h:outputText styleClass="content" value="No se encontró información con el folio solicitado" />
+						</c:if>
+						<c:if test="#{! empty ContractReportMB.selectedContract}">
+							<c:if test="#{! empty ContractReportMB.selectedContract.contractStatusHistoryCollection}">
+								<h:panelGrid columns="1" styleClass="contractStyle"
+									cellpadding="0" cellspacing="0">
+									<f:facet name="header" style="align:center">
+										<h:outputText value="Historial de estatus del contrato - ContractStatusHistory" />
+									</f:facet>
+									<h:dataTable id="contractStatusHistoryDetail" value="#{ContractReportMB.selectedContract.contractStatusHistoryCollection}"
+										rendered="#{! empty ContractReportMB.selectedContract.contractStatusHistoryCollection}"
+										var="contractStatusHistoryDetail" styleClass="contractStyle"
+										rowClasses="tableStyleFirstRow, tableStyleSecondRow"
+										headerClass="Estilo5">
+										<h:column>
+											<f:facet name="header">
+												<h:outputText value="Id Contrato"/>
+											</f:facet>
+											<h:outputText value="#{contractStatusHistoryDetail.contractStatusHistoryPK.contractid}"/>
+										</h:column>
+										<h:column>
+											<f:facet name="header">
+												<h:outputText value="Versión" />
+											</f:facet>
+											<h:outputText value="#{contractStatusHistoryDetail.contractStatusHistoryPK.version}" />
+										</h:column>
+										<h:column>
+											<f:facet name="header">
+												<h:outputText value="Estatus" />
+											</f:facet>
+											<h:outputText value="#{contractStatusHistoryDetail.statusContract.description}" 
+												title="#{contractStatusHistoryDetail.contractStatusHistoryPK.statusid}" />
+										</h:column>
+										<h:column>
+											<f:facet name="header">
+												<h:outputText value="Fecha de Modificación" />
+											</f:facet>
+											<h:outputText value="#{contractStatusHistoryDetail.modifydate}">
+												<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"
+													timeZone="America/Mexico_City" />
+											</h:outputText>
+										</h:column>
+										<h:column>
+											<f:facet name="header">
+												<h:outputText value="Comentario" />
+											</f:facet>
+											<h:outputText value="#{contractStatusHistoryDetail.commentary}" />
+										</h:column>
+									</h:dataTable>
+								</h:panelGrid>	
+								<br />
+								<br />
+							</c:if>
+						<a href="#showAfil" style="font-weight:bold">x Ver Afiliacion...</a>
+						<br />
+						<br />
+							<c:if test="#{! empty ContractReportMB.selectedContract.contractAttributeCollection}">
+								<h:dataTable id="contractAttributeDetail" value="#{ContractReportMB.selectedContract.contractAttributeCollection}"
+									rendered="#{! empty ContractReportMB.selectedContract.contractAttributeCollection}"
+									var="contractAttributeDetail" styleClass="contractStyle"
+									rowClasses="tableStyleFirstRow, tableStyleSecondRow"
+									headerClass="Estilo5">
+									<f:facet name="header">
+										<h:outputText value="Atributos del contrato - ContractAttribute" />
+									</f:facet>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Id Contrato" />
+										</f:facet>
+										<h:outputText value="#{contractAttributeDetail.contractAttributePK.contractid}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Versión" />
+										</f:facet>
+										<h:outputText value="#{contractAttributeDetail.contractAttributePK.version}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Atributo" />
+										</f:facet>
+										<h:outputText value="#{contractAttributeDetail.contractAttributePK.attributeid} - #{contractAttributeDetail.attribute.name}" 
+											title="#{contractAttributeDetail.contractAttributePK.attributeid}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Nombre Campo" />
+										</f:facet>
+										<h:outputText value="#{contractAttributeDetail.attribute.fieldname}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Valor" />
+										</f:facet>
+										<h:outputText value="#{contractAttributeDetail.value}" />
+									</h:column>
+									
+								</h:dataTable>
+								<br />
+								<br />
+							</c:if>
+							
+			<a name="showAfil"></a>	
+						<c:if test="#{! empty ContractReportMB.selectedContract.affiliationCollection}">
+							<br/>
+      						<a onclick="toggle('forma:afil');" style="font-weight:bold;cursor:pointer">x Mostrar/Ocultar Afiliación</a>
+      						<br/>
+      					<h:panelGrid id="afil" style="display:none" >
+      						<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+			                	<f:facet name="header">
+			                    	<h:outputText value="Campos de afiliación"/>
+			                  	</f:facet>
+			                  	<h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleFirstRow, tableStyleSecondtRow">
+              						<h:outputText value="NOMBRE DEL CAMPO" style="font-weight:bold;font-style: italic;"/>
+			                    	<h:outputText value="VALOR" style="font-weight:bold;font-style: italic;"/>
+			                    	<h:outputText value="Producto" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].productdesc}"/>
+			                    	<h:outputText value="Solucion" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].soluciontype}"/>
+			                    	<h:outputText value="Modalidad" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].modality}"/>
+			                    	<h:outputText value="Divisa" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].currency}"/>
+			                    	<h:outputText value="Trámite" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].servicetype}"/>
+			                    	<h:outputText value="Plan o esquema comercial" />
+			                    	<h:outputText value="#{ContractReportMB.plan}"/>
+			                    	<h:outputText value="Cargo Recurrente" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].autopayment}"/>
+			                    	<h:outputText value="Interredes" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].multinet}"/>
+			                    	<h:outputText value="No. Cuenta Pesos" />
+			                    	<h:outputText value="#{ContractReportMB.noCtaPesos}"/>
+			                    	<h:outputText value="No. Cuenta Dolares" />
+			                    	<h:outputText value="#{ContractReportMB.noCtaDlls}"/>
+			                    	<h:outputText value="No. Afiliación Pesos" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].numaffilmn}"/>
+			                    	<h:outputText value="No. Afiliación Dólares" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].numaffildlls}"/>
+			                    	<h:outputText value="Buro Interno" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].internalcredithistory}"/>
+			                    	<h:outputText value="Buro Externo" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].externalcredithistory}"/>
+			                    	<h:outputText value="Banco Actual" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].currentbank}"/>
+			                    	<h:outputText value="Comentarios" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].comments}"/>
+			                    	<h:outputText value="Venta forzada" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].forceauth}"/>
+			                    	<h:outputText value="Teclado abierto" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].openkey}"/>
+			                    	<h:outputText value="QPS" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].qps}"/>
+			                    	<h:outputText value="Active 3DS" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].active3ds}"/>
+			                    	<h:outputText value="Divisa Dolares" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].currencydlls}"/>
+			                    	<h:outputText value="TPV Manual" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].manualtpv}"/>
+			                    	<h:outputText value="TPV Electronica" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].electronictpv}"/>
+			                  	</h:panelGrid>
+			                </h:panelGrid>
+			                <!-- Campos de fianza -->
+			                <h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+			                	<f:facet name="header">
+			                    	<h:outputText value="Datos de fianza"/>
+			                  	</f:facet>
+				                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleFirstRow, tableStyleSecondtRow">
+	      							<h:outputText value="Compañía Fianza" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].depositcompany}"/>
+			                    	<h:outputText value="Autoriza exentar fianza" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].officerdepositexent}"/>
+			                    	<h:outputText value="Monto fianza" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].depositamount}"/>
+			                    	<h:outputText value="Requiere fianza" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].havedepositcompany}"/>
+			                    	<h:outputText value="Exenta fianza" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].exentDep}"/>
+	      						</h:panelGrid>
+      						</h:panelGrid>
+      						<!-- Equipos -->
+			                <h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+			                	<f:facet name="header">
+			                    	<h:outputText value="Equipos"/>
+			                  	</f:facet>
+				                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleFirstRow, tableStyleSecondtRow">
+	      							<h:outputText value="Terminal Personal Banorte MPOS con Renta Mensual" />
+	      							<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].mposMonthlyRate}"/>
+	      							<h:outputText value="Terminal Personal Banorte MPOS con Costo por Equipo" />
+	      							<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].mposRateByEquipment}"/>
+	      							<h:outputText value="Bluetooth" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].quantblue}"/>
+			                    	<h:outputText value="Plan Banorte GPRS" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].plangprs}"/>
+			                    	<h:outputText value="Plan Banorte Wifi" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].planwifi}"/>
+			                    	<h:outputText value="DialUp" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].quantdialup}"/>
+			                    	<h:outputText value="Lan" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].quantlan}"/>
+			                    	<h:outputText value="Maquina transcriptora (antes: Maquina Transcriptora)" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].quantmanual}"/>
+			                    	<h:outputText value="Pinpad (antes: Pinpad)" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].quantpinpad}"/>
+			                    	<h:outputText value="TPV conexion celular GPRS (antes: GPRS/CDMA)" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].quantgprs}"/>
+			                    	<h:outputText value="WIFI (antes: Wifi)" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].quantwifi}"/>
+			                    	<h:outputText value="TPV conexion telefonica" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].tpvTel}"/>
+			                    	<h:outputText value="TPV conexion celular" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].tpvMovil}"/>
+			                    	<h:outputText value="TPV conexion internet" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].tpvInternet}"/>
+			                    	<h:outputText value="TPV conexión internet respaldo telefónica (Fija)" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].tpvInternetTel}"/>
+			                    	<h:outputText value="TPV inalámbrica (bluetooth) con conexión telefónica" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].tpvBlueTel}"/>
+			                    	<h:outputText value="TPV inalámbrica (bluetooth) con conexión internet" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].tpvBlueInternet}"/>
+			                    	<h:outputText value="WiFi con respaldo telefónico" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].wifiTel}"/>
+			                    	<h:outputText value="TPV/Pinpad propia" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].ownTpvPinpad}"/>
+	      						</h:panelGrid>
+      						</h:panelGrid>
+      						<!-- Comisiones -->
+			                <h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+			                	<f:facet name="header">
+			                    	<h:outputText value="Comisiones"/>
+			                  	</f:facet>
+				                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleFirstRow, tableStyleSecondtRow">
+				                    	<h:outputText value="Comisión TC pesos descuento" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].avcommisiontcmn}"/>
+				                    	<h:outputText value="Comisión TC pesos transaccion" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].commisiontcmn}"/>
+				                    	<h:outputText value="Comision TC dólares descuento" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].avcommisiontcdlls}"/>
+				                    	<h:outputText value="Comision TC dólares transaccion" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].commisiontcdlls}"/>
+				                    	<h:outputText value="Comision TD pesos descuento" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].avcommisiontdmn}"/>
+				                    	<h:outputText value="Comision TD pesos transaccion" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].commisiontdmn}"/>
+				                    	<h:outputText value="Comisión TD dólares descuento" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].avcommisiontddlls}"/>
+				                    	<h:outputText value="Comisión TD dólares transaccion" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].commisiontddlls}"/>
+				                    	
+				                    	<h:outputText value="Comision Internacional pesos descuento" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].avcommisionintnlmn}"/>
+				                    	<h:outputText value="Comision Internacional pesos transaccion" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].commisionintnlmn}"/>
+				                    	<h:outputText value="Comision Internacional dólares descuento" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].avcommisionintnldlls}"/>
+				                    	<h:outputText value="Comision Internacional dólares transaccion" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].commisionintnldlls}"/>
+				                    	
+				                    	<h:outputText value="Cuota afiliación pesos" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].affiliationratemn}"/>
+				                    	<h:outputText value="Cuota afiliación dólares" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].affiliationratedlls}"/>
+				                    	<h:outputText value="Cuota maquina transcriptora pesos" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].transcriptorratemn}"/>
+				                    	<h:outputText value="Cuota maquina transcriptora dólares" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].transcriptorratedlls}"/>
+				                    	
+				                    	<!-- Costo Equipo Terminal Personal Banorte -->
+				                    	<h:outputText value="Costo Equipo Terminal Personal Banorte pesos" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].rateMposmn}"/>
+				                    	<h:outputText value="Costo Equipo Terminal Personal Banorte dólares" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].transcriptorratedlls}"/>
+				                    	<h:outputText value="Renta mensual pesos" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].monthlyratemn}"/>
+				                    	<h:outputText value="Renta mensual dólares" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].monthlyratedlls}"/>
+				                    	<h:outputText value="Renta anual pesos" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].yearlyratemn}"/>
+				                    	<h:outputText value="Renta anual dólares" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].yearlyratedlls}"/>
+				                    	<h:outputText value="Facturación mensual mínima exigida pesos" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].monthlyinvoicingminmn}"/>
+				                    	<h:outputText value="Facturación mensual mínima exigida dólares" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].monthlyinvoicingmindlls}"/>
+				                    	<h:outputText value="Comisión por no cubrir facturación mensual pesos" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].failmonthlyinvoicingmn}"/>
+				                    	<h:outputText value="Comisión por no cubrir facturación mensual dólares" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].failmonthlyinvoicingdlls}"/>
+				                    	<h:outputText value="Saldo promedio mensual cuenta cheques mínimo exigido pesos" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].minimiunbalancemn}"/>
+				                    	<h:outputText value="Saldo promedio mensual cuenta cheques mínimo exigido dólares" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].minimiunbalancedlls}"/>
+				                    	<h:outputText value="Comisión por incumplimiento saldo promedio mensual pesos" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].failminimiunbalancemn}"/>
+				                    	<h:outputText value="Comisión por incumplimiento saldo promedio mensual dólares" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].failminimiunbalancedlls}"/>
+				                    	<!-- Paga y Retira Efectivo -->
+				                    	<h:outputText value="Paga y Retira Efectivo pesos" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].promnotemn}"/>
+				                    	<h:outputText value="Paga y Retira Efectivo dólares" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].promnotemn}"/>
+				                    	<h:outputText value="Pagaré mínimo pesos" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].promnotemn}"/>
+				                    	<h:outputText value="Pagaré mínimo dólares" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].promnotedlls}"/>
+				                    	<h:outputText value="Comisión por incumplimiento de pagaré mínimo pesos" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].failpromnotemn}"/>
+				                    	<h:outputText value="Comisión por incumplimiento de pagaré mínimo dólares" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].failpormnotedlls}"/>
+				                    	<h:outputText value="AVS pesos" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].avsmn}"/>
+				                    	<h:outputText value="AVS dólares" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].avsdlls}"/>
+				                    	<h:outputText value="Activación 3D Secure pesos" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].activation3dsmn}"/>
+				                    	<h:outputText value="Activación 3D Secure dólares" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].activation3dsdlls}"/>
+				                    	<!-- Servicio de verificación de domicilio por cada consulta -->
+				                    	<h:outputText value="Servicio de verificación de domicilio por cada consulta pesos" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].avsmn}"/>
+				                    	<h:outputText value="Servicio de verificación de domicilio por cada consulta dólares" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].avsdlls}"/>
+				                    	<h:outputText value="Renta mensual 3D secure pesos" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].monthlyrate3dsmn}"/>
+				                    	<h:outputText value="Renta mensual 3D secure dólares" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].monthlyrate3dsdlls}"/>
+				                    	<h:outputText value="Otros conceptos pesos" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].otherconcept1mn}"/>
+				                    	<h:outputText value="Otros conceptos dólares" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].otherconcept1dlls}"/>
+				                    	<h:outputText value="Otros conceptos descripción" />
+				                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].otherconcept1des}"/>
+	      						</h:panelGrid>
+      						</h:panelGrid>
+      						<!-- Certificacion de documentos -->
+			                <h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+			                	<f:facet name="header">
+			                    	<h:outputText value="Documentos"/>
+			                  	</f:facet>
+				                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner3" rowClasses="tableStyleFirstRow, tableStyleSecondtRow">
+	      							<h:outputText value="Id oficial vigente" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].validid}"/>
+			                    	<h:outputText value="Cédula fiscal" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].fiscaldoc}"/>
+			                    	<h:outputText value="Alta en hacienda" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].fiscalenrolment}"/>
+			                    	<h:outputText value="Dictamen jurídico" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].legalopinion}"/>
+			                    	<h:outputText value="Cuenta cheques pesos" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].checkingaccountmn}"/>
+			                    	<h:outputText value="Cuenta cheques dólares" />
+			                    	<h:outputText value="#{ContractReportMB.selectedContract.affiliationCollection[0].checkingaccountdlls}"/>
+	      						</h:panelGrid>
+      						</h:panelGrid>
+      					</h:panelGrid>
+      					
+						<br />
+						<br />
+						<a href="#topPage">x Ir al inicio...</a>
+						</c:if>
+							
+					</c:if>
+						
+					</h:form>
+					
+					<script type="text/javascript">
+		            /* <![CDATA[ */
+		              function start() {
+		            		var query = window.location.search.substring(1);
+			                var parms = query.split('&');
+			                for (var i=0; i<parms.length; i++) {
+			                    var pos = parms[i].indexOf('=');
+			                    if (pos > 0) {
+			                        var key = parms[i].substring(0,pos);
+			                        var val = parms[i].substring(pos+1);
+			                        if ( key == 'referencia' ) {
+			                            document.getElementById('forma:reference').value = val;
+			                            if(typeof jsfcljs == 'function'){
+			                                jsfcljs(document.forms['forma'],'forma:Consultar,forma:Consultar','');
+			                            }
+			                            return false
+			                        }
+			                    }
+			                }	
+		              }
+		            	 function toggle(id) {
+		            	        var element = document.getElementById(id);
+		            	        if(element.style.display == 'block') {
+		            	          element.style.display = 'none';
+		            	        } else {
+		            	          element.style.display = 'block'
+		            	        }
+		            	      }
+		              window.onload = start;
+		            /* ]]> */
+		          </script>					
+				</f:view>
+			</ui:define>
+
+		</ui:composition>
+	</body>
+</html>

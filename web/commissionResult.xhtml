@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+  <body>
+    <ui:composition template="./contractTemplate.xhtml">
+      <ui:define name="top">
+
+			Resultado de la carga del reporte
+      </ui:define>
+
+      <ui:define name="content">
+        <f:view >
+			<script type="text/javascript">
+          	</script>
+					<h:form id="forma">
+
+					<c:if test="#{ ! empty ContractBemMB.erroresValidacion}">
+        				<h1>ERROR</h1>
+        				El archivo no fue cargado debido a los siguientes errores de validación:
+	        			<h:dataTable id="errores"
+							value="#{ContractBemMB.erroresValidacion}" var="error"
+							styleClass="contractStyle"
+							rowClasses="tableStyleFirstRow, tableStyleSecondRow"
+							headerClass="Estilo5">
+	
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Mensaje de error:" />
+								</f:facet>
+								<h:outputText value="#{error.message}" />
+							</h:column>
+	
+						</h:dataTable>	
+					</c:if>
+					
+					<c:if test="#{ ! empty ContractBemMB.erroresComPlan}">
+					<h1>OK</h1>
+        				<h2>Las comisiones correctas fueron cargadas exitosamente</h2> <br/>
+        				<h2>Solamente las siguientes lineas no fueron actualizadas, favor de verificar y volver a cargar.</h2>
+	        				<h:dataTable id="errores"
+							value="#{ContractBemMB.erroresComPlan}" var="error"
+							styleClass="contractStyle"
+							rowClasses="tableStyleFirstRow, tableStyleSecondRow"
+							headerClass="Estilo5">
+	
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Mensaje de error:" />
+								</f:facet>
+								<h:outputText value="#{error.message}" />
+							</h:column>
+	
+						</h:dataTable>
+					</c:if>
+					
+					<c:if test="#{empty ContractBemMB.erroresComPlan}">
+						<c:if test="#{empty ContractBemMB.erroresValidacion}">
+							<h2>Se cargo el archivo exitosamente</h2> <br/>
+						</c:if>
+					</c:if>
+				</h:form>
+				</f:view>
+      </ui:define>
+    </ui:composition>
+
+  </body>
+</html>

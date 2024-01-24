@@ -1,0 +1,95 @@
+<Mexico>
+  <State name="BAJA CALIFORNIA NORTE">
+    <City id="2036" name="ENSENADA" />
+    <City id="2054" name="MEXICALI" />
+    <City id="2060" name="ROSARITO" />
+    <City id="2066" name="TECATE" />
+    <City id="2000" name="TIJUANA" />
+  </State>
+  <State name="BAJA CALIFORNIA SUR">
+    <City id="2504" name="CABO SAN LUCAS" />
+    <City id="2510" name="LA PAZ" />
+    <City id="2524" name="SAN JOSE DEL CABO" />
+  </State>
+  <State name="CAMPECHE">
+    <City id="3005" name="CD DEL CARMEN" />
+    <City id="3006" name="CHAMPOTON" />
+  </State>
+  <State name="CHIAPAS">
+    <City id="6099" name="AMATENANGO DE LA FRONTERA" />
+    <City id="6004" name="CACAHOATAN" />
+    <City id="6007" name="FRONTERA COMALAPA" />
+    <City id="6006" name="FRONTERA HIDALGO" />
+    <City id="6118" name="LA INDEPENDENCIA" />
+    <City id="6119" name="LA LIBERTAD" />
+    <City id="6087" name="LA TRINITARIA" />
+    <City id="6060" name="LAS MARGARITAS" />
+    <City id="6122" name="MAZAPA DE MADERO" />
+    <City id="6123" name="METAPA" />
+    <City id="6015" name="MOTOZINTLA" />
+    <City id="6016" name="OCOSINGO" />
+    <City id="6138" name="SUCHIATE" />
+    <City id="6025" name="TAPACHULA" />
+    <City id="6035" name="TUXTLA CHICO" />
+    <City id="6144" name="UNION JUAREZ" />
+  </State>
+  <State name="CHIHUAHUA">
+    <City id="7002" name="ASCENSION" />
+    <City id="7009" name="CD JUAREZ" />
+    <City id="7113" name="GUADALUPE" />
+    <City id="7019" name="JANOS" />
+    <City id="7131" name="MANUEL BENAVIDES" />
+    <City id="7031" name="OJINAGA" />
+    <City id="7084" name="PRAXEDIS G GUERRERO" />
+  </State>
+  <State name="COAHUILA">
+    <City id="4003" name="ACUNA" />
+    <City id="4004" name="ALLENDE" />
+    <City id="4029" name="GUERRERO" />
+    <City id="4067" name="HIDALGO" />
+    <City id="4068" name="JIMENEZ" />
+    <City id="4044" name="NAVA" />
+    <City id="4036" name="OCAMPO" />
+    <City id="4019" name="PIEDRAS NEGRAS" />
+  </State>
+  <State name="NUEVO LEON">
+    <City id="18024" name="ALLENDE" />
+  </State>
+  <State name="QUINTANA ROO">
+    <City id="22057" name="BENITO JUAREZ" />
+    <City id="22005" name="CANCUN" />
+    <City id="22002" name="COZUMEL" />
+    <City id="22056" name="OTHON P BLANCO" />
+    <City id="22045" name="PLAYA DEL CARMEN" />
+    <City id="22013" name="SOLIDARIDAD" />
+  </State>
+  <State name="SONORA">
+    <City id="25001" name="AGUA PRIETA" />
+    <City id="25003" name="ALTAR" />
+    <City id="25009" name="CABORCA" />
+    <City id="25010" name="CANANEA" />
+    <City id="25111" name="GENERAL PLUTARCO ELIAS C" />
+    <City id="25024" name="NACO" />
+    <City id="25027" name="NOGALES" />
+    <City id="25032" name="PUERTO PENASCO" />
+    <City id="25034" name="SAN LUIS RIO COLORADO" />
+    <City id="25036" name="SANTA CRUZ" />
+    <City id="25121" name="SARIC" />
+  </State>
+  <State name="TABASCO">
+    <City id="26001" name="BALANCAN" />
+    <City id="26017" name="TENOSIQUE" />
+  </State>
+  <State name="TAMAULIPAS">
+    <City id="27069" name="CD CAMARGO" />
+    <City id="27066" name="GUERRERO" />
+    <City id="27085" name="GUSTAVO DIAZ ORDAZ" />
+    <City id="27016" name="MATAMOROS" />
+    <City id="27007" name="MIER" />
+    <City id="27008" name="MIGUEL ALEMAN" />
+    <City id="27017" name="NUEVO LAREDO" />
+    <City id="27019" name="REYNOSA" />
+    <City id="27020" name="RIO BRAVO" />
+    <City id="27025" name="VALLE HERMOSO" />
+  </State>
+</Mexico>

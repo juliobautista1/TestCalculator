@@ -1,0 +1,237 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core">
+
+  <body>
+     <ui:composition template="./contractTemplate.xhtml">
+
+    
+      <ui:define name="top">
+        Formatos de Impresión
+      </ui:define>
+
+      <ui:define name="content">
+        <f:view >
+          <h:form id="forma">
+            <br/>
+            <br/>
+            <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0"  styleClass="contractFormats">
+
+            <c:if test="#{ContractAcquirerMB.toPrint}">
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText style="font-weight: bold;" value="La solicitud de alta ha sido registrada correctamente" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText value="Razon Social Comercio: " />
+                    <h:outputText style="font-weight: bold;" value="#{ContractAcquirerMB.contract.client.fiscalname}" />
+                    <h:outputText value="Contrato con folio N°: " />
+                    <h:outputText style="font-weight: bold;" value="#{ContractAcquirerMB.contract.reference}" />
+                    <h:outputText value="Estatus del contrato: " />
+                    <h:outputText style="font-weight: bold;" value="#{ContractAcquirerMB.contract.status.description}" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText value="Aquí podrás imprimir y reimprimir los Contratos según el trámite solicitado, recuerda que una vez firmados y con el expediente completo, se deberá llevar a cabo el procedimiento de Formalización y Co-Formalización del Folio para su procesamiento al área de Operaciones." />
+                </h:panelGrid>
+                <br/><br/>
+                <h:dataTable value="#{ContractAcquirerMB.formatList}" var="format">
+                    <h:column style="width: 200px;">
+                        <h:outputText value="#{format.description}"/>
+                    </h:column>
+                    <h:column style="width: 200px;">
+                        <h:commandLink target="_blank" immediate="true" action="#{ContractAcquirerMB.createPDF}" value="Ver Documento">
+                            <f:param name="nameTemplate" value="#{format.name}"></f:param>
+                            <f:param name="pathTemplate" value="#{format.path}"></f:param>
+                            <f:param name="flagTemplate" value="#{format.editable}"></f:param>
+                        </h:commandLink>
+                    </h:column>
+                </h:dataTable>
+            </c:if>
+            
+            
+            <c:if test="#{ContractBemMB.toPrint}">
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText style="font-weight: bold;" value="La solicitud de alta ha sido registrada correctamente" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText value="Razon Social Comercio: " />
+                    <h:outputText style="font-weight: bold;" value="#{ContractBemMB.contract.client.fiscalname}" />
+                    <h:outputText value="Contracto con folio N°: " />
+                    <h:outputText style="font-weight: bold;" value="#{ContractBemMB.contract.reference}" />
+                    <h:outputText value="Estatus del contrato: " />
+                    <h:outputText style="font-weight: bold;" value="#{ContractBemMB.contract.status.description}" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0">
+                    <h:outputText value="Aquí podrás imprimir y reimprimir los Contratos según el trámite solicitado, recuerda que una vez firmados y con el expediente completo, se deberá llevar a cabo el procedimiento de Formalización y Co-Formalización del Folio para su procesamiento al área de Operaciones." />
+                </h:panelGrid>
+                <br/><br/>
+                <h:dataTable value="#{ContractBemMB.formatList}" var="format">
+                    <h:column style="width: 200px;">
+                        <h:outputText value="#{format.description}"/>
+                    </h:column>
+                    <h:column style="width: 200px;">
+                        <h:commandLink target="_blank" immediate="true" action="#{ContractBemMB.createPDF}" value="Ver Documento">
+                            <f:param name="nameTemplate" value="#{format.name}"></f:param>
+                            <f:param name="pathTemplate" value="#{format.path}"></f:param>
+                            <f:param name="flagTemplate" value="#{format.editable}"></f:param>
+                        </h:commandLink>
+                    </h:column>
+                </h:dataTable>
+            </c:if>
+            
+            
+            <c:if test="#{ContractPayrollMB.toPrint}">
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText style="font-weight: bold;" value="La solicitud de alta ha sido registrada correctamente" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText value="Razon Social Comercio: " />
+                    <h:outputText style="font-weight: bold;" value="#{ContractPayrollMB.contract.client.fiscalname}" />
+                    <h:outputText value="Contracto con folio N°: " />
+                    <h:outputText style="font-weight: bold;" value="#{ContractPayrollMB.contract.reference}" />
+                    <h:outputText value="Estatus del contrato: " />
+                    <h:outputText style="font-weight: bold;" value="#{ContractPayrollMB.contract.status.description}" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0">
+                    <h:outputText value="Aquí podrás imprimir y reimprimir los Contratos según el trámite solicitado, recuerda que una vez firmados y con el expediente completo, se deberá llevar a cabo el procedimiento de Formalización y Co-Formalización del Folio para su procesamiento al área de Operaciones." />
+                </h:panelGrid>
+                <br/><br/>
+                <h:dataTable value="#{ContractPayrollMB.formatList}" var="format">
+	                    <h:column style="width: 200px;">
+	                        <h:outputText value="#{format.description}"/>
+	                    </h:column>
+	                    <h:column style="width: 200px;">
+	                        <h:commandLink target="_blank" immediate="true" action="#{ContractPayrollMB.createPDF}" value="Ver Documento">
+	                            <f:param name="nameTemplate" value="#{format.name}"></f:param>
+	                            <f:param name="pathTemplate" value="#{format.path}"></f:param>
+	                            <f:param name="flagTemplate" value="#{format.editable}"></f:param>
+	                        </h:commandLink>
+	                    </h:column>
+                </h:dataTable>
+            </c:if>
+            
+            
+            <c:if test="#{ContractReportMB.toPrint}">
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText style="font-weight: bold;" value="Modulo de reimpresión de contratos" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText value="Razon Social Comercio: " />
+                    <h:outputText style="font-weight: bold;" value="#{ContractReportMB.currentVersionFiscalName}" />
+                    
+                    <h:outputText value="El contrato a revisar tiene el folio N°: " />
+                    <h:outputText style="font-weight: bold;" value="#{ContractReportMB.contract.reference}" />
+
+                    <h:outputText value="Estatus del contrato: " />
+                    <h:outputText style="font-weight: bold;" value="#{ContractReportMB.contract.status.description}" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0">
+                    <h:outputText value="Aquí podrás imprimir y reimprimir los Contratos según el trámite solicitado, recuerda que una vez firmados y con el expediente completo, se deberá llevar a cabo el procedimiento de Formalización y Co-Formalización del Folio para su procesamiento al área de Operaciones." />
+                </h:panelGrid>
+                <br/><br/>
+                <h:dataTable value="#{ContractReportMB.formatList}" var="format">
+                    <h:column style="width: 200px;">
+                        <h:outputText value="#{format.description}"/>
+                    </h:column>
+                    <h:column style="width: 200px;">
+                        <h:commandLink target="_blank" immediate="true" action="#{ContractReportMB.createPDF}" value="Ver Documento">
+                            <f:param name="nameTemplate" value="#{format.name}"></f:param>
+                            <f:param name="pathTemplate" value="#{format.path}"></f:param>
+                            <f:param name="flagTemplate" value="#{format.editable}"></f:param>
+                        </h:commandLink>
+                    </h:column>
+                </h:dataTable>
+            </c:if>
+            
+            
+            <c:if test="#{ContractCdMB.toPrint}">
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText style="font-weight: bold;" value="La solicitud de alta ha sido registrada correctamente" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText value="Razon Social Comercio: " />
+                    <h:outputText style="font-weight: bold;" value="#{ContractCdMB.contract.client.fiscalname}" />
+                    <h:outputText value="Contracto con folio N°: " />
+                    <h:outputText style="font-weight: bold;" value="#{ContractCdMB.contract.reference}" />
+                    <h:outputText value="Estatus del contrato: " />
+                    <h:outputText style="font-weight: bold;" value="#{ContractCdMB.contract.status.description}" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0">
+                    <h:outputText value="Aquí podrás imprimir y reimprimir los Contratos según el trámite solicitado, recuerda que una vez firmados y con el expediente completo, se deberá llevar a cabo el procedimiento de Formalización y Co-Formalización del Folio para su procesamiento al área de Operaciones." />
+                </h:panelGrid>
+                <br/><br/>
+                <h:dataTable value="#{ContractCdMB.formatList}" var="format">
+	                    <h:column style="width: 200px;">
+	                        <h:outputText value="#{format.description}"/>
+	                    </h:column>
+	                    <h:column style="width: 200px;">
+	                        <h:commandLink target="_blank" immediate="true" action="#{ContractCdMB.createPDF}" value="Ver Documento">
+	                            <f:param name="nameTemplate" value="#{format.name}"></f:param>
+	                            <f:param name="pathTemplate" value="#{format.path}"></f:param>
+	                            <f:param name="flagTemplate" value="#{format.editable}"></f:param>
+	                        </h:commandLink>
+	                    </h:column>
+                </h:dataTable>
+            </c:if>
+            
+            
+            
+            
+
+            <br/><br/>            
+            </h:panelGrid>
+            <br/><br/>
+             <div class="cellright" id="divWait" style="visibility: hidden">
+				  Espere... 
+			 </div>
+             <div class="send" id="divLink">
+	             <c:if test="#{ContractAcquirerMB.toPrint}">
+	             	<h:outputText value="| x " rendered="#{ContractAcquirerMB.toAuthorize}"/>
+	             	<h:commandLink immediate="true" action="#{ContractAcquirerMB.toAuthorizeEmp1}"  
+	             					rendered="#{ContractAcquirerMB.toAuthorize}"  onclick="hideShow('divLink', 'divWait')"
+	             					value="FORMALIZAR"><f:param name="toAuthorize" value="false"></f:param>
+	             	</h:commandLink><h:outputText value="|" rendered="#{ContractAcquirerMB.toAuthorize}"/>
+	             </c:if>
+	             <c:if test="#{ContractBemMB.toPrint}">
+	             	<h:outputText value="| x " rendered="#{ContractBemMB.toAuthorize}"/>
+	             	<h:commandLink immediate="true" action="#{ContractBemMB.toAuthorizeEmp1}"  
+	             					rendered="#{ContractBemMB.toAuthorize}"  onclick="hideShow('divLink', 'divWait')"
+	             					value="FORMALIZAR"><f:param name="toAuthorize" value="false"></f:param>
+	             	</h:commandLink><h:outputText value="|" rendered="#{ContractBemMB.toAuthorize}"/>
+	             </c:if>
+	             <c:if test="#{ContractPayrollMB.toPrint}">	
+	             	<h:outputText value="| x " rendered="#{ContractPayrollMB.toAuthorize}"/>
+	             	<h:commandLink immediate="true" action="#{ContractPayrollMB.toAuthorizeEmp1}"  
+	             					rendered="#{ContractPayrollMB.toAuthorize}"  onclick="hideShow('divLink', 'divWait')"
+	             					value="FORMALIZAR"><f:param name="toAuthorize" value="false"></f:param>
+	             	</h:commandLink><h:outputText value="|" rendered="#{ContractPayrollMB.toAuthorize}"/>
+	             </c:if>
+	             <c:if test="#{ContractCdMB.toPrint}">
+	             	<h:outputText value="| x " rendered="#{ContractCdMB.toAuthorize}"/>
+	             	<h:commandLink immediate="true" action="#{ContractCdMB.toAuthorizeEmp1}"  
+	             					rendered="#{ContractCdMB.toAuthorize}"  onclick="hideShow('divLink', 'divWait')"
+	             					value="FORMALIZAR"><f:param name="toAuthorize" value="false"></f:param>
+	             	</h:commandLink><h:outputText value="|" rendered="#{ContractCdMB.toAuthorize}"/>
+	             </c:if>
+             </div>
+          </h:form>
+        </f:view>
+      </ui:define>
+
+    </ui:composition>
+
+  </body>
+</html>

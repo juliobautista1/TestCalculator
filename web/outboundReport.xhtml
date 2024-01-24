@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+
+	<body>
+		<ui:composition template="./contractTemplate.xhtml">
+
+		<ui:define name="top">
+        	Consulta de Confirmacion del Cliente
+      	</ui:define>
+			<ui:define name="content">
+				<f:view>
+					<h:form id="forma">
+						<c:if test="${param['beginSearch']==true}">
+           					#{OutboundReportMB.beginSearch}
+            			</c:if>
+					
+						<h:panelGrid styleClass="contractStyleSpecial" columns="1"
+							cellpadding="1" cellspacing="1">
+							<f:facet name="header">
+								<h:outputText value="Consulta" />
+							</f:facet>
+							<h:column>
+								<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+								<h:outputText value="Busqueda por" />
+								<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+								<h:selectOneMenu id="searchoption"
+									value="#{OutboundReportMB.searchoption}" style="width:130px;"
+									styleClass="camposx">
+									<f:selectItem itemValue="MERCHANTNUMBER" itemLabel="Numero de Comercio" />
+									<f:selectItem itemValue="SIC" itemLabel="SIC" />
+								</h:selectOneMenu>
+								<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+								<h:inputText id="reference" style="width:60px;" maxlength="8" 
+									value="#{OutboundReportMB.searchDescription}" required="false"
+									class="camposx" />
+								<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;| X </f:verbatim>
+								<h:commandLink styleClass="search" id="Consultar"
+									action="#{OutboundReportMB.getReportResult}" immediate="false">CONSULTAR</h:commandLink>
+								<f:verbatim>&amp;nbsp;|</f:verbatim>
+							</h:column>
+						</h:panelGrid>
+						<br />
+						<br />
+
+						<br />
+						<c:if test="#{! empty OutboundReportMB.resultList}">
+							<h:dataTable id="list" value="#{OutboundReportMB.resultList}"
+								rendered="#{! empty OutboundReportMB.resultList}"
+								var="maintance" styleClass="contractStyle"
+								rowClasses="tableStyleFirstRow, tableStyleSecondRow"
+								headerClass="Estilo5">
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Numero de Comercio" />
+									</f:facet>
+									<h:outputText value="#{maintance.merchantNumber}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="SIC" />
+									</f:facet>
+									<h:outputText value="#{maintance.sic}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Nombre Empresa" />
+									</f:facet>
+									<h:outputText value="#{maintance.companyName}">
+									</h:outputText>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Envio Tralix" />
+									</f:facet>
+									<h:outputText value="#{maintance.sentTralixDate}">
+										<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"
+											timeZone="America/Mexico_City" />
+									</h:outputText>
+								</h:column>								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Tipo de Contacto" />
+									</f:facet>
+									<h:outputText value="#{maintance.status.name}" />
+								</h:column>			
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Resultado" />
+									</f:facet>
+									<h:outputText value="#{maintance.status.description}" />
+								</h:column>															
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="No. Reintentos Directa" />
+									</f:facet>
+									<h:outputText value="#{maintance.retries}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Comentarios" />
+									</f:facet>
+									<h:outputText value="#{maintance.comments}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Envio Directa" />
+									</f:facet>
+									<h:outputText value="#{maintance.sentDirectaDate}">
+										<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"
+											timeZone="America/Mexico_City" />
+									</h:outputText>
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Respuesta Directa" />
+									</f:facet>
+									<h:outputText value="#{maintance.updateDate}">
+										<f:convertDateTime pattern="dd/MM/yyyy"
+											timeZone="America/Mexico_City" />
+									</h:outputText>
+								</h:column>
+							</h:dataTable>
+							<br />
+							<br />
+						</c:if>
+						<c:if test="#{empty OutboundReportMB.resultList}">
+							<h:outputText styleClass="content" value="No hay registros" />
+						</c:if>
+						<br />
+						<br />
+						<br />
+						<br />
+					</h:form>
+
+					<script type="text/javascript">
+            /* <![CDATA[ */
+              function start() {
+                var query = window.location.search.substring(1);
+                var parms = query.split('&');
+                for (var i=0; i<parms.length; i++) {
+                    var pos = parms[i].indexOf('=');
+                    if (pos > 0) {
+                        var key = parms[i].substring(0,pos);
+                        var val = parms[i].substring(pos+1);
+                        if ( key == 'referencia' ) {
+                            document.getElementById('forma:reference').value = val;
+                            if(typeof jsfcljs == 'function'){
+                                jsfcljs(document.forms['forma'],'forma:Consultar,forma:Consultar','');
+                            }
+                            return false
+                        }
+                    }
+                }
+              }
+              window.onload = start;
+            /* ]]> */
+          </script>
+				</f:view>
+			</ui:define>
+
+		</ui:composition>
+	</body>
+</html>

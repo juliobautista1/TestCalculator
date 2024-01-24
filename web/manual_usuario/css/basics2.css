@@ -1,0 +1,50 @@
+.dTablaf{
+	margin-bottom:10px;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: dashed;
+	border-top-color: #CCC;
+	border-bottom-color: #CCC;
+	padding-top: 2px;
+	padding-right: 0px;
+	padding-bottom: 10px;
+	padding-left: 0px;
+	width:100%;
+}
+
+.dTablafbem{
+	background:url(../images/bg_input.jpg) repeat-x;
+	margin-bottom:10px;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: dashed;
+	border-top-color: #CCCCCC;
+	border-bottom-color: #CCC;
+	padding-top: 2px;
+	padding-right: 1px;
+	padding-bottom: 2px;
+	padding-left: 0;
+}
+.dTablafsola{
+	margin-bottom: 10px;
+}
+.dTablaf select{
+	background:url(../images/bg_input.jpg) repeat-x;
+	width:205px;
+	border-left:solid 1px #666;
+	border-top:solid 1px #666;
+	border-bottom:solid 1px #CCC;
+	border-right:none;
+	font-size:11px;
+	line-height:13px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+.dTablafselect{
+	background:url(../images/bg_input2.jpg) repeat-x;
+	border-left:none;
+	border-top:solid 5px #b1B1B1;
+	border-right:none;
+	padding-top: 10px;
+}

@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jstl/core">
+  <body>
+    <ui:composition template="./contractTemplate2.xhtml">
+
+      <ui:define name="top">
+        Consulta de Contratos
+      </ui:define>
+
+      <ui:define name="content">
+        <f:view>
+          <h:form id="forma">
+            <br/>
+
+            <h:panelGrid styleClass="contractStyleSpecial" columns="1" cellpadding="1" cellspacing="1">
+              <f:facet name="header">
+                <h:outputText value="Consulta de Poblaciones"/>
+              </f:facet>
+              <h:column>
+                <f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+                <h:outputText value="Busqueda por"/>
+                <f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+                <h:selectOneMenu id="searchoption"  value="#{ContractAdminReportMB.searchoption}" style="width:80px;" styleClass="camposx">
+                  <f:selectItem itemValue="Estado" itemLabel="Estado"/>
+                  <f:selectItem itemValue="Poblacion" itemLabel="Población"/>
+                </h:selectOneMenu>
+                <f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+                <h:inputText style="width:80px;" id="reference" value="#{ContractAdminReportMB.reference}" required="false" class="camposx"/>
+                <f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;| X </f:verbatim>
+                <h:commandLink styleClass="search" id="Consultar" action="#{ContractAdminReportMB.getReportResult}" immediate="false">CONSULTAR</h:commandLink>
+                <f:verbatim>&amp;nbsp;|</f:verbatim>
+            </h:column>
+            
+            <h:column>
+                       <h:outputLink id="Nuevo"  value="/contract/poblacion.jsf">
+                        <f:param name="resetForm" value="true"/>
+                        <h:outputText value=" X Agregar Nueva Población" />
+                      </h:outputLink>
+            </h:column>
+            </h:panelGrid>
+            <br/>
+            
+            <c:if test="#{! empty ContractAdminReportMB.citiesList}">
+              <h:dataTable id="list" value="#{ContractAdminReportMB.citiesList}" rendered="#{! empty ContractAdminReportMB.citiesList}" var="cities" styleClass="contractStyle" rowClasses="tableStyleFirstRow, tableStyleSecondRow" headerClass="Estilo5">
+                <h:column>
+                  <f:facet name="header">
+                    <h:outputText value="Poblacion"/>
+                  </f:facet>
+                  <h:outputText value="#{cities.name}"/>
+                </h:column>
+                 <h:column>
+                  <f:facet name="header">
+                    <h:outputText value="Estado"/>
+                  </f:facet>
+                  <h:outputText value="#{cities.id_state}"/>
+                </h:column>
+                <h:column>
+                  <f:facet name="header">
+                    <h:outputText value="Editar"/>
+                  </f:facet>
+                    <h:column>
+                       <h:outputLink id="editAuth" value="/contract/poblacion.jsf">
+                        <f:param name="cities_id" value="#{cities.id}"/>
+                        <f:param name="editForm" value="true"/>
+                        <h:outputText value="Editar" />
+                      </h:outputLink>
+                    </h:column>
+                </h:column>
+                <h:column>
+                  <f:facet name="header">
+                    <h:outputText value="Eliminar"/>
+                  </f:facet>
+                  <h:column>
+                    <h:commandLink id="Delete" action="/contract/poblacion.jsf?editForm=true"  onclick="return confirm('Eliminarás una población ¿Deseas continuar?')" value="Eliminar">
+                      <f:param name="cities_id" value="#{cities.id}"></f:param>
+                  </h:commandLink>
+                  </h:column>
+                </h:column>
+              </h:dataTable>
+              <br/>
+              <br/>
+            </c:if>
+            <c:if test="#{empty ContractAdminReportMB.citiesList}">
+                <h:outputText styleClass="content" value="No hay registros" />
+            </c:if>
+          </h:form>
+
+
+        </f:view>
+      </ui:define>
+
+    </ui:composition>
+  </body>
+</html>

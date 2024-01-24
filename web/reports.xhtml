@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<body>
+<ui:composition template="./contractTemplate.xhtml">
+	<ui:define name="top">
+        Reportes
+      </ui:define>
+	<ui:define name="content">
+		<f:view>
+			<script type="text/javascript">
+				function start() {
+					Calendar.setup({ inputField : "forma:startReportDate", ifFormat : "%d/%m/%Y" });
+					Calendar.setup({ inputField : "forma:endReportDate", ifFormat : "%d/%m/%Y" });
+				}
+				window.onload = start;
+			</script>
+			
+			<h:form id="forma">
+				<h:panelGroup>
+				<fieldset>
+  				<legend>Filtros:</legend>
+					<h:selectOneRadio id="dateFilterRadio" value="#{ContractBemMB.dateReportFilter}"> 
+						<f:selectItem itemLabel="Fecha de creación" itemValue="creacion" />
+						<f:selectItem itemLabel="Fecha de Modificación" itemValue="modificacion" />
+					</h:selectOneRadio>
+				<br/>
+					<h:outputText value="Fecha Inicial" />
+					<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+					<h:inputText id="startReportDate" onkeypress="return block(evt);"
+						style="width:80px" maxlength="10" styleClass="camposx"
+						value="#{ContractBemMB.startReportDate}" required="false" />
+					<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+					<h:outputText value="Fecha Final" />
+					<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+					<h:inputText id="endReportDate" onkeypress="return block(evt);"
+						style="width:80px" maxlength="10" styleClass="camposx"
+						value="#{ContractBemMB.endReportDate}" required="false" />
+					<br/>
+					<br/>		
+					<h:outputText value="Estatus del contrato:" />
+				<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+					<h:selectOneMenu id="statusFilter" value="#{ContractBemMB.statusReportFilter}" style="font: 9px Verdana,Arial,Helvetica,sans-serif;">
+                  		<f:selectItem itemLabel="Todos" itemValue="0" />
+                  		<f:selectItem itemLabel="Aceptado" itemValue="ACEPTADO" />
+                  		<f:selectItem itemLabel="Rechazado" itemValue="RECHAZADO" />
+                	</h:selectOneMenu>
+				<f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+                <h:outputText value="Garantia Liquida:" />
+                <f:verbatim>&amp;nbsp;&amp;nbsp;&amp;nbsp;</f:verbatim>
+                	<h:selectOneMenu id="garantiaLiquida" value="#{ContractBemMB.statusGarantiaLiquida}" style="font: 9px Verdana,Arial,Helvetica,sans-serif;">
+                  		<f:selectItem itemLabel="Todos" itemValue="0" />
+                  		<f:selectItem itemLabel="Si" itemValue="true" />
+                  		<f:selectItem itemLabel="No" itemValue="false" />
+                	</h:selectOneMenu>
+				</fieldset>
+				</h:panelGroup>
+		
+				
+	<br/>
+	<br/>
+				<h:panelGrid columns="1" styleClass="contractStyle" cellpadding="0"
+					cellspacing="0">
+					<f:facet name="header">
+						<h:outputText value="Todos los productos" />
+					</f:facet>
+					<h:panelGrid style="padding-left:10px;">
+						<br/>
+						<h:panelGroup>
+							<h:commandLink id="AllProductsReport"
+								onclick="return validateRangeDates('forma:startReportDate','forma:endReportDate');"
+								action="#{ContractBemMB.getAllProductsDetailReportDTO}"
+								immediate="false">Generar Reporte de todos los Productos</h:commandLink>
+						</h:panelGroup>
+						<br/>
+					</h:panelGrid>
+				</h:panelGrid>
+<br/>
+				<h:panelGrid columns="1" styleClass="contractStyle" cellpadding="0"
+					cellspacing="0">
+					<f:facet name="header">
+						<h:outputText value="Adquirente" />
+					</f:facet>
+
+					<h:panelGrid style="padding-left:10px;">
+						<br />
+						<h:panelGroup>
+							<h:commandLink id="AdquiererReport"
+								onclick="return validateRangeDates('forma:startReportDate','forma:endReportDate');"
+								action="#{ContractBemMB.getAdquirerDetailReport}"
+								immediate="false">Generar Reporte General</h:commandLink>
+						</h:panelGroup>
+						<br/>
+						<h:panelGroup>
+							<h:commandLink id="SIPReport"
+								onclick="return validateRangeDates('forma:startReportDate','forma:endReportDate');"
+								action="#{ContractBemMB.getSIPDetailReport}" immediate="false">Generar Reporte Solucion Integral PyME</h:commandLink>
+						</h:panelGroup>
+						<br />
+						<h:panelGroup>
+							<h:commandLink id="AdquiererReportDaily"
+								onclick="return validateRangeDates('forma:startReportDate','forma:endReportDate');"
+								action="#{ContractBemMB.getAdquirerDetailReportDaily}"
+								immediate="false">Generar Reporte Diario</h:commandLink>
+						</h:panelGroup>
+						<br/>
+					</h:panelGrid>
+				</h:panelGrid>
+	<br/>
+	<br/>
+				<h:panelGrid columns="1" styleClass="contractStyle" cellpadding="0" cellspacing="0">
+					<f:facet name="header">
+						<h:outputText value="Nomina" />
+					</f:facet>
+					<h:panelGrid style="padding-left:10px;">
+						<br />
+						<h:panelGroup>
+							<h:commandLink id="NominaReport"
+								onclick="return validateRangeDates('forma:startReportDate','forma:endReportDate', 60);"
+								action="#{ContractBemMB.getNominaMonthlyReports}"
+								immediate="false">Generar Reporte Mensual</h:commandLink>
+						</h:panelGroup>
+						<br/>
+					</h:panelGrid>
+				</h:panelGrid>
+
+				
+<!-- 				<h:commandLink id="escondido" -->
+<!-- 								action="#{ContractBemMB.reporteNomina}" immediate="false">Liga escondida</h:commandLink> -->
+	<br/>
+	<br/>
+				<h:commandLink id="reporteEscondido"
+								action="#{ContractBemMB.createTpvPayrollDtoReport}" immediate="false">Reporte TPV y Nomina Altas</h:commandLink>
+								
+
+			</h:form>
+		</f:view>
+	</ui:define>
+
+</ui:composition>
+
+</body>
+</html>

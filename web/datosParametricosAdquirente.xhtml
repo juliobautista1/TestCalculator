@@ -1,0 +1,275 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xxmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <body>
+        <ui:composition template="#{ContractAcquirerMB.template}">
+      <ui:define name="top">
+       Datos paramétricos
+      </ui:define>
+
+      <ui:define name="content">
+        <f:view>
+          <h:form id="forma">
+            <br/>
+            <h:messages layout="table" styleClass="errorStyle"/>
+            <br/>
+            
+              <h:panelGrid styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+                <f:facet name="header">
+                    <h:outputText value="Bancaria"/>
+                </f:facet>
+                
+                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner2" rowClasses="tableStyleFirstRow, tableStyleSecondtRow">
+                  <h:outputText value="Antigüedad con el Banco"/>
+                  <h:selectOneMenu id="affiliation_yearswithbank" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationYearsWithBankReqError}" value="#{ContractAcquirerMB.affiliation_yearswithbank}" required="true">
+                    <f:selectItem  itemValue="1" itemLabel="1 - Nuevo"/>
+                    <f:selectItem  itemValue="2" itemLabel="2 - menos de 1 año"/>
+                    <f:selectItem  itemValue="3" itemLabel="3 - de 1 a 2 años" />
+                    <f:selectItem  itemValue="4" itemLabel="4 - mas de 2 años" />
+                  </h:selectOneMenu>
+                  
+                  <h:outputText value="Otros productos con el Banco (adicional a POS)"/>
+                  <h:selectOneMenu id="affiliation_otherproducts" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationOtherProductsReqError}" value="#{ContractAcquirerMB.affiliation_otherproducts}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - 0 Productos en el Banco" />
+                    <f:selectItem itemValue="2" itemLabel="2 - 1 Producto en el Banco"/>
+                    <f:selectItem itemValue="3" itemLabel="3 - 2 Productos en el Banco"/>
+                    <f:selectItem itemValue="4" itemLabel="4 - 3 Productos en el Banco"/>
+                  </h:selectOneMenu>
+                  
+                  <h:outputText value="Línea de Crédito"/>
+                  <h:selectOneMenu id="affiliation_creditline" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationCreditLineReqError}" value="#{ContractAcquirerMB.affiliation_creditline}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - No"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - Si"/>
+                  </h:selectOneMenu>  
+
+                  <h:outputText value="Especifique el Tipo"/>
+                  <h:inputText id="affiliation_creditlinetype" style="width:200px;" maxlength="120" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationCreditLineTypeReqError}" value="#{ContractAcquirerMB.affiliation_creditlinetype}" required="false"/>
+                  
+                  <h:outputText value="Monto de la Línea de Crédito (miles)"/>
+                  <h:selectOneMenu id="affiliation_creditlineamount" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationCreditLineAmountReqError}" value="#{ContractAcquirerMB.affiliation_creditlineamount}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - menos de $20"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - de $21 a $50"/>
+                    <f:selectItem itemValue="3" itemLabel="3 - de $51 a $100"/>
+                    <f:selectItem itemValue="4" itemLabel="4 - mas de $100"/>
+                  </h:selectOneMenu>                
+                  
+                  <h:outputText value="Bancos Adquirentes anteriores"/>
+                  <h:selectOneMenu id="affiliation_quantprevbanks" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationQuantPrevBanksReqError}" value="#{ContractAcquirerMB.affiliation_quantprevbanks}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - mas de 4 bancos"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - 3 bancos"/>
+                    <f:selectItem itemValue="3" itemLabel="3 - 2 bancos"/>
+                    <f:selectItem itemValue="4" itemLabel="4 - 1 banco"/>
+                  </h:selectOneMenu>                           
+                </h:panelGrid>
+              </h:panelGrid>
+              <br/>
+              <br/>
+              <h:panelGrid styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+                <f:facet name="header">
+                    <h:outputText value="Del establecimiento"/>
+                </f:facet>
+                
+                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner2" rowClasses="tableStyleFirstRow, tableStyleSecondtRow">
+                  <h:outputText value="Número de negocios del Propietario u otros giros"/>
+                  <h:selectOneMenu id="affiliation_quantmerchants" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationQuantMerchantsReqError}" value="#{ContractAcquirerMB.affiliation_quantmerchants}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - 0 negocios"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - 1 negocio"/>
+                    <f:selectItem itemValue="3" itemLabel="3 - 2 negocios"/>
+                    <f:selectItem itemValue="4" itemLabel="4 - mas de 2 negocios"/>
+                  </h:selectOneMenu>
+                  
+                  <h:outputText value="Número de Sucursales del giro a afiliar" />
+                  <h:selectOneMenu id="affiliation_quantbranches" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationQuantBranchesReqError}" value="#{ContractAcquirerMB.affiliation_quantbranches}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - 1 sucursal"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - 2 sucursales"/>
+                    <f:selectItem itemValue="3" itemLabel="3 - 3 sucursales"/>
+                    <f:selectItem itemValue="4" itemLabel="4 - mas de 4 sucursales"/>
+                  </h:selectOneMenu>
+                  
+                  <h:outputText value="Número de Empleados"/>
+                  <h:selectOneMenu id="affiliation_quantemployees" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationQuantEmployeesReqError}" value="#{ContractAcquirerMB.affiliation_quantemployees}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - 1 empleado"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - 2 empleados"/>
+                    <f:selectItem itemValue="3" itemLabel="3 - 3 empleados"/>
+                    <f:selectItem itemValue="4" itemLabel="4 - mas de 4 empleados "/>
+                  </h:selectOneMenu>  
+
+                  <h:outputText value="Antigüedad del Comercio"/>
+                  <h:selectOneMenu id="affiliation_yearswithmerchant" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationYearsWithMerchantReqError}" value="#{ContractAcquirerMB.affiliation_yearswithmerchant}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - Nuevo"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - menos de 1 año"/>
+                    <f:selectItem itemValue="3" itemLabel="3 - de 1 a 2 años"/>
+                    <f:selectItem itemValue="4" itemLabel="4 - mas de 2 años"/>
+                  </h:selectOneMenu>  
+                  
+                  <h:outputText value="Arraigo en la plaza del dueño"/>
+                  <h:selectOneMenu id="affiliation_rootedplace" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationRootedPlaceReqError}" value="#{ContractAcquirerMB.affiliation_rootedplace}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - Nuevo"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - menos de 1 año"/>
+                    <f:selectItem itemValue="3" itemLabel="3 - de 1 a 2 años"/>
+                    <f:selectItem itemValue="4" itemLabel="4 - mas de 2 años"/>
+                  </h:selectOneMenu>                
+                  
+                  <h:outputText value="Ubicación Socioeconomico"/>
+                  <h:selectOneMenu id="affiliation_socioeconomiclocation" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationSocioEconomicLocationReqError}" value="#{ContractAcquirerMB.affiliation_socioeconomiclocation}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - Baja"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - Media"/>
+                    <f:selectItem itemValue="3" itemLabel="3 - Alta"/>
+                  </h:selectOneMenu>
+                  
+                  <h:outputText value="Tipo de Local"/>
+                  <h:selectOneMenu id="affiliation_locationtype" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationLocationTypeReqError}" value="#{ContractAcquirerMB.affiliation_locationtype}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - Rentado"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - Arrendado"/>
+                    <f:selectItem itemValue="3" itemLabel="3 - Propio"/>
+                  </h:selectOneMenu>
+                  
+                  <h:outputText value="Dimensión en m2"/>
+                  <h:selectOneMenu id="affiliation_dimention" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationDimentionReqError}" value="#{ContractAcquirerMB.affiliation_dimention}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - Hasta 75 m2"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - de 76 a 150 m2"/>
+                    <f:selectItem itemValue="3" itemLabel="3 - de 151 a 300 m2"/>
+                    <f:selectItem itemValue="4" itemLabel="4 - mas de 300 m2"/>
+                  </h:selectOneMenu>
+
+                  <h:outputText value="Mobiliario y Equipo"/>
+                  <h:selectOneMenu id="affiliation_equipment" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationEquipmentReqError}" value="#{ContractAcquirerMB.affiliation_equipment}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - Viejo"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - Medio Uso"/>
+                    <f:selectItem itemValue="3" itemLabel="3 - Nuevo"/>
+                  </h:selectOneMenu>
+                  
+                  <h:outputText value="Nivel de Inventarios"/>
+                  <h:selectOneMenu id="affiliation_inventary" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationInventaryReqError}" value="#{ContractAcquirerMB.affiliation_inventary}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - Bajo"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - Medio"/>
+                    <f:selectItem itemValue="3" itemLabel="3 - Alto"/>
+                  </h:selectOneMenu>
+                 
+                  <h:outputText value="Tipo de Estacionamiento"/>
+                  <h:selectOneMenu id="affiliation_parkingtype" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationParkingTypeReqError}" value="#{ContractAcquirerMB.affiliation_parkingtype}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - Público"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - Privado"/>
+                  </h:selectOneMenu>
+                  
+                  <h:outputText value="Teléfono" />
+                  <h:selectOneMenu id="affiliation_ownphone" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationOwnPhoneReqError}" value="#{ContractAcquirerMB.affiliation_ownphone}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - No"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - Si"/>
+                  </h:selectOneMenu>
+                  
+                      <h:outputText value="Anuncio Exterior / Marquesina"/>
+                  <h:selectOneMenu id="affiliation_extannounce" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationExtAnnounceReqError}" value="#{ContractAcquirerMB.affiliation_extannounce}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - No"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - Si"/>
+                  </h:selectOneMenu>
+                  
+                  <h:outputText value="Ubicación adjunta al almacén de los productos"/>
+                  <h:selectOneMenu id="affiliation_productstockplace" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationProductStockPlaceReqError}" value="#{ContractAcquirerMB.affiliation_productstockplace}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - No"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - Si"/>
+                  </h:selectOneMenu>
+                  
+                  <h:outputText value="Cadena Comercial"/>
+                  <h:selectOneMenu id="affiliation_commercialgroup" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationCommercialGroupReqError}" value="#{ContractAcquirerMB.affiliation_commercialgroup}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - No"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - Si"/>
+                  </h:selectOneMenu>
+                  
+                  <h:outputText value="Existen otros Accionistas o socios del Comercio"/>
+                  <h:selectOneMenu id="affiliation_otherpartners" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationOtherPartnersReqError}" value="#{ContractAcquirerMB.affiliation_otherpartners}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - 0 accionistas o socios"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - 1 accionistas o socios"/>
+                    <f:selectItem itemValue="3" itemLabel="3 - 2 accionistas o socios"/>
+                    <f:selectItem itemValue="4" itemLabel="4 - mas de 2 accionistas o socios"/>
+                  </h:selectOneMenu>
+                  
+                  <h:outputText value="Proceso de Captacion del Comercio"/>
+                  <h:selectOneMenu id="affiliation_attractingtrade" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationAttractingTradeReqError}" value="#{ContractAcquirerMB.affiliation_attractingtrade}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - Llego Solo"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - Recomendado"/>
+                    <f:selectItem itemValue="3" itemLabel="3 - Se busca Afiliarlo"/>
+                  </h:selectOneMenu>
+                  
+                  
+                  <h:outputText value="Quien lo recomienda y que relacion tiene con el banco"/>
+                   <h:inputText id="affiliation_recommended" style="width:200px;" maxlength="100" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationRecommendedReqError}" value="#{ContractAcquirerMB.affiliation_recommended}" required="false"/>
+                  
+                  <h:outputText value="Condiciones fisicas del comercio"/>
+                  <h:selectOneMenu id="affiliation_physicalconditions" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationPhysicalConditionsReqError}" value="#{ContractAcquirerMB.affiliation_physicalconditions}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - mal estado"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - buen estado"/>
+                  </h:selectOneMenu>
+                  
+                   <h:outputText value="Edad del propietario"/>
+                  <h:selectOneMenu id="affiliation_ownerage" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationOwnerAgeReqError}" value="#{ContractAcquirerMB.affiliation_ownerage}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - de 18 a 22 años"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - de 23 a 27 años"/>
+                    <f:selectItem itemValue="3" itemLabel="3 - de 28 años en adelante"/>
+                  </h:selectOneMenu>
+                  
+                   <h:outputText value="Antigüedad de la Sociedad"/>
+                  <h:selectOneMenu id="affiliation_societyage" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationSocietyAgeReqError}" value="#{ContractAcquirerMB.affiliation_societyage}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - de 0 a 3 años"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - de 4 a 7 años"/>
+                    <f:selectItem itemValue="3" itemLabel="3 - más de 7 años"/>
+                  </h:selectOneMenu>
+                </h:panelGrid>
+              </h:panelGrid>
+              <br/>
+              <br/>
+              <h:panelGrid styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+                <f:facet name="header">
+                    <h:outputText value="Operación del negocio"/>
+                </f:facet>
+
+                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner2" rowClasses="tableStyleFirstRow, tableStyleSecondtRow">
+                  <h:outputText value="Volumen mensual de Ventas (miles)"/>
+                  <h:selectOneMenu id="affiliation_monthlysales" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationMonthlySalesReqError}" value="#{ContractAcquirerMB.affiliation_monthlysales}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - Menos de $20"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - de $21 a $50"/>
+                    <f:selectItem itemValue="3" itemLabel="3 - de $51 a $100"/>
+                    <f:selectItem itemValue="4" itemLabel="4 - mas de $100"/>
+                  </h:selectOneMenu>                  
+                      
+                  <h:outputText value="Porcentaje promedio de ventas con tarjeta"/>
+                  <h:selectOneMenu id="affiliation_avcardsales" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationAvCardSalesReqError}" value="#{ContractAcquirerMB.affiliation_avcardsales}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - Menos de 15%"/>
+                    <f:selectItem itemValue="2" itemLabel="2 - entre 16 y 30%"/>
+                    <f:selectItem itemValue="3" itemLabel="3 - entre 31 y 50%"/>
+                    <f:selectItem itemValue="4" itemLabel="4 - mas de 50%"/>
+                  </h:selectOneMenu>
+                  
+                  <h:outputText value="Horario de Operación"/>
+                  <h:selectOneMenu id="affiliation_attentiontime" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationAttentionTimeReqError}" value="#{ContractAcquirerMB.affiliation_attentiontime}" required="true">
+                    <f:selectItem itemValue="1" itemLabel="1 - Mas de 11 p.m."/>
+                    <f:selectItem itemValue="2" itemLabel="2 - Hasta las 11 p.m."/>
+                    <f:selectItem itemValue="3" itemLabel="3 - Hasta las 8 p.m."/>
+                  </h:selectOneMenu>  
+
+                  <h:outputText value="Empleados que operan las Ventas"/>
+                    <h:selectOneMenu id="affiliation_salesemployee" styleClass="camposx" requiredMessage="#{msgs.dpaAffiliationSalesEmployeeReqError}" value="#{ContractAcquirerMB.affiliation_salesemployee}" required="true">
+                      <f:selectItem itemValue="1" itemLabel="1 - mas de 4 empleados"/>
+                      <f:selectItem itemValue="2" itemLabel="2 - 3 empleados"/>
+                      <f:selectItem itemValue="3" itemLabel="3 - 2 empleados"/>
+                      <f:selectItem itemValue="4" itemLabel="4 - 1 empleados"/> 
+                    </h:selectOneMenu>
+                </h:panelGrid>
+              </h:panelGrid>
+              <br/>
+              <br/>              
+            <div class="send">
+              | x <h:commandLink id="Guardar" action="#{ContractAcquirerMB.navigation_isOIP}" immediate="false">ENVIAR</h:commandLink> |
+            </div>
+          </h:form>
+        </f:view>
+      </ui:define>
+
+    </ui:composition>  
+        
+    </body>
+</html>
+

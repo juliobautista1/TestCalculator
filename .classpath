@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/contractEjb"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/activation.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/bcprov-jdk15-1.43.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/commons-beanutils.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/commons-codec-1.3.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/commons-collections.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/commons-digester.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/commons-httpclient-3.1.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/commons-net-1.4.1.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/commons-net-2.0.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/commons-vfs-2.0.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/el-impl-1.0.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/iText-2.1.3.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/jsch-0.1.41.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/jsf-api.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/jsf-facelets.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/jsf-impl.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/log4j-1.2.14.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/not-yet-commons-ssl-0.3.10.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/poi-3.5-beta3-20080926.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/poi-ooxml-3.5-beta3-20080926.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/poi-scratchpad-3.5-beta3-20080926.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/quartz-1.6.1-RC1.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/zehon_file_transfer-1.1.6.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/J2EE"/>
+	<classpathentry kind="lib" path="C:/Users/daarevalo/eclipse-workspace/APPEBANKING/contract/web/WEB-INF/lib/javax.ejb.jar.zip"/>
+	<classpathentry kind="lib" path="C:/Users/daarevalo/eclipse-workspace/APPEBANKING/contract/web/WEB-INF/lib/servlet-api.jar.zip"/>
+	<classpathentry kind="con" path="oracle.eclipse.tools.weblogic.lib.system">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7.0_80">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="web/WEB-INF/classes"/>
+</classpath>

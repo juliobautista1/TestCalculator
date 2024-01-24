@@ -1,0 +1,285 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+  <body>
+
+    <ui:composition template="./contractTemplate.xhtml">
+
+      <ui:define name="top">
+        Historial de archivos de operaciones
+      </ui:define>
+
+      <ui:define name="content">
+        <f:view >
+			<script type="text/javascript">
+	            	function start() { 
+	            		
+	                    Calendar.setup({ inputField: "forma:startDate", ifFormat: "%d/%m/%Y"});
+	                    Calendar.setup({ inputField: "forma:endDate", ifFormat: "%d/%m/%Y"});
+	                    activateDate();
+	            		}
+	            	window.onload = start;
+	            	
+	            	
+	            	function activateDate(){
+	            		
+	            		if(document.getElementById("forma:frequency").value =="Diario"){
+	            			document.getElementById("forma:month").disabled =true;
+	            			
+	            			document.getElementById("forma:startDate").disabled =false;
+	            			document.getElementById("forma:endDate").disabled =false;
+	            		}else if (document.getElementById("forma:frequency").value =="Mensual"){
+	            			document.getElementById("forma:startDate").disabled =true;
+	            			document.getElementById("forma:endDate").disabled =true;
+	            			
+	            			document.getElementById("forma:month").disabled =false;
+	            		}
+	            		
+	            	}
+          		</script>
+					<h:form id="forma">
+					
+					<h:panelGrid columns="1" styleClass="contractStyle"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Datos de Celebracion" />
+							</f:facet>
+							<h:panelGrid columns="14" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow,">
+								
+								<h:outputText value="Periocidad" />
+								<h:selectOneMenu id="frequency" value="#{LoadFileBitacoraMB.frequency}" styleClass="camposx"
+									 requiredMessage="#{msgs.ocdAffiliation_formatReqError}"  onchange="activateDate();">
+									<f:selectItem itemValue="Diario" itemLabel="Diario" />
+									<f:selectItem itemValue="Mensual" itemLabel="Mensual" />
+								</h:selectOneMenu>
+								
+								<h:outputText value="Mes" />
+								<h:selectOneMenu id="month" value="#{LoadFileBitacoraMB.monthSelected}" styleClass="camposx"
+									 requiredMessage="#{msgs.ocdAffiliation_formatReqError}" >
+									<f:selectItem itemValue="0" itemLabel="Enero" />
+									<f:selectItem itemValue="1" itemLabel="Febrero" />
+									<f:selectItem itemValue="2" itemLabel="Marzo" />
+									<f:selectItem itemValue="3" itemLabel="Abril" />
+									<f:selectItem itemValue="4" itemLabel="Mayo" />
+									<f:selectItem itemValue="5" itemLabel="Junio" />
+									<f:selectItem itemValue="6" itemLabel="Julio" />
+									<f:selectItem itemValue="7" itemLabel="Agosto" />
+									<f:selectItem itemValue="8" itemLabel="Septiembre" />
+									<f:selectItem itemValue="9" itemLabel="Octubre" />
+									<f:selectItem itemValue="10" itemLabel="Noviembre" />
+									<f:selectItem itemValue="11" itemLabel="Diciembre" />
+								</h:selectOneMenu>
+								
+								<h:outputText value="Fecha inicial" />
+								<h:inputText id="startDate"
+									onkeypress="return block(evt);" style="width:70px"
+									maxlength="10" styleClass="camposx"
+									requiredMessage="#{msgs.celebrationDateReqError}"
+									value="#{LoadFileBitacoraMB.startDate}" required="false" />
+								
+								<h:outputText value="Fecha Final" />
+								<h:inputText id="endDate"
+									onkeypress="return block(evt);" style="width:70px"
+									maxlength="10" styleClass="camposx"
+									requiredMessage="#{msgs.celebrationDateReqError}"
+									value="#{LoadFileBitacoraMB.endDate}" required="false" />
+								
+								<h:outputText value="Producto" />
+								<h:selectOneMenu id="product" value="#{LoadFileBitacoraMB.product}" styleClass="camposx"
+									 requiredMessage="#{msgs.ocdAffiliation_formatReqError}" required="true">
+									<f:selectItem itemValue="1" itemLabel="BEM" />
+									<f:selectItem itemValue="2" itemLabel="Nomina" />
+									<f:selectItem itemValue="3" itemLabel="TPV" />
+									<f:selectItem itemValue="4" itemLabel="Cobranza" />
+									<f:selectItem itemValue="5" itemLabel="Manteminientos" />
+								</h:selectOneMenu>
+								
+								<h:outputText value="Tipo Archivo" />
+								<h:selectOneMenu id="fileType" value="#{LoadFileBitacoraMB.fileType}" styleClass="camposx"
+									 requiredMessage="#{msgs.ocdAffiliation_formatReqError}" required="true">
+									<f:selectItem itemValue="Alta" itemLabel="Altas" />
+									<f:selectItem itemValue="Respuesta" itemLabel="Respuesta" />
+								</h:selectOneMenu>
+								
+								<h:outputText value="" />
+								<h:commandLink id="Search"
+										actionListener="#{LoadFileBitacoraMB.search}" immediate="false" style="text-decoration: none">
+										<h:graphicImage url="../img_contracts/images/arrowrightmonth.gif"
+											alt="Consultar" title="Buscar" style="border:0px" />
+								</h:commandLink>
+
+							</h:panelGrid>
+						</h:panelGrid>
+						<br />
+						<br />
+		
+				
+						
+				<c:if test="#{  LoadFileBitacoraMB.frequency == 'Diario'}">
+						<c:if test="#{! empty LoadFileBitacoraMB.bitacoraList}">
+						
+						<h:outputText value="Generar Reporte" />
+						<h:commandLink id="report" actionListener="#{LoadFileBitacoraMB.generateBitacoraReport}" immediate="false" style="text-decoration: none">
+							<h:graphicImage url="../img_contracts/images/arrowrightmonth.gif" alt="report" title="report" style="border:0px" />
+						</h:commandLink>			
+						
+							<h:dataTable id="list" value="#{LoadFileBitacoraMB.bitacoraList}"
+								rendered="#{! empty LoadFileBitacoraMB.bitacoraList}" var="bitacora" 
+								styleClass="contractStyle" headerClass="Estilo5">
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Fecha" />
+									</f:facet>
+									<h:outputText  value="#{bitacora.creationDate}" />
+								</h:column>
+								
+								<c:if test="#{  LoadFileBitacoraMB.fileType == 'Alta'}">
+									<h:column rendered="#{LoadFileBitacoraMB.fileType=='Alta'}"  >
+										<f:facet name="header">
+											<h:outputText value="Registros Generados" />
+										</f:facet>
+											<h:outputText value="#{bitacora.numberSuccess}" />
+									</h:column>
+								</c:if>
+								
+								<c:if test="#{  LoadFileBitacoraMB.fileType == 'Respuesta'}">
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Registros Depositados" />
+										</f:facet>
+											<h:outputText value="#{bitacora.numberSuccess}" />
+										
+									</h:column>
+								</c:if>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Registros Con Error" />
+									</f:facet>
+									<h:outputText value="#{bitacora.numberFail}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Total de Registros" />
+									</f:facet>
+									<h:outputText value="#{bitacora.total}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Tipo" />
+									</f:facet>
+									<h:outputText value="#{bitacora.fileType}" />
+								</h:column>
+								
+							</h:dataTable>
+						</c:if>
+								
+								<c:if test="#{ empty LoadFileBitacoraMB.bitacoraList}">
+								<h3>No se cargaron Archivos para los datos proporcionados</h3>
+								</c:if>
+						
+						
+								
+						</c:if>
+						
+					<!--   RESULTADO MENSUAL -->
+				
+						
+						<c:if test="#{  LoadFileBitacoraMB.frequency == 'Mensual'}">
+						<c:if test="#{! empty LoadFileBitacoraMB.bitacoraMonthList}">
+						
+						<h:outputText value="Generar Reporte" />
+								<h:commandLink id="report"
+										actionListener="#{LoadFileBitacoraMB.generateBitacoraReport}" immediate="false" style="text-decoration: none">
+										<h:graphicImage url="../img_contracts/images/arrowrightmonth.gif"
+											alt="report" title="report" style="border:0px" />
+					</h:commandLink>
+						
+							<h:dataTable id="listMes" value="#{LoadFileBitacoraMB.bitacoraMonthList}"
+								rendered="#{! empty LoadFileBitacoraMB.bitacoraMonthList}" var="bitacoraMes" 
+								styleClass="contractStyle"  headerClass="Estilo5">
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Producto" />
+									</f:facet>
+									<h:outputText value="#{bitacoraMes.productType}" />
+								</h:column>
+								
+								<c:if test="#{  LoadFileBitacoraMB.fileType == 'Alta'}">
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Registros Generados" />
+										</f:facet>
+										<h:outputText value="#{bitacoraMes.numberGenerate}" />
+									</h:column>
+								</c:if>
+								
+								<c:if test="#{  LoadFileBitacoraMB.fileType == 'Respuesta'}">
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Registros Depositados" />
+										</f:facet>
+										<h:outputText value="#{bitacoraMes.numberRead}" />
+									</h:column>
+								</c:if>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Registros Con Exito" />
+									</f:facet>
+									<h:outputText value="#{bitacoraMes.numberSuccess}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Registros Con Error" />
+									</f:facet>
+									<h:outputText value="#{bitacoraMes.numberFail}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Total de Registros" />
+									</f:facet>
+									<h:outputText value="#{bitacoraMes.total}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Tipo" />
+									</f:facet>
+									<h:outputText value="#{bitacoraMes.fileType}" />
+								</h:column>
+								
+							</h:dataTable>
+						</c:if>
+								
+								<c:if test="#{ empty LoadFileBitacoraMB.bitacoraMonthList}">
+								<h3>No se cargaron Archivos para los datos proporcionados</h3>
+								</c:if>
+						
+						
+								
+						</c:if>
+					
+					</h:form>
+				</f:view>
+      </ui:define>
+
+      
+
+    </ui:composition>
+
+  </body>
+</html>

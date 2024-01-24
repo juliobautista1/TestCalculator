@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:c="http://java.sun.com/jstl/core">
+  <body>
+    <ui:composition template="./contractTemplate.xhtml">
+      <ui:define name="top">
+        Administración
+      </ui:define>
+      <ui:define name="content">
+        <f:view >
+         <table width="300"  border="0" cellpadding="5" cellspacing="0">
+               <tr>
+                   <td width="41"><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td>
+                   <td width="236" class="menuLink"><div align="left"><a href="support.jsf">Soporte a folios</a></div></td>
+               </tr>
+               <tr >
+                   <td><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td>
+                   <td class="menuLink"><div align="left"><a href="ejec.jsf">Procesos</a></div></td>
+               </tr>
+<!--               <c:if test="${UserInfoMB.userProfile=='admin'}">-->
+               		<tr>
+                   		<td><div align="center"><img src="../img_contracts/images/bullet_1.gif" /></div></td>
+                   		<td class="menuLink"><div align="left"><a href="reports.jsf">Reportes</a> </div></td>
+               		</tr>                               	
+<!--               </c:if>-->
+               <tr>
+                   <td><div align="center"><img src="../img_contracts/images/bullet_1.gif" /></div></td>
+                   <td class="menuLink"><div align="left"><a href="bitacoraAdmin.jsf">Bitácora</a> </div></td>
+               </tr>
+<!--                <tr> -->
+<!--                    <td><div align="center"></div></td> -->
+<!--                    <td style="text-decoration:none;cursor:default;"><div align="left"> -->
+<!--                    			<a href="procesosBem.jsf" style="color:gray;text-decoration:line-through;cursor:default;"> -->
+<!--                    Mitigación Riesgos BEM</a> </div></td> -->
+<!--                </tr> -->
+           </table>
+        </f:view>
+      </ui:define>
+    </ui:composition>
+  </body>
+</html>

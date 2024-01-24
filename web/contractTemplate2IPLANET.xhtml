@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <title>Herramienta e-banking</title>
+    <script type="text/javascript" src="../img_contracts/js/contratos.js"></script>
+    <script type="text/javascript" src="../img_contracts/js/common.js"></script>
+    <script type="text/javascript" src="../img_contracts/js/actb.js"></script>
+    <script type="text/javascript" src="../img_contracts/js/calendar.js"></script>
+    <script type="text/javascript" src="../img_contracts/js/calendar-es.js"></script>
+    <script type="text/javascript" src="../img_contracts/js/calendar-setup.js"></script>
+    <link href="../img_contracts/css/cssLayout.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../img_contracts/css/calendar-system.css" />
+    
+  </head>
+
+  <body>
+        <table align="center" width="800" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                  <table width="800" border="0" align="center" cellpadding="0" cellspacing="0" background="../img_contracts/images/bkg_arriba.jpg">
+                    <tr>
+                        <td width="15" rowspan="2"><img src="images/espacio.gif" width="15" height="13" /></td>
+                        <td width="600" height="42" colspan="2" align="left" valign="top"><img src="../img_contracts/images/contratos.gif" width="140" height="42" /></td>
+                        <td width="185" height="75" rowspan="2"><img src="../img_contracts/images/logo.gif" width="185" height="75" /></td>
+                    </tr>
+                    <tr>
+                        <td width="400" height="33" valign="bottom">
+                            <table width="600" border="0" align="left" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td width="7"><img src="images/izq.gif" width="7" height="33" /></td>
+                                    <td background="../img_contracts/images/bkg_menu.gif">
+                                        <div id="colortab" class="ddcolortabs">
+                                            <ul>
+                                              <li><a href="searchBitacoraLoadFile.jsf"><span>ARCHIVOS CARGADOS</span></a></li>
+                                              <li><a href="ejec.jsf"><span>PROCESOS</span></a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td width="6"><img src="../img_contracts/images/der.gif" width="6" height="33" /></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="800" colspan="4" align="right" class="ddcolortabsline">
+                            <span>Bienvenido <f:verbatim>&amp;nbsp;</f:verbatim>
+                                <h:outputText value="#{UserInfoMB.fullName}" escape="false"/>,
+                                <script language="javascript">
+                                    dateTime();
+                                </script>
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+          </tr>
+          <tr>
+            <td>
+                <br/>
+                <div id="top" class="title">
+                    <ui:insert name="top">Top</ui:insert>
+                </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div id="content" class="colDer">
+                <ui:insert name="content">Content</ui:insert>
+              </div>
+            </td>
+          </tr>
+          <tr><td height="10"></td></tr>
+          <tr><td width="100%" class="line"><br/></td></tr>
+      </table>
+  </body>
+</html>

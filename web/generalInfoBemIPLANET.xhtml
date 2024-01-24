@@ -1,0 +1,918 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<body>
+
+		<ui:composition template="./contractTemplate.xhtml">
+			<ui:define name="top">
+       Contrato Comercio 
+      </ui:define>
+
+			<ui:define name="content">
+				<f:view>
+					<script type="text/javascript">
+            /* <![CDATA[ */
+            function start() {                           
+              enableDisable('quantofadminusers', 3);
+              Calendar.setup({ inputField: "forma:celebrationdate", ifFormat: "%d/%m/%Y"});
+            }
+            window.onload = start;
+            /* ]]> */
+          </script>
+					<h:form id="forma">
+						<a name='anchorcelebrationstate'></a>
+						<a name='anchorclient_state'></a>
+						<br />
+						<br />
+						<h:messages layout="table" styleClass="errorStyle" />
+						<br />
+
+						<c:if test="#{! empty ContractBemMB.errorsList}">
+							<h:dataTable id="list" value="#{ContractBemMB.errorsList}"
+								rendered="#{! empty ContractBemMB.errorsList}" var="errors"
+								styleClass="contractStyleNone" rowClasses="tableStyleSecondRow">
+								<h:column>
+									<h:outputText value="#{errors.message}"
+										styleClass="msgValidation" />
+								</h:column>
+							</h:dataTable>
+							<br />
+							<br />
+						</c:if>
+
+						<h:panelGrid columns="1" styleClass="contractStyle"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Datos de Celebracion" />
+							</f:facet>
+							<h:panelGrid columns="3" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:outputText value="Estado" />
+								<h:outputText value="Población" />
+								<h:outputText value="Fecha" />
+
+
+								<h:selectOneMenu id="celebrationstate" 
+									onchange="submit()"
+									immediate="true" style="width:180px" class="camposx"
+									value="#{ContractBemMB.celebrationstate}" required="false">
+									<f:selectItem itemValue="Seleccione un Estado" />
+									<f:selectItems value="#{ContractBemMB.statesArray}" />
+								</h:selectOneMenu>
+
+								<h:selectOneMenu id="celebrationplace"
+									value="#{ContractBemMB.celebrationplace}" style="width:180px"
+									class="camposx" required="false">
+									<f:selectItem itemValue="Seleccione una Ciudad" />
+									<f:selectItems value="#{ContractBemMB.citiesCelebrationArray}" />
+								</h:selectOneMenu>
+
+								<h:inputText id="celebrationdate"
+									onkeypress="return block(event);" style="width:70px;"
+									maxlength="8" styleClass="camposx"
+									requiredMessage="#{msgs.celebrationDateReqError}"
+									value="#{ContractBemMB.celebrationdate}" required="false" />
+							</h:panelGrid>
+						</h:panelGrid>
+
+
+						<br />
+						<br />
+
+						<h:panelGrid columns="1" styleClass="contractStyle"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Datos del Contratante" />
+							</f:facet>
+
+							<h:panelGrid columns="6" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:outputText value="Nombre/Denominacion/Razón Social" />
+								<h:outputText value="No. Cliente" />
+								<h:outputText value="Lada" />
+								<h:outputText value="Telefono" />
+								<h:outputText value="Extensión" />
+								<h:outputText value="Calle" />
+
+								<h:inputText id="client_fiscalname"
+									onkeypress="return isTextRazonSocial(event)"
+									style="width:250px;" maxlength="120" styleClass="camposx"
+									requiredMessage="#{msgs.clientFiscalnameReqError}"
+									value="#{ContractBemMB.client_fiscalname}" required="false" />
+								<h:inputText id="client_sic" style="width:70px;"
+									onkeypress="return isNumberKey(event)" maxlength="8"
+									styleClass="camposx"
+									requiredMessage="#{msgs.clientSicReqError}"
+									value="#{ContractBemMB.client_sic}" required="false" />
+								<h:inputText id="client_areacode" style="width:25px;"
+									onkeypress="return isNumberKey(event)"
+									onblur="isValidValue('client_areacode',2,'Lada');"
+									maxlength="3" styleClass="camposx"
+									requiredMessage="#{msgs.clientAreaCodeReqError}"
+									value="#{ContractBemMB.client_areacode}" required="false" />
+								<h:inputText id="client_phone" style="width:80px;"
+									onkeypress="return isNumberKey(event)"
+									onblur="isValidValue('client_phone',7,'Telefono');"
+									maxlength="8" styleClass="camposx"
+									converterMessage="Not a valid number"
+									requiredMessage="#{msgs.clientPhoneReqError}"
+									value="#{ContractBemMB.client_phone}" required="false" />
+								<h:inputText id="client_phoneext" style="width:80px;"
+									onkeypress="return isNumberKey(event)" maxlength="8"
+									styleClass="camposx"
+									requiredMessage="#{msgs.clientPhoneextReqError}"
+									value="#{ContractBemMB.client_phoneext}" required="false" />
+								<f:facet name="footer">
+									<h:message id="sicMsg" for="client_sic" styleClass="errorStyle" />
+								</f:facet>
+								<h:inputText id="client_street"
+									onkeypress="return isText(event)" style="width:200px;"
+									maxlength="60" styleClass="camposx"
+									requiredMessage="#{msgs.clientStreetReqError}"
+									value="#{ContractBemMB.client_street}" required="false" />
+							</h:panelGrid>
+
+							<h:panelGrid columns="5" border="0" cellpadding="0"
+								cellspacing="0" headerClass="tableHeaderStyle">
+
+								<h:outputText value="No. Exterior " />
+								<h:outputText value="No. Interior" />
+								<h:outputText value="Colonia" />
+								<h:outputText value="Estado" />
+								<h:outputText value="Población" />
+
+
+								<h:inputText id="client_numext"
+									onkeypress="return isNumberKey(event)" style="width:50px;"
+									maxlength="6" styleClass="camposx"
+									requiredMessage="#{msgs.clientNumextReqError}"
+									value="#{ContractBemMB.client_numext}" required="false" />
+								<h:inputText id="client_numint"
+									onkeypress="return isNumberKey(event)" style="width:50px;"
+									maxlength="6" styleClass="camposx"
+									requiredMessage="#{msgs.clientNumintReqError}"
+									value="#{ContractBemMB.client_numint}" required="false" />
+								<h:inputText id="client_colony"
+									onkeypress="return isText(event)" style="width:100px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.clientColonyReqError}"
+									value="#{ContractBemMB.client_colony}" required="false" />
+
+								<h:selectOneMenu id="client_state" 
+									onchange="submit()"
+									immediate="true" style="width:180px" class="camposx"
+									value="#{ContractBemMB.client_state}" required="false">
+									<f:selectItem itemValue="Seleccione un Estado" />
+									<f:selectItems value="#{ContractBemMB.statesArray}" />
+								</h:selectOneMenu>
+
+
+								<h:selectOneMenu id="client_city"
+									value="#{ContractBemMB.client_city}" style="width:180px"
+									class="camposx" required="false">
+									<f:selectItem itemValue="Seleccione una Ciudad" />
+									<f:selectItems value="#{ContractBemMB.citiesClientArray}" />
+								</h:selectOneMenu>
+
+							</h:panelGrid>
+
+							<h:panelGrid columns="4" border="0" cellpadding="5"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:outputText value="C.P." />
+								<h:outputText value="Personalidad Jurídica" />
+								<h:outputText value="RFC" />
+								<h:outputText value="Correo Electronico" />
+
+
+								<h:inputText id="client_zipcode" style="width:50px;"
+									onkeypress="return isNumberKey(event)"
+									onblur="isValidValue('client_zipcode',5,'CodigoPostal');"
+									maxlength="5" styleClass="camposx"
+									requiredMessage="#{msgs.clientPostalCodeReqError}"
+									value="#{ContractBemMB.client_zipcode}" required="false" />
+								<h:selectOneMenu id="client_fiscaltype" styleClass="camposx"
+									requiredMessage="#{msgs.clientFiscalTypeReqError}"
+									value="#{ContractBemMB.client_fiscaltype}"
+									required="false">
+									<f:selectItem itemValue="1"
+										itemLabel="Persona Física con Actividad Empresarial" />
+									<f:selectItem itemValue="2" itemLabel="Persona Moral" />
+								</h:selectOneMenu>
+									
+								<h:inputText id="client_rfc"
+									onkeypress="return isTextFRCAdq(event)" style="width:100px;"
+									maxlength="13" styleClass="camposx"
+									requiredMessage="#{msgs.clientRfcReqError}"
+									value="#{ContractBemMB.client_rfc}" required="false" />
+								<h:inputText id="client_email"
+									onkeypress="return isEmail(event)"
+									onblur="return checkemail('client_email');"
+									style="width:250px;" maxlength="60" styleClass="camposx"
+									requiredMessage="#{msgs.clientEmailReqError}"
+									value="#{ContractBemMB.client_email}" required="false" />
+
+							</h:panelGrid>
+						</h:panelGrid>
+
+						<br />
+						<br />
+
+						<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Datos del Representante Legal o Apoderados" />
+							</f:facet>
+
+							<h:panelGrid columns="3" border="0" cellpadding="5"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:outputText value="Nombre 1" />
+								<h:outputText value="Apellido Paterno 1" />
+								<h:outputText value="Apellido Materno 1" />
+
+								<h:inputText id="legalrepresentative_name_1"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.legalRepresentativeName1ReqError}"
+									value="#{ContractBemMB.legalrepresentative_name_1}"
+									required="false" />
+								<h:inputText id="legalrepresentative_lastname_1"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.legalRepresentativeLastName1ReqError}"
+									value="#{ContractBemMB.legalrepresentative_lastname_1}"
+									required="false" />
+								<h:inputText id="legalrepresentative_mothersln_1"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.legalRepresentativeMothersLn1ReqError}"
+									value="#{ContractBemMB.legalrepresentative_mothersln_1}"
+									required="false" />
+							</h:panelGrid>
+							<h:panelGrid columns="3" border="0" cellpadding="5"
+								cellspacing="0" styleClass="contractStyleInner">
+								<h:outputText value="Nombre 2" />
+								<h:outputText value="Apellido Paterno 2" />
+								<h:outputText value="Apellido Materno 2" />
+
+								<h:inputText id="legalrepresentative_name_2"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="30" styleClass="camposx"
+									value="#{ContractBemMB.legalrepresentative_name_2}"
+									required="false" />
+								<h:inputText id="legalrepresentative_lastname_2"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="30" styleClass="camposx"
+									value="#{ContractBemMB.legalrepresentative_lastname_2}"
+									required="false" />
+								<h:inputText id="legalrepresentative_mothersln_2"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="30" styleClass="camposx"
+									value="#{ContractBemMB.legalrepresentative_mothersln_2}"
+									required="false" />
+							</h:panelGrid>
+						</h:panelGrid>
+						<br />
+						<br />
+
+						<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Administradores Designados" />
+							</f:facet>
+
+							<h:panelGrid columns="3" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner">
+								<h:outputText value="Numero de Administradores Designados" />
+
+								<h:selectOneMenu id="quantofadminusers"
+									onchange="enableDisable('quantofadminusers', 3);"
+									styleClass="camposx" value="#{ContractBemMB.quantofadminusers}"
+									required="false">
+									<f:selectItem itemValue="1" itemLabel="1 (Individual)" />
+									<f:selectItem itemValue="2" itemLabel="2 (Mancomunado)" />
+									<f:selectItem itemValue="3" itemLabel="3 (Mancomunado 2 de 3)" />
+									<f:selectItem itemValue="4" itemLabel="3 (Mancomunado 3 de 3)" />
+								</h:selectOneMenu>
+
+								<h:outputText value="" />
+
+							</h:panelGrid>
+
+
+							<h:panelGrid columns="3" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:outputText value="Nombre 1" />
+								<h:outputText value="Apellido Paterno 1" />
+								<h:outputText value="Apellido Materno 1" />
+
+								<h:inputText id="clientcontact_name1"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.clientContactName1ReqError}"
+									value="#{ContractBemMB.clientcontact_name1}" required="false" />
+								<h:inputText id="clientcontact_lastname1"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.clientContactLastname1ReqError}"
+									value="#{ContractBemMB.clientcontact_lastname1}"
+									required="false" />
+								<h:inputText id="clientcontact_mothersln1"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.clientContactMothersLn1ReqError}"
+									value="#{ContractBemMB.clientcontact_mothersln1}"
+									required="false" />
+							</h:panelGrid>
+
+
+							<h:panelGrid columns="4" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:outputText value="Puesto 1" />
+								<h:outputText value="Telefono 1" />
+								<h:outputText value="Ext 1" />
+								<h:outputText value="Correo Electronico 1" />
+
+								<h:inputText id="clientcontact_position1"
+									onkeypress="return isText(event)" style="width:200px;"
+									maxlength="60" styleClass="camposx"
+									value="#{ContractBemMB.clientcontact_position1}"
+									required="false" />
+								<h:inputText id="clientcontact_phone1" style="width:80px;"
+									onkeypress="return isNumberKey(event)" maxlength="8"
+									styleClass="camposx"
+									requiredMessage="#{msgs.clientContactPhone1ReqError}"
+									value="#{ContractBemMB.clientcontact_phone1}" required="false" />
+								<h:inputText id="clientcontact_phoneext1" style="width:80px;"
+									onkeypress="return isNumberKey(event)" maxlength="8"
+									styleClass="camposx"
+									value="#{ContractBemMB.clientcontact_phoneext1}"
+									required="false" />
+								<h:inputText id="clientcontact_email1"
+									onkeypress="return isEmail(event)"
+									onblur="return checkemail('clientcontact_email1');"
+									style="width:200px;" maxlength="60" styleClass="camposx"
+									requiredMessage="#{msgs.clientContactEmail1ReqError}"
+									value="#{ContractBemMB.clientcontact_email1}" required="false" />
+							</h:panelGrid>
+
+							<h:panelGrid columns="3" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner">
+								<h:outputText value="Nombre 2" />
+								<h:outputText value="Apellido Paterno 2" />
+								<h:outputText value="Apellido Materno 2" />
+
+								<h:inputText id="clientcontact_name2"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="30" styleClass="camposx"
+									value="#{ContractBemMB.clientcontact_name2}" required="false" />
+								<h:inputText id="clientcontact_lastname2"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="30" styleClass="camposx"
+									value="#{ContractBemMB.clientcontact_lastname2}"
+									required="false" />
+								<h:inputText id="clientcontact_mothersln2"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="30" styleClass="camposx"
+									value="#{ContractBemMB.clientcontact_mothersln2}"
+									required="false" />
+							</h:panelGrid>
+
+							<h:panelGrid columns="4" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner">
+								<h:outputText value="Puesto 2" />
+								<h:outputText value="Telefono 2" />
+								<h:outputText value="Ext 2" />
+								<h:outputText value="Correo Electronico 2" />
+
+								<h:inputText id="clientcontact_position2"
+									onkeypress="return isText(event)" style="width:200px;"
+									maxlength="60" styleClass="camposx"
+									value="#{ContractBemMB.clientcontact_position2}"
+									required="false" />
+								<h:inputText id="clientcontact_phone2" style="width:80px;"
+									onkeypress="return isNumberKey(event)" maxlength="8"
+									styleClass="camposx"
+									value="#{ContractBemMB.clientcontact_phone2}" required="false" />
+								<h:inputText id="clientcontact_phoneext2" style="width:80px;"
+									onkeypress="return isNumberKey(event)" maxlength="8"
+									styleClass="camposx"
+									value="#{ContractBemMB.clientcontact_phoneext2}"
+									required="false" />
+								<h:inputText id="clientcontact_email2"
+									onkeypress="return isEmail(event)"
+									onblur="return checkemail('clientcontact_email2');"
+									style="width:200px;" maxlength="60" styleClass="camposx"
+									value="#{ContractBemMB.clientcontact_email2}" required="false" />
+							</h:panelGrid>
+
+
+							<h:panelGrid columns="3" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:outputText value="Nombre 3" />
+								<h:outputText value="Apellido Paterno 3" />
+								<h:outputText value="Apellido Materno 3" />
+
+								<h:inputText id="clientcontact_name3"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="30" styleClass="camposx"
+									value="#{ContractBemMB.clientcontact_name3}" required="false" />
+								<h:inputText id="clientcontact_lastname3"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="30" styleClass="camposx"
+									value="#{ContractBemMB.clientcontact_lastname3}"
+									required="false" />
+								<h:inputText id="clientcontact_mothersln3"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="30" styleClass="camposx"
+									value="#{ContractBemMB.clientcontact_mothersln3}"
+									required="false" />
+							</h:panelGrid>
+
+							<h:panelGrid columns="4" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:outputText value="Puesto 3" />
+								<h:outputText value="Telefono 3" />
+								<h:outputText value="Ext 3" />
+								<h:outputText value="Correo Electronico 3" />
+
+								<h:inputText id="clientcontact_position3"
+									onkeypress="return isText(event)" style="width:200px;"
+									maxlength="60" styleClass="camposx"
+									value="#{ContractBemMB.clientcontact_position3}"
+									required="false" />
+								<h:inputText id="clientcontact_phone3" style="width:80px;"
+									onkeypress="return isNumberKey(event)" maxlength="8"
+									styleClass="camposx"
+									value="#{ContractBemMB.clientcontact_phone3}" required="false" />
+								<h:inputText id="clientcontact_phoneext3" style="width:80px;"
+									onkeypress="return isNumberKey(event)" maxlength="8"
+									styleClass="camposx"
+									value="#{ContractBemMB.clientcontact_phoneext3}"
+									required="false" />
+								<h:inputText id="clientcontact_email3"
+									onkeypress="return isEmail(event)"
+									onblur="return checkemail('clientcontact_email3');"
+									style="width:200px;" maxlength="60" styleClass="camposx"
+									value="#{ContractBemMB.clientcontact_email3}" required="false" />
+							</h:panelGrid>
+						</h:panelGrid>
+						<br />
+						<br />
+<a name='officeInfo'></a>
+<a name='anchorbranchstate'></a>
+						<div class="notemsg">
+							<p align="center">
+								<br />
+								Asegúrate de capturar los datos del funcionario quien coloco el
+								producto.
+								<br />
+								<br />
+							</p>
+						</div>
+						<br />
+						<br />
+						
+						<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText
+									value="Datos del Funcionario que Coloco el Producto" />
+							</f:facet>
+							<!-- Row1  -->
+							<h:panelGrid columns="1" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:panelGroup>
+									<h:outputText value="No. Empleado " />
+									<h:inputText id="officerempnumber" style="width:80px;"
+										onkeypress="return isTextNON(event)" maxlength="8"
+										styleClass="camposx"
+										requiredMessage="#{msgs.officerEmpNumberReqError}"
+										value="#{ContractBemMB.officerempnumber}" required="false" />
+									<h:commandLink id="SearchOfficer"
+										actionListener="#{ContractBemMB.findOfficerInfo}"
+										immediate="false" style="text-decoration: none">
+										<h:graphicImage url="../img_contracts/images/arrowrightmonth.gif"
+											alt="X Consultar" title="Buscar" style="border:0px" />
+										<f:param name="anchorSearchOfficer" value="officeInfo" />
+									</h:commandLink>
+								</h:panelGroup>
+							</h:panelGrid>
+							<!-- Row2  -->
+							<h:panelGrid columns="4" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleSecondRow">
+								<h:outputText value="Nombre" />
+								<h:outputText value="Apellido Paterno" />
+								<h:outputText value="Apellido Materno" />
+								<h:outputText value="Puesto" />
+
+								<h:inputText id="officername"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerNameReqError}"
+									value="#{ContractBemMB.officername}" 
+									required="false"
+									disabled="#{empty ContractBemMB.officername ? 'false' : 'true'}" />
+								<h:inputText id="officerlastname"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerLastnameReqError}"
+									value="#{ContractBemMB.officerlastname}" 
+									required="false"
+									disabled="#{empty ContractBemMB.officerlastname ? 'false' : 'true'}" />
+								<h:inputText id="officermothersln"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerMothersLnReqError}"
+									value="#{ContractBemMB.officermothersln}" 
+									required="false"
+									disabled="#{empty ContractBemMB.officermothersln ? 'false' : 'true'}" />
+								<h:inputText id="officerposition"
+									onkeypress="return isText(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerPositionReqError}"
+									value="#{ContractBemMB.officerposition}" 
+									required="false"
+									disabled="#{empty ContractBemMB.officerposition ? 'false' : 'true'}" />
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<br />
+						<br />
+
+						<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Datos del funcionario Ebanking" />
+							</f:facet>
+							<!-- Row1  -->
+							<h:panelGrid columns="1" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:panelGroup>
+								<h:outputText value="No. Empleado " />
+								<h:inputText id="officerebankingempnumber" style="width:80px;"
+									onkeypress="return isTextNON(event)" maxlength="8"
+									styleClass="camposx"
+									requiredMessage="#{msgs.officerebankingEmpNumberReqError}"
+									value="#{ContractBemMB.officerebankingempnumber}"
+									required="false" />
+									<h:commandLink id="SearchOfficerBanking"
+										actionListener="#{ContractBemMB.findOfficerInfo}"
+										immediate="false" style="text-decoration: none">
+										<h:graphicImage url="../img_contracts/images/arrowrightmonth.gif"
+											alt="X Consultar" title="Buscar" style="border:0px" />
+										<f:param name="anchorSearchOfficerBanking" value="officeInfo" />
+									</h:commandLink>
+								</h:panelGroup>
+							</h:panelGrid>
+							<!-- Row2  -->
+							<h:panelGrid columns="4" border="0"
+								cellpadding="0" cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleSecondRow">
+								<h:outputText value="Nombre" />
+								<h:outputText value="Apellido Paterno" />
+								<h:outputText value="Apellido Materno" />
+								<h:outputText value="" />
+
+								<h:inputText id="officerebankingname"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerebankingNameReqError}"
+									value="#{ContractBemMB.officerebankingname}" 
+									required="false"
+									disabled="#{empty ContractBemMB.officerebankingname ? 'false' : 'true'}" />
+								<h:inputText id="officerebankinglastname"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerebankingLastnameReqError}"
+									value="#{ContractBemMB.officerebankinglastname}"
+									required="false"
+									disabled="#{empty ContractBemMB.officerebankinglastname ? 'false' : 'true'}" />
+								<h:inputText id="officerebankingmothersln"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerebankingMothersLnReqError}"
+									value="#{ContractBemMB.officerebankingmothersln}"
+									required="false"
+									disabled="#{empty ContractBemMB.officerebankingmothersln ? 'false' : 'true'}" />
+								<h:outputText value="" maxlength="60" />
+
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<br />
+						<br />
+
+
+<a name="Sucursal"></a>
+						<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Datos de la Sucursal" />
+							</f:facet>
+							<h:panelGrid columns="5" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:outputText value="CR" />
+								<h:outputText value="" />
+								<h:outputText value="Nombre de la Sucursal" />
+								<h:outputText value="Domicilio" />
+								<h:outputText value="Colonia" />
+
+								<h:inputText id="crnumber" style="width:100px;"
+									onkeypress="return isNumberKey(event)" maxlength="5"
+									styleClass="camposx" requiredMessage="#{msgs.crnumberReqError}"
+									value="#{ContractBemMB.crnumber}" required="false" />
+								
+								<h:commandLink id="SearchOfficerBranch"
+									actionListener="#{ContractBemMB.findOfficerInfo}"
+									immediate="false" style="text-decoration: none">
+									<h:graphicImage url="../img_contracts/images/arrowrightmonth.gif"
+										alt="X Consultar" title="Buscar" style="border:0px" />
+									<f:param name="anchorSearchOfficerBranch" value="Sucursal" />
+								</h:commandLink>	
+									
+								<h:inputText id="branchname" onkeypress="return isText(event)"
+									style="width:200px;" maxlength="120" styleClass="camposx"
+									requiredMessage="#{msgs.branchnameReqError}"
+									value="#{ContractBemMB.branchname}" required="false"
+									disabled="#{ContractPayrollMB.foundBranch}" />
+									
+								<h:inputText id="branchstreet" onkeypress="return isText(event)"
+									style="width:250px;" maxlength="60" styleClass="camposx"
+									requiredMessage="#{msgs.branchstreetReqError}"
+									value="#{ContractBemMB.branchstreet}" required="false" 
+									disabled="#{ContractPayrollMB.foundBranch}"/>
+									
+								<h:inputText id="branchcolony" onkeypress="return isText(event)"
+									style="width:100px;" maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.branchcolonyReqError}"
+									value="#{ContractBemMB.branchcolony}" required="false" 
+									disabled="#{ContractPayrollMB.foundBranch}"/>
+									
+							</h:panelGrid>
+
+							<h:panelGrid columns="6" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner">
+								<h:outputText value="" />
+								<h:outputText value="Estado" />
+								<h:outputText value="Población" />
+								<h:outputText value="Teléfono" />
+								<h:outputText value="Fax" />
+								<h:outputText value="Sector Banca" />
+								
+								<h:commandLink id="SearchSucursal"
+										actionListener="#{ContractBemMB.findBranchCities}"
+										immediate="false" style="display: none">
+										<f:param name="anchorSearchSucursal" value="Sucursal" />
+								</h:commandLink>
+								
+								<h:selectOneMenu id="branchstate" 
+									onchange="onchangeStateSucursal()"
+									immediate="true" style="width:180px" class="camposx"
+									value="#{ContractBemMB.branchstate}" required="false"
+									disabled="#{ContractPayrollMB.foundBranch}">
+									<f:selectItem itemValue="Seleccione un Estado" />
+									<f:selectItems value="#{ContractBemMB.statesArray}" />
+								</h:selectOneMenu>
+
+								<h:selectOneMenu id="branchcity"
+									value="#{ContractBemMB.branchcity}" style="width:180px"
+									class="camposx" required="false"
+									disabled="#{ContractPayrollMB.foundBranch}">
+									<f:selectItem itemValue="Seleccione una Ciudad" />
+									<f:selectItems value="#{ContractBemMB.citiesBranchArray}" />
+								</h:selectOneMenu>
+
+								<h:inputText id="branchphone" style="width:80px;"
+									onkeypress="return isNumberKey(event)"
+									styleClass="camposx"
+									requiredMessage="#{msgs.branchphoneReqError}"
+									value="#{ContractBemMB.branchphone}" required="false" 
+									disabled="#{ContractPayrollMB.foundBranch}"/>
+									
+								<h:inputText id="branchfax" style="width:80px;"
+									onkeypress="return isNumberKey(event)" maxlength="8"
+									styleClass="camposx" value="#{ContractBemMB.branchfax}"
+									required="false" />
+								<h:selectOneMenu id="bankingsector" styleClass="camposx"
+									value="#{ContractBemMB.bankingsector}" required="false">
+									<f:selectItem itemValue="Banca Comercial"
+										itemLabel="Banca Comercial" />
+									<f:selectItem itemValue="Banca PYME" itemLabel="Banca PYME" />
+									<f:selectItem itemValue="Banca Empresarial"
+										itemLabel="Banca Empresarial" />
+									<f:selectItem itemValue="Banca Corporativa"
+										itemLabel="Banca Corporativa" />
+									<f:selectItem itemValue="Banca de Gobierno"
+										itemLabel="Banca de Gobierno" />
+								</h:selectOneMenu>
+							</h:panelGrid>
+						</h:panelGrid>
+
+						<br />
+						<br />
+<a name='officeRepInfo'></a>
+						<div class="notemsg">
+							<p align="center">
+								<br />
+								Asegúrate de capturar correctamente los nombres de los
+								ejecutivos facultados para firmar el contrato.
+								<br />
+								<br />
+							</p>
+						</div>
+						
+						<br />
+						<br />
+
+						<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText
+									value="Datos del Representante Legal o Apoderado Banorte" />
+							</f:facet>
+							<!-- Row1 -->
+							<h:panelGrid columns="1" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:panelGroup>
+								<h:outputText value="No. Empleado 1 " />
+								<h:inputText id="officerrepempnumber_1"
+									onkeypress="return isTextNON(event)" style="width:80px;"
+									maxlength="8" styleClass="camposx"
+									requiredMessage="#{msgs.officerRepNumber1ReqError}"
+									value="#{ContractBemMB.officerrepempnumber_1}" required="false" />
+								<h:outputText value="" />
+									<h:commandLink id="SearchOfficerRepEmp1"
+										actionListener="#{ContractBemMB.findOfficerInfo}"
+										immediate="false" style="text-decoration: none">
+										<h:graphicImage url="../img_contracts/images/arrowrightmonth.gif"
+											alt="X Consultar" title="Buscar" style="border:0px" />
+										<f:param name="anchorSearchOfficerRepEmp1"
+											value="officeRepInfo" />
+									</h:commandLink>
+								</h:panelGroup>
+							</h:panelGrid>							
+							<!-- Row2 -->
+							<h:panelGrid columns="3" border="0"
+								cellpadding="0" cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:outputText value="Nombre 1" />
+								<h:outputText value="Apellido Paterno 1" />
+								<h:outputText value="Apellido Materno 1" />						
+
+								<h:inputText id="officerrepname_1"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerName1ReqError}"
+									value="#{ContractBemMB.officerrepname_1}" 
+									required="false"
+									disabled="#{empty ContractBemMB.officerrepname_1 ? 'false' : 'true'}" />
+								<h:inputText id="officerreplastname_1"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerLastname1ReqError}"
+									value="#{ContractBemMB.officerreplastname_1}" 
+									required="false"
+									disabled="#{empty ContractBemMB.officerreplastname_1 ? 'false' : 'true'}" />
+								<h:inputText id="officerrepmothersln_1"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerMothersLn1ReqError}"
+									value="#{ContractBemMB.officerrepmothersln_1}" 
+									required="false"
+									disabled="#{empty ContractBemMB.officerrepmothersln_1 ? 'false' : 'true'}" />
+								
+								<h:outputText value="No. de Firma 1" />
+								<h:outputText value="Puesto 1" />
+								<h:outputText value="" />
+								
+								<h:inputText id="officerrepfirmnumber_1" style="width:80px;"
+									onkeypress="return isNumberKey(event)" maxlength="8"
+									styleClass="camposx" value="#{ContractBemMB.officerrepfirmnumber_1}"
+									required="false" />
+								<h:inputText id="officerrepposition_1"
+									onkeypress="return isText(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerPosition1ReqError}"
+									value="#{ContractBemMB.officerrepposition_1}" 
+									required="false"
+									disabled="#{empty ContractBemMB.officerrepposition_1 ? 'false' : 'true'}" />
+								<h:outputText value="" />	
+							</h:panelGrid>
+							<!-- Row3 -->
+							<h:panelGrid columns="1" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleSecondRow">
+								<h:panelGroup>
+								<h:outputText value="No. Empleado 2 " />
+								<h:inputText id="officerrepempnumber_2"
+									onkeypress="return isTextNON(event)" style="width:80px;"
+									maxlength="8" styleClass="camposx"
+									requiredMessage="#{msgs.officerrepempnumber2ReqError}"
+									value="#{ContractBemMB.officerrepempnumber_2}" required="false" />
+									<h:commandLink id="SearchOfficerRepEmp2"
+										actionListener="#{ContractBemMB.findOfficerInfo}"
+										immediate="false" style="text-decoration: none">
+										<h:graphicImage url="../img_contracts/images/arrowrightmonth.gif"
+											alt="X Consultar" title="Buscar" style="border:0px" />
+										<f:param name="anchorSearchOfficerRepEmp2"
+											value="officeRepInfo" />
+									</h:commandLink>
+								</h:panelGroup>
+							</h:panelGrid>
+							<!-- Row4 -->
+							<h:panelGrid columns="3" border="0"
+								cellpadding="0" cellspacing="0" styleClass="contractStyleInner">
+								<h:outputText value="Nombre 2" />
+								<h:outputText value="Apellido Paterno 2" />
+								<h:outputText value="Apellido Materno 2" />
+								
+								<h:inputText id="officerrepname_2"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerrepname2ReqError}"
+									value="#{ContractBemMB.officerrepname_2}" 
+									required="false"
+									disabled="#{empty ContractBemMB.officerrepname_2 ? 'false' : 'true'}" />
+								<h:inputText id="officerreplastname_2"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerreplastname2ReqError}"
+									value="#{ContractBemMB.officerreplastname_2}" 
+									required="false"
+									disabled="#{empty ContractBemMB.officerreplastname_2 ? 'false' : 'true'}" />
+								<h:inputText id="officerrepmothersln_2"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerrepmothersln2ReqError}"
+									value="#{ContractBemMB.officerrepmothersln_2}" 
+									required="false"
+									disabled="#{empty ContractBemMB.officerrepmothersln_2 ? 'false' : 'true'}" />
+
+								<h:outputText value="No. de Firma 2" />
+								<h:outputText value="Puesto 2" />
+								<h:outputText value="" />
+
+								<h:inputText id="officerrepfirmnumber_2" style="width:80px;"
+									onkeypress="return isNumberKey(event)" maxlength="8"
+									styleClass="camposx" value="#{ContractBemMB.officerrepfirmnumber_2}"
+									required="false" />
+								<h:inputText id="officerrepposition_2"
+									onkeypress="return isText(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerrepposition2ReqError}"
+									value="#{ContractBemMB.officerrepposition_2}" 
+									required="false"
+									disabled="#{empty ContractBemMB.officerrepposition_2 ? 'false' : 'true'}" />
+								<h:outputText value="" />	
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<br />
+						<br />
+						
+						<div class="actions">
+							<div class="rowact">
+								<div class="cellleft">
+									| x
+									<h:commandLink id="Regresar" action="BACK" immediate="true">REGRESAR</h:commandLink>
+									|
+								</div>
+								<div class="cellright" id="divGuardar">
+									| x
+									<h:commandLink id="Guardar"
+										action="#{ContractBemMB.saveCompleteContract}"
+										onclick="hideDiv();" immediate="false">ENVIAR</h:commandLink>
+									|
+								</div>
+								<div class="cellright" id="divGuardando"
+									style="visibility: hidden">
+									| x Enviando... |
+								</div>
+							</div>
+						</div>
+					</h:form>
+				</f:view>
+			</ui:define>
+
+		</ui:composition>
+
+	</body>
+</html>

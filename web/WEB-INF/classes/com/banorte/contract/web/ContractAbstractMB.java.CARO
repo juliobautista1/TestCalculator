@@ -1,0 +1,2299 @@
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.banorte.contract.web;
+
+import com.banorte.contract.business.AffiliationRemote;
+import com.banorte.contract.business.CitiesRemote;
+import com.banorte.contract.business.ClientRemote;
+import com.banorte.contract.business.ContactTypeRemote;
+import com.banorte.contract.business.ContractAttributeRemote;
+import com.banorte.contract.business.ContractRemote;
+import com.banorte.contract.business.ProductRemote;
+import com.banorte.contract.business.ReferenceRemote;
+import com.banorte.contract.business.StatesRemote;
+import com.banorte.contract.business.StatusContractRemote;
+import com.banorte.contract.business.TemplateRemote;
+import com.banorte.contract.layout.LayoutOperations;
+import com.banorte.contract.model.Attribute;
+import com.banorte.contract.model.Cities;
+import com.banorte.contract.model.Client;
+import com.banorte.contract.model.ClientContact;
+import com.banorte.contract.model.ContactType;
+import com.banorte.contract.model.Contract;
+import com.banorte.contract.model.ContractAttribute;
+import com.banorte.contract.model.ContractMessageErrors;
+import com.banorte.contract.model.ContractStatusHistory;
+import com.banorte.contract.model.LegalRepresentative;
+import com.banorte.contract.model.Product;
+import com.banorte.contract.model.States;
+import com.banorte.contract.model.StatusContract;
+import com.banorte.contract.model.Template;
+import com.banorte.contract.util.ApplicationConstants;
+import com.banorte.contract.util.pdf.PdfBuilder;
+import com.banorte.contract.util.pdf.PdfTemplateBinding;
+import com.banorte.contract.util.pdf.PdfTemplateReader;
+import com.banorte.contract.util.Formatter;
+import java.io.IOException;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
+import javax.servlet.ServletContext;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+/**
+ * 
+ * @author MRIOST
+ */
+public abstract class ContractAbstractMB {
+
+    private static Logger log = Logger.getLogger(ContractAbstractMB.class.getName());
+    private static final String SUCCESS = "SUCCESS";
+    private static final String FAILED = "FAILED";
+    private AttributeMB attributeMB;
+    private Client client;
+    private Contract contract;
+    private LegalRepresentative legalRep1;
+    private LegalRepresentative legalRep2;
+    private ClientContact clientContact1;
+    private ClientContact clientContact2;
+    private ClientContact clientContact3;
+    private ClientContact clientContact4;
+    private ClientContact clientContact5;
+    private ClientContact clientContact6;
+    private ClientContact clientContact7;
+    protected ClientRemote clientBean;
+    protected ContactTypeRemote contactTypeBean;
+    protected ProductRemote productBean;
+    protected ContractRemote contractBean;
+    protected StatusContractRemote statusBean;
+    protected ContractAttributeRemote contractAttributeBean;
+    protected AffiliationRemote contractAffiliationBean;
+    protected StatesRemote statesBean;
+    protected CitiesRemote citiesBean;
+    
+    protected ReferenceRemote referenceBean;
+    private String celebrationplace;
+    private String celebrationstate;
+    private String celebrationdate;
+    private String applicationdate;
+    public Formatter formatDate;
+    public TemplateRemote templateBean;
+
+    private String officername;
+    private String officerlastname;
+    private String officermothersln;
+    private String officerempnumber;
+    private String officerposition;
+    private String crnumber;
+    private String branchname;
+    private String branchstreet;
+    private String branchcolony;
+    private String branchcounty;
+    private String branchcity;
+    private String branchstate;
+    private String branchphone;
+    private String branchfax;
+    private String bankingsector;
+    private String officerrepname_1;
+    private String officerreplastname_1;
+    private String officerrepmothersln_1;
+    private String officerrepempnumber_1;
+    private String officerrepposition_1;
+    private String officerrepname_2;
+    private String officerreplastname_2;
+    private String officerrepmothersln_2;
+    private String officerrepempnumber_2;
+    private String officerrepposition_2;
+    private String comments;
+    private String officerebankingname;
+    private String officerebankinglastname;
+    private String officerebankingmothersln;
+    private String officerebankingempnumber;
+    
+    private ArrayList<ContractMessageErrors> generalInfoErrorsList= new ArrayList();
+    private Collection<ContractMessageErrors> errorsList;
+    private SelectItem[] statesArray;
+    private SelectItem[] citiesCelebrationArray;
+    private SelectItem[] citiesClientArray;
+    private SelectItem[] citiesBranchArray;
+    
+    
+    private boolean toPrint;
+    private boolean toEdit;
+
+    public ContractAbstractMB() {
+        if (clientBean == null) {
+            clientBean = (ClientRemote) EjbInstanceManager.getEJB(ClientRemote.class);
+        }
+        if (productBean == null) {
+            productBean = (ProductRemote) EjbInstanceManager.getEJB(ProductRemote.class);
+        }
+        if (statusBean == null) {
+            statusBean = (StatusContractRemote) EjbInstanceManager.getEJB(StatusContractRemote.class);
+        }
+        if (contractBean == null) {
+            contractBean = (ContractRemote) EjbInstanceManager.getEJB(ContractRemote.class);
+        }
+        if (referenceBean == null) {
+            referenceBean = (ReferenceRemote) EjbInstanceManager.getEJB(ReferenceRemote.class);
+        }
+        if (contactTypeBean == null) {
+            contactTypeBean = (ContactTypeRemote) EjbInstanceManager.getEJB(ContactTypeRemote.class);
+        }
+        
+        if ( templateBean == null) {
+            templateBean = (TemplateRemote) EjbInstanceManager.getEJB(TemplateRemote.class);
+        }
+
+        if ( statesBean == null) {
+            statesBean = (StatesRemote) EjbInstanceManager.getEJB(StatesRemote.class);
+        }
+        
+        if (citiesBean == null) {
+            citiesBean = (CitiesRemote) EjbInstanceManager.getEJB(CitiesRemote.class);
+        }
+        
+        if ( contractAttributeBean == null) {
+            contractAttributeBean = (ContractAttributeRemote) EjbInstanceManager.getEJB(ContractAttributeRemote.class);
+        }
+      
+        
+        
+        client = new Client();
+        contract = new Contract();
+        legalRep1 = new LegalRepresentative();
+        legalRep2 = new LegalRepresentative();
+        clientContact1 = new ClientContact();
+        clientContact2 = new ClientContact();
+        clientContact3 = new ClientContact();
+        clientContact4 = new ClientContact();
+        clientContact5 = new ClientContact();
+        clientContact6 = new ClientContact();
+        clientContact7 = new ClientContact();
+        formatDate = new Formatter();
+        
+        toPrint = false;
+    }
+
+    public abstract void setResetForm();
+    public abstract void setEditForm();
+    
+  
+     
+     
+     public Map<String, String> getContractAttributeFills(Contract contract, String[] fills) {
+        Map<String, String> map = new HashMap<String, String>();
+         String GENERAL_FILLS[] = {"celebrationplace", "celebrationstate","celebrationdate", 
+                                   "client_categorycode","comments",
+                                    "crnumber","branchname", "branchstreet","branchcolony","branchphone","branchfax","bankingsector","branchcity","branchstate",
+                                    "officername","officerlastname","officermothersln","officerempnumber","officerposition",
+                                    "officerebankingname","officerebankinglastname","officerebankingmothersln","officerebankingempnumber",
+                                    "officerrepname_1","officerreplastname_1","officerrepmothersln_1","officerrepempnumber_1","officerrepposition_1",
+                                    "officerrepname_2","officerreplastname_2","officerrepmothersln_2","officerrepempnumber_2","officerrepposition_2",
+                                    "client_merchantname","client_phone","client_phoneext","client_fax","client_faxext",
+                                    "client_sic","client_street","client_numext","client_numint","client_colony","client_county",
+                                    "client_zipcode","client_city","client_state","client_email","client_fiscalname","client_fiscaltype",
+                                    "client_rfc","client_areacode","client_emailname","client_addressComplete","client_faxComplete","client_site",
+                                    "legalrepresentative_position_1","legalrepresentative_position_2","legalrepresentative_mothersln_1","legalrepresentative_rfc_1",
+                                    "legalrepresentative_mothersln_2","legalrepresentative_email_2","legalrepresentative_name_1","legalrepresentative_email_1",
+                                    "legalrepresentative_lastname_1","legalrepresentative_lastname_2","legalrepresentative_rfc_2","legalrepresentative_name_2",
+                                    "clientcontact_email1","clientcontact_email2","clientcontact_email3","clientcontact_email4","clientcontact_email5","clientcontact_email6",
+                                    "clientcontact_email7","clientcontact_lastname1","clientcontact_lastname2","clientcontact_lastname3","clientcontact_lastname4",
+                                    "clientcontact_lastname5","clientcontact_lastname6","clientcontact_lastname7","clientcontact_mothersln1","clientcontact_mothersln2",
+                                    "clientcontact_mothersln3","clientcontact_mothersln4","clientcontact_mothersln5","clientcontact_mothersln6","clientcontact_mothersln7",
+                                    "clientcontact_name1","clientcontact_name2","clientcontact_name3","clientcontact_name4","clientcontact_name5","clientcontact_name6",
+                                    "clientcontact_name7","clientcontact_phone1","clientcontact_phone2","clientcontact_phone3","clientcontact_phone4","clientcontact_phone5",
+                                    "clientcontact_phone6","clientcontact_phone7","clientcontact_phoneext1","clientcontact_phoneext2","clientcontact_phoneext3","clientcontact_phoneext4",
+                                    "clientcontact_phoneext5","clientcontact_phoneext6","clientcontact_phoneext7","clientcontact_position1","clientcontact_position2","clientcontact_position3",
+                                    "clientcontact_position4","clientcontact_position5","clientcontact_position6","clientcontact_position7"
+                                    };
+        
+        String value="";        
+        this.contract = contract;
+        
+        for ( int i = 0; i < GENERAL_FILLS.length; i++ ){        
+        Collection<ContractAttribute> atts = contract.getContractAttributeCollection();        
+        for(ContractAttribute att:atts){
+                value = "";
+                if(att.getAttribute().getFieldname().equals(GENERAL_FILLS[i])){
+                    value = att.getValue()!=null?att.getValue():"";
+                    break;    
+                }
+            }
+        map.put(GENERAL_FILLS[i], value);
+        //System.err.println("campo: "+ GENERAL_FILLS[i]+ " valor: " + value);
+        }
+        
+        for ( int i = 0; i < fills.length; i++ ){        
+        Collection<ContractAttribute> atts = contract.getContractAttributeCollection();
+        for(ContractAttribute att:atts){
+                value = "";   
+                if(att.getAttribute().getFieldname().equals(fills[i])){
+                    value = att.getValue()!=null?att.getValue():"";
+                    break;    
+                }
+            }
+        map.put(fills[i], value);
+        //System.err.println("campo: "+ fills[i]+ " valor: " + value);
+        }           
+        
+        return  map;
+    }
+     
+
+     
+    public void clearFields() {
+        celebrationplace = "";
+        celebrationstate = "";
+        celebrationdate = "";
+        applicationdate = "";
+        officername = "";
+        officerlastname = "";
+        officermothersln = "";
+        officerempnumber = "";        
+        officerebankingname = "";
+        officerebankinglastname = "";
+        officerebankingmothersln = "";
+        officerebankingempnumber = "";        
+        officerposition = "";
+        crnumber = "";
+        branchname = "";
+        branchstreet = "";
+        branchcolony = "";
+        branchcounty = "";
+        branchcity = "";
+        branchstate = "";
+        branchphone = "";
+        branchfax = "";
+        bankingsector = "";
+        officerrepname_1 = "";
+        officerreplastname_1 = "";
+        officerrepmothersln_1 = "";
+        officerrepempnumber_1 = "";
+        officerrepposition_1 = "";
+        officerrepname_2 = "";
+        officerreplastname_2 = "";
+        officerrepmothersln_2 = "";
+        officerrepempnumber_2 = "";
+        officerrepposition_2 = "";
+        comments = "";
+        client = new Client();
+        contract = new Contract();
+        legalRep1 = new LegalRepresentative();
+        legalRep2 = new LegalRepresentative();
+        clientContact1 = new ClientContact();
+        clientContact2 = new ClientContact();
+        clientContact3 = new ClientContact();
+        clientContact4 = new ClientContact();
+        clientContact5 = new ClientContact();
+        clientContact6 = new ClientContact();
+        clientContact7 = new ClientContact();
+        generalInfoErrorsList.clear();
+        if(this.getErrorsList()!=null){
+          this.getErrorsList().clear();
+         }
+    }
+
+    public ContractAttribute getContractAttribute(String fieldName, String value) {
+        Attribute att = attributeMB.getByFieldname(fieldName);
+        ContractAttribute cAtt = new ContractAttribute();
+        cAtt.setAttribute(att);
+        cAtt.setValue(value);
+//        log.info("Att:" + cAtt + ", value:" + value);
+        return cAtt;
+    }
+
+    public String getPath() {
+        ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+        String realPath = ctx.getRealPath(".");
+        if (realPath == null) {
+            realPath = "C:/temp/";
+        }
+//        log.info("********************************************************************RealPath:" + realPath);
+//        log.info("********************************************************************CtxPath:" + ctx.getContextPath());
+        return realPath;
+    }
+    
+    protected void createPdfOrXLSResponse(String template, String fileNameResult, boolean pdforxls, boolean edit) {
+        FacesContext fCtx = FacesContext.getCurrentInstance();
+        try {
+            ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+            if ( edit && pdforxls) {
+                PdfBuilder builder = new PdfBuilder(byteArray);
+                PdfTemplateReader reader = new PdfTemplateReader(template);
+                builder.setReader(reader);
+                builder.setBinding(getPdfTemplateBinding());
+                builder.createDocument();
+            } else {
+                FileInputStream fis = new FileInputStream(template);		
+
+                int theByte = 0;
+                while ((theByte = fis.read()) != -1){
+                  byteArray.write(theByte);
+                }
+                fis.close();
+            }
+            byte[] pdf = byteArray.toByteArray();
+            byteArray.close();
+            HttpServletResponse response = (HttpServletResponse) fCtx.getExternalContext().getResponse();
+            if ( pdforxls )
+                response.setContentType("application/pdf");
+            else
+                response.setContentType("application/vnd.ms-excel");
+            response.setContentLength(pdf.length);
+            response.setHeader("Content-disposition", "attachment; filename=\"" + fileNameResult + "\"");
+            ServletOutputStream out = response.getOutputStream();
+            out.write(pdf);
+        } catch (IOException ioEx) {
+            log.severe(ioEx.getMessage());
+        } finally {
+            fCtx.responseComplete();
+        }
+
+    }
+
+    protected Collection<Template> getTemplateOption(Integer productId) {
+        Collection<Template> templates = templateBean.findAll();        
+        Collection<Template> result = new ArrayList();
+        for ( Template template : templates) {            
+            if ( template.getProduct().getProductid().equals(productId)) 
+                result.add(template);                
+        }        
+        
+        return result;
+    }
+
+    public abstract PdfTemplateBinding getPdfTemplateBinding();
+    public abstract Template[] getFormatList();
+
+    public Product getProduct() {
+        return contract.getProduct();
+    }
+
+    public void setProduct(Product product) {
+        contract.setProduct(product);
+    }
+
+    public StatusContract getStatusContract() {
+        return contract.getStatus();
+    }
+
+    public void setStatusContract(StatusContract status) {
+        contract.setStatus(status);
+    }
+
+    public AttributeMB getAttributeMB() {
+        return attributeMB;
+    }
+
+    public void setAttributeMB(AttributeMB attributeMB) {
+        this.attributeMB = attributeMB;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Contract getContract() {
+        return contract;
+    }
+
+    public void setContract(Contract contract) {
+        this.contract = contract;
+    }
+
+    public boolean findClientBySic() {
+        try {
+            this.getProductIdDetail();
+//            log.info("product: " + contract.getProduct().getDescription());
+//            log.info("SIC to find-->" + getClient_sic());
+            String formSIC = getClient_sic();
+            client = clientBean.findBySic(new Long(getClient_sic().trim()));
+            if (client != null) {
+//                log.info("Client found-->" + client.getClientid());
+                ArrayList<LegalRepresentative> legalRepList = new ArrayList<LegalRepresentative>();
+                legalRepList = (ArrayList<LegalRepresentative>) client.getLegalRepresentativeCollection();
+                if (legalRepList != null && legalRepList.size() > 0) {
+                    if (legalRepList.get(0) != null) {
+                        legalRep1 = legalRepList.get(0);
+                        if (legalRepList.size() > 1 && legalRepList.get(1) != null) {
+                            legalRep2 = legalRepList.get(1);
+                        }
+                    }
+                }
+                ArrayList<ClientContact> clientContactList = new ArrayList<ClientContact>();
+                clientContactList = (ArrayList<ClientContact>) client.getClientContactCollection();
+                
+                for(ClientContact clientContact:clientContactList){
+                    if(contract.getProduct().getProductid().intValue() == clientContact.getClientContactPK().getProductid().intValue()){
+                        if(clientContact.getClientContactPK().getContactid().intValue()==1){
+                            clientContact1 = clientContact;
+                        }else if(clientContact.getClientContactPK().getContactid().intValue()==2){
+                            clientContact2 = clientContact;
+                        }else if(clientContact.getClientContactPK().getContactid().intValue()==3){
+                            clientContact3 = clientContact;
+                        }else if(clientContact.getClientContactPK().getContactid().intValue()==4){
+                            clientContact4 = clientContact;
+                        }else if(clientContact.getClientContactPK().getContactid().intValue()==5){
+                            clientContact5 = clientContact;
+                        }else if(clientContact.getClientContactPK().getContactid().intValue()==6){
+                            clientContact6 = clientContact;
+                        }else if(clientContact.getClientContactPK().getContactid().intValue()==7){
+                            clientContact7 = clientContact;
+                        }
+                    }
+                }
+            } else {
+                client = new Client();
+                client.setSic(new Long(formSIC));
+            }
+
+        } catch (Exception ex) {
+            log.log(Level.SEVERE, ex.getMessage(), ex);
+            return false;
+        }
+
+        return true;
+    }
+
+    private void assignLegalRepresentative(LegalRepresentative legal) {
+        if (!legal.getName().trim().equals("") &&
+                !legal.getLastname().trim().equals("") &&
+                !legal.getMothersln().trim().equals("")) {
+            client.add(legal);
+        }
+    }
+
+    private void assignClientContact(ClientContact contact, Integer subtype) {
+        if (!contact.getName().trim().equals("") &&
+                !contact.getLastname().trim().equals("") &&
+                !contact.getMothersln().trim().equals("")) {
+            ContactType contactType = new ContactType();
+            if (contract.getProduct().getProductid() != null) {
+                if (contract.getProduct().getProductid() == 1) {
+                    contactType = contactTypeBean.findById(new Integer(ApplicationConstants.ADMINISTRADOR));
+                } else if (contract.getProduct().getProductid() == 2) {
+                    contactType = contactTypeBean.findById(new Integer(ApplicationConstants.FIRMAFACULTADA));
+                } else {
+                    if (subtype == 1) {
+                        contactType = contactTypeBean.findById(new Integer(ApplicationConstants.CONTACTOHERRAMIENTA));
+                    } else {
+                        contactType = contactTypeBean.findById(new Integer(ApplicationConstants.DESAROLLADOR));
+                    }
+                }
+
+                contact.setContacttype(contactType);
+                client.add(contact);
+            }
+        }
+    }
+
+    private boolean saveGeneralInfo() {  
+            boolean assign=false;
+            client.setLastcontractproduct(this.getProduct().getProductid());
+            if (client.getClientid() == null && contract.getReference()==null) {                
+                clientBean.save(client);
+                client = clientBean.findBySic(new Long(getClient_sic().trim()));
+                assign=true;
+            } else{
+            Client clientFind = clientBean.findBySic(new Long(getClient_sic().trim()));            
+            if(contract.getClient() != null && contract.getClient().getClientid() != null){
+                        if(clientFind!=null){
+                            if(clientFind.getClientid()!= contract.getClient().getClientid()){
+                                System.out.println("ClientId Antes:" + contract.getClient().getClientid());
+                                contract.getClient().setClientid(clientFind.getClientid());
+                                System.out.println("ClientId Despues:" + contract.getClient().getClientid());
+                                clientBean.update(client);
+                                assign = true;
+                            }
+                        }else{                       
+                                clientBean.update(client);
+                                assign = true;
+                        }
+            }  else{
+
+                    if(clientFind!=null){
+                                contract.getClient().setClientid(clientFind.getClientid());
+                                clientBean.update(client);
+                                assign = true;
+                        }
+            }
+        }
+
+            
+    //        log.info("+++++++++++++++++++++++ Total Legals Before Assign:" + client.getLegalRepresentativeCollection().size() + " +++++++++++++++++++++++++++");
+    //        log.info("+++++++++++++++++++++++ Total Contacts Before Assign:" + client.getClientContactCollection().size() + " +++++++++++++++++++++++++++");
+
+
+            if (assign){
+                client.getLegalRepresentativeCollection().clear();
+                assignLegalRepresentative(legalRep1);
+                assignLegalRepresentative(legalRep2);
+                client.getClientContactCollection().clear();
+                assignClientContact(clientContact1, 1);
+                assignClientContact(clientContact2, 0);
+                assignClientContact(clientContact3, 0);
+                assignClientContact(clientContact4, 0);
+                assignClientContact(clientContact5, 0);
+                assignClientContact(clientContact6, 0);
+                assignClientContact(clientContact7, 0);
+                clientBean.update(client);
+            }
+            
+        
+       
+        return true;
+    }
+
+    public abstract String getProductPrefix();
+    public abstract void getProductIdDetail();
+
+    private String getContractReference() {
+       String ref="";
+       toEdit=false;
+       if (contract.getReference() !=null){
+        ref=contract.getReference();  
+        toEdit=true;
+       }
+       else           
+       {
+           Integer referenceid = referenceBean.getReference().getReferenceid();
+            String refStr = "000" + referenceid;
+            SimpleDateFormat formater = new SimpleDateFormat("MMyy");
+            String refDate = formater.format(new java.util.Date(System.currentTimeMillis()));
+            ref=getProductPrefix() + refDate + refStr.substring(refStr.length() - 4, refStr.length());       
+       }
+         
+           
+       return ref;
+
+    }
+
+    private boolean saveContract() {
+        //UNA VEZ GUARDADO EL CLIENTE SE GUARDA EL CONTRACT, LLENAR EL OBJ. CONTRACT, ASIGNARLE EL OBJ. CLIENT QUE YA PERSISTIMOS, EL OBJ. PRODUCTO Y EL OBJ. STATUS CONTRACT, PARA ASIGNAR EL CAMPO REFERENCE, HACER UNA UTILERIA PARA LA GENERACION DE FOLIOS DE CONTRATO
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) (facesContext.getExternalContext().getSession(true));
+        Map<String, String> userSession = (HashMap) session.getAttribute(ApplicationConstants.PROFILE);
+
+        String contractReference = getContractReference();
+       
+        Contract existingContract = contractBean.findByRefLastVersion(contractReference);
+        if (existingContract != null) {
+
+                contract.setAuthoffempnum1("");
+                contract.setAuthoffempnum2("");
+
+                if(contract.getStatus().getStatusid()>6){ //Cuando es una version Nueva guardar un nuevo registro
+                    contract.setVersion(contract.getVersion()+1);
+                    contract.setContractId(null);
+                    contract.setStatus(statusBean.findById(new Integer(2)));
+                    contract.getContractAttributeCollection().clear();
+                    contract.getAffiliationCollection().clear();
+                    contract.getContractStatusHistoryCollection().clear();                    
+                    contractBean.save(contract);
+                } else                {
+                    contract.setStatus(statusBean.findById(new Integer(2)));
+                    contractBean.update(contract);
+                }
+        } else {            
+                contract.setVersion(1);
+                contract.setClient(client);
+                contract.setReference(contractReference);
+                contract.setCreationdate(new java.util.Date(System.currentTimeMillis()));
+                contract.setCreationoffempnum(userSession.get(ApplicationConstants.UID));
+                contract.setCreationoffname(userSession.get(ApplicationConstants.UNAME));
+                contractBean.save(contract);
+        }
+
+          contract = contractBean.findByRefLastVersion(contractReference);
+        log.info("******** Id Contract: " + contract.getContractId());
+        return true;
+    }
+
+    public String saveCompleteContract() {
+        // SE REALIZAN LAS INVOCACIONES PARA EL GUARDADO EN CASCADA, PRIMERO DATOS GENERALES, LUEGO EL CONTRATO Y AL FINAL LOS ATRIBUTOS O DATOS DE AFILIACION PARA EL CASO DE ADQUIRENTE
+//        log.info("***********saveCompleteContract!!!!!!!!!!");
+       if(validateGeneralInfo()){//Validaciones GeneralInfo
+            if (saveGeneralInfo()) {
+                if (saveContract()) {
+                    if (savePartialContract()) {
+                        setStatusHistory();
+                        toPrint = true;
+                        return SUCCESS;
+                    } else {
+                        return FAILED;
+                    }
+
+                }
+            }
+       }
+        return FAILED;
+
+    }
+
+    private void setStatusHistory() {
+        StatusContract status=null; 
+        if(!toEdit)
+            status = statusBean.findById(1);
+        else
+            status =statusBean.findById(contract.getStatus().getStatusid());
+            
+        contract.setStatus(status);
+
+        ContractStatusHistory statusHistory = new ContractStatusHistory();
+        statusHistory.setContract(contract);
+        statusHistory.setStatusContract(status);        
+        statusHistory.setModifydate(new Date());
+        statusHistory.setOffempnum("appsstb");
+        statusHistory.setCommentary(toEdit?"APPSSTB contrato editado en espera de formalizacion.":"APPSSTB contrato capturado en espera de formalizacion.");
+
+        contract.add(statusHistory);
+
+        contractBean.update(contract);
+    }
+
+    public String continueToGeneralInfo() {
+//        log.info("*********** Continue to General Info ...... SIC:" + getClient_sic());        
+        if(contract.getReference()==null){
+             if (getClient_sic() != null && !getClient_sic().trim().equals("") && !findClientBySic()) {
+    //            log.info("*********** No encontro el Cliente [" + getClient_sic() + "] ......");
+                FacesMessage fMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, " No se encontro el cliente con SIC [" + getClient_sic() + "] !!! ", "No se encontro el cliente con SIC [" + getClient_sic() + "] !!!");
+                FacesContext.getCurrentInstance().addMessage("forma:sicMsg", fMsg);
+            }       
+        }  
+        return SUCCESS;
+    }
+    
+    public void createLayout() {
+        System.out.println("Ejecucion Manual Envio y Lectura Layouts...");
+        LayoutOperations layOut = LayoutOperations.getInstance();
+        layOut.startSend(false, true);
+        layOut.startRecipe(false);
+    }
+    
+     public void readLayout() {
+        System.out.println("Ejecucion Manual Lectura Layouts..."); 
+        LayoutOperations layOut = LayoutOperations.getInstance();        
+        layOut.startRecipe(false);
+    }
+
+    public abstract boolean savePartialContract();
+
+    public String getApplicationdate() {
+        return applicationdate;
+    }
+
+    public void setApplicationdate(String applicationDate) {
+        this.applicationdate = applicationDate;
+    }
+
+    public String getBankingsector() {
+        return bankingsector;
+    }
+
+    public void setBankingsector(String bankingsector) {
+        this.bankingsector = bankingsector;
+    }
+
+    public String getBranchcity() {
+        return branchcity;
+    }
+
+    public void setBranchcity(String branchcity) {
+        this.branchcity = branchcity;
+    }
+
+    public String getBranchcolony() {
+        return branchcolony;
+    }
+
+    public void setBranchcolony(String branchcolony) {
+        this.branchcolony = branchcolony;
+    }
+
+    public String getBranchcounty() {
+        return branchcounty;
+    }
+
+    public void setBranchcounty(String branchcounty) {
+        this.branchcounty = branchcounty;
+    }
+
+    public String getBranchfax() {
+        return branchfax;
+    }
+
+    public void setBranchfax(String branchfax) {
+        this.branchfax = branchfax;
+    }
+
+    public String getBranchname() {
+        return branchname;
+    }
+
+    public void setBranchname(String branchname) {
+        this.branchname = branchname;
+    }
+
+    public String getBranchphone() {
+        return branchphone;
+    }
+
+    public void setBranchphone(String branchphone) {
+        this.branchphone = branchphone;
+    }
+
+    public String getBranchstate() {
+        return branchstate;
+    }
+
+    public void setBranchstate(String branchstate) {
+        this.branchstate = branchstate;
+    }
+
+    public String getBranchstreet() {
+        return branchstreet;
+    }
+
+    public void setBranchstreet(String branchstreet) {
+        this.branchstreet = branchstreet;
+    }
+
+    public String getCelebrationdate() {
+        return celebrationdate;
+    }
+
+    public void setCelebrationdate(String celebrationdate) {
+        this.celebrationdate = celebrationdate;
+    }
+
+    public String getCelebrationplace() {
+        return celebrationplace;
+    }
+
+    public void setCelebrationplace(String celebrationplace) {
+        this.celebrationplace = celebrationplace;
+    }
+
+    public String getCelebrationstate() {
+        return celebrationstate;
+    }
+
+    public void setCelebrationstate(String celebrationstate) {
+        this.celebrationstate = celebrationstate;
+    }
+
+    
+     public String getClient_site() {
+        return client.getSite() != null ? client.getSite().toString() : "";
+    }
+
+    public void setClient_site(String client_site) {
+        client.setSite(client_site);
+    }
+    
+    
+    
+    
+    public String getClient_categorycode() {
+        return client.getCategorycode() != null ? client.getCategorycode().toString() : "";
+    }
+
+    public void setClient_categorycode(String client_categorycode) {       
+            client.setCategorycode(client_categorycode);       
+    }
+
+    public String getClient_city() {
+        return client.getCity() != null ? client.getCity() : "";
+    }
+
+    public void setClient_city(String client_city) {
+        client.setCity(client_city);
+    }
+
+    public String getClient_colony() {
+        return client.getColony() != null ? client.getColony() : "";
+    }
+
+    public void setClient_colony(String client_colony) {
+        client.setColony(client_colony);
+    }
+
+    public String getClient_constitutiondate() {
+        return client.getConstitutiondate() != null ? formatDate.formatDateToString(client.getConstitutiondate()) : null;
+    }
+
+    public void setClient_constitutiondate(String client_constitutiondate) {
+        client.setConstitutiondate(formatDate.formatDate(client_constitutiondate).getTime());
+    }
+
+    public String getClient_county() {
+        return client.getCounty() != null ? client.getCounty() : "";
+    }
+
+    public void setClient_county(String client_county) {
+        client.setCounty(client_county);
+    }
+
+    public String getClient_email() {
+        return client.getEmail() != null ? client.getEmail() : "";
+    }
+
+    public void setClient_email(String client_email) {
+        client.setEmail(client_email);
+    }
+
+    public String getClient_fiscalname() {
+        return client.getFiscalname() != null ? client.getFiscalname() : "";
+    }
+
+    public void setClient_fiscalname(String client_fiscalname) {
+        client.setFiscalname(client_fiscalname);
+    }
+
+    public Integer getClient_fiscaltype() {
+        return client.getFiscaltype();
+    }
+
+    public void setClient_fiscaltype(Integer client_fiscaltype) {
+        client.setFiscaltype(client_fiscaltype);
+    }
+
+    public String getClient_fscity() {
+        return client.getFscity() != null ? client.getFscity() : "";
+    }
+
+    public void setClient_fscity(String client_fscity) {
+        if (client.getFsname() !=null && !client.getFsname().trim().equals(""))
+        client.setFscity(client_fscity);
+    }
+
+    public String getClient_fscolony() {
+        return client.getFscolony() != null ? client.getFscolony() : "";
+    }
+
+    public void setClient_fscolony(String client_fscolony) {
+        client.setFscolony(client_fscolony);
+    }
+
+    public String getClient_fscounty() {
+        return client.getFscounty() != null ? client.getFscounty() : "";
+    }
+
+    public void setClient_fscounty(String client_fscounty) {
+        client.setFscounty(client_fscounty);
+    }
+
+    public String getClient_fsemail() {
+        return client.getFsemail() != null ? client.getFsemail() : "";
+    }
+
+    public void setClient_fsemail(String client_fsemail) {
+        client.setFsemail(client_fsemail);
+    }
+
+    public Integer getClient_fsfax() {
+        return client.getFsfax();
+    }
+
+    public void setClient_fsfax(Integer client_fsfax) {
+        client.setFsfax(client_fsfax);
+    }
+
+    public Integer getClient_fsfaxext() {
+        return client.getFsfaxext();
+    }
+
+    public void setClient_fsfaxext(Integer client_fsfaxext) {
+        client.setFsfaxext(client_fsfaxext);
+    }
+
+    public String getClient_fsname() {
+        return client.getFsname() != null ? client.getFsname() : "";
+    }
+
+    public void setClient_fsname(String client_fsname) {
+        client.setFsname(client_fsname);
+    }
+
+    public String getClient_fsnum() {
+        return client.getFsnum() != null ? client.getFsnum() : "";
+    }
+
+    public void setClient_fsnum(String client_fsnum) {
+        client.setFsnum(client_fsnum);
+    }
+
+    public Integer getClient_fsphone() {
+        return client.getFsphone();
+    }
+
+    public void setClient_fsphone(Integer client_fsphone) {
+        client.setFsphone(client_fsphone);
+    }
+
+    public Integer getClient_fsphoneext() {
+        return client.getFsphoneext();
+    }
+
+    public void setClient_fsphoneext(Integer client_fsphoneext) {
+        client.setFsphoneext(client_fsphoneext);
+    }
+
+    public String getClient_fsrfc() {
+        return client.getFsrfc() != null ? client.getFsrfc() : "";
+    }
+
+    public void setClient_fsrfc(String client_fsrfc) {
+        client.setFsrfc(client_fsrfc);
+    }
+
+    public String getClient_fsstate() {
+        return client.getFsstate() != null ? client.getFsstate() : "";
+    }
+
+    public void setClient_fsstate(String client_fsstate) {
+        if (client.getFsname() !=null && !client.getFsname().trim().equals(""))
+        client.setFsstate(client_fsstate);
+    }
+
+    public String getClient_fsstreet() {
+        return client.getFsstreet() != null ? client.getFsstreet() : "";
+    }
+
+    public void setClient_fsstreet(String client_fsstreet) {
+        client.setFsstreet(client_fsstreet);
+    }
+
+    public String getClient_fszipcode() {
+        return client.getFszipcode() != null ? client.getFszipcode().toString() : "";
+    }
+
+    public void setClient_fszipcode(String client_fszipcode) {
+        if (client_fszipcode != null && !client_fszipcode.trim().equals("")) {
+            try {
+                setClient_fszipcode(new Integer(client_fszipcode));
+            } catch (NumberFormatException ex) {
+                log.log(Level.INFO, ex.getMessage(), ex);
+            }
+
+        }
+    }
+
+    public void setClient_fszipcode(Integer client_fszipcode) {
+        client.setFszipcode(client_fszipcode);
+    }
+
+    public String getClient_merchantname() {
+        return client.getMerchantname() != null ? client.getMerchantname() : "";
+    }
+
+    public void setClient_merchantname(String client_merchantname) {
+        client.setMerchantname(client_merchantname);
+    }
+
+    public String getClient_messageservice() {
+        return client.getMessageservice() != null ? client.getMessageservice() : "";
+    }
+
+    public void setClient_messageservice(String client_messageservice) {
+        client.setMessageservice(client_messageservice);
+    }
+
+    public String getClient_numext() {
+        return client.getNumext() != null ? client.getNumext() : "";
+    }
+
+    public void setClient_numext(String client_numext) {
+        client.setNumext(client_numext);
+    }
+
+    public String getClient_numint() {
+        return client.getNumint() != null ? client.getNumint() : "";
+    }
+
+    public void setClient_numint(String client_numint) {
+        client.setNumint(client_numint);
+    }
+
+    public Integer getClient_phone() {
+        return client.getPhone() != null ? client.getPhone() : new Integer(0);
+    }
+
+    public void setClient_phone(Integer client_phone) {
+        client.setPhone(client_phone);
+    }
+
+    public Integer getClient_phoneext() {
+        return client.getPhoneext() != null ? client.getPhoneext() : new Integer(0);
+    }
+
+    public void setClient_phoneext(Integer client_phoneext) {
+        client.setPhoneext(client_phoneext);
+    }
+
+    public String getClient_rfc() {
+        return client.getRfc() != null ? client.getRfc() : "";
+    }
+
+    public void setClient_rfc(String client_rfc) {
+        client.setRfc(client_rfc);
+    }
+
+    public String getClient_sic() {
+        return client.getSic() != null ? client.getSic().toString().trim() : "";
+    }
+
+    public void setClient_sic(String client_sic) {
+        if (client_sic != null && !client_sic.trim().equals("")) {
+            try {
+                setClient_sic(new Long(client_sic.trim()));
+            } catch (NumberFormatException ex) {
+                log.log(Level.INFO, ex.getMessage(), ex);
+            }
+
+        }
+    }
+
+    public void setClient_sic(Long client_sic) {
+        client.setSic(client_sic);
+    }
+
+    public String getClient_state() {
+        return client.getState() != null ? client.getState() : "";
+    }
+
+    public void setClient_state(String client_state) {
+        client.setState(client_state);
+    }
+
+    public String getClient_street() {
+        return client.getStreet() != null ? client.getStreet() : "";
+    }
+
+    public void setClient_street(String client_street) {
+        client.setStreet(client_street);
+    }
+
+    public Integer getClient_zipcode() {
+        return client.getZipcode() != null ? client.getZipcode() : new Integer(0);
+    }
+
+    public void setClient_zipcode(Integer client_zipcode) {
+        client.setZipcode(client_zipcode);
+    }
+
+    public Integer getClient_fax() {
+        return client.getFax();
+    }
+
+    public void setClient_fax(Integer client_fax) {
+        client.setFax(client_fax);
+    }
+
+    public Integer getClient_faxext() {
+        return client.getFaxext();
+    }
+
+    public void setClient_faxext(Integer client_faxext) {
+        client.setFaxext(client_faxext);
+    }
+
+    public String getCrnumber() {
+        return crnumber;
+    }
+
+    public void setCrnumber(String crnumber) {
+        this.crnumber = crnumber;
+    }
+
+    public String getOfficerempnumber() {
+        return officerempnumber;
+    }
+
+    public void setOfficerempnumber(String officerempnumber) {
+        this.officerempnumber = officerempnumber;
+    }
+
+    public String getOfficerlastname() {
+        return officerlastname;
+    }
+
+    public void setOfficerlastname(String officerlastname) {
+        this.officerlastname = officerlastname;
+    }
+
+    
+    public String getOfficerreplastname_1() {
+        return officerreplastname_1;
+    }
+    
+    public void setOfficerreplastname_1(String officerlastname_1) {
+        this.officerreplastname_1 = officerlastname_1;
+    }
+
+    public String getOfficerreplastname_2() {
+        return officerreplastname_2;
+    }
+
+    public void setOfficerreplastname_2(String officerlastname_2) {
+        this.officerreplastname_2 = officerlastname_2;
+    }
+
+    public String getOfficermothersln() {
+        return officermothersln;
+    }
+
+    public void setOfficermothersln(String officermothersln) {
+        this.officermothersln = officermothersln;
+    }
+
+    public String getOfficerrepmothersln_1() {
+        return officerrepmothersln_1;
+    }
+
+    public void setOfficerrepmothersln_1(String officermothersln_1) {
+        this.officerrepmothersln_1 = officermothersln_1;
+    }
+
+    public String getOfficerrepmothersln_2() {
+        return officerrepmothersln_2;
+    }
+
+    public void setOfficerrepmothersln_2(String officermothersln_2) {
+        this.officerrepmothersln_2 = officermothersln_2;
+    }
+
+    public String getOfficername() {
+        return officername;
+    }
+
+    public void setOfficername(String officername) {
+        this.officername = officername;
+    }
+
+    public String getOfficerrepname_1() {
+        return officerrepname_1;
+    }
+
+    public void setOfficerrepname_1(String officername_1) {
+        this.officerrepname_1 = officername_1;
+    }
+
+    public String getOfficerrepname_2() {
+        return officerrepname_2;
+    }
+
+    public void setOfficerrepname_2(String officername_2) {
+        this.officerrepname_2 = officername_2;
+    }
+
+    public String getOfficerposition() {
+        return officerposition;
+    }
+
+    public void setOfficerposition(String officerposition) {
+        this.officerposition = officerposition;
+    }
+
+    public String getOfficerrepposition_1() {
+        return officerrepposition_1;
+    }
+
+    public void setOfficerrepposition_1(String officerposition_1) {
+        this.officerrepposition_1 = officerposition_1;
+    }
+
+    public String getOfficerrepposition_2() {
+        return officerrepposition_2;
+    }
+
+    public void setOfficerrepposition_2(String officerrepposition_2) {
+        this.officerrepposition_2 = officerrepposition_2;
+    }
+
+    public String getOfficerrepempnumber_1() {
+        return officerrepempnumber_1;
+    }
+
+    public void setOfficerrepempnumber_1(String officerrepnumber_1) {
+        this.officerrepempnumber_1 = officerrepnumber_1;
+    }
+
+    public String getOfficerrepempnumber_2() {
+        return officerrepempnumber_2;
+    }
+
+    public void setOfficerrepempnumber_2(String officerrepempnumber_2) {
+        this.officerrepempnumber_2 = officerrepempnumber_2;
+    }
+
+    //Datos ejecutivo ebanking
+
+    
+    public String getOfficerebankingempnumber() {
+        return officerebankingempnumber;
+    }
+
+    public void setOfficerebankingempnumber(String officerebankingempnumber) {
+        this.officerebankingempnumber = officerebankingempnumber;
+    }
+
+    public String getOfficerebankinglastname() {
+        return officerebankinglastname;
+    }
+
+    public void setOfficerebankinglastname(String officerebankinglastname) {
+        this.officerebankinglastname = officerebankinglastname;
+    }
+
+    public String getOfficerebankingmothersln() {
+        return officerebankingmothersln;
+    }
+
+    public void setOfficerebankingmothersln(String officerebankingmothersln) {
+        this.officerebankingmothersln = officerebankingmothersln;
+    }
+
+    public String getOfficerebankingname() {
+        return officerebankingname;
+    }
+
+    public void setOfficerebankingname(String officerebankingname) {
+        this.officerebankingname = officerebankingname;
+    }
+
+    
+    
+   
+    
+    
+    public Integer getClient_areacode() {
+        return client.getAreacode() != null ? client.getAreacode() : new Integer(0);
+    }
+
+    public void setClient_areacode(Integer client_areacode) {
+        client.setAreacode(client_areacode);
+    }
+
+    // REPRESENTANTE LEGAL
+    public String getLegalrepresentative_name_1() {
+        return legalRep1.getName();
+    }
+
+    public void setLegalrepresentative_name_1(String legalrepresentative_name_1) {
+        legalRep1.setName(legalrepresentative_name_1);
+    }
+
+    public String getLegalrepresentative_name_2() {
+        return legalRep2.getName();
+    }
+
+    public void setLegalrepresentative_name_2(String legalrepresentative_name_2) {
+        legalRep2.setName(legalrepresentative_name_2);
+    }
+
+    public String getLegalrepresentative_lastname_1() {
+        return legalRep1.getLastname();
+    }
+
+    public void setLegalrepresentative_lastname_1(String legalrepresentative_lastname_1) {
+        legalRep1.setLastname(legalrepresentative_lastname_1);
+    }
+
+    public String getLegalrepresentative_lastname_2() {
+        return legalRep2.getLastname();
+    }
+
+    public void setLegalrepresentative_lastname_2(String legalrepresentative_lastname_2) {
+        legalRep2.setLastname(legalrepresentative_lastname_2);
+    }
+
+    public String getLegalrepresentative_mothersln_1() {
+        return legalRep1.getMothersln();
+    }
+
+    public void setLegalrepresentative_mothersln_1(String legalrepresentative_mothersln_1) {
+        legalRep1.setMothersln(legalrepresentative_mothersln_1);
+    }
+
+    public String getLegalrepresentative_mothersln_2() {
+        return legalRep2.getMothersln();
+    }
+
+    public void setLegalrepresentative_mothersln_2(String legalrepresentative_mothersln_2) {
+        legalRep2.setMothersln(legalrepresentative_mothersln_2);
+    }
+
+    public String getLegalrepresentative_email_1() {
+        return legalRep1.getEmail();
+    }
+
+    public void setLegalrepresentative_email_1(String legalrepresentative_email_1) {
+        legalRep1.setEmail(legalrepresentative_email_1);
+    }
+
+    public String getLegalrepresentative_email_2() {
+        return legalRep2.getEmail();
+    }
+
+    public void setLegalrepresentative_email_2(String legalrepresentative_email_2) {
+        legalRep2.setEmail(legalrepresentative_email_2);
+    }
+
+    public String getLegalrepresentative_rfc_1() {
+        return legalRep1.getRfc();
+    }
+
+    public void setLegalrepresentative_rfc_1(String legalrepresentative_rfc_1) {
+        legalRep1.setRfc(legalrepresentative_rfc_1);
+    }
+
+    public String getLegalrepresentative_rfc_2() {
+        return legalRep2.getRfc();
+    }
+
+    public void setLegalrepresentative_rfc_2(String legalrepresentative_rfc_2) {
+        this.legalRep2.setRfc(legalrepresentative_rfc_2);
+    }
+
+    public String getLegalrepresentative_position_1() {
+        return legalRep1.getPosition();
+    }
+
+    public void setLegalrepresentative_position_1(String legalrepresentative_position_1) {
+        this.legalRep1.setPosition(legalrepresentative_position_1);
+    }
+
+    public String getLegalrepresentative_position_2() {
+        return legalRep2.getPosition();
+    }
+
+    public void setLegalrepresentative_position_2(String legalrepresentative_position_2) {
+        this.legalRep2.setPosition(legalrepresentative_position_2);
+    }
+    
+
+    //CONTACTOS ESPECIALES
+    public String getClientcontact_name1() {
+        return clientContact1.getName() != null ? clientContact1.getName() : "";
+    }
+
+    public void setClientcontact_name1(String clientcontact_name1) {
+        clientContact1.setName(clientcontact_name1);
+    }
+
+    public String getClientcontact_name2() {
+        return clientContact2.getName() != null ? clientContact2.getName() : "";
+    }
+
+    public void setClientcontact_name2(String clientcontact_name2) {
+        clientContact2.setName(clientcontact_name2);
+    }
+
+    public String getClientcontact_name3() {
+        return clientContact3.getName();
+    }
+
+    public void setClientcontact_name3(String clientcontact_name3) {
+        clientContact3.setName(clientcontact_name3);
+    }
+
+    public String getClientcontact_name4() {
+        return clientContact4.getName();
+    }
+
+    public void setClientcontact_name4(String clientcontact_name4) {
+        clientContact4.setName(clientcontact_name4);
+    }
+
+    public String getClientcontact_name5() {
+        return clientContact5.getName();
+    }
+
+    public void setClientcontact_name5(String clientcontact_name5) {
+        clientContact5.setName(clientcontact_name5);
+    }
+
+    public String getClientcontact_name6() {
+        return clientContact6.getName();
+    }
+
+    public void setClientcontact_name6(String clientcontact_name6) {
+        clientContact6.setName(clientcontact_name6);
+    }
+
+    public String getClientcontact_name7() {
+        return clientContact7.getName();
+    }
+
+    public void setClientcontact_name7(String clientcontact_name7) {
+        clientContact7.setName(clientcontact_name7);
+    }
+
+    public String getClientcontact_lastname1() {
+        return clientContact1.getLastname() != null ? clientContact1.getLastname() : "";
+    }
+
+    public void setClientcontact_lastname1(String clientcontact_lastname1) {
+        clientContact1.setLastname(clientcontact_lastname1);
+    }
+
+    public String getClientcontact_lastname2() {
+        return clientContact2.getLastname() != null ? clientContact2.getLastname() : "";
+    }
+
+    public void setClientcontact_lastname2(String clientcontact_lastname2) {
+        clientContact2.setLastname(clientcontact_lastname2);
+    }
+
+    public String getClientcontact_lastname3() {
+        return clientContact3.getLastname();
+    }
+
+    public void setClientcontact_lastname3(String clientcontact_lastname3) {
+        clientContact3.setLastname(clientcontact_lastname3);
+    }
+
+    public String getClientcontact_lastname4() {
+        return clientContact4.getLastname();
+    }
+
+    public void setClientcontact_lastname4(String clientcontact_lastname4) {
+        clientContact4.setLastname(clientcontact_lastname4);
+    }
+
+    public String getClientcontact_lastname5() {
+        return clientContact5.getLastname();
+    }
+
+    public void setClientcontact_lastname5(String clientcontact_lastname5) {
+        clientContact5.setLastname(clientcontact_lastname5);
+    }
+
+    public String getClientcontact_lastname6() {
+        return clientContact6.getLastname();
+    }
+
+    public void setClientcontact_lastname6(String clientcontact_lastname6) {
+        clientContact6.setLastname(clientcontact_lastname6);
+    }
+
+    public String getClientcontact_lastname7() {
+        return clientContact7.getLastname();
+    }
+
+    public void setClientcontact_lastname7(String clientcontact_lastname7) {
+        clientContact7.setLastname(clientcontact_lastname7);
+    }
+
+    public String getClientcontact_mothersln1() {
+        return clientContact1.getMothersln() != null ? clientContact1.getMothersln() : "";
+    }
+
+    public void setClientcontact_mothersln1(String clientcontact_mothersln1) {
+        clientContact1.setMothersln(clientcontact_mothersln1);
+    }
+
+    public String getClientcontact_mothersln2() {
+        return clientContact2.getMothersln() != null ? clientContact2.getMothersln() : "";
+    }
+
+    public void setClientcontact_mothersln2(String clientcontact_mothersln2) {
+        clientContact2.setMothersln(clientcontact_mothersln2);
+    }
+
+    public String getClientcontact_mothersln3() {
+        return clientContact3.getMothersln();
+    }
+
+    public void setClientcontact_mothersln3(String clientcontact_mothersln3) {
+        clientContact3.setMothersln(clientcontact_mothersln3);
+    }
+
+    public String getClientcontact_mothersln4() {
+        return clientContact4.getMothersln();
+    }
+
+    public void setClientcontact_mothersln4(String clientcontact_mothersln4) {
+        clientContact4.setMothersln(clientcontact_mothersln4);
+    }
+
+    public String getClientcontact_mothersln5() {
+        return clientContact5.getMothersln();
+    }
+
+    public void setClientcontact_mothersln5(String clientcontact_mothersln5) {
+        clientContact5.setMothersln(clientcontact_mothersln5);
+    }
+
+    public String getClientcontact_mothersln6() {
+        return clientContact6.getMothersln();
+    }
+
+    public void setClientcontact_mothersln6(String clientcontact_mothersln6) {
+        clientContact6.setMothersln(clientcontact_mothersln6);
+    }
+
+    public String getClientcontact_mothersln7() {
+        return clientContact7.getMothersln();
+    }
+
+    public void setClientcontact_mothersln7(String clientcontact_mothersln7) {
+        clientContact7.setMothersln(clientcontact_mothersln7);
+    }
+
+    public Integer getClientcontact_phone1() {
+        return clientContact1.getPhone();
+    }
+
+    public void setClientcontact_phone1(Integer clientcontact_phone1) {
+        clientContact1.setPhone(clientcontact_phone1);
+    }
+
+    public Integer getClientcontact_phone2() {
+        return clientContact2.getPhone();
+    }
+
+    public void setClientcontact_phone2(Integer clientcontact_phone2) {
+        clientContact2.setPhone(clientcontact_phone2);
+    }
+
+    public Integer getClientcontact_phone3() {
+        return clientContact3.getPhone();
+    }
+
+    public void setClientcontact_phone3(Integer clientcontact_phone3) {
+        clientContact3.setPhone(clientcontact_phone3);
+    }
+
+    public Integer getClientcontact_phone4() {
+        return clientContact4.getPhone();
+    }
+
+    public void setClientcontact_phone4(Integer clientcontact_phone4) {
+        clientContact4.setPhone(clientcontact_phone4);
+    }
+
+    public Integer getClientcontact_phone5() {
+        return clientContact5.getPhone();
+    }
+
+    public void setClientcontact_phone5(Integer clientcontact_phone5) {
+        clientContact5.setPhone(clientcontact_phone5);
+    }
+
+    public Integer getClientcontact_phone6() {
+        return clientContact6.getPhone();
+    }
+
+    public void setClientcontact_phone6(Integer clientcontact_phone6) {
+        clientContact6.setPhone(clientcontact_phone6);
+    }
+
+    public Integer getClientcontact_phone7() {
+        return clientContact7.getPhone();
+    }
+
+    public void setClientcontact_phone7(Integer clientcontact_phone7) {
+        clientContact7.setPhone(clientcontact_phone7);
+    }
+
+    public Integer getClientcontact_phoneext1() {
+        return clientContact1.getPhoneext();
+    }
+
+    public void setClientcontact_phoneext1(Integer clientcontact_phoneext1) {
+        clientContact1.setPhoneext(clientcontact_phoneext1);
+    }
+
+    public Integer getClientcontact_phoneext2() {
+        return clientContact2.getPhoneext();
+    }
+
+    public void setClientcontact_phoneext2(Integer clientcontact_phoneext2) {
+        clientContact2.setPhoneext(clientcontact_phoneext2);
+    }
+
+    public Integer getClientcontact_phoneext3() {
+        return clientContact3.getPhoneext();
+    }
+
+    public void setClientcontact_phoneext3(Integer clientcontact_phoneext3) {
+        clientContact3.setPhoneext(clientcontact_phoneext3);
+    }
+
+    public Integer getClientcontact_phoneext4() {
+        return clientContact4.getPhoneext();
+    }
+
+    public void setClientcontact_phoneext4(Integer clientcontact_phoneext4) {
+        clientContact4.setPhoneext(clientcontact_phoneext4);
+    }
+
+    public Integer getClientcontact_phoneext5() {
+        return clientContact5.getPhoneext();
+    }
+
+    public void setClientcontact_phoneext5(Integer clientcontact_phoneext5) {
+        clientContact5.setPhoneext(clientcontact_phoneext5);
+    }
+
+    public Integer getClientcontact_phoneext6() {
+        return clientContact6.getPhoneext();
+    }
+
+    public void setClientcontact_phoneext6(Integer clientcontact_phoneext6) {
+        clientContact6.setPhoneext(clientcontact_phoneext6);
+    }
+
+    public Integer getClientcontact_phoneext7() {
+        return clientContact7.getPhoneext();
+    }
+
+    public void setClientcontact_phoneext7(Integer clientcontact_phoneext7) {
+        clientContact7.setPhoneext(clientcontact_phoneext7);
+    }
+
+    public String getClientcontact_email1() {
+        return clientContact1.getEmail() != null ? clientContact1.getEmail() : "";
+    }
+
+    public void setClientcontact_email1(String clientcontact_email1) {
+        clientContact1.setEmail(clientcontact_email1);
+    }
+
+    public String getClientcontact_email2() {
+        return clientContact2.getEmail() != null ? clientContact2.getEmail() : "";
+    }
+
+    public void setClientcontact_email2(String clientcontact_email2) {
+        clientContact2.setEmail(clientcontact_email2);
+    }
+
+    public String getClientcontact_email3() {
+        return clientContact3.getEmail();
+    }
+
+    public void setClientcontact_email3(String clientcontact_email3) {
+        clientContact3.setEmail(clientcontact_email3);
+    }
+
+    public String getClientcontact_email4() {
+        return clientContact4.getEmail();
+    }
+
+    public void setClientcontact_email4(String clientcontact_email4) {
+        clientContact4.setEmail(clientcontact_email4);
+    }
+
+    public String getClientcontact_email5() {
+        return clientContact5.getEmail();
+    }
+
+    public void setClientcontact_email5(String clientcontact_email5) {
+        clientContact5.setEmail(clientcontact_email5);
+    }
+
+    public String getClientcontact_email6() {
+        return clientContact6.getEmail();
+    }
+
+    public void setClientcontact_email6(String clientcontact_email6) {
+        clientContact6.setEmail(clientcontact_email6);
+    }
+
+    public String getClientcontact_email7() {
+        return clientContact7.getEmail();
+    }
+
+    public void setClientcontact_email7(String clientcontact_email7) {
+        clientContact7.setEmail(clientcontact_email7);
+    }
+
+    public String getClientcontact_position1() {
+        return clientContact1.getPosition();
+    }
+
+    public void setClientcontact_position1(String clientcontact_position1) {
+        clientContact1.setPosition(clientcontact_position1);
+    }
+
+    public String getClientcontact_position2() {
+        return clientContact2.getPosition();
+    }
+
+    public void setClientcontact_position2(String clientcontact_position2) {
+        clientContact2.setPosition(clientcontact_position2);
+    }
+
+    public String getClientcontact_position3() {
+        return clientContact3.getPosition();
+    }
+
+    public void setClientcontact_position3(String clientcontact_position3) {
+        clientContact3.setPosition(clientcontact_position3);
+    }
+
+    public String getClientcontact_position4() {
+        return clientContact4.getPosition();
+    }
+
+    public void setClientcontact_position4(String clientcontact_position4) {
+        clientContact4.setPosition(clientcontact_position4);
+    }
+
+    public String getClientcontact_position5() {
+        return clientContact5.getPosition();
+    }
+
+    public void setClientcontact_position5(String clientcontact_position5) {
+        clientContact5.setPosition(clientcontact_position5);
+    }
+
+    public String getClientcontact_position6() {
+        return clientContact6.getPosition();
+    }
+
+    public void setClientcontact_position6(String clientcontact_position6) {
+        clientContact6.setPosition(clientcontact_position6);
+    }
+
+    public String getClientcontact_position7() {
+        return clientContact7.getPosition();
+    }
+
+    public void setClientcontact_position7(String clientcontact_position7) {
+        clientContact7.setPosition(clientcontact_position7);
+    }
+
+    
+      
+    
+    //  Utilizados como Banderas para mostrar el Template Final
+    public boolean getToPrint() {
+        return toPrint;
+    }
+
+    public void setToPrint(boolean toPrint) {
+        this.toPrint = toPrint;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+        
+    //Arrays de estados y poblaciones
+
+    public SelectItem[] getStatesArray() {
+         if(this.statesArray==null){
+            //Lista Estados
+            List <States> states=statesBean.findAll();
+                if(states!=null){
+                   statesArray = new SelectItem[states.size()];
+                    int i=0;
+                    for (States sta:states){                        
+                        //System.err.println("Estado: " +  sta.getName());
+                        statesArray[i]=new SelectItem(sta.getName(),sta.getName());
+                        i++;
+                    }
+                }
+        }        
+        return statesArray;
+    }
+
+    public void setStatesArray(SelectItem[] statesArray) {
+        this.statesArray = statesArray;
+    }
+    
+    public SelectItem[] getCitiesCelebrationArray() {
+      if (getCelebrationstate()!=null){
+        List <Cities> cities=citiesBean.findByState(getCelebrationstate());
+                if(cities!=null){
+                   citiesCelebrationArray = new SelectItem[cities.size()];
+                    int i=0;
+                    for (Cities cit:cities){
+                        //System.err.println("Ciudad: " +  cit.getName());
+                        citiesCelebrationArray[i]=new SelectItem(cit.getName(),cit.getName());
+                        i++;
+                    }
+                 }
+     }
+         return citiesCelebrationArray;
+  }     
+
+    public void setCitiesCelebrationArray(SelectItem[] citiesCelebrationArray) {
+        this.citiesCelebrationArray = citiesCelebrationArray;
+    }
+
+    public SelectItem[] getCitiesBranchArray() {
+      if (getBranchstate()!=null){
+        List <Cities> cities=citiesBean.findByState(getBranchstate());
+                if(cities!=null){
+                   citiesBranchArray = new SelectItem[cities.size()];
+                    int i=0;
+                    for (Cities cit:cities){
+                        //System.err.println("Ciudad: " +  cit.getName());
+                        citiesBranchArray[i]=new SelectItem(cit.getName(),cit.getName());
+                        i++;
+                    }
+                 }
+     }
+        return citiesBranchArray;
+    }
+
+    public void setCitiesBranchArray(SelectItem[] citiesBranchArray) {
+        this.citiesBranchArray = citiesBranchArray;
+    }
+
+    public SelectItem[] getCitiesClientArray() {
+      if (getClient_state()!=null){
+        List <Cities> cities=citiesBean.findByState(getClient_state());
+                if(cities!=null){
+                   citiesClientArray = new SelectItem[cities.size()];
+                    int i=0;
+                    for (Cities cit:cities){
+                        //System.err.println("Ciudad: " +  cit.getName());
+                        citiesClientArray[i]=new SelectItem(cit.getName(),cit.getName());
+                        i++;
+                    }
+                 }
+     }
+        return citiesClientArray;
+    }
+
+    public void setCitiesClientArray(SelectItem[] citiesClientArray) {
+        this.citiesClientArray = citiesClientArray;
+    }
+
+    //Validacion mensajes
+
+    public Collection<ContractMessageErrors> getErrorsList() {        
+        return errorsList;
+    }
+
+    public void setErrorsList(Collection<ContractMessageErrors> errorsList) {
+        this.errorsList = errorsList;
+    }
+
+
+  public ArrayList getGeneralInfoErrorsList() {
+        return generalInfoErrorsList;
+    }
+
+    public void setGeneralInfoErrorsList(ArrayList generalInfoErrorsList) {
+        this.generalInfoErrorsList = generalInfoErrorsList;
+    }
+
+     
+     public boolean validateGeneralInfo() {      
+     generalInfoErrorsList.clear();
+     if(this.getErrorsList()!=null){
+          this.getErrorsList().clear();
+     }
+     ContractMessageErrors errors;
+
+    if (getClient_sic()==null || getClient_sic().trim().length()==0){
+             errors= new ContractMessageErrors();
+             errors.setMessage("Favor de capturar Datos del Contratante - Número de Cliente en altamira (SIC), asegurese de que no contenga espacios.");
+             generalInfoErrorsList.add(errors);
+    }
+    else{
+     //Datos Celebracion
+       if (getCelebrationdate()== null || getCelebrationdate().trim().length()==0){
+          errors= new ContractMessageErrors();
+          errors.setMessage("Favor de capturar Datos de Celebración - Fecha");
+          generalInfoErrorsList.add(errors);}
+          
+          
+      if (getCelebrationplace()== null || getCelebrationplace().trim().length()==0 || getCelebrationplace().equals("Seleccione una Ciudad")){
+          errors= new ContractMessageErrors();          
+          errors.setMessage("Favor de capturar Datos de Celebración - Población");
+          generalInfoErrorsList.add(errors);}
+
+          
+      if (getCelebrationstate()==null ||getCelebrationstate().trim().length()==0 || getCelebrationstate().equals("Seleccione un Estado")){         
+          errors= new ContractMessageErrors();          
+          errors.setMessage("Favor de capturar Datos de Celebración - Estado");
+          generalInfoErrorsList.add(errors);}
+     
+     //Datos del Contrante
+     if(contract.getProduct().getProductid()>2){//Solo para Adquiriente
+         if (getClient_merchantname()==null || getClient_merchantname().trim().length()==0){
+             errors= new ContractMessageErrors();
+             errors.setMessage("Favor de capturar Datos del Contratante - Nombre Comercial.");
+             generalInfoErrorsList.add(errors);}
+     }
+     
+     
+    
+     
+
+     if (contract.getProduct().getProductid()!=2){
+     if (getClient_zipcode()==null ||getClient_zipcode()==0){
+        errors= new ContractMessageErrors();
+        errors.setMessage("Favor de capturar Datos del Contratante - Código Postal.");
+        generalInfoErrorsList.add(errors);}
+     }   
+     
+     if (getClient_street()==null || getClient_street().trim().length()==0){
+        errors= new ContractMessageErrors();
+        errors.setMessage("Favor de capturar Datos del Contratante - Calle.");
+        generalInfoErrorsList.add(errors);}
+     
+     
+     if (getClient_numext()==null ||getClient_numext().trim().length()==0){
+        errors= new ContractMessageErrors();
+        errors.setMessage("Favor de capturar Datos del Contratante - No. Exterior.");
+        generalInfoErrorsList.add(errors);}
+     
+     if (getClient_colony()==null ||getClient_colony().trim().length()==0){
+         errors= new ContractMessageErrors();
+         errors.setMessage("Favor de capturar Datos del Contratante - Colonia.");
+         generalInfoErrorsList.add(errors);}
+     
+      if (getClient_city()==null ||getClient_city().trim().length()==0 || getClient_city().equals("Seleccione una Ciudad")){
+        errors= new ContractMessageErrors();
+        errors.setMessage("Favor de capturar Datos del Contratante - Ciudad.");
+        generalInfoErrorsList.add(errors);} 
+
+      if (getClient_state()==null ||getClient_state().trim().length()==0 || getClient_state().equals("Seleccione un Estado") ){
+            errors= new ContractMessageErrors();
+            errors.setMessage("Favor de capturar Datos del Contratante - Estado.");
+            generalInfoErrorsList.add(errors);}
+
+
+      if (getClient_email()==null ||getClient_email().trim().length()==0){
+            errors= new ContractMessageErrors();
+            errors.setMessage("Favor de capturar Datos del Contratante - Correo Electrónico.");
+            generalInfoErrorsList.add(errors);}
+
+      if (getClient_fiscalname()==null ||getClient_fiscalname().trim().length()==0){
+            errors= new ContractMessageErrors();
+            errors.setMessage("Favor de capturar Datos del Contratante - Nombre/Denominación/Razón Social.");
+            generalInfoErrorsList.add(errors);}
+     
+     if(contract.getProduct().getProductid()==2){//Solo Nómina
+         if (getClient_constitutiondate()==null ||getClient_constitutiondate().trim().length()==0){
+                errors= new ContractMessageErrors();
+                errors.setMessage("Favor de capturar Datos del Contratante - Fecha de Constitución.");
+                generalInfoErrorsList.add(errors);}
+     }
+
+      if (getClient_rfc()==null ||getClient_rfc().trim().length()==0){
+            errors= new ContractMessageErrors();
+            errors.setMessage("Favor de capturar Datos del Contratante - RFC.");
+            generalInfoErrorsList.add(errors);
+      }else{
+            if(contract.getProduct().getProductid()>2){//Validacion de formato RFC
+                if(client.getFiscaltype()==1){//1=Persona Fisica 2=Persona Moral
+                    Pattern p = Pattern.compile("^[a-zA-Z]{4}[0-9]{6}[A-Za-z0-9]{3}$");
+                    Matcher m = p.matcher(client.getRfc());
+                    if (!m.find()){
+                        errors= new ContractMessageErrors();
+                        errors.setMessage("Favor de capturar Datos del Contratante - RFC. Ej. EDNI161178RE9");
+                        generalInfoErrorsList.add(errors);                    
+                    }
+                }else{
+                    Pattern p = Pattern.compile("^[a-zA-Z]{3}\\s[0-9]{6}[A-Za-z0-9]{3}$");
+                    Matcher m = p.matcher(client.getRfc());
+                    if (!m.find()){
+                        errors= new ContractMessageErrors();
+                        errors.setMessage("Favor de capturar Datos del Contratante - RFC. Ej. EDN 161178RE9");
+                        generalInfoErrorsList.add(errors);                    
+                    }
+
+                }
+            }      
+      }
+
+
+     if (contract.getProduct().getProductid()>=2){//Adquiriente y Nomina
+      if (getClient_categorycode()==null || getClient_categorycode().trim().length()==0 || getClient_categorycode().equals("Seleccione un giro")){
+          errors= new ContractMessageErrors();
+          errors.setMessage("Favor de capturar Datos del Contratante - No. Giro y Nombre.");
+          generalInfoErrorsList.add(errors);}
+     }
+
+
+     //Contactos Especiales
+     
+     if (contract.getProduct().getProductid()<=2){//BEM y Nomina
+      if (getClientcontact_name1()==null || getClientcontact_name1().trim().length()==0){
+          errors= new ContractMessageErrors();
+          errors.setMessage("Favor de capturar Contactos Especiales - Nombre 1.");
+          generalInfoErrorsList.add(errors);}
+      
+      if (getClientcontact_lastname1()==null ||getClientcontact_lastname1().trim().length()==0){
+          errors= new ContractMessageErrors();
+          errors.setMessage("Favor de capturar Contactos Especiales - Apellido Paterno 1.");
+          generalInfoErrorsList.add(errors);}
+      
+      if (getClientcontact_mothersln1()==null || getClientcontact_mothersln1().trim().length()==0){
+          errors= new ContractMessageErrors();
+          errors.setMessage("Favor de capturar Contactos Especiales - Apellido Materno 1.");
+          generalInfoErrorsList.add(errors);}
+     }
+     
+     if (contract.getProduct().getProductid()==1){//BEM
+       if (getClientcontact_position1()==null || getClientcontact_position1().trim().length()==0){
+          errors= new ContractMessageErrors();
+          errors.setMessage("Favor de capturar Contactos Especiales - Puesto.");
+          generalInfoErrorsList.add(errors);}
+     } 
+
+     //Fiador Solidario unicamente Adquiriente
+     
+      if (contract.getProduct().getProductid()>2){//Adquiriente
+            if(getClient_fsname()!=null && getClient_fsname().trim().length()>0){                
+                if(getClient_fsrfc()==null || getClient_fsrfc().trim().length()==0){
+                errors= new ContractMessageErrors();
+                errors.setMessage("Favor de capturar Datos del Fiador - RFC.");
+                generalInfoErrorsList.add(errors);
+                }
+                
+                if(getClient_fsstreet()==null || getClient_fsstreet().trim().length()==0){
+                errors= new ContractMessageErrors();
+                errors.setMessage("Favor de capturar Datos del Fiador - Calle.");
+                generalInfoErrorsList.add(errors);
+                }
+                
+                if(getClient_fsnum()==null || getClient_fsnum().trim().length()==0){
+                errors= new ContractMessageErrors();
+                errors.setMessage("Favor de capturar Datos del Fiador - Número.");
+                generalInfoErrorsList.add(errors);
+                }
+                
+                if(getClient_fszipcode()==null || getClient_fszipcode().trim().length()==0){
+                errors= new ContractMessageErrors();
+                errors.setMessage("Favor de capturar Datos del Fiador - Código Postal.");
+                generalInfoErrorsList.add(errors);
+                }
+                
+                if(getClient_fscolony()==null || getClient_fscolony().trim().length()==0){
+                errors= new ContractMessageErrors();
+                errors.setMessage("Favor de capturar Datos del Fiador - Colonia.");
+                generalInfoErrorsList.add(errors);
+                }
+                
+                if(getClient_fsstate()==null || getClient_fsstate().trim().length()<=0 || getClient_fsstate().equals("Seleccione un Estado")){
+                errors= new ContractMessageErrors();
+                errors.setMessage("Favor de capturar Datos del Fiador - Estado.");
+                generalInfoErrorsList.add(errors);
+                }
+                
+                if(getClient_fscity()==null || getClient_fscity().trim().length()<=0 || getClient_fscity().equals("Seleccione una Ciudad")){
+                errors= new ContractMessageErrors();
+                errors.setMessage("Favor de capturar Datos del Fiador - Población.");
+                generalInfoErrorsList.add(errors);
+                }
+      
+                if(getClient_fsphone()==null || getClient_fsphone()<=0){
+                errors= new ContractMessageErrors();
+                errors.setMessage("Favor de capturar Datos del Fiador - Teléfono.");
+                generalInfoErrorsList.add(errors);
+                }
+                
+                if(getClient_fsemail()==null || getClient_fsemail().trim().length()==0){
+                errors= new ContractMessageErrors();
+                errors.setMessage("Favor de capturar Datos del Fiador - Email.");
+                generalInfoErrorsList.add(errors);
+                }
+                
+            }   
+      }
+
+     // Datos Apoderados Leagales:
+
+      if (getLegalrepresentative_name_1()==null ||getLegalrepresentative_name_1().trim().length()==0){
+          errors= new ContractMessageErrors();
+          errors.setMessage("Favor de capturar Datos del Representante Legal o Apoderados - Nombre 1.");
+          generalInfoErrorsList.add(errors);}
+        
+      if (getLegalrepresentative_lastname_1()==null ||getLegalrepresentative_lastname_1().trim().length()==0){
+          errors= new ContractMessageErrors();
+          errors.setMessage("Favor de capturar Datos del Representante Legal o Apoderados - Apellido Paterno 1.");
+          generalInfoErrorsList.add(errors);}
+        
+      if (getLegalrepresentative_mothersln_1()==null ||getLegalrepresentative_mothersln_1().trim().length()==0){
+          errors= new ContractMessageErrors();
+          errors.setMessage("Favor de capturar Datos del Representante Legal o Apoderados - Apellido Materno 1.");
+          generalInfoErrorsList.add(errors);}
+        
+     if (contract.getProduct().getProductid()>2){//Solo para Adquirente
+      if (getLegalrepresentative_rfc_1()==null ||getLegalrepresentative_rfc_1().trim().length()==0){
+          errors= new ContractMessageErrors();
+          errors.setMessage("Favor de capturar Datos del Representante Legal o Apoderados - RFC 1.");
+          generalInfoErrorsList.add(errors);}
+
+      if (getLegalrepresentative_email_1()==null || getLegalrepresentative_email_1().trim().length()==0){
+        errors= new ContractMessageErrors();
+        errors.setMessage("Favor de capturar Datos del Representante Legal o Apoderados - Correo Electrónico 1.");
+        generalInfoErrorsList.add(errors);} 
+     }
+     
+      if (getOfficername()==null || getOfficername().trim().length()==0){ 
+          errors= new ContractMessageErrors();
+          errors.setMessage("Favor de capturar Datos del Funcionario que Colocó el Producto - Nombre.");
+          generalInfoErrorsList.add(errors);}
+ 	
+      if (getOfficerlastname()==null ||getOfficerlastname().trim().length()==0){
+          errors= new ContractMessageErrors();
+          errors.setMessage("Favor de capturar Datos del Funcionario que Colocó el Producto - Apellido Paterno.");
+          generalInfoErrorsList.add(errors);}
+      
+       if (getOfficermothersln()==null || getOfficermothersln().trim().length()==0){
+          errors= new ContractMessageErrors();
+          errors.setMessage("Favor de capturar Datos del Funcionario que Colocó el Producto - Apellido Materno.");
+          generalInfoErrorsList.add(errors);}
+
+        if (getOfficerempnumber()==null || getOfficerempnumber().trim().length()==0){
+          errors= new ContractMessageErrors();
+          errors.setMessage("Favor de capturar Datos del Funcionario que Colocó el Producto - No. Nómina.");
+          generalInfoErrorsList.add(errors);}
+
+        if (getOfficerposition()==null || getOfficerposition().trim().length()==0){
+          errors= new ContractMessageErrors();
+          errors.setMessage("Favor de capturar Datos del Funcionario que Colocó el Producto - Puesto.");
+          generalInfoErrorsList.add(errors);}
+          
+        if (getOfficerebankingname()==null || getOfficerebankingname().trim().length()==0){
+              errors= new ContractMessageErrors();
+              errors.setMessage("Favor de capturar Datos del Funcionario Ebanking que Colocó el Producto - Nombre.");
+              generalInfoErrorsList.add(errors);}
+
+        if (getOfficerebankinglastname()==null || getOfficerebankinglastname().trim().length()==0){
+              errors= new ContractMessageErrors();
+              errors.setMessage("Favor de capturar Datos del Funcionario Ebanking que Colocó el Producto - Apellido Paterno.");
+              generalInfoErrorsList.add(errors);}
+
+        if (getOfficerebankingmothersln()==null || getOfficerebankingmothersln().trim().length()==0){
+              errors= new ContractMessageErrors();
+              errors.setMessage("Favor de capturar Datos del Funcionario Ebanking que Colocó el Producto - Apellido Materno.");
+              generalInfoErrorsList.add(errors);}
+
+        if (getOfficerebankingempnumber()==null || getOfficerebankingempnumber().trim().length()==0){
+              errors= new ContractMessageErrors();
+              errors.setMessage("Favor de capturar Datos del Funcionario Ebanking que Colocó el Producto - No. Nómina.");
+              generalInfoErrorsList.add(errors);}
+
+     //Datos de la Sucursal:
+        if (getCrnumber()==null || getCrnumber().trim().length()==0){
+              errors= new ContractMessageErrors();
+              errors.setMessage("Favor de capturar Datos de la sucursal - CR.");
+              generalInfoErrorsList.add(errors);}
+
+        if (getBranchname()==null || getBranchname().trim().length()==0){
+              errors= new ContractMessageErrors();
+              errors.setMessage("Favor de capturar Datos de la sucursal - Nombre de la Sucursal.");
+              generalInfoErrorsList.add(errors);}
+
+
+        if (getBranchstreet()==null || getBranchstreet().trim().length()==0){
+              errors= new ContractMessageErrors();
+              errors.setMessage("Favor de capturar Datos de la sucursal - Domicilio.");
+              generalInfoErrorsList.add(errors);}
+
+        if (getBranchcolony()==null || getBranchcolony().trim().length()==0){
+              errors= new ContractMessageErrors();
+              errors.setMessage("Favor de capturar Datos de la sucursal - Colonia.");
+              generalInfoErrorsList.add(errors);}
+
+        if (getBranchphone()==null || getBranchphone().trim().length()==0){
+              errors= new ContractMessageErrors();
+              errors.setMessage("Favor de capturar Datos de la sucursal - Teléfono.");
+              generalInfoErrorsList.add(errors);}
+
+        if (getBranchcity()==null || getBranchcity().trim().length()==0 || getBranchcity().equals("Seleccione una Ciudad")){
+              errors= new ContractMessageErrors();
+              errors.setMessage("Favor de capturar Datos de la sucursal- Ciudad.");
+              generalInfoErrorsList.add(errors);}
+
+        if (getBranchstate()==null ||getBranchstate().trim().length()==0 ||getBranchstate().equals("Seleccione un Estado") ){
+              errors= new ContractMessageErrors();
+              errors.setMessage("Favor de capturar Datos de la sucursal- Estado.");
+              generalInfoErrorsList.add(errors);}
+
+        if (getOfficerrepname_1()==null || getOfficerrepname_1().trim().length()==0){
+              errors= new ContractMessageErrors();
+              errors.setMessage("Favor de capturar Datos del Representante Legal o Apoderado Banorte - Nombre 1.");
+              generalInfoErrorsList.add(errors);}
+
+        if (getOfficerreplastname_1()==null || getOfficerreplastname_1().trim().length()==0){
+              errors= new ContractMessageErrors();
+              errors.setMessage("Favor de capturar Datos del Representante Legal o Apoderado Banorte - Apellido Paterno 1.");
+              generalInfoErrorsList.add(errors);}
+
+        if (getOfficerrepmothersln_1()==null || getOfficerrepmothersln_1().trim().length()==0){
+              errors= new ContractMessageErrors();
+              errors.setMessage("Favor de capturar Datos del Representante Legal o Apoderado Banorte - Apellido Materno 1.");
+              generalInfoErrorsList.add(errors);}
+
+        if (getOfficerrepposition_1()==null || getOfficerrepposition_1().trim().length()==0){
+              errors= new ContractMessageErrors();
+              errors.setMessage("Favor de capturar Datos del Representante Legal o Apoderado Banorte - Puesto 1.");
+              generalInfoErrorsList.add(errors);}
+
+        if (getOfficerrepname_2()==null || getOfficerrepname_2().trim().length()==0){
+              errors= new ContractMessageErrors();
+              errors.setMessage("Favor de capturar Datos del Representante Legal o Apoderado Banorte - Nombre 2.");
+              generalInfoErrorsList.add(errors);}
+
+        if (getOfficerreplastname_2()==null || getOfficerreplastname_2().trim().length()==0){
+              errors= new ContractMessageErrors();
+              errors.setMessage("Favor de capturar Datos del Representante Legal o Apoderado Banorte - Apellido Paterno 2.");
+              generalInfoErrorsList.add(errors);}
+
+        if (getOfficerrepmothersln_2()==null || getOfficerrepmothersln_2().trim().length()==0){
+              errors= new ContractMessageErrors();
+              errors.setMessage("Favor de capturar Datos del Representante Legal o Apoderado Banorte - Apellido Materno 2.");
+              generalInfoErrorsList.add(errors);}
+
+        if (getOfficerrepposition_2()==null || getOfficerrepposition_2().trim().length()==0){
+              errors= new ContractMessageErrors();
+              errors.setMessage("Favor de capturar Datos del Representante Legal o Apoderado Banorte - Puesto 2.");
+              generalInfoErrorsList.add(errors);}
+ 
+        if (getOfficerrepempnumber_1().equals(getOfficerrepempnumber_2())){
+              errors= new ContractMessageErrors();
+              errors.setMessage("Datos del Representante Legal o Apoderado Banorte deben ser diferentes");
+              generalInfoErrorsList.add(errors);}
+
+     } //Llave del SIC
+
+        
+     this.setErrorsList(generalInfoErrorsList);    
+               
+       if (generalInfoErrorsList.isEmpty()){
+           return true;}
+       else{         
+           return false;}
+    }
+}

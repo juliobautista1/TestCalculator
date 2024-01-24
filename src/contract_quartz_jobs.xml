@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<quartz xmlns="http://www.opensymphony.com/quartz/JobSchedulingData"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.opensymphony.com/quartz/JobSchedulingData
+                      http://www.opensymphony.com/quartz/xml/job_scheduling_data_1_5.xsd"
+    version="1.5">
+    
+    <job>
+        <job-detail>
+            <name>QuartzJob</name>
+            <group>Group</group>
+            <description>JobLayaout</description>
+            <job-class>com.banorte.contract.layout.SchedulerLayout</job-class>            
+        </job-detail>
+        <trigger>
+            <cron>
+                <name>QuartzTrigger</name>
+                <group>TriggerGroup</group>
+                <job-name>QuartzJob</job-name>
+                <job-group>Group</job-group>
+                <!-- Se dispara cada 10 segundos 00 08,13 * * 1-5 ?  -->
+                <cron-expression>05 09,11,14,18,20 * * 1-5 ?</cron-expression>
+            </cron>
+        </trigger>
+    </job>
+</quartz>

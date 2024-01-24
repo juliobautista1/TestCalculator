@@ -1,0 +1,372 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core">
+
+  <body>
+     <ui:composition template="./contractTemplate.xhtml">
+<!--  Se Agrego Comentario para que aumentara su tamaño y subirlo al SVN -->
+    
+      <ui:define name="top">
+        Formatos de Impresión
+      </ui:define>
+
+      <ui:define name="content">
+        <f:view >
+          <h:form id="forma">
+            <br/>
+            <br/>
+            <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0"  styleClass="contractFormats">
+
+
+            <c:if test="#{MttoBEMAccounts.toPrint}">
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText style="font-weight: bold;" value="La solicitud de alta ha sido registrada correctamente" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText value="Razon Social Comercio: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMAccounts.fiscalFullName}" escape="false"/>
+                    <h:outputText value="Contracto con folio No: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMAccounts.contract.reference}" />
+                    <h:outputText value="Estatus del contrato: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMAccounts.contract.status.description}" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0">
+                    <h:outputText value="Aquí podrás imprimir y reimprimir los Contratos según el trámite solicitado, recuerda que una vez firmados y con el expediente completo, se deberá llevar a cabo el procedimiento de Formalización y Co-Formalización del Folio para su procesamiento al área de Operaciones." />
+                </h:panelGrid>
+                <br/><br/>
+                <h:dataTable value="#{MttoBEMAccounts.formatList}" var="format">
+	                    <h:column style="width: 200px;">
+	                        <h:outputText value="#{format.description}"/>
+	                    </h:column>
+	                    <h:column style="width: 200px;">
+	                        <h:commandLink target="_blank" immediate="true" action="#{MttoBEMAccounts.createPDF}" value="Ver Documento">
+	                            <f:param name="nameTemplate" value="#{format.name}"></f:param>
+	                            <f:param name="pathTemplate" value="#{format.path}"></f:param>
+	                            <f:param name="flagTemplate" value="#{format.editable}"></f:param>
+	                        </h:commandLink>
+	                    </h:column>
+                </h:dataTable>
+            </c:if>
+            
+            
+            
+            <c:if test="#{MttoBEMDropCompany.toPrint}">
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText style="font-weight: bold;" value="La solicitud de alta ha sido registrada correctamente" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText value="Razon Social Comercio: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMDropCompany.fiscalFullName}" escape="false"/>
+                    <h:outputText value="Contracto con folio No: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMDropCompany.contract.reference}" />
+                    <h:outputText value="Estatus del contrato: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMDropCompany.contract.status.description}" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0">
+                    <h:outputText value="Aquí podrás imprimir y reimprimir los Contratos según el trámite solicitado, recuerda que una vez firmados y con el expediente completo, se deberá llevar a cabo el procedimiento de Formalización y Co-Formalización del Folio para su procesamiento al área de Operaciones." />
+                </h:panelGrid>
+                <br/><br/>
+                <h:dataTable value="#{MttoBEMDropCompany.formatList}" var="format">
+	                    <h:column style="width: 200px;">
+	                        <h:outputText value="#{format.description}"/>
+	                    </h:column>
+	                    <h:column style="width: 200px;">
+	                        <h:commandLink target="_blank" immediate="true" action="#{MttoBEMDropCompany.createPDF}" value="Ver Documento">
+	                            <f:param name="nameTemplate" value="#{format.name}"></f:param>
+	                            <f:param name="pathTemplate" value="#{format.path}"></f:param>
+	                            <f:param name="flagTemplate" value="#{format.editable}"></f:param>
+	                        </h:commandLink>
+	                    </h:column>
+                </h:dataTable>
+            </c:if>
+            
+            
+            <c:if test="#{MttoBEMDropToken.toPrint}">
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText style="font-weight: bold;" value="La solicitud de alta ha sido registrada correctamente" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText value="Razon Social Comercio: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMDropToken.fiscalFullName}" escape="false"/>
+                    <h:outputText value="Contracto con folio No: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMDropToken.contract.reference}" />
+                    <h:outputText value="Estatus del contrato: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMDropToken.contract.status.description}" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0">
+                    <h:outputText value="Aquí podrás imprimir y reimprimir los Contratos según el trámite solicitado, recuerda que una vez firmados y con el expediente completo, se deberá llevar a cabo el procedimiento de Formalización y Co-Formalización del Folio para su procesamiento al área de Operaciones." />
+                </h:panelGrid>
+                <br/><br/>
+                <h:dataTable value="#{MttoBEMDropToken.formatList}" var="format">
+	                    <h:column style="width: 200px;">
+	                        <h:outputText value="#{format.description}"/>
+	                    </h:column>
+	                    <h:column style="width: 200px;">
+	                        <h:commandLink target="_blank" immediate="true" action="#{MttoBEMDropToken.createPDF}" value="Ver Documento">
+	                            <f:param name="nameTemplate" value="#{format.name}"></f:param>
+	                            <f:param name="pathTemplate" value="#{format.path}"></f:param>
+	                            <f:param name="flagTemplate" value="#{format.editable}"></f:param>
+	                        </h:commandLink>
+	                    </h:column>
+                </h:dataTable>
+            </c:if>
+            
+            
+            
+            <c:if test="#{MttoBEMDropAccount.toPrint}">
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText style="font-weight: bold;" value="La solicitud de alta ha sido registrada correctamente" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText value="Razon Social Comercio: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMDropAccount.fiscalFullName}" escape="false"/>
+                    <h:outputText value="Contracto con folio No: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMDropAccount.contract.reference}" />
+                    <h:outputText value="Estatus del contrato: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMDropAccount.contract.status.description}" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0">
+                    <h:outputText value="Aquí podrás imprimir y reimprimir los Contratos según el trámite solicitado, recuerda que una vez firmados y con el expediente completo, se deberá llevar a cabo el procedimiento de Formalización y Co-Formalización del Folio para su procesamiento al área de Operaciones." />
+                </h:panelGrid>
+                <br/><br/>
+                <h:dataTable value="#{MttoBEMDropAccount.formatList}" var="format">
+	                    <h:column style="width: 200px;">
+	                        <h:outputText value="#{format.description}"/>
+	                    </h:column>
+	                    <h:column style="width: 200px;">
+	                        <h:commandLink target="_blank" immediate="true" action="#{MttoBEMDropAccount.createPDF}" value="Ver Documento">
+	                            <f:param name="nameTemplate" value="#{format.name}"></f:param>
+	                            <f:param name="pathTemplate" value="#{format.path}"></f:param>
+	                            <f:param name="flagTemplate" value="#{format.editable}"></f:param>
+	                        </h:commandLink>
+	                    </h:column>
+                </h:dataTable>
+            </c:if>
+            
+            
+            <c:if test="#{MttoBEMNewPassword.toPrint}">
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText style="font-weight: bold;" value="La solicitud de alta ha sido registrada correctamente" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText value="Razon Social Comercio: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMNewPassword.fiscalFullName}" escape="false" />
+                    <h:outputText value="Contracto con folio No: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMNewPassword.contract.reference}" />
+                    <h:outputText value="Estatus del contrato: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMNewPassword.contract.status.description}" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0">
+                    <h:outputText value="Aquí podrás imprimir y reimprimir los Contratos según el trámite solicitado, recuerda que una vez firmados y con el expediente completo, se deberá llevar a cabo el procedimiento de Formalización y Co-Formalización del Folio para su procesamiento al área de Operaciones." />
+                </h:panelGrid>
+                <br/><br/>
+                <h:dataTable value="#{MttoBEMNewPassword.formatList}" var="format">
+	                    <h:column style="width: 200px;">
+	                        <h:outputText value="#{format.description}"/>
+	                    </h:column>
+	                    <h:column style="width: 200px;">
+	                        <h:commandLink target="_blank" immediate="true" action="#{MttoBEMNewPassword.createPDF}" value="Ver Documento">
+	                            <f:param name="nameTemplate" value="#{format.name}"></f:param>
+	                            <f:param name="pathTemplate" value="#{format.path}"></f:param>
+	                            <f:param name="flagTemplate" value="#{format.editable}"></f:param>
+	                        </h:commandLink>
+	                    </h:column>
+                </h:dataTable>
+            </c:if>
+            
+            
+            <c:if test="#{MttoBEMRenovToken.toPrint}">
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText style="font-weight: bold;" value="La solicitud de alta ha sido registrada correctamente" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText value="Razon Social Comercio: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMRenovToken.fiscalFullName}" escape="false"/>
+                    <h:outputText value="Contracto con folio No: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMRenovToken.contract.reference}" />
+                    <h:outputText value="Estatus del contrato: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMRenovToken.contract.status.description}" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0">
+                    <h:outputText value="Aquí podrás imprimir y reimprimir los Contratos según el trámite solicitado, recuerda que una vez firmados y con el expediente completo, se deberá llevar a cabo el procedimiento de Formalización y Co-Formalización del Folio para su procesamiento al área de Operaciones." />
+                </h:panelGrid>
+                <br/><br/>
+                <h:dataTable value="#{MttoBEMRenovToken.formatList}" var="format">
+	                    <h:column style="width: 200px;">
+	                        <h:outputText value="#{format.description}"/>
+	                    </h:column>
+	                    <h:column style="width: 200px;">
+	                        <h:commandLink target="_blank" immediate="true" action="#{MttoBEMRenovToken.createPDF}" value="Ver Documento">
+	                            <f:param name="nameTemplate" value="#{format.name}"></f:param>
+	                            <f:param name="pathTemplate" value="#{format.path}"></f:param>
+	                            <f:param name="flagTemplate" value="#{format.editable}"></f:param>
+	                        </h:commandLink>
+	                    </h:column>
+                </h:dataTable>
+            </c:if>
+            
+            
+            <c:if test="#{MttoBEMAddToken.toPrint}">
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText style="font-weight: bold;" value="La solicitud de alta ha sido registrada correctamente" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText value="Razon Social Comercio: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMAddToken.fiscalFullName}" escape="false"/>
+                    <h:outputText value="Contracto con folio No: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMAddToken.contract.reference}" />
+                    <h:outputText value="Estatus del contrato: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMAddToken.contract.status.description}" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0">
+                    <h:outputText value="Aquí podrás imprimir y reimprimir los Contratos según el trámite solicitado, recuerda que una vez firmados y con el expediente completo, se deberá llevar a cabo el procedimiento de Formalización y Co-Formalización del Folio para su procesamiento al área de Operaciones." />
+                </h:panelGrid>
+                <br/><br/>
+                <h:dataTable value="#{MttoBEMAddToken.formatList}" var="format">
+	                    <h:column style="width: 200px;">
+	                        <h:outputText value="#{format.description}"/>
+	                    </h:column>
+	                    <h:column style="width: 200px;">
+	                        <h:commandLink target="_blank" immediate="true" action="#{MttoBEMAddToken.createPDF}" value="Ver Documento">
+	                            <f:param name="nameTemplate" value="#{format.name}"></f:param>
+	                            <f:param name="pathTemplate" value="#{format.path}"></f:param>
+	                            <f:param name="flagTemplate" value="#{format.editable}"></f:param>
+	                        </h:commandLink>
+	                    </h:column>
+                </h:dataTable>
+            </c:if>
+            
+            <c:if test="#{MttoBEMUpdateAgreement.toPrint}">
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText style="font-weight: bold;" value="La solicitud de alta ha sido registrada correctamente" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText value="Razon Social Comercio: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMUpdateAgreement.fiscalFullName}" escape="false"/>
+                    <h:outputText value="Contracto con folio No: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMUpdateAgreement.contract.reference}" />
+                    <h:outputText value="Estatus del contrato: " />
+                    <h:outputText style="font-weight: bold;" value="#{MttoBEMUpdateAgreement.contract.status.description}" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0">
+                    <h:outputText value="Aquí podrás imprimir y reimprimir los Contratos según el trámite solicitado, recuerda que una vez firmados y con el expediente completo, se deberá llevar a cabo el procedimiento de Formalización y Co-Formalización del Folio para su procesamiento al área de Operaciones." />
+                </h:panelGrid>
+                <br/><br/>
+                <h:dataTable value="#{MttoBEMUpdateAgreement.formatList}" var="format">
+	                    <h:column style="width: 200px;">
+	                        <h:outputText value="#{format.description}"/>
+	                    </h:column>
+	                    <h:column style="width: 200px;">
+	                        <h:commandLink target="_blank" immediate="true" action="#{MttoBEMUpdateAgreement.createPDF}" value="Ver Documento">
+	                            <f:param name="nameTemplate" value="#{format.name}"></f:param>
+	                            <f:param name="pathTemplate" value="#{format.path}"></f:param>
+	                            <f:param name="flagTemplate" value="#{format.editable}"></f:param>
+	                        </h:commandLink>
+	                    </h:column>
+                </h:dataTable>
+            </c:if>
+            
+            
+            <c:if test="#{ContractReportMB.toPrint}">
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText style="font-weight: bold;" value="Modulo de reimpresión de contratos" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="2">
+                    <h:outputText value="Razon Social Comercio: " />
+                    <h:outputText style="font-weight: bold;" value="#{ContractReportMB.currentVersionFiscalName}" />
+                    
+                    <h:outputText value="El contrato a revisar tiene el folio N°: " />
+                    <h:outputText style="font-weight: bold;" value="#{ContractReportMB.contract.reference}" />
+
+                    <h:outputText value="Estatus del contrato: " />
+                    <h:outputText style="font-weight: bold;" value="#{ContractReportMB.contract.status.description}" />
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0">
+                    <h:outputText value="Aquí podrás imprimir y reimprimir los Contratos según el trámite solicitado, recuerda que una vez firmados y con el expediente completo, se deberá llevar a cabo el procedimiento de Formalización y Co-Formalización del Folio para su procesamiento al área de Operaciones." />
+                </h:panelGrid>
+                <br/><br/>
+                <h:dataTable value="#{ContractReportMB.formatListMtto}" var="format">
+                    <h:column style="width: 200px;">
+                        <h:outputText value="#{format.description}"/>
+                    </h:column>
+                    <h:column style="width: 200px;">
+                        <h:commandLink target="_blank" immediate="true" action="#{ContractReportMB.createPDF}" value="Ver Documento">
+                            <f:param name="nameTemplate" value="#{format.name}"></f:param>
+                            <f:param name="pathTemplate" value="#{format.path}"></f:param>
+                            <f:param name="flagTemplate" value="#{format.editable}"></f:param>
+                        </h:commandLink>
+                    </h:column>
+                </h:dataTable>
+            </c:if>
+            
+            
+            
+
+            <br/><br/>            
+            </h:panelGrid>
+            <br/><br/>
+             <div class="send">
+             
+             <c:if test="#{MttoBEMAccounts.toPrint}">
+             	<h:outputText value="| x " rendered="#{MttoBEMAccounts.toAuthorize}"/><h:commandLink immediate="true" action="#{MttoBEMAccounts.toAuthorizeEmp1}"  rendered="#{MttoBEMAccounts.toAuthorize}"  value="FORMALIZAR"><f:param name="toAuthorize" value="false"></f:param></h:commandLink><h:outputText value="|" rendered="#{MttoBEMAccounts.toAuthorize}"/>
+             </c:if>
+             
+              <c:if test="#{MttoBEMDropCompany.toPrint}">
+              		<h:outputText value="| x " rendered="#{MttoBEMDropCompany.toAuthorize}"/><h:commandLink immediate="true" action="#{MttoBEMDropCompany.toAuthorizeEmp1}"  rendered="#{MttoBEMDropCompany.toAuthorize}"  value="FORMALIZAR"><f:param name="toAuthorize" value="false"></f:param></h:commandLink><h:outputText value="|" rendered="#{MttoBEMDropCompany.toAuthorize}"/>
+             </c:if>
+             
+              <c:if test="#{MttoBEMDropToken.toPrint}">
+              	<h:outputText value="| x " rendered="#{MttoBEMDropToken.toAuthorize}"/><h:commandLink immediate="true" action="#{MttoBEMDropToken.toAuthorizeEmp1}"  rendered="#{MttoBEMDropToken.toAuthorize}"  value="FORMALIZAR"><f:param name="toAuthorize" value="false"></f:param></h:commandLink><h:outputText value="|" rendered="#{MttoBEMDropToken.toAuthorize}"/>
+             </c:if>
+             
+              <c:if test="#{MttoBEMDropAccount.toPrint}">
+              	<h:outputText value="| x " rendered="#{MttoBEMDropAccount.toAuthorize}"/><h:commandLink immediate="true" action="#{MttoBEMDropAccount.toAuthorizeEmp1}"  rendered="#{MttoBEMDropAccount.toAuthorize}"  value="FORMALIZAR"><f:param name="toAuthorize" value="false"></f:param></h:commandLink><h:outputText value="|" rendered="#{MttoBEMDropAccount.toAuthorize}"/>
+             </c:if>
+             
+              <c:if test="#{MttoBEMNewPassword.toPrint}">
+              	<h:outputText value="| x " rendered="#{MttoBEMNewPassword.toAuthorize}"/><h:commandLink immediate="true" action="#{MttoBEMNewPassword.toAuthorizeEmp1}"  rendered="#{MttoBEMNewPassword.toAuthorize}"  value="FORMALIZAR"><f:param name="toAuthorize" value="false"></f:param></h:commandLink><h:outputText value="|" rendered="#{MttoBEMNewPassword.toAuthorize}"/>
+             </c:if>
+             
+              <c:if test="#{MttoBEMRenovToken.toPrint}">
+              	<h:outputText value="| x " rendered="#{MttoBEMRenovToken.toAuthorize}"/><h:commandLink immediate="true" action="#{MttoBEMRenovToken.toAuthorizeEmp1}"  rendered="#{MttoBEMRenovToken.toAuthorize}"  value="FORMALIZAR"><f:param name="toAuthorize" value="false"></f:param></h:commandLink><h:outputText value="|" rendered="#{MttoBEMRenovToken.toAuthorize}"/>
+             </c:if>
+             
+              <c:if test="#{MttoBEMAddToken.toPrint}">
+              	<h:outputText value="| x " rendered="#{MttoBEMAddToken.toAuthorize}"/><h:commandLink immediate="true" action="#{MttoBEMAddToken.toAuthorizeEmp1}"  rendered="#{MttoBEMAddToken.toAuthorize}"  value="FORMALIZAR"><f:param name="toAuthorize" value="false"></f:param></h:commandLink><h:outputText value="|" rendered="#{MttoBEMAddToken.toAuthorize}"/>
+             </c:if>
+             
+              <c:if test="#{MttoBEMUpdateAgreement.toPrint}">
+              	<h:outputText value="| x " rendered="#{MttoBEMUpdateAgreement.toAuthorize}"/><h:commandLink immediate="true" action="#{MttoBEMUpdateAgreement.toAuthorizeEmp1}"  rendered="#{MttoBEMUpdateAgreement.toAuthorize}"  value="FORMALIZAR"><f:param name="toAuthorize" value="false"></f:param></h:commandLink><h:outputText value="|" rendered="#{MttoBEMUpdateAgreement.toAuthorize}"/>
+             </c:if>
+       	
+             </div>
+          </h:form>
+        </f:view>
+      </ui:define>
+
+    </ui:composition>
+
+  </body>
+</html>

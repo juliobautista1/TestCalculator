@@ -1,0 +1,30 @@
+# FTP Options
+# com.banorte.contract.resources.operations.properties
+contract.ftp.host=15.128.44.50
+contract.ftp.port=21
+contract.ftp.user=operaciones
+contract.ftp.pass=opera
+# contract.ftp.path.upload=/ebanking/entradas/
+# contract.ftp.path.reportes=/ebanking/reportes/
+# contract.ftp.path.download=/ebanking/respuestas/
+# contract.ftp.path.activate=/ebanking/activaciones/
+# contract.ftp.path.install=/Ebanking/instalaciones/
+# contract.ftp.path.oip=/pyme/tpv/
+# contract.ftp.path.executives=/ebanking/ejecutivos/
+# contract.ftp.path.executivebranch=/ebanking/sucursales/
+# contract.ftp.path.directa.download=/ebanking/Outbound_BEM/ArchivosSalida/
+# contract.ftp.path.directa.upload=/ebanking/Outbound_BEM/ArchivosCarga/
+# contract.ftp.path.maintance.download=/ebanking/mttobem/
+# contract.sftp.path.upload.abem=/work/import/triggeredpackages/73_1_242/
+# contract.sftp.path.upload.mbem=/work/import/triggeredpackages/73_2_243/
+# contract.sftp.host=192.168.0.153
+# contract.sftp.pass=tralixupload
+# contract.sftp.user=tralixupload
+# contract.ftp.path.commision=/ebanking/comisiones/
+# contract.altas.host=15.35.30.79
+# contract.altas.pass=ftp_ebank
+# contract.altas.user=ftp_ebank
+# contract.altas.path=/comparte/EBanking/ 	
+# contract.ftp.path.upload.adquirente=/ebanking/adquirente/
+contract.ftp.path.upload.cuentasMujerPyME=/ebanking/cuentasMujerPyME/
+# contract.ftp.path.download=/ebanking/cuentasMujerPyME/

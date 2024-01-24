@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+  
+  <body>
+    
+    <ui:composition template="./contractTemplate.xhtml">
+      
+      <ui:define name="top">
+        Manejo de Atributos
+      </ui:define>
+      
+      <ui:define name="content">
+        <f:view>
+          <h:form id="formaPrincipal" name="principal">
+            <h:dataTable id="lista" value="#{AttributeMB.listaAtributos}" var="atribute" rowClasses="oddRowStyle,evenRowStyle" headerClass="tableHeaderStyle">
+              <h:column>
+                <f:facet name="header">
+                  <h:outputText value="Atributo Clave"/>
+                </f:facet>
+                <h:outputText value="#{atribute.fieldname}"/>
+              </h:column>
+              <h:column>
+                <f:facet name="header">
+                  <h:outputText value="Nombre"/>
+                </f:facet>
+                <h:outputText value="#{atribute.name}"/>
+              </h:column>
+              <h:column>
+                <f:facet name="header">
+                  <h:outputText value="Descripcion"/>
+                </f:facet>
+                <h:outputText value="#{atribute.description}"/>
+              </h:column>
+            </h:dataTable>
+          </h:form>
+          
+        </f:view>
+      </ui:define>
+      
+    </ui:composition>
+    
+  </body>
+</html>

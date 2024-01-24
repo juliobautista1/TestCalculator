@@ -1,0 +1,876 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+	<body>
+		<ui:composition template="./contractTemplate.xhtml">
+			<ui:define name="top">
+        		Mantenimientos BEM : Convenio Modificatorio
+      		</ui:define>
+
+			<ui:define name="content">
+				<f:view>
+				 <script type="text/javascript">
+				 
+				 function start() {
+					validateCheckFiscalName();
+					
+					validateCheckAddress();
+					validateCheckRFC();
+					validateCheckColony();
+					validateCheckCP();
+					validateCheckState();
+					validateCheckPhoneNumber();
+					validateCheckEmail();
+					validateCheckAccountCharge();
+					validateCheckPlan();
+					validateCambioComision();
+					 
+				  }
+				 
+				 
+				 function validateCheckFiscalName(){
+					  if(document.getElementById("forma:changeFiscalNameCheck").checked){
+						  document.getElementById("forma:changeFiscalNameInfo").disabled = false ;
+					  }else {
+						  document.getElementById("forma:changeFiscalNameInfo").disabled = true ;
+						  document.getElementById("forma:changeFiscalNameInfo").value = "" ;
+					  }
+				  }
+				 
+				 function validateCheckLegalRep(){
+					  if(document.getElementById("forma:changeLegalRepCheck").checked){
+						  document.getElementById("forma:changeLegalRepInfo").disabled = false ;
+					  }else {
+						  document.getElementById("forma:changeLegalRepInfo").disabled = true ;
+						  document.getElementById("forma:changeLegalRepInfo").value = "" ;
+					  }
+				  }
+				 
+					
+				 function validateCheckAddress(){
+					  if(document.getElementById("forma:changeAddressCheck").checked){
+						  document.getElementById("forma:changeAddressInfo").disabled = false ;
+					  }else {
+						  document.getElementById("forma:changeAddressInfo").disabled = true ;
+						  document.getElementById("forma:changeAddressInfo").value = "" ;
+					  }
+					  
+				  }
+				 
+				 
+				 function validateCheckRFC(){
+					  if(document.getElementById("forma:changeRFCCheck").checked){
+						  document.getElementById("forma:changeRFCInfo").disabled = false ;
+					  }else {
+						  document.getElementById("forma:changeRFCInfo").disabled = true ;
+						  document.getElementById("forma:changeRFCInfo").value = "" ;
+					  }
+					  
+				  }
+				 
+				 function validateCheckColony(){
+					  if(document.getElementById("forma:changeColonyCheck").checked){
+						  document.getElementById("forma:changeColonyInfo").disabled = false ;
+					  }else {
+						  document.getElementById("forma:changeColonyInfo").disabled = true ;
+						  document.getElementById("forma:changeColonyInfo").value = "" ;
+					  }
+					  
+				  }
+				 
+				
+				 function validateCheckCP(){
+						  if(document.getElementById("forma:changeCPCheck").checked){
+							  document.getElementById("forma:changeCPCInfo").disabled = false ;
+							  document.getElementById("forma:client_sic").focus();
+							  document.getElementById("forma:changeCPCInfo").focus();
+							  
+						  }else {
+							  document.getElementById("forma:changeCPCInfo").disabled = true ;
+							  document.getElementById("forma:changeCPCInfo").value = "" ;
+						  }
+						  
+					  }
+					
+					
+				function validateCheckState(){
+						  if(document.getElementById("forma:changeStateCheck").checked){
+							  document.getElementById("forma:changeStateInfo").disabled = false ;
+							  document.getElementById("forma:changeCityInfo").disabled = false ;
+						  }else {
+							  document.getElementById("forma:changeStateInfo").disabled = true ;
+							  document.getElementById("forma:changeStateInfo").value = "" ;
+							  document.getElementById("forma:changeCityInfo").disabled = true ;
+							  document.getElementById("forma:changeCityInfo").value = "" ;
+						  }
+						  
+					  }
+					
+				
+					
+				function validateCheckPhoneNumber(){
+						  if(document.getElementById("forma:changePhoneNumberCheck").checked){
+							  document.getElementById("forma:changePhoneNumberInfo").disabled = false ;
+							  document.getElementById("forma:client_sic").focus();
+							  document.getElementById("forma:changePhoneNumberInfo").focus();
+						  }else {
+							  document.getElementById("forma:changePhoneNumberInfo").disabled = true ;
+							  document.getElementById("forma:changePhoneNumberInfo").value = "" ;
+						  }
+						  
+					  }
+					
+				function validateCheckEmail(){
+						  if(document.getElementById("forma:changeEmailCheck").checked){
+							  document.getElementById("forma:changeEmailInfo").disabled = false ;
+						  }else {
+							  document.getElementById("forma:changeEmailInfo").disabled = true ;
+							  document.getElementById("forma:changeEmailInfo").value = "" ;
+						  }
+						  
+					  }
+				
+				
+				function validateCheckAccountCharge(){
+					  if(document.getElementById("forma:changeAccountChargeCheck").checked){
+						  document.getElementById("forma:changeAccountChargeInfo").disabled = false ;
+					  }else {
+						  document.getElementById("forma:changeAccountChargeInfo").disabled = true ;
+						  document.getElementById("forma:changeAccountChargeInfo").value = "" ;
+					  }
+					  
+				  }
+				
+				
+				function validateCheckPlan(){
+					  if(document.getElementById("forma:changePlanCheck").checked){
+						  document.getElementById("forma:changePlanInfo").disabled = false ;
+					  }else {
+						  document.getElementById("forma:changePlanInfo").disabled = true ;
+						  document.getElementById("forma:changePlanInfo").value = "" ;
+					  }
+					  
+				  }
+				
+
+				function validateCambioComision(){
+					  if(document.getElementById("forma:changeChargeCheck").checked){
+						  document.getElementById("forma:changeAccountCentralCheck").disabled = false ;
+						  document.getElementById("forma:changeOriginTransactionCheck").disabled = false ;
+						  
+					  }else {
+						  document.getElementById("forma:changeAccountCentralCheck").disabled = true ;
+						  document.getElementById("forma:changeOriginTransactionCheck").disabled = true ;
+						  document.getElementById("forma:changeAccountCentralCheck").checked = false ;
+						  document.getElementById("forma:changeOriginTransactionCheck").checked = false ;
+						  
+					  }
+					  
+				  }
+				
+				 window.onload = start;
+          		</script>
+				
+				
+				<h:form id="forma">
+
+						<br />
+						<h:messages layout="table" styleClass="errorStyle" />
+						<br />
+						<c:if test="${param['resetForm']==true}">
+              					#{MttoBEMUpdateAgreement.resetForm}
+            			</c:if>
+						<c:if test="${param['editForm']==true}">
+              					#{MttoBEMUpdateAgreement.editForm}
+            			</c:if>
+            			
+            			<c:if test="#{! empty MttoBEMUpdateAgreement.errorsList}">
+              				<h:dataTable id="list" value="#{MttoBEMUpdateAgreement.errorsList}" rendered="#{! empty MttoBEMUpdateAgreement.errorsList}" var="errors" styleClass="contractStyleNone" rowClasses="tableStyleSecondRow">
+                				<h:column>                  
+                  					<h:outputText value="#{errors.message}" styleClass="msgValidation"/>
+                				</h:column>                 
+              				</h:dataTable>              
+            				<br/>
+            				
+            			</c:if>
+
+            			
+            			
+            			<!-- SIC -->
+						<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Datos del Cliente" />
+							</f:facet>
+
+							<h:panelGrid columns="3"  border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" 
+							   rowClasses="tableStyleFirstRow">
+								
+									<h:outputText value="No. Cliente" />
+									<h:outputText value="No. Empresa" />
+									<h:outputText value="CR del BEM del Cliente" />
+									
+								
+									<h:inputText id="client_sic" value="#{MttoBEMUpdateAgreement.client_sic}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+									maxlength="8" styleClass="camposx" requiredMessage="#{msgs.mttoSICError}" required="true" />
+									
+									<h:inputText id="bemnumber" value="#{MttoBEMUpdateAgreement.bemnumber}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+									maxlength="8" styleClass="camposx" requiredMessage="#{msgs.mttoNoEmpresaError}" required="true" />
+								
+									<h:inputText id="crnumber" value="#{MttoBEMUpdateAgreement.crnumber}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+									maxlength="8" styleClass="camposx" requiredMessage="#{msgs.mttoCRError}" required="true" />
+									
+							</h:panelGrid>
+						</h:panelGrid>
+						<br/>
+						<!-- FIN SIC -->
+						
+						
+						
+	
+	
+	<!-- Seccion: Datos de la Empresa -->
+	
+				<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Datos de la Empresa" />
+							</f:facet>
+
+							<h:panelGrid columns="3"  border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" 
+							   rowClasses="tableStyleFirstRow">
+								<h:outputText value="Nombre, Denominación o Razón Social de la Empresa" />
+								<h:outputText value="Estado" />
+								<h:outputText value="Poblacion" />
+
+								<h:inputText id="fiscalFullName"
+									style="width:200px;"
+									maxlength="150" styleClass="camposx"
+									requiredMessage="#{msgs.mttoFiscalNameError}"
+									value="#{MttoBEMUpdateAgreement.fiscalFullName}"
+									required="true" />
+									
+								<h:selectOneMenu id="celebrationstate" onchange="submit()"
+									immediate="true" style="width:180px" class="camposx"
+									value="#{MttoBEMUpdateAgreement.celebrationstate}" required="false">
+									<f:selectItem itemValue="Seleccione un Estado" />
+									<f:selectItems value="#{MttoBEMUpdateAgreement.statesArray}" />
+								</h:selectOneMenu>
+
+								<h:selectOneMenu id="celebrationplace"
+									value="#{MttoBEMUpdateAgreement.celebrationplace}"
+									style="width:180px" class="camposx" required="false">
+									<f:selectItem itemValue="Seleccione una Ciudad" />
+									<f:selectItems value="#{MttoBEMUpdateAgreement.citiesCelebrationArray}" />
+								</h:selectOneMenu>
+
+								
+								
+								</h:panelGrid>
+							
+							<h:panelGrid columns="1" border="0" cellpadding="5"
+								cellspacing="0" styleClass="contractStyleInner">
+								<h:outputText value="Apoderado Legal o Administrador Designado"/> 
+								
+								<h:inputText id="legalRepresentativeFullName"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="50" styleClass="camposx"
+									value="#{MttoBEMUpdateAgreement.legalRepresentativeFullName}"
+									required="false"
+									disabled="false"/>
+							</h:panelGrid>
+							
+						</h:panelGrid>
+				
+				
+	
+	<br/>
+	<!--FIN Seccion: Datos de la Empresa -->
+	
+	
+	
+	<!-- Seccion: Actualización de Datos del Cliente -->
+	
+	<h:panelGrid styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Actualización de Datos del Cliente " />
+							</f:facet>
+							
+						
+							
+							<h:panelGrid columns="8" border="0" cellpadding="5"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								
+								<h:outputText value="" />
+								<h:outputText value="Cambio de Nombre,Denominacion o Razon Social de la Empresa" />
+								
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<!--
+								
+								<h:outputText value="Cambio Nombre del (de los) Apoderado(s)" />
+								
+								-->
+								<h:selectBooleanCheckbox  id="changeFiscalNameCheck" value="#{MttoBEMUpdateAgreement.changeFiscalNameCheck}" onchange="validateCheckFiscalName();" />
+								
+								
+								<h:inputText id="changeFiscalNameInfo"
+									 style="width:250px;"
+									maxlength="100" styleClass="camposx"
+									requiredMessage="#{msgs.mttoUpdateFiscalName}"
+									value="#{MttoBEMUpdateAgreement.changeFiscalNameInfo}"
+									required="true" />
+							<!-- 		
+								<h:outputText value="" />
+								 
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+								
+								<h:selectBooleanCheckbox id="changeLegalRepCheck" value="#{MttoBEMUpdateAgreement.changeLegalRepCheck}" onchange="validateCheckLegalRep();" />
+								
+								<h:inputText id="changeLegalRepInfo"
+									onkeypress="return isTextNAN(event)" style="width:250px;"
+									maxlength="50" styleClass="camposx"
+									requiredMessage="#{msgs.mttoUpdateLegalRep}"
+									value="#{MttoBEMUpdateAgreement.changeLegalRepInfo}"
+									required="true" />
+									
+									-->
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+							</h:panelGrid>
+							
+							
+							<h:panelGrid columns="8" border="0" cellpadding="5"
+								cellspacing="0" styleClass="contractStyleInner">
+								
+								<h:outputText value="" />
+								<h:outputText value="Cambio de Domicilio : Calle y No." />
+								
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+								
+								<h:outputText value="" />
+								<h:outputText value="Cambio de RFC" />
+								
+								
+								<h:selectBooleanCheckbox id="changeAddressCheck" value="#{MttoBEMUpdateAgreement.changeAddressCheck}" onchange="validateCheckAddress();" />
+								
+								<h:inputText id="changeAddressInfo"
+									 style="width:250px;"
+									maxlength="80" styleClass="camposx"
+									requiredMessage="#{msgs.mttoUpdateAddress}"
+									value="#{MttoBEMUpdateAgreement.changeAddressInfo}"
+									required="true" />
+									
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+									
+								<h:selectBooleanCheckbox id="changeRFCCheck" value="#{MttoBEMUpdateAgreement.changeRFCCheck}" onchange="validateCheckRFC();" />
+								
+								<h:inputText id="changeRFCInfo"
+									 style="width:250px;"
+									maxlength="13" styleClass="camposx"
+									requiredMessage="#{msgs.mttoUpdateRFC}"
+									value="#{MttoBEMUpdateAgreement.changeRFCInfo}"
+									required="true" />
+								
+							</h:panelGrid>
+							
+							
+							<h:panelGrid columns="8" border="0" cellpadding="5"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								
+								<h:outputText value="" />
+								<h:outputText value="Cambio de Colonia" />
+								
+								<h:outputText value="" />
+								<h:outputText value="Cambio de CP" />
+								
+								<h:outputText value="" />
+								<h:outputText value="Cambio de Estado" />
+								
+								<h:outputText value="" />
+								<h:outputText value="Cambio de Ciudad" />
+								
+								<h:selectBooleanCheckbox id="changeColonyCheck" value="#{MttoBEMUpdateAgreement.changeColonyCheck}" onchange="validateCheckColony();" />
+								
+								<h:inputText id="changeColonyInfo"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="70" styleClass="camposx"
+									requiredMessage="#{msgs.mttoUpdateColony}"
+									value="#{MttoBEMUpdateAgreement.changeColonyInfo}"
+									required="true" />
+									
+								<h:selectBooleanCheckbox id="changeCPCheck" value="#{MttoBEMUpdateAgreement.changeCPCheck}" onchange="validateCheckCP();" />
+								
+								<h:inputText id="changeCPCInfo"
+									onkeypress="return isNumberKey(event)" style="width:70px;"
+									maxlength="5" styleClass="camposx"
+									requiredMessage="#{msgs.mttoUpdateCP}"
+									value="#{MttoBEMUpdateAgreement.changeCPCInfo}"
+									required="true" />
+									
+								<h:selectBooleanCheckbox id="changeStateCheck" value="#{MttoBEMUpdateAgreement.changeStateCheck}" onchange="validateCheckState();" />
+								
+								<h:selectOneMenu id="changeStateInfo" onchange="submit()"
+									immediate="true" style="width:180px" class="camposx"
+									value="#{MttoBEMUpdateAgreement.changeStateInfo}" required="false">
+									<f:selectItem itemValue="Seleccione un Estado" />
+									<f:selectItems value="#{MttoBEMUpdateAgreement.statesChangeArray}" />
+								</h:selectOneMenu>
+								
+								<h:outputText value="" />
+
+								<h:selectOneMenu id="changeCityInfo"
+									value="#{MttoBEMUpdateAgreement.changeCityInfo}"
+									style="width:180px" class="camposx" required="false">
+									<f:selectItem itemValue="Seleccione una Ciudad" />
+									<f:selectItems
+										value="#{MttoBEMUpdateAgreement.citiesChangeArray}" />
+								</h:selectOneMenu>
+								
+								
+							   </h:panelGrid>
+							   
+							   
+							<h:panelGrid columns="8" border="0" cellpadding="5"
+								cellspacing="0" styleClass="contractStyleInner">
+								
+								<h:outputText value="" />
+								<h:outputText value="Cambio de Teléfono (incluir LD)" />
+								
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+								
+								<h:outputText value="" />
+								<h:outputText value="Cambio de Correo Electrónico" />
+								
+								<h:selectBooleanCheckbox id="changePhoneNumberCheck" value="#{MttoBEMUpdateAgreement.changePhoneNumberCheck}" onchange="validateCheckPhoneNumber();" />
+								
+								<h:inputText id="changePhoneNumberInfo"
+									onkeypress="return isNumberKey(event)" style="width:250px;"
+									maxlength="15" styleClass="camposx"
+									requiredMessage="#{msgs.mttoUpdatePhone}"
+									value="#{MttoBEMUpdateAgreement.changePhoneNumberInfo}"
+									required="true" />
+									
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+									
+								<h:selectBooleanCheckbox id="changeEmailCheck" value="#{MttoBEMUpdateAgreement.changeEmailCheck}" onchange="validateCheckEmail();" />
+								
+								<h:inputText id="changeEmailInfo"
+									onkeypress="return isEmail(event)"
+									style="width:250px;"
+									maxlength="50" styleClass="camposx"
+									requiredMessage="#{msgs.mttoUpdateEmail}"
+									value="#{MttoBEMUpdateAgreement.changeEmailInfo}"
+									required="true" />
+								
+							</h:panelGrid>
+							
+				</h:panelGrid>
+	
+	
+	<br/>
+	
+	
+	<!-- FIN Seccion: Actualización de Datos del Cliente -->
+	
+	
+	
+	<!-- Seccion: Cambios en Contratacon -->
+	
+	<h:panelGrid styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Cambios en la Contratacion " />
+							</f:facet>
+							
+							<h:panelGrid columns="8" border="0" cellpadding="5"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								
+								
+								<h:outputText value="" />
+								<h:outputText value="Cambio Numero de Cuenta Para Cargo" />
+								
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+								
+								<h:outputText value="" />
+								<h:outputText value="Cambio de Plan Seleccionado" />
+								
+								
+								<h:selectBooleanCheckbox id="changeAccountChargeCheck" value="#{MttoBEMUpdateAgreement.changeAccountChargeCheck}" onchange="validateCheckAccountCharge();" />
+								
+								<h:inputText id="changeAccountChargeInfo"
+									onkeypress="return isNumberKey(event)" style="width:250px;"
+									onblur="isValidAccNum('changeAccountChargeInfo');"
+									maxlength="10" styleClass="camposx"
+									requiredMessage="#{msgs.mttoUpdateAccount}"
+									value="#{MttoBEMUpdateAgreement.changeAccountChargeInfo}"
+									required="true" />
+									
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+								
+								<h:selectBooleanCheckbox id="changePlanCheck" value="#{MttoBEMUpdateAgreement.changePlanCheck}" onchange="validateCheckPlan();" />
+								
+								<h:inputText id="changePlanInfo"
+									style="width:250px;"
+									maxlength="50" styleClass="camposx"
+									requiredMessage="#{msgs.mttoUpdatePlan}"
+									value="#{MttoBEMUpdateAgreement.changePlanInfo}"
+									required="true" />
+								
+							</h:panelGrid>
+							
+							
+							<h:panelGrid columns="8" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								>
+								
+								
+								<h:selectBooleanCheckbox id="changeChargeCheck" value="#{MttoBEMUpdateAgreement.changeChargeCheck}" style="width:50px;" onchange="validateCambioComision();">
+								</h:selectBooleanCheckbox>
+								
+								<h:outputText style="width:350px;" value="Cambios de Tipo de Cobro de Comision" />
+								
+								
+								<h:outputText style="width:550px;" value="" />
+								<h:outputText style="width:550px;" value="" />
+								
+								<h:selectBooleanCheckbox id="changeAccountCentralCheck" value="#{MttoBEMUpdateAgreement.changeAccountCentralCheck}" onchange="" >
+								Cuenta Centralizada
+								</h:selectBooleanCheckbox>
+								
+								<h:outputText style="width:550px;" value="" />
+								
+							
+								
+								<h:selectBooleanCheckbox id="changeOriginTransactionCheck" value="#{MttoBEMUpdateAgreement.changeOriginTransactionCheck}" onchange="">
+									Cuenta de Origen de la Transaccion
+								</h:selectBooleanCheckbox>
+								
+								<h:outputText style="width:350px;" value="" />
+								
+							</h:panelGrid>
+							
+							
+					</h:panelGrid>
+					
+					<br/>		
+	
+	<!-- FIN Seccion: Cambios en Contratacon -->
+	
+	
+	
+	<!-- Seccion: Funcionario que Capturo la solicitud del Mantenimiento -->
+<a name="officeInfo"></a>	
+	<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText
+									value="Datos del Funcionario que Capturo la solicitud del Mantenimiento" />
+							</f:facet>
+							<!-- Row1  -->
+							<h:panelGrid columns="1" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:panelGroup>
+									<h:outputText value="No. Empleado " />
+									<h:inputText id="officerempnumber" style="width:80px;"
+										onkeypress="return isTextNON(event)" maxlength="8"
+										styleClass="camposx"
+										requiredMessage="#{msgs.mttoofficerEmpNumberReqError}"
+										value="#{MttoBEMUpdateAgreement.officerempnumber}" required="false" />
+									<h:commandLink id="SearchOfficerMtto"
+										actionListener="#{MttoBEMUpdateAgreement.findOfficerInfo}"
+										immediate="false" style="text-decoration: none">
+										<h:graphicImage url="../img_contracts/images/arrowrightmonth.gif"
+											alt="X Consultar" title="Buscar" style="border:0px" />
+										<f:param name="anchorSearchOfficerMtto" value="officeInfo" />
+									</h:commandLink>
+								</h:panelGroup>
+							</h:panelGrid>
+							<!-- Row2  -->
+							<h:panelGrid columns="4" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleSecondRow">
+								<h:outputText value="Nombre" />
+								<h:outputText value="Apellido Paterno" />
+								<h:outputText value="Apellido Materno" />
+								<h:outputText value="Puesto" />
+
+								<h:inputText id="officername"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerNameReqError}"
+									value="#{MttoBEMUpdateAgreement.officername}" 
+									required="false"
+									disabled="#{empty MttoBEMUpdateAgreement.officername ? 'false' : 'true'}" />
+								<h:inputText id="officerlastname"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerLastnameReqError}"
+									value="#{MttoBEMUpdateAgreement.officerlastname}" 
+									required="false"
+									disabled="#{empty MttoBEMUpdateAgreement.officerlastname ? 'false' : 'true'}" />
+								<h:inputText id="officermothersln"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerMothersLnReqError}"
+									value="#{MttoBEMUpdateAgreement.officermothersln}" 
+									required="false"
+									disabled="#{empty MttoBEMUpdateAgreement.officermothersln ? 'false' : 'true'}" />
+								<h:inputText id="officerposition"
+									onkeypress="return isText(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerPositionReqError}"
+									value="#{MttoBEMUpdateAgreement.officerposition}" 
+									required="false"
+									disabled="#{empty MttoBEMUpdateAgreement.officerposition ? 'false' : 'true'}" />
+							</h:panelGrid>
+						</h:panelGrid>
+	
+	<br/>
+	<!--FIN Seccion: Funcionario que Capturo la solicitud del Mantenimiento -->
+	
+	<!-- Seccion: Datos Funcionario Banorte -->
+	
+	
+			<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText
+									value="Datos Funcionario Banorte" />
+							</f:facet>
+							<!-- Row1 -->
+							<h:panelGrid columns="1" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:panelGroup>
+								<h:outputText value="No. Empleado 1 " />
+								<h:inputText id="officerrepempnumber_1"
+									onkeypress="return isTextNON(event)" style="width:80px;"
+									maxlength="8" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerRepNumber1ReqError}"
+									value="#{MttoBEMUpdateAgreement.officerrepempnumber_1}" required="false" />
+								<h:outputText value="" />
+									<h:commandLink id="SearchOfficerRepEmp1Mtto"
+										actionListener="#{MttoBEMUpdateAgreement.findOfficerInfo}"
+										immediate="false" style="text-decoration: none">
+										<h:graphicImage url="../img_contracts/images/arrowrightmonth.gif"
+											alt="X Consultar" title="Buscar" style="border:0px" />
+										<f:param name="anchorSearchOfficerRepEmp1Mtto"
+											value="officeInfo" />
+									</h:commandLink>
+								</h:panelGroup>
+							</h:panelGrid>							
+							<!-- Row2 -->
+							<h:panelGrid columns="3" border="0"
+								cellpadding="0" cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:outputText value="Nombre 1" />
+								<h:outputText value="Apellido Paterno 1" />
+								<h:outputText value="Apellido Materno 1" />						
+
+								<h:inputText id="officerrepname_1"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerrepname1ReqError}"
+									value="#{MttoBEMUpdateAgreement.officerrepname_1}" 
+									required="false"
+									disabled="#{empty MttoBEMUpdateAgreement.officerrepname_1 ? 'false' : 'true'}" />
+								<h:inputText id="officerreplastname_1"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerLastname1ReqError}"
+									value="#{MttoBEMUpdateAgreement.officerreplastname_1}" 
+									required="false"
+									disabled="#{empty MttoBEMUpdateAgreement.officerreplastname_1 ? 'false' : 'true'}" />
+								<h:inputText id="officerrepmothersln_1"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerMothersLn1ReqError}"
+									value="#{MttoBEMUpdateAgreement.officerrepmothersln_1}" 
+									required="false"
+									disabled="#{empty MttoBEMUpdateAgreement.officerrepmothersln_1 ? 'false' : 'true'}" />
+								
+								<h:outputText value="No. de Firma 1" />
+								<h:outputText value="Puesto 1" />
+								<h:outputText value="" />
+								
+								<h:inputText id="Officerrepfirmnumber_1" style="width:80px;"
+									onkeypress="return isNumberKey(event)" maxlength="8"
+									styleClass="camposx" value="#{MttoBEMUpdateAgreement.officerrepfirmnumber_1}"
+									required="false" />
+								<h:inputText id="officerrepposition_1"
+									onkeypress="return isText(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerPosition1ReqError}"
+									value="#{MttoBEMUpdateAgreement.officerrepposition_1}" 
+									required="false"
+									disabled="#{empty MttoBEMUpdateAgreement.officerrepposition_1 ? 'false' : 'true'}" />
+								<h:outputText value="" />	
+							</h:panelGrid>
+						
+						</h:panelGrid>
+						
+	<br/>
+	
+	<!--FIN  Seccion: Datos Funcionario Banorte -->
+	
+	
+	<!-- Seccion: Datos Funcionario EBanking Solicitante -->
+	
+		<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Datos del funcionario facultado (eBanking o Transaccional)" />
+							</f:facet>
+							<!-- Row1  -->
+							<h:panelGrid columns="1" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:panelGroup>
+								<h:outputText value="No. Empleado " />
+								<h:inputText id="officerebankingempnumber" style="width:80px;"
+									onkeypress="return isTextNON(event)" maxlength="8"
+									styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerebankingEmpNumberReqError}"
+									value="#{MttoBEMUpdateAgreement.officerebankingempnumber}"
+									required="false" />
+									<h:commandLink id="SearchOfficerBankingMtto"
+										actionListener="#{MttoBEMUpdateAgreement.findOfficerInfo}"
+										immediate="false" style="text-decoration: none">
+										<h:graphicImage url="../img_contracts/images/arrowrightmonth.gif"
+											alt="X Consultar" title="Buscar" style="border:0px" />
+										<f:param name="anchorSearchOfficerBankingMtto" value="officeInfo" />
+									</h:commandLink>
+								</h:panelGroup>
+							</h:panelGrid>
+							<!-- Row2  -->
+							<h:panelGrid columns="3" border="0"
+								cellpadding="0" cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleSecondRow">
+								<h:outputText value="Nombre" />
+								<h:outputText value="Apellido Paterno" />
+								<h:outputText value="Apellido Materno" />
+								
+
+								<h:inputText id="officerebankingname"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerebankingNameReqError}"
+									value="#{MttoBEMUpdateAgreement.officerebankingname}" 
+									required="false"
+									disabled="#{empty MttoBEMUpdateAgreement.officerebankingname ? 'false' : 'true'}" />
+								<h:inputText id="officerebankinglastname"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerebankingLastnameReqError}"
+									value="#{MttoBEMUpdateAgreement.officerebankinglastname}"
+									required="false"
+									disabled="#{empty MttoBEMUpdateAgreement.officerebankinglastname ? 'false' : 'true'}" />
+								<h:inputText id="officerebankingmothersln"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerebankingMothersLnReqError}"
+									value="#{MttoBEMUpdateAgreement.officerebankingmothersln}"
+									required="false"
+									disabled="#{empty MttoBEMUpdateAgreement.officerebankingmothersln ? 'false' : 'true'}" />
+								
+							</h:panelGrid>
+							
+							<h:panelGrid columns="3" border="0"
+								cellpadding="0" cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleSecondRow">
+								
+<!--								<h:outputText value="No. De Firma" />-->
+								<h:outputText value="Puesto" />
+								<h:outputText value="" />
+
+<!--								<h:inputText id="officerebankingnumfirm"-->
+<!--									onkeypress="return isNumberKey(event)" style="width:100px;"-->
+<!--									maxlength="30" styleClass="camposx"-->
+<!--									requiredMessage="#{msgs.officerebankingNameReqError}"-->
+<!--									value="#{MttoBEMUpdateAgreement.officerebankingnumfirm}" -->
+<!--									required="false"-->
+<!--									 />-->
+								<h:outputText value="" />
+								<h:inputText id="officerebankingposition"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerebankingNameReqError}"
+									value="#{MttoBEMUpdateAgreement.officerebankingposition}" 
+									required="false"
+									disabled="#{empty MttoBEMAddToken.officerebankingposition ? 'false' : 'true'}" />
+								<h:outputText value="" />
+								
+							</h:panelGrid>
+							
+						</h:panelGrid>
+	
+	<br />
+	<!--FIN  Seccion: Datos Funcionario EBanking Solicitante -->
+	
+						
+						
+						
+						
+						<!-- SIC -->
+						<div class="notes">* Numero de Cliente en altamira</div>
+
+						<br />
+						
+						<div class="send" id="divSend">
+							| x <h:commandLink id="Guardar" 
+												onclick="hideShow('divSend', 'divSending');" 
+												action="#{MttoBEMUpdateAgreement.processInfo}"
+												immediate="false" 
+												value="ENVIAR"  />  |
+						</div>
+						<div class="cellright" id="divSending" style="visibility: hidden">
+							| x Enviando... |
+						</div>
+						<br />
+						<br />
+						<br />
+            			
+            	</h:form>
+				
+					
+				</f:view>
+			</ui:define>
+
+		</ui:composition>
+	</body>
+</html>

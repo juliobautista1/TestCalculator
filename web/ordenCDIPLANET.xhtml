@@ -1,0 +1,695 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+	<body>
+		<ui:composition template="./contractTemplate.xhtml">
+			<ui:define name="top">
+        		Orden Cobranza Domiciliada
+      		</ui:define>
+
+			<ui:define name="content">
+				<f:view>
+				<script type="text/javascript" src="../img_contracts/js/cobranza.js"></script>
+				
+				<script type="text/javascript">
+					  function start() {
+						  var buroExterno = document.getElementById("forma:externalcredithistory");
+						  loadCoType('../img_contracts/inc/bcotype.xml', 'forma:client_categorycode');
+						  Calendar.setup({ inputField: "forma:affiliation_duedate", ifFormat: "%d/%m/%Y"});
+						  affiliationSelect();
+						  payworkSelect();
+						  fianzaCD();
+						  //setDepositAmount();
+						  validationPaywork();
+						   
+						  validarOpcionesBuroNacional(buroExterno.selectedIndex);
+						  showNivelRiesgo();
+					  }
+				  
+              		window.onload = start;
+          		</script>
+				
+				
+					<h:form id="forma">
+						<h:inputHidden id="isChangeFianza" value="#{ContractCdMB.isChangeFianza}"/>
+						<br />
+						<h:messages layout="table" styleClass="errorStyle" />
+						<br />
+						<c:if test="${param['resetForm']==true}">
+              					#{ContractCdMB.resetForm}
+            			</c:if>
+						<c:if test="${param['editForm']==true}">
+              					#{ContractCdMB.editForm}
+            			</c:if>
+            			
+            			<c:if test="#{! empty ContractCdMB.errorsList}">
+              				<h:dataTable id="list" value="#{ContractCdMB.errorsList}" rendered="#{! empty ContractCdMB.errorsList}" var="errors" styleClass="contractStyleNone" rowClasses="tableStyleSecondRow">
+                				<h:column>                  
+                  					<h:outputText value="#{errors.message}" styleClass="msgValidation"/>
+                				</h:column>                 
+              				</h:dataTable>              
+            				<br/>
+            			</c:if>
+<!-- Red -->           			
+				<h:panelGrid  rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+                	<f:facet name="header">
+                    	<h:outputText value="Red"/>
+                  	</f:facet>
+                    <h:panelGroup styleClass="contractStyleInner" rowClasses="tableStyleSecondRow">
+	                    <h:selectOneRadio id="red" value="#{ContractCdMB.red}" name="redes"> 
+							<f:selectItem itemLabel="Banorte" itemValue="0" />
+	  						<f:selectItem itemLabel="Ixe" itemValue="1" />  
+						</h:selectOneRadio>
+                    </h:panelGroup>
+                </h:panelGrid>		
+                <br/>				
+	<!-- SIC -->
+						<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Número de Cliente" />
+							</f:facet>
+
+							<h:panelGrid columns="3" width="10%" border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" 
+							   rowClasses="tableStyleFirstRow">
+								<h:panelGroup>
+									<h:outputText value="No. Cliente" />
+									<h:inputText id="client_sic" value="#{ContractCdMB.client_sic}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+									maxlength="8" styleClass="camposx" requiredMessage="#{msgs.ocdClient_sicReqError}" required="true" />
+								</h:panelGroup>
+								<h:outputText value="" />
+								<h:outputText value="" />
+
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<br />
+						
+	<!-- Seccion: Orden de afiliacion -->
+						
+						<h:panelGrid styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0" width="100%">
+							<f:facet name="header">
+								<h:outputText value="Orden de afiliación" />
+							</f:facet>
+							
+							<h:panelGrid columns="4" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+								<!--  Row 1 -->
+								<h:outputText value="No. BEM" />
+								<h:outputText value="No. Cuenta Concentradora" />
+								<h:outputText value="Medio de Afiliacion" />
+								<h:outputText value="Formato de Layout" />
+								
+								<!--  Row 2 -->
+								<h:inputText id="bemnumber" value="#{ContractCdMB.bemnumber}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+								maxlength="10" styleClass="camposx" requiredMessage="#{msgs.ocdAffiliation_bemReqError}" required="true"></h:inputText>
+								<h:inputText id="accountnumbermn" value="#{ContractCdMB.affiliation_accountnumbermn}" style="width:100px;" onkeypress="return isNumberKey(event)"
+									onblur="isValidAccNum('accountnumbermn');" maxlength="10" styleClass="camposx" 
+									requiredMessage="#{ocdAffiliation_ccReqError}"  required="true"></h:inputText>
+								<h:selectOneMenu id="affiliationThrough" value="#{ContractCdMB.affiliation_Through}" styleClass="camposx"
+									onchange="affiliationSelect();" >
+									<!-- f:selectItem itemValue="0" itemLabel="Seleccione una Opcion" /-->
+									<f:selectItem itemValue="Emisor" itemLabel="Emisor" />
+									<!-- f:selectItem itemValue="Banorte" itemLabel="Banorte" /-->
+									<!-- f:selectItem itemValue="Ambos" itemLabel="Ambos" /-->
+								</h:selectOneMenu>
+								<h:selectOneMenu id="formatLayout" value="#{ContractCdMB.affiliation_formatLayout}" styleClass="camposx"
+									 requiredMessage="#{msgs.ocdAffiliation_formatReqError}" required="true">
+									<f:selectItem itemValue="0" itemLabel="Seleccione una Opcion" />
+									<f:selectItem itemValue="SIGA" itemLabel="SIGA" />
+								</h:selectOneMenu>
+							</h:panelGrid>
+							
+							
+							<h:panelGrid columns="5" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleSecondRow">
+								<!--  Row 1 -->
+								<h:outputText value="Reintento a Cuentas Propias" />
+								<h:outputText value="Rango de Importe Mensual recaudado(Facturacion de la empresa)" />
+								<h:outputText value="Buro Interno" />
+								<h:outputText value="Buro Nacional" />
+								<h:outputText value="Nivel de Riesgo" />
+								<!--  Row 2 -->
+								<h:inputText id="retries" value="#{ContractCdMB.affiliation_retries}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+									maxlength="2" styleClass="camposx" requiredMessage="#{msgs.ocdAffiliation_retryReqError}" required="true"></h:inputText>
+								
+								<h:selectOneMenu id="maxAmount" value="#{ContractCdMB.affiliation_maxAmount}" style="width:100px;" styleClass="camposx" required="true" 
+									onchange="setDepositAmount();" requiredMessage="#{msgs.ocdAffiliation_maxAmountReqError}">
+									<f:selectItem itemValue="0" itemLabel="Seleccione una Opcion" />
+									<f:selectItem itemValue="$0 a $100,000" itemLabel="$0 a $100,000" />
+									<f:selectItem itemValue="$100,001 a $150,000" itemLabel="$100,001 a $150,000" />
+									<f:selectItem itemValue="$150,001 a $200,000" itemLabel="$150,001 a $200,000" />
+									<f:selectItem itemValue="$200,001 a $250,000" itemLabel="$200,001 a $250,000" />
+									<f:selectItem itemValue="$250,001 a $300,000" itemLabel="$250,001 a $300,000" />
+									<f:selectItem itemValue="$300,001 a $400,000" itemLabel="$300,001 a $400,000" />
+									<f:selectItem itemValue="$400,001 a $450,000" itemLabel="$400,001 a $450,000" />
+									<f:selectItem itemValue="$450,001 a $500,000" itemLabel="$450,001 a $500,000" />
+									<f:selectItem itemValue="$500,001 a En adelante" itemLabel="$500,001 a En adelante" />
+								</h:selectOneMenu>
+								
+								<h:selectOneMenu id="internalcredithistory" value="#{ContractCdMB.affiliation_internalcredithistory}" styleClass="camposx" required="true"
+								 requiredMessage="#{msgs.ocdAffiliation_internalcredithistoryReqError}" onchange="validacionBuroInternal();">
+									<f:selectItem itemValue="0" itemLabel="Seleccione una Opcion" />
+									<f:selectItem itemValue="Sin Color" itemLabel="Sin Color" />
+									<f:selectItem itemValue="Sin Registro" itemLabel="Sin Registro" />
+									<f:selectItem itemValue="Beige" itemLabel="Beige" />
+									<f:selectItem itemValue="Amarillo" itemLabel="Amarillo" />
+									<f:selectItem itemValue="Anaranjado" itemLabel="Anaranjado" />
+									<f:selectItem itemValue="Rojo" itemLabel="Rojo" />
+									<f:selectItem itemValue="Negro" itemLabel="Negro" />
+								</h:selectOneMenu>
+								<h:selectOneMenu id="externalcredithistory" value="#{ContractCdMB.affiliation_externalcredithistory}" styleClass="camposx" required="false" 
+								requiredMessage="#{msgs.ocdAffiliation_externalcredithistoryReqError}" onchange="validacionBuroExternal();">
+									<f:selectItem itemValue="0" itemLabel="Seleccione una Opcion" />
+									<f:selectItem itemValue="Sin registro bueno" itemLabel="Sin registro bueno" />
+<!--									<c:if test="#{ContractCdMB.affiliation_internalcredithistory} != 'Sin Color'">-->
+										<f:selectItem itemValue="Sin registro" itemLabel="Sin registro" />
+										<f:selectItem itemValue="Bueno" itemLabel="Bueno" />
+										<f:selectItem itemValue="Regular A" itemLabel="Regular A" />
+										<f:selectItem itemValue="Regular B" itemLabel="Regular B" />
+										<f:selectItem itemValue="Malo" itemLabel="Malo" />
+										<f:selectItem itemValue="Negro" itemLabel="Negro" />
+<!--									</c:if>-->
+								</h:selectOneMenu>
+								<div>
+									<span id="txtNivelRiesgo" />
+									<div id="nivelRiesgo" style="width: 20px;height: 20px;-moz-border-radius: 50%;-webkit-border-radius: 50%;border-radius: 50%;background: #FFFFFF;"></div>
+								</div>
+							</h:panelGrid>
+							
+							<h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+								<!--  Row 1 -->
+								<h:outputText value="No. Giro y Nombre (seleccione el giro)" />
+								<h:outputText value="" />
+								<!--  Row 2 -->
+								<h:inputText id="client_categorycode"
+									onkeypress="return isText(event)" maxlength="50"
+									style="width:400px;" styleClass="camposx"
+									requiredMessage="#{msgs.clientCategoryCodeReqError}"
+									value="#{ContractCdMB.client_categorycode}"
+									required="true" />
+								<h:outputText value="" />
+							</h:panelGrid>
+							
+							<h:panelGrid columns="4" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleSecondRow">
+								<!--  Row 1 -->
+								<h:outputText value="Payworks Clabe" />
+								<h:outputText value="Registro Automatico" />
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<!--  Row 2 -->
+								<h:selectBooleanCheckbox id="payworksClabe"  value="#{ContractCdMB.affiliation_payworksClabe}" onclick="payworkSelect();" />
+								<h:selectBooleanCheckbox id="autoRegister" value="#{ContractCdMB.affiliation_autoRegister}"  />
+								<h:outputText value="" />
+								<h:outputText value="" />
+							</h:panelGrid>
+					</h:panelGrid>
+						<br/>
+	<!-- Payworks Clabe -->
+		<a name="issuerCity"/>
+						<h:panelGrid id="pwData" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0" width="100%">
+							<f:facet name="header">
+								<h:outputText value="Datos de la emisora" />
+							</f:facet>
+								<h:panelGrid columns="4" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+									<h:outputText value="Nombre emisora" />
+									<h:outputText value="No. Cuenta emisora" />
+									<h:outputText value="" />
+									<h:outputText value="" />
+									<h:inputText value="#{ContractCdMB.issuerName}" styleClass="camposx" style="width:236px" maxlength="120"/>
+									<h:inputText value="#{ContractCdMB.issuerAccount}" styleClass="camposx" onkeypress="return isNumberKey(event)" maxlength="10"/>
+									<h:outputText value="" />
+									<h:outputText value="" />
+								</h:panelGrid>
+								<h:panelGrid columns="5" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner">
+									<h:outputText value="Calle"/>
+									<h:outputText value="No. Interior"/>
+									<h:outputText value="No. Exterior"/>
+									<h:outputText value="Colonia"/>
+									<h:outputText value="CP"/>
+									<h:inputText value="#{ContractCdMB.issuerStreet}" styleClass="camposx" style="width:178px" onkeypress="return isText(event)" maxlength="30"/>
+									<h:inputText value="#{ContractCdMB.issuerIntNum}" styleClass="camposx" style="width:50px" onkeypress="return isText(event)" maxlength="4"/>
+									<h:inputText value="#{ContractCdMB.issuerExtNum}" styleClass="camposx" style="width:50px" onkeypress="return isText(event)" maxlength="4"/>
+									<h:inputText value="#{ContractCdMB.issuerColony}" styleClass="camposx" style="width:200px" onkeypress="return isText(event)" maxlength="30"/>
+									<h:inputText value="#{ContractCdMB.issuerZipCode}" styleClass="camposx" style="width:50px" onkeypress="return isNumberKey(event)" maxlength="5"/>
+								</h:panelGrid>
+
+							<h:panelGrid columns="4" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow" >
+								<h:outputText value="Estado"/>
+								<h:outputText value="Poblacion"/>
+								<h:outputText value="" />
+								<h:outputText value="" />
+								<h:selectOneMenu id="celebrationstate" style="width:155px" class="camposx" required="false"
+									value="#{ContractCdMB.issuerState}" onchange="onchangeStateIssuer();" immediate="true">
+									<f:selectItem itemValue="Seleccione un Estado" />
+									<f:selectItems value="#{ContractCdMB.statesArray}" />
+								</h:selectOneMenu>
+								<h:selectOneMenu id="celebrationplace" style="width:155px" class="camposx" required="false"
+									value="#{ContractCdMB.issuerCity}">
+									<f:selectItem itemValue="Seleccione una Poblacion" />
+									<f:selectItems value="#{ContractCdMB.issuerCitiesArray}" />
+								</h:selectOneMenu>
+								<h:commandLink id="SearchIssuerCity"
+										actionListener="#{ContractCdMB.findIssuerCities}"
+										immediate="false" style="display: none">
+										<f:param name="anchorSearchIssuerCity" value="issuerCity" />
+								</h:commandLink>
+								<h:outputText value="" />
+							</h:panelGrid>
+							<h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner">
+								<h:outputText value="Contacto de la emisora" 
+								style="color:#990000; font:bold 12px Verdana,Arial,Helvetica,sans-serif" />
+							</h:panelGrid>	
+							<h:panelGrid columns="4" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow" >
+								<h:outputText value="Nombre"/>
+								<h:outputText value="Lada"/>
+								<h:outputText value="Teléfono"/>
+								<h:outputText value="Correo electrónico"/>
+								<h:inputText value="#{ContractCdMB.issuerContactName}" styleClass="camposx" style="width:200px"
+									onkeypress="return isTextNAN(event)" maxlength="60"/>
+								<h:inputText id="issuerContactAreaCode" value="#{ContractCdMB.issuerContactAreaCode}" 
+									styleClass="camposx" style="width:50px" onkeypress="return isNumberKey(event)"
+									onblur="isValidValue('issuerContactAreaCode',2,'Lada');" maxlength="3"/>
+								<h:inputText id="issuerContactPhone" value="#{ContractCdMB.issuerContactPhone}" styleClass="camposx"
+									onkeypress="return isNumberKey(event)"
+									onblur="isValidValue('issuerContactPhone',7,'Telefono');" maxlength="8"/>
+								<h:inputText id="issuerContactEmail" value="#{ContractCdMB.issuerContactEmail}" styleClass="camposx" style="width:200px"
+									onkeypress="return isEmail(event)"
+									onblur="return checkemail('issuerContactEmail');" maxlength="60"/>
+							</h:panelGrid>
+							<h:panelGrid columns="2" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner">
+								<h:outputText value="Giro de emisora"/>
+								<h:outputText value="" />
+								<h:selectOneMenu id="giroEmisora" value="#{ContractCdMB.issuerCategoryCode}" styleClass="camposx">
+									<f:selectItem itemLabel="Seleccione el giro..." itemValue=""/>
+									<f:selectItems value="#{ContractCdMB.issuerCategoriesArray}" />
+								</h:selectOneMenu>
+								<h:outputText value="" />
+							</h:panelGrid>	
+					</h:panelGrid>
+					<br/>
+					
+	<!--  Datos  de la Fianza -->
+
+						<h:panelGrid styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0" width="100%">
+						
+							<f:facet name="header">
+								<h:outputText value="Datos  de la Fianza" />
+							</f:facet>
+
+							<h:panelGrid columns="4" width="99%" border="0" cellpadding="0" cellspacing="0" 
+											styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+								
+								<!--  Row 1 -->
+								<h:outputText value="Fianza" />
+								<h:outputText value="Compañia fianza" />
+								<!-- <h:outputText value="Importe Mensual" />-->
+								<h:outputText value="Monto fianza" />
+								<h:outputText value="Fecha de Vencimiento" />
+							    <!-- <h:outputText value="Nombre de quien autoriza exentar la fianza"/>-->
+
+								<!--  Row 2 -->
+								<h:selectOneMenu  id="affiliation_havedepositcompany" value="#{ContractCdMB.affiliation_havedepositcompany}"
+									onchange="document.getElementById('forma:isChangeFianza').value = true; fianzaCD();" styleClass="camposx" requiredMessage="#{msgs.ocdFinanza_depositReqError}"  required="false">
+									<f:selectItem itemValue="S" itemLabel="Si" />
+									<f:selectItem itemValue="N" itemLabel="No" />
+								</h:selectOneMenu>
+								
+								<h:inputText id="affiliation_depositcompany" value="#{ContractCdMB.affiliation_depositcompany}" style="width:200px;" 
+										maxlength="90" styleClass="camposx" required="false" requiredMessage="#{msgs.ocdFinanza_depositCompanyReqError}" />
+										
+								<!-- <h:inputText id="monthlyAmount" onkeypress="return isNumberKey(event)" value="#{ContractCdMB.monthlyAmount}" style="width:100px;" 
+										maxlength="90" styleClass="camposx"   required="false" requiredMessage="#{msgs.ocdFinanza_depositCompanyReqError}" /> -->
+									
+								<h:inputText id="affiliation_depositamount" value="#{ContractCdMB.affiliation_depositamount}"  style="width:100px;"
+									maxlength="10" styleClass="camposx" onkeypress="return notEditable(event)" required="false"  requiredMessage="#{msgs.ocdFinanza_depositamountReqError}" />
+									
+								<h:inputText id="affiliation_duedate" value="#{ContractCdMB.affiliation_duedate}" onkeypress="return block(event);" style="width:70px;"
+									styleClass="camposx" requiredMessage="#{msgs.ocdFinanza_depositDueDateReqError}" required="false" />
+									
+							    <!-- <h:inputText id="affiliation_officerdepositexent" style="width:200px;" onkeypress="return isText(event)" maxlength="90" styleClass="camposx" value="#{ContractCdMB.affiliation_officerdepositexent}" required="false"/> -->
+                
+									
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<br />
+						<a name="officeInfo"></a>
+		<!--  Datos Banca Especializada -->				
+				<div id="bancaEsp">	
+						<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0" id="bancaEspecializada">
+							<f:facet name="header">
+								<h:outputText
+									value="Datos Ejecutivo Banca Especializada (E-banking y Transaccional)" />
+							</f:facet>
+							<!-- Row1  -->
+							<h:panelGrid columns="1" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:panelGroup>
+									<h:outputText value="No. Empleado " />
+									<h:inputText id="officerebankingEspEmpnumber" style="width:80px;"
+										onkeypress="return isTextNON(event)" maxlength="8"
+										styleClass="camposx"
+										requiredMessage="#{msgs.officerEbankingEspEmpNumberReqError}"
+										value="#{ContractCdMB.officerebankingEspEmpnumber}" required="false"/>
+									<h:commandLink id="SearchOfficerEsp"
+										actionListener="#{ContractCdMB.findOfficerInfo}"
+										immediate="false" style="text-decoration: none">
+										<h:graphicImage url="../img_contracts/images/arrowrightmonth.gif"
+											alt="X Consultar" title="Buscar" style="border:0px" />
+										<f:param name="anchorSearchOfficerEsp" value="officeInfo" />
+									</h:commandLink>
+								</h:panelGroup>
+							</h:panelGrid>
+							<!-- Row2  -->
+							<h:panelGrid columns="4" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleSecondRow">
+								<h:outputText value="Nombre" />
+								<h:outputText value="Apellido Paterno" />
+								<h:outputText value="Apellido Materno" />
+								<h:outputText value="Puesto" />
+
+								<h:inputText id="officerebankingEspName"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerEbankingEspNameReqError}"
+									value="#{ContractCdMB.officerebankingEspName}" 
+									required="false"
+									disabled="#{empty ContractCdMB.officerebankingEspName ? 'false' : 'true'}" />
+									
+								<h:inputText id="officerebankingEspLastname"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerEbankingEspLastNameReqError}"
+									value="#{ContractCdMB.officerebankingEspLastname}" 
+									required="false"
+									disabled="#{empty ContractCdMB.officerebankingEspLastname ? 'false' : 'true'}" />
+									
+								<h:inputText id="officerebankingEspMothersln"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerEbankingEspMothersNameReqError}"
+									value="#{ContractCdMB.officerebankingEspMothersln}" 
+									required="false"
+									disabled="#{empty ContractCdMB.officerebankingEspMothersln ? 'false' : 'true'}" />
+									
+								<h:inputText id="officerebankingEspPosition"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerEbankingEspPositionReqError}"
+									value="#{ContractCdMB.officerebankingEspPosition}" 
+									required="false"
+									disabled="#{empty ContractCdMB.officerebankingEspPosition ? 'false' : 'true'}" />
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						 <br/>
+				</div>		
+						
+						
+						
+		
+	<!--  Datos Director Territorial -->				
+					<div id="bancaTerritorial">	
+						<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText
+									value="Datos Director Territorial / Regional (validar facultades en la Normativa de CD)" />
+							</f:facet>
+							<!-- Row1  -->
+							<h:panelGrid columns="1" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:panelGroup>
+									<h:outputText value="No. Empleado " />
+									<h:inputText id="officerebankingTempnumber" style="width:80px;"
+										onkeypress="return isTextNON(event)" maxlength="8"
+										styleClass="camposx"
+										requiredMessage="#{msgs.officerEbankingTempNumberReqError}"
+										value="#{ContractCdMB.officerebankingTempnumber}" required="false" />
+									<h:commandLink id="SearchOfficerT"
+										actionListener="#{ContractCdMB.findOfficerInfo}"
+										immediate="false" style="text-decoration: none">
+										<h:graphicImage url="../img_contracts/images/arrowrightmonth.gif"
+											alt="X Consultar" title="Buscar" style="border:0px" />
+										<f:param name="anchorSearchOfficerT" value="officeInfo" />
+									</h:commandLink>
+								</h:panelGroup>
+							</h:panelGrid>
+							<!-- Row2  -->
+							<h:panelGrid columns="4" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleSecondRow">
+								<h:outputText value="Nombre" />
+								<h:outputText value="Apellido Paterno" />
+								<h:outputText value="Apellido Materno" />
+								<h:outputText value="Puesto" />
+
+								<h:inputText id="officerebankingTname"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerEbankingTnameReqError}"
+									value="#{ContractCdMB.officerebankingTname}" 
+									required="false"
+									disabled="#{empty ContractCdMB.officerebankingTname ? 'false' : 'true'}" />
+									
+								<h:inputText id="officerebankingTlastname"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerEbankingTlastNameReqError}"
+									value="#{ContractCdMB.officerebankingTlastname}" 
+									required="false"
+									disabled="#{empty ContractCdMB.officerebankingTlastname ? 'false' : 'true'}" />
+									
+								<h:inputText id="officerebankingTmothersln"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerEbankingTmothersNameReqError}"
+									value="#{ContractCdMB.officerebankingTmothersln}" 
+									required="false"
+									disabled="#{empty ContractCdMB.officerebankingTmothersln ? 'false' : 'true'}" />
+								
+								<h:inputText id="officerebankingTposition"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerEbankingTpositionReqError}"
+									value="#{ContractCdMB.officerebankingTposition}" 
+									required="false"
+									disabled="#{empty ContractCdMB.officerebankingTposition ? 'false' : 'true'}" />
+									
+							</h:panelGrid>
+						</h:panelGrid>
+						<br/>
+					</div>					
+						
+	<!--  Datos Director Sucursal-->
+		<div id="DirectorSucursal">
+			<h:panelGrid styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+				<f:facet name="header">
+			    	<h:outputText value="Datos Director Sucursal" />
+				</f:facet>
+				<!-- Row1  -->
+				<h:panelGrid columns="1" border="0" cellpadding="0"
+					cellspacing="0" styleClass="contractStyleInner"
+					rowClasses="tableStyleFirstRow">
+					<h:panelGroup>
+						<h:outputText value="No. Empleado " />
+						<h:inputText id="branchDirectorNumber" style="width:80px;"
+							onkeypress="return isTextNON(event)" maxlength="8"
+							styleClass="camposx"
+							requiredMessage="#{msgs.branchDirectorNumberReqError}"
+							value="#{ContractCdMB.branchDirectorNumber}" required="false" />
+						<h:commandLink id="SearchBranchDirector"
+							actionListener="#{ContractCdMB.findOfficerInfo}"
+							immediate="false" style="text-decoration: none">
+							<h:graphicImage url="../img_contracts/images/arrowrightmonth.gif"
+								alt="X Consultar" title="Buscar" style="border:0px" />
+							<f:param name="anchorSearchBranchDirector" value="directorInfo" />
+						</h:commandLink>
+					</h:panelGroup>
+					<!-- Row2  -->
+					<h:panelGrid columns="4" border="0" cellpadding="0"
+						cellspacing="0" styleClass="contractStyleInner"
+						rowClasses="tableStyleSecondRow">
+						<h:outputText value="Nombre" />
+						<h:outputText value="Apellido Paterno" />
+						<h:outputText value="Apellido Materno" />
+						<h:outputText value="Puesto" />
+
+						<h:inputText id="branchDirectorname"
+							onkeypress="return isTextNAN(event)" style="width:150px;"
+							maxlength="30" styleClass="camposx"
+							requiredMessage="#{msgs.branchDirectorname}"
+							value="#{ContractCdMB.branchDirectorName}" 
+							required="false"
+							disabled="#{empty ContractCdMB.branchDirectorName ? 'false' : 'true'}" />
+							
+						<h:inputText id="branchDirectorlastname"
+							onkeypress="return isTextNAN(event)" style="width:150px;"
+							maxlength="30" styleClass="camposx"
+							requiredMessage=""
+							value="#{ContractCdMB.branchDirectorLastName}" 
+							required="false"
+							disabled="#{empty ContractCdMB.branchDirectorLastName ? 'false' : 'true'}" />
+							
+						<h:inputText id="branchDirectorMothersLn"
+							onkeypress="return isTextNAN(event)" style="width:150px;"
+							maxlength="30" styleClass="camposx"
+							requiredMessage=""
+							value="#{ContractCdMB.branchDirectorMothersLn}" 
+							required="false"
+							disabled="#{empty ContractCdMB.branchDirectorMothersLn ? 'false' : 'true'}" />
+						
+						<h:inputText id="branchDirectorposition"
+							onkeypress="return isTextNAN(event)" style="width:150px;"
+							maxlength="30" styleClass="camposx"
+							requiredMessage=""
+							value="#{ContractCdMB.branchDirectorposition}" 
+							required="false"
+							disabled="#{empty ContractCdMB.branchDirectorposition ? 'false' : 'true'}" />
+							
+					</h:panelGrid>
+				</h:panelGrid>
+			</h:panelGrid>	
+			<br/>
+		</div>
+		
+	<!--  Datos la referencia -->
+     <div id="referencia"> 
+						<h:panelGrid styleClass="contractStyle" cellpadding="0" cellspacing="0" width="100%">
+						
+							<f:facet name="header">
+								<h:outputText value="Referencia" />
+							</f:facet>
+
+							<h:panelGrid columns="6" width="99%" border="0" cellpadding="3" cellspacing="0" 
+								styleClass="contractStyleInner" rowClasses="tableStyleFirstRow, tablaStyleSecondRow">
+								
+								<!-- Row 1 -->
+								<h:outputText value="Nombre" />
+								<h:outputText value="Longitud(Max.40)" />
+								<h:outputText value="Tipo" />
+								<h:outputText value="Requerido" />
+								<h:outputText value="Digito Verificador" />
+								<h:outputText value="Modulo" />
+
+								<!-- Row 2 -->
+								<h:inputText id="referenceName" value="#{ContractCdMB.referenceName}" style="width:200px;" maxlength="30" styleClass="camposx"  required="false"/>
+									
+								<h:inputText id="referenceLength" value="#{ContractCdMB.referenceLength}" style="width:100px;" maxlength="40" styleClass="camposx" required="false" />
+									
+								<h:selectOneMenu multiple="multiple" id="referenceType" value="#{ContractCdMB.referenceType}" styleClass="camposx" required="false">
+									<f:selectItem itemValue="0" itemLabel="Seleccione una Opcion" />
+									<f:selectItem itemValue="AN" itemLabel="Alfanumerico" />
+									<f:selectItem itemValue="N" itemLabel="Numerico" />
+								</h:selectOneMenu>
+								
+								<h:selectBooleanCheckbox id="referenceRequired" value="#{ContractCdMB.referenceRequired}"  required="false"/>
+								
+								<h:selectBooleanCheckbox id="referenceDV" value="#{ContractCdMB.referenceDV}"  required="false"/>
+								
+								<h:selectOneMenu id="referenceModuleType" value="#{ContractCdMB.referenceModuleType}"  styleClass="camposx" requiredMessage=""  required="false">
+									<f:selectItem itemValue="0" itemLabel="Seleccione una Opcion" />
+									<f:selectItem itemValue="Modulo 10" itemLabel="Modulo 10" />
+									<f:selectItem itemValue="Modulo 11" itemLabel="Modulo 11" />
+									<f:selectItem itemValue="Modulo 97" itemLabel="Modulo 97" />
+									<f:selectItem itemValue="Otro" itemLabel="Otro" />
+								</h:selectOneMenu>
+							</h:panelGrid>
+						</h:panelGrid>
+						<br />
+  </div>
+
+  <!--  Datos de la Comision -->
+						<h:panelGrid styleClass="contractStyle" cellpadding="0" cellspacing="0" width="100%">
+						
+							<f:facet name="header">
+								<h:outputText value="Comisiones" />
+							</f:facet>
+							
+	<!-- COMISIONES BATCH -->	
+	
+	<h:panelGrid columns="5" width="99%" border="0" cellpadding="3" cellspacing="0" rowClasses="tableStyleFirstRow">
+								<h:outputText value="BATCH Banorte" />
+								<h:outputText value="BATCH Otros Bancos" />
+								<h:outputText value="LINEA" />
+								<h:outputText value="SUCURSAL" />
+								<h:outputText value="" />
+								
+
+								<h:inputText id="banorteOE" value="#{ContractCdMB.banorteOE}" style="width:80px;" maxlength="4"
+									styleClass="camposx" requiredMessage="#{msgs.comisionBatchBanorte}"    required="true"    />
+									
+									
+								<h:inputText id="otrosOE" value="#{ContractCdMB.otrosOE}" style="width:80px;" maxlength="4"
+									styleClass="camposx" requiredMessage="#{msgs.comisionBatchOtrosBancos}"  required="true" />
+									
+									
+								<h:inputText id="onLineBanorteOE" value="#{ContractCdMB.onLineBanorteOE}" style="width:80px;" maxlength="4"
+									styleClass="camposx" requiredMessage="" required="false"  />
+								
+								<h:inputText  id="branchCommission" value="#{ContractCdMB.branchTransmission}" style="width:80px;" maxlength="5" styleClass="camposx" 
+									disable="true" required="false" disabled="#{empty ContractCdMB.branchTransmission ? 'false' : 'true'}"  />
+									
+								<h:graphicImage url="../img_contracts/images/btnVerComisiones.png" onclick="window.open('popupComisiones.xhtml','popupComisiones','width=500, height=450')"
+											alt="Comisiones" title="Buscar" style="border:0px" />
+									
+								
+								
+							</h:panelGrid>	
+				</h:panelGrid>	
+
+						<br />
+					
+						<!--Comentarios-->
+						<h:panelGrid rowClasses="tableStyleFirstRow"
+							styleClass="contractStyle" columns="1" cellpadding="0"
+							cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Justificación de excepción de fianza" />
+							</f:facet>
+
+							<h:panelGrid columns="1" width="99%" border="0" cellpadding="3"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:outputText value="Comentarios" />
+								
+								<h:inputTextarea id="comments" value="#{ContractCdMB.comments}" 
+									style="width:95%;heigth:95%"
+									styleClass="camposx" 
+									maxlength="255"
+									onkeypress="comments();"/>
+								<h:outputText id="commMessage" value=""
+									style="color:red"
+								/>
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						
+
+						<br />
+						<!-- SIC -->
+						<div class="notes">* Numero de Cliente en altamira</div>
+
+						<br />
+						
+
+						<div class="send" id="send">
+							| x <h:commandLink id="Guardar" action="#{ContractCdMB.processInfo}" immediate="false" value="ENVIAR" onclick="return validateCDForm();" />  |
+						</div>
+						
+						<br />
+						<br />
+						
+					</h:form>
+				</f:view>
+			</ui:define>
+
+		</ui:composition>
+	</body>
+</html>

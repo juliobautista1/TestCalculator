@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+  <body>
+    <ui:composition template="./contractTemplate.xhtml">
+      <ui:define name="top">
+      	Bitácora de Actividades 
+      </ui:define>
+
+     <ui:define name="content">
+        <f:view >
+			<h:form id="forma">
+					
+			<div style="font-size: 15px;font-style: italic;">
+				<c:if test="#{ ! empty ContractBemMB.referenceNumberBitacora}">
+	        		<span style="padding-left:20px">Folio -  <h:outputText value=" #{ContractBemMB.referenceNumberBitacora}" /></span>
+				</c:if>	
+				<c:if test="#{! empty ContractBemMB.userNumberBitacora}">
+					<span style="padding-left:20px">Usuario -   <h:outputText value=" #{ContractBemMB.nombreUsuarioBitacora}" /></span>
+				</c:if>
+				<c:if test="#{empty ContractBemMB.userNumberBitacora}">
+					<span style="padding-left:20px">   <h:outputText value=" " /></span>
+				</c:if>
+			</div>		
+			
+						
+						<c:if test="#{! empty ContractBemMB.bitacoraList}">
+							<h:dataTable id="list" value="#{ContractBemMB.bitacoraList}"
+								rendered="#{! empty ContractBemMB.bitacoraList}" var="bitacora" 
+								styleClass="contractStyle" rowClasses="tableStyleFirstRow, tableStyleSecondRow" headerClass="Estilo5">
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Fecha" />
+									</f:facet>
+									<h:outputText value="#{bitacora.creationDate}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Descripcion" />
+									</f:facet>
+									<h:outputText value="#{bitacora.description}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Folio" />
+									</f:facet>
+									<h:outputText value="#{bitacora.folio}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Version" />
+									</f:facet>
+									<h:outputText value="#{bitacora.folioVersion}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="SIC" />
+									</f:facet>
+									<h:outputText value="#{bitacora.sic}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Producto" />
+									</f:facet>
+									<h:outputText value="#{bitacora.product}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Tipo" />
+									</f:facet>
+									<h:outputText value="#{bitacora.producttype}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Fecha finalizacion" />
+									</f:facet>
+									<h:outputText value="#{bitacora.endDate}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Numero Usuario" />
+									</f:facet>
+									<h:outputText value="#{bitacora.userNumber}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Nombre Usuario" />
+									</f:facet>
+									<h:outputText value="#{bitacora.nombreEmpleado}" />
+								</h:column>
+								
+							</h:dataTable>
+						</c:if>
+								
+								<c:if test="#{ empty ContractBemMB.bitacoraList}">
+								<h1>No Realizo Actividades Para las fechas Proporcionadas</h1>
+								</c:if>
+						
+						
+					</h:form>
+				</f:view>
+      </ui:define>
+
+      
+
+    </ui:composition>
+
+  </body>
+</html>

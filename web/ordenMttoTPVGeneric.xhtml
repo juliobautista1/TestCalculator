@@ -1,0 +1,1250 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+	
+	<body>
+		
+		<ui:composition template="./contractTemplate.xhtml">
+			<ui:define name="top">
+				Mantenimientos TPV :
+				<c:if test="#{MttoTPVGeneric.mttoName =='CambioDomicilio'}">
+					Cambio de Domicilio
+				</c:if>  
+				<c:if test="#{MttoTPVGeneric.mttoName =='cambioTelefono'}">
+					Cambio de Teléfono
+				</c:if>
+<!-- 			<c:if test="#{MttoTPVGeneric.mttoName =='serviciosEspeciales'}">
+					Servicios Especiales
+				</c:if>
+				<c:if test="#{MttoTPVGeneric.mttoName =='cambioBanco'}">
+					Cambio de Banco
+				</c:if>  -->
+				<c:if test="#{MttoTPVGeneric.mttoName =='cambioCRGestor'}">
+					Cambio de CR Gestor
+				</c:if>
+				<c:if test="#{MttoTPVGeneric.mttoName =='cambioURL'}">
+					Cambio de URL
+				</c:if>
+<!-- 			<c:if test="#{MttoTPVGeneric.mttoName =='addendumWeb'}">
+					Addendum Herramienta Web Conciliación Payworks
+				</c:if>
+				<c:if test="#{MttoTPVGeneric.mttoName =='reposicionEquipo'}">
+					Reposición de Equipos
+				</c:if>  -->
+				<c:if test="#{MttoTPVGeneric.mttoName =='reenvioClaves'}">
+					Reenvío de Claves de Sistema Payworks
+				</c:if>
+				<c:if test="#{MttoTPVGeneric.mttoName =='cambioCorreoElectronico'}">
+					Cambio de Correo Electrónico
+				</c:if>
+<!--			<c:if test="#{MttoTPVGeneric.mttoName =='cambioAplicacion'}">
+					Cambio de Aplicación
+				</c:if>   -->
+				<c:if test="#{MttoTPVGeneric.mttoName =='cambioCuentaCheques'}">
+					Cambio de Cuenta de Cheques
+				</c:if>
+				<c:if test="#{MttoTPVGeneric.mttoName =='cambioNombreComercial'}">
+					Cambio de Nombre Comercial
+				</c:if>
+<!--			<c:if test="#{MttoTPVGeneric.mttoName =='incrementoTecho'}">
+					Incremento de Limite de Techo
+				</c:if>
+				<c:if test="#{MttoTPVGeneric.mttoName =='incrementoVoucher'}">
+					Incremento de Limite de Voucher
+				</c:if>
+				<c:if test="#{MttoTPVGeneric.mttoName =='equiposTempEventos'}">
+					Equipos Temporales para Eventos
+				</c:if>
+				<c:if test="#{MttoTPVGeneric.mttoName =='3dSecure'}">
+					Realizacion de 3D Secure
+				</c:if>
+				<c:if test="#{MttoTPVGeneric.mttoName =='cambioApoderado'}">
+					Cambio de Apoderado
+				</c:if>
+				<c:if test="#{MttoTPVGeneric.mttoName =='cancelacionMonitoreo'}">
+					Cancelacion por Monitoreo
+				</c:if>
+				<c:if test="#{MttoTPVGeneric.mttoName =='cambioGiro'}">
+					Cambio de Giro
+				</c:if>
+				<c:if test="#{MttoTPVGeneric.mttoName =='cambioRFC'}">
+					Cambio de RFC
+				</c:if>
+				<c:if test="#{MttoTPVGeneric.mttoName =='cambioClienteVIP'}">
+					Cambio de Cliente VIP
+				</c:if>
+				<c:if test="#{MttoTPVGeneric.mttoName =='bajaTerminal'}">
+					Baja de Terminal
+				</c:if>
+				<c:if test="#{MttoTPVGeneric.mttoName =='idAdsCambioEquipo'}">
+					Id Adicionales y Cambios de Equipo
+				</c:if>
+				<c:if test="#{MttoTPVGeneric.mttoName =='cambioSIM'}">
+					Cambio de SIM
+				</c:if>
+				<c:if test="#{MttoTPVGeneric.mttoName =='bajasComision'}">
+					Bajas de Comisión
+				</c:if>
+				<c:if test="#{MttoTPVGeneric.mttoName =='pagosDif15Bancos'}">
+					Pagos Diferidos 15 Bancos
+				</c:if>
+				<c:if test="#{MttoTPVGeneric.mttoName =='pagosDifBanorteIXE'}">
+					Pagos Diferidos Banorte &amp; IXE
+				</c:if>   -->
+				
+      		</ui:define>
+
+			<ui:define name="content">
+				<f:view>
+				<script type="text/javascript">
+				 
+				function start() {
+					validateCheckEmail(); 
+				 }
+				 
+				 function validateCheckEmail(){
+					   document.getElementById("forma:sameEmailInfo").disabled = true;
+					   document.getElementById("forma:otherEmailInfo").disabled = true;
+				 	
+				 	if(document.getElementById("forma:sameEmailCheck").checked){
+					   document.getElementById("forma:sameEmailInfo").disabled = false;
+					   document.getElementById("forma:otherEmailInfo").disabled = true;
+					}
+					else if(document.getElementById("forma:otherEmailCheck").checked){
+					   document.getElementById("forma:sameEmailInfo").disabled  = true;
+					   document.getElementById("forma:otherEmailInfo").disabled = false;
+					}
+				 }
+				 window.onload = start; 
+          		</script>
+          		
+				<h:form id="forma" enctype="multipart/form-data">
+					
+					<br />
+					<h:messages layout="table" styleClass="errorStyle" />
+					<br />
+						<c:if test="${param['resetForm']==true}">
+              					#{MttoTPVGeneric.resetForm}
+            			</c:if>
+						<c:if test="${param['editForm']==true}">
+              					#{MttoTPVGeneric.editForm}
+            			</c:if>
+					
+           			<c:if test="#{! empty MttoTPVGeneric.errorsList}">
+             				<h:dataTable id="list" value="#{MttoTPVGeneric.errorsList}" rendered="#{! empty MttoTPVGeneric.errorsList}" var="errors" styleClass="contractStyleNone" rowClasses="tableStyleSecondRow">
+               				<h:column>                  
+                 					<h:outputText value="#{errors.message}" styleClass="msgValidation"/>
+               				</h:column>                 
+             				</h:dataTable>              
+           				<br/>
+           			</c:if>
+           			
+           			<!-- Datos de la Afiliacion -->
+					<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+						<f:facet name="header">
+							<h:outputText value="Datos de la Afiliación" />
+						</f:facet>
+
+						<h:panelGrid columns="1"  border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" 
+						   rowClasses="tableStyleFirstRow">
+							<h:panelGroup>
+								<h:outputText value="No. Afliación:" />
+								
+								<h:inputText id="affiliationId" style="width:80px; height: 11px; "
+									styleClass="camposx" value="#{MttoTPVGeneric.affiliationId}"
+									onkeypress="return isTextNON(event)" maxlength="8" required="false" />
+								<h:commandLink id="SearchAffiliationId"
+									actionListener="#{MttoTPVGeneric.findOfficerInfo}"
+									immediate="false" style="text-decoration: none"> <!-- action -->
+									<h:graphicImage url="images/arrowrightmonth.gif"
+										alt="X Consultar" title="Buscar" style="border:0px" />
+									<f:param name="anchorSearchAffiliationId" value="officeInfo" />
+								</h:commandLink>
+							</h:panelGroup>
+						</h:panelGrid>
+						
+						<h:panelGrid columns="4"  border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" 
+						   rowClasses="tableStyleSecondRow">
+							
+							<h:outputText value="No. Cliente:" />
+							<h:outputText value="Tipo de Persona:" />
+							<h:outputText value="Nombre/Razón Social" />
+							<h:outputText value="Nombre Comercial" />
+							
+							<h:outputText id="clientSic" value="#{MttoTPVGeneric.client_sic}" />
+							<h:outputText id="fisicalType" value="#{MttoTPVGeneric.client_fiscaltype}" /><!-- fisicalType -->
+							<h:outputText id="fiscalName" value="#{MttoTPVGeneric.client_fiscalname}" /><!-- fiscalName -->
+							<h:outputText id="merchantName" value="#{MttoTPVGeneric.client_merchantname}" /><!-- merchantName --> 
+							
+						</h:panelGrid>
+						<h:panelGrid columns="4"  border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" 
+						   rowClasses="tableStyleFirstRow">
+							<h:outputText value="RFC:" />
+							<h:outputText value="No Cuenta:" />
+							<h:outputText value="Divisas" />
+							<h:outputText value="Banco" />
+							
+							<h:outputText id="rfc" value="#{MttoTPVGeneric.client_rfc}" /><!-- rfc --> 
+							<h:outputText id="accountnumbermn" value="#{MttoTPVGeneric.accountnumbermn}" /><!-- accountNumber --> 
+							<h:outputText id="currency" value="#{MttoTPVGeneric.currency}" /><!-- currency --> 
+							<h:outputText id="currentbank" value="#{MttoTPVGeneric.currentbank}" /><!-- bank --> 
+							
+						</h:panelGrid>
+					</h:panelGrid>
+					<!-- Fin Datos de la Afiliacion -->
+					<br/>
+					
+					<!-- Grid Dinamico Opciones -->
+						<c:choose>
+							<c:when test="#{MttoTPVGeneric.mttoName=='CambioDomicilio'}">
+								<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+									<f:facet name="header">
+										<h:outputText value="Datos del Domicilio Nuevo" />
+									</f:facet>
+									<h:panelGrid columns="4"  border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" 
+										rowClasses="tableStyleFirstRow">
+										<h:outputText value="Calle y Número:" />
+										<h:inputText id="street" style="width:200px;margin-left:-80px;" requiredMessage="#{msgs.mttoUpdateAddress}"
+											styleClass="camposx" value="#{MttoTPVGeneric.client_street}" required="true" maxlength="30" />
+										<h:outputText value="Colonia:" />
+										<h:inputText id="colony" style="width:200px;margin-left:-100px;" requiredMessage="#{msgs.mttoUpdateColony}"
+											styleClass="camposx" value="#{MttoTPVGeneric.client_colony}" required="true" maxlength="30" />
+									</h:panelGrid>
+									<h:panelGrid columns="6"  border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" 
+									   rowClasses="tableStyleSecondRow">
+									   
+										<h:outputText value="CP:" />
+										<h:inputText id="zipcode" style="width:50px;margin-left:-50px;"
+											styleClass="camposx" onkeypress="return isNumberKey(event)"
+											onblur="isValidValue('zipcode',4,'CodigoPostal');" requiredMessage="#{msgs.mttoUpdateCP}"
+											value="#{MttoTPVGeneric.client_zipcode}" required="true" maxlength="5" />	
+											
+										<h:outputText value="Estado:" />
+										<h:selectOneMenu id="state" style="width:150px;margin-left:-50px; " requiredMessage="#{msgs.mttoUpdateState}"
+														value="#{MttoTPVGeneric.client_state}" styleClass="camposx" onchange="submit()" immediate="true"> <!-- width:200px;margin-left:-50px; height: 16px;-->
+										   <f:selectItem itemValue="Seleccione un estado" /> <!-- itemLabel="" -->
+										   <f:selectItems value="#{MttoTPVGeneric.statesArray}" />
+										</h:selectOneMenu>							
+										<h:outputText value="Ciudad:" />
+										<h:selectOneMenu id="city" style="width:150px;" styleClass="camposx" value="#{MttoTPVGeneric.client_city}" 
+														 requiredMessage="#{msgs.mttoUpdateCity}"> <!-- width:200px;margin-left:-50px; -->
+										   <f:selectItem itemValue="Seleccione una ciudad" /> <!-- itemLabel="" -->
+										   <f:selectItems value="#{MttoTPVGeneric.citiesClientArray}" />
+										</h:selectOneMenu>
+										
+									</h:panelGrid>
+								</h:panelGrid>
+							</c:when>
+							<c:when test="#{MttoTPVGeneric.mttoName =='cambioTelefono'}">
+								<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+									<f:facet name="header">
+										<h:outputText value="Datos del Telefono Nuevo" />
+									</f:facet>
+									<h:panelGrid columns="6"  border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleSecondRow">
+										<h:panelGroup>										
+											<h:outputText value="Teléfono:  " />
+											<h:inputText id="phone" style="width:100px; height:11px;" styleClass="camposx"
+														 onkeypress="return isNumberKey(event)" maxlength="10" requiredMessage="#{msgs.mttoUpdatePhone}"
+														 value="#{MttoTPVGeneric.changePhoneNumberInfo}" requiered="true" />
+										</h:panelGroup>
+									</h:panelGrid>
+									</h:panelGrid>
+							</c:when>
+<!-- 							<c:when test="#{MttoTPVGeneric.mttoName =='serviciosEspeciales'}">
+								<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+									<f:facet name="header">
+										<h:outputText value="Servicios Especiales" />
+									</f:facet>
+									<h:panelGrid columns="2"  border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleSecondRow">
+										<h:selectManyCheckbox id="specialServicesCheckbox" >
+										   <f:selectItem itemValue="1" itemLabel="Teclado Abierto" />
+										   <f:selectItem itemValue="2" itemLabel="QPS" />
+										   <f:selectItem itemValue="3" itemLabel="Venta Forzada" />
+										   <f:selectItem itemValue="4" itemLabel="Dualidad Banorte - AMEX" />
+										</h:selectManyCheckbox>
+									</h:panelGrid>
+								</h:panelGrid>
+							</c:when>
+							<c:when test="#{MttoTPVGeneric.mttoName =='cambioBanco'}">
+								<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+									<f:facet name="header">
+										<h:outputText value="Cambio de Banco" />
+									</f:facet>
+									<h:panelGrid columns="2"  border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleSecondRow">
+										<h:outputText value="Banco" />-->
+										<!--  value="#{MttoTPVGeneric.changeBanco}"-->
+									<!--	<h:selectOneMenu  id="changeBancoCombo" value="#{MttoTPVGeneric.changeBanco}" style="width:200px;margin-left:-350px;">
+											   <f:selectItem itemValue="Seleccione un banco" />  itemLabel="" -->
+									<!--	</h:selectOneMenu>
+									</h:panelGrid>
+																
+								</h:panelGrid>
+							</c:when> -->
+							<c:when test="#{MttoTPVGeneric.mttoName =='cambioCRGestor'}">
+								<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+									<f:facet name="header">
+										<h:outputText value="Cambio  CR Gestor" />
+									</f:facet>
+									<h:panelGrid columns="8"  border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleSecondRow">
+										<h:panelGroup>
+											<h:outputText value="CR:" />										
+											<h:inputText id="crGestor" style="width:50px"
+												styleClass="camposx" value="#{MttoTPVGeneric.crGestor}"
+												onkeypress="return isTextNAN(event)" required="false" />		
+											<h:commandLink id="SearchCRGestor" immediate="false" actionListener="#{MttoTPVGeneric.findCRGestor}" style="text-decoration: none;">
+												<h:graphicImage url="images/arrowrightmonth.gif"
+													alt="X Consultar" title="Buscar" style="border:0px"  />
+												<f:param name="anchorSearchAffiliationId" value="officeInfo" />
+											</h:commandLink>			
+										</h:panelGroup>
+										<h:panelGroup>
+											<h:outputText value="Nombre de la Sucursal: " style="margin-left:-150px" />										
+											<h:inputText id="branchnameGestor" style="width:250px;"
+												styleClass="camposx" value="#{MttoTPVGeneric.branchnameGestor}" onkeypress="return isTextNAN(event)"
+												 required="false" />
+										</h:panelGroup>	
+									</h:panelGrid>
+									<h:panelGrid columns="3"  border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleSecondRow">
+										<h:panelGroup>
+											<h:outputText value="Domicilio:" />										
+											<h:inputText id="branchstreetGestor" style="width:150px;"
+												styleClass="camposx" value="#{MttoTPVGeneric.branchstreetGestor}" required="false" />
+										</h:panelGroup>
+										<h:panelGroup>
+											<h:outputText value="Colonia:" />										
+											<h:inputText id="branchcolonyGestor" style="width:150px;"
+												styleClass="camposx" value="#{MttoTPVGeneric.branchcolonyGestor}" required="false" />
+										</h:panelGroup>
+										<h:panelGroup>
+											<h:outputText value="CP:" />										
+											<h:inputText id="branchzipcodeGestor" style="width:50px;"
+												styleClass="camposx" value="#{MttoTPVGeneric.branchzipcodeGestor}" required="false" maxlength="5" />
+										</h:panelGroup>
+									</h:panelGrid>
+									<h:panelGrid columns="4" border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleSecondRow">
+										<h:panelGroup>
+											<h:outputText value="Estado:" />
+											<h:selectOneMenu  id="branchstateGestor" value="#{MttoTPVGeneric.branchstateGestor}" 
+												style="width:150px" onchange="submit()" immediate="true" styleClass="camposx">
+												<f:selectItem itemValue="Seleccione un estado" />
+												<f:selectItems value="#{MttoTPVGeneric.statesArray}" />
+											</h:selectOneMenu>
+										</h:panelGroup>
+											
+										<h:panelGroup>
+											<h:outputText value="Ciudad:" />
+											<h:selectOneMenu  id="branchcityGestor" value="#{MttoTPVGeneric.branchcityGestor}" style="width:154px" styleClass="camposx">
+												<f:selectItem itemValue="Seleccione una ciudad" />
+												<f:selectItems value="#{MttoTPVGeneric.citiesBranchArray}" />
+											</h:selectOneMenu>
+										</h:panelGroup>
+										
+										<h:panelGroup>
+											<h:outputText value="Lada y Telefono:" />										
+											<h:inputText id="branchphoneGestor" style="width:100px;"
+												styleClass="camposx" value="#{MttoTPVGeneric.branchphoneGestor}" required="false" maxlength="10" />
+										</h:panelGroup>
+										
+										<h:panelGroup>
+											<h:outputText value="Fax:" />										
+											<h:inputText id="branchfaxGestor" style="width:50px;"
+												styleClass="camposx" value="#{MttoTPVGeneric.branchfaxGestor}" required="false" maxlength="10" />
+										</h:panelGroup>
+									</h:panelGrid>
+								</h:panelGrid>
+							</c:when>
+							<c:when test="#{MttoTPVGeneric.mttoName =='cambioURL'}">
+								<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+									<f:facet name="header">
+										<h:outputText value="Cambio de URL" />
+									</f:facet>
+									<h:panelGrid columns="4"  border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleSecondRow">
+										<h:panelGroup>										
+											<h:outputText value="Dominio Internet:" />
+											<h:inputText id="client_site" requiredMessage="#{msgs.clientSiteReqError}" style="width:300px;" styleClass="camposx" requiered="true" value="#{MttoTPVGeneric.client_site}" />
+										</h:panelGroup>
+									</h:panelGrid>
+								</h:panelGrid>
+							</c:when>
+							<!--  <c:when test="#{MttoTPVGeneric.mttoName =='addendumWeb'}">
+								<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+									<f:facet name="header">
+										<h:outputText value="Datos del Domicilio Nuevo" />
+									</f:facet>
+							
+								</h:panelGrid>
+							</c:when>-->
+							
+<!-- 							<c:when test="#{MttoTPVGeneric.mttoName =='reposicionEquipo'}">
+								<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+									<f:facet name="header">
+										<h:outputText value="Reposición de Equipos" />
+									</f:facet>
+									
+									<h:panelGroup style="padding:5px 10px;">
+										<h:panelGrid style="background-color:#FFF;width:700px;margin:0 auto;">
+											
+											<h:panelGroup style="padding:;">
+												<div align="center">
+												<h:panelGroup style="display:inline-block">
+													
+													<h:panelGrid columns="2" style="width:300px;border:1px solid #990000;border-bottom:0;">
+														<f:facet name="header">
+															<h:outputText value="Fija" />
+														</f:facet>
+													
+														<h:outputText value="MODELOS" style="font-weight:bold;"/>
+														<h:outputText value="NO. EQUIPOS" style="font-weight:bold;"/>
+													
+													</h:panelGrid>
+													<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="2" style="width:300px;border:1px solid #990000;border-top:0;">	
+														<h:outputText value="TPV con conexion telefonica (fija)"/>
+														<h:inputText style="width:50px;" onkeypress="return isNumberKey(event)" styleClass="camposx"/>
+														
+														<h:outputText value="TPV con conexion celular (fija)"/>
+														<h:inputText style="width:50px;" onkeypress="return isNumberKey(event)" styleClass="camposx"/>
+														
+														<h:outputText value="TPV con conexion a Internet (fija)"/>
+														<h:inputText style="width:50px;" onkeypress="return isNumberKey(event)" styleClass="camposx"/>
+														
+														<h:outputText value="TPV con conexion a Internet con respaldo telefonica (fija)"/>
+														<h:inputText style="width:50px;" onkeypress="return isNumberKey(event)" styleClass="camposx"/>
+														
+														<h:outputText value="Pinpad"/>
+														<h:inputText style="width:50px;" onkeypress="return isNumberKey(event)" styleClass="camposx"/>
+														
+													</h:panelGrid>
+												</h:panelGroup>
+												<h:panelGroup style="display:inline-block">
+													
+													<h:panelGrid columns="2" style="width:300px;border:1px solid #990000;border-bottom:0;margin-left:20px;">
+														<f:facet name="header">
+															<h:outputText value="Fija" />
+														</f:facet>
+													
+														<h:outputText value="MODELOS" style="font-weight:bold;"/>
+														<h:outputText value="NO. EQUIPOS" style="font-weight:bold;"/>
+													
+													</h:panelGrid>
+													<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="2" style="width:300px;border:1px solid #990000;border-top:0;margin-left:20px;">	
+														<h:outputText value="TPV inalambrican (bluetooth) con conexion telefonica"/>
+														<h:inputText style="width:50px;" onkeypress="return isNumberKey(event)" styleClass="camposx"/>
+														
+														<h:outputText value="TPV con conexion celular (GPRS)"/>
+														<h:inputText style="width:50px;" onkeypress="return isNumberKey(event)" styleClass="camposx"/>
+														
+														<h:outputText value="TPV inalambrica (bluetooth) con conexion a internet"/>
+														<h:inputText style="width:50px;" onkeypress="return isNumberKey(event)" styleClass="camposx"/>
+														
+														<h:outputText value="WIFI"/>
+														<h:inputText style="width:50px;" onkeypress="return isNumberKey(event)" styleClass="camposx"/>
+														
+														<h:outputText value="WIFI con respaldo telefonico"/>
+														<h:inputText style="width:50px;" onkeypress="return isNumberKey(event)" styleClass="camposx"/>
+														
+													</h:panelGrid>
+												</h:panelGroup>
+												
+												</div>
+											</h:panelGroup>
+											<h:panelGrid columns="2" style="background-color:#FFF;width:250px;margin-left:50px;">
+												<h:outputText value="Maquinaria Transcriptora"/>
+												<h:inputText style="width:50px" styleClass="camposx"/>
+												
+												<h:outputText value="TPV  / PinPad propia"/>
+												<h:selectBooleanCheckbox value="propia" id="checkPinTPVPropia" />
+											</h:panelGrid>
+										</h:panelGrid>
+									</h:panelGroup>
+									
+								</h:panelGrid>
+							</c:when> -->
+							<c:when test="#{MttoTPVGeneric.mttoName =='reenvioClaves'}">
+								<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+									<f:facet name="header">
+										<h:outputText value="Reenvio de Claves de Sistema Payworks" />
+									</f:facet>
+									<h:panelGrid columns="4">
+										<h:panelGroup>
+											<h:selectBooleanCheckbox id="sameEmailCheck" value="#{MttoTPVGeneric.sameEmailCheck}" onchange="validateCheckEmail();"/> <!--onClick="document.getElementById('sameEmailInfo').disabled = !this.checked" /> -->
+											<h:outputText value="Mismo Correo:  "/>
+											<h:inputText id="sameEmailInfo" onkeypress="return isEmail(event)" style="width:250px;" maxlength="50" 
+													styleClass="camposx" requiredMessage="#{msgs.mttoReenvioClaves}" value="#{MttoTPVGeneric.sameEmailInfo}" 
+													required="true" />
+										</h:panelGroup>
+										<h:panelGroup>
+											<h:selectBooleanCheckbox id="otherEmailCheck" value="#{MttoTPVGeneric.otherEmailCheck}" onchange="validateCheckEmail();" /><!-- onchange="validateCheckEmail();" -->
+											<h:outputText value="Correo Alternativo:  "/>
+											<h:inputText id="otherEmailInfo" onkeypress="return isEmail(event)" style="width:250px;" maxlength="50"
+													styleClass="camposx" requiredMessage="#{msgs.mttoReenvioClaves}" value="#{MttoTPVGeneric.otherEmailInfo}" 
+													required="true" />
+										</h:panelGroup>
+									</h:panelGrid>
+							
+								</h:panelGrid>
+							</c:when>
+							<c:when test="#{MttoTPVGeneric.mttoName =='cambioCorreoElectronico'}">
+								<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+									<f:facet name="header">
+										<h:outputText value="Correo Electrónico Nuevo" />
+									</f:facet>
+									<br/>
+									<h:panelGrid columns="1">
+										<h:panelGroup>
+											<h:outputText value="Correo Electrónico:  "/>
+											<h:inputText id="changeEmailInfo" onkeypress="return isEmail(event)" style="width:250px;"
+													maxlength="50" styleClass="camposx" requiredMessage="#{msgs.mttoUpdateEmail}"
+													value="#{MttoTPVGeneric.changeEmailInfo}" required="true" />
+										</h:panelGroup>
+									</h:panelGrid>
+									<br/>
+								</h:panelGrid>
+							</c:when>
+<!--  							<c:when test="#{MttoTPVGeneric.mttoName =='cambioAplicacion'}">
+								<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+									<f:facet name="header">
+										<h:outputText value="Nueva Aplicacion" />
+									</f:facet>
+									<br/>
+									<h:panelGrid columns="1">
+										
+									</h:panelGrid>
+									<br/>
+								</h:panelGrid>
+							</c:when>-->
+							<c:when test="#{MttoTPVGeneric.mttoName =='cambioCuentaCheques'}">
+								<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+									<f:facet name="header">
+										<h:outputText value="Cambio de Cuenta de Cheques Nuevo" />
+									</f:facet>
+									<br/>
+									<h:panelGrid columns="1">
+										<h:panelGroup>
+											<h:outputText value="Numero Cuenta de Cheques:  "/>
+											<h:inputText id="changeAccountChargeInfo" onkeypress="return isNumberKey(event)" style="width:250px;"
+												onblur="isValidAccNum('changeAccountChargeInfo');" maxlength="10" styleClass="camposx" 
+												requiredMessage="#{msgs.mttoTPVUpdateAccount}" value="#{MttoTPVGeneric.changeAccountChargeInfo}" 
+												required="true" />
+										</h:panelGroup>
+									</h:panelGrid>
+									<br/>
+								</h:panelGrid>
+							</c:when>
+							<c:when test="#{MttoTPVGeneric.mttoName =='cambioNombreComercial'}">
+								<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+									<f:facet name="header">
+										<h:outputText value="Cambio de Nombre Comercial" />
+									</f:facet>
+									<br/>
+									<h:panelGrid columns="1">
+										<h:panelGroup>
+											<h:outputText value="Nombre Comerical:  "/>
+											<h:inputText id="client_merchantname" onkeypress="return isTextRazonSocial(event)"
+												style="width:350px;" maxlength="22" styleClass="camposx" required="false" 
+												requiredMessage="#{msgs.mttoChangeMerchantName}" value="#{MttoTPVGeneric.client_merchantname}"/>
+										</h:panelGroup>
+									</h:panelGrid>
+									<br/>
+								</h:panelGrid>
+							</c:when>
+							
+							<!-- Incremento Limite de Techo -->
+							
+							<!-- Incremento Limite de Voucher -->
+				
+	<!--						<c:when test="#{MttoTPVGeneric.mttoName =='equiposTempEventos'}">
+								<script type="text/javascript">
+								 // <![CDATA[
+								  
+									  function start() {
+										  Calendar.setup({ inputField: "forma:inicio_date", ifFormat: "%d/%m/%Y"});	
+										  Calendar.setup({ inputField: "forma:fin_date", ifFormat: "%d/%m/%Y"});						   
+									  }
+									  
+				              		  window.onload = start;
+				              		//]]>
+				          		</script>
+								<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+									<f:facet name="header">
+										<h:outputText value="Equipos Temporales" />
+									</f:facet>
+									<br/>
+									<h:panelGrid>
+										<h:panelGroup>
+											<h:outputText value="Fecha Inicio :  "/>
+											<h:inputText id="inicio_date" onkeypress="return block(event);" style="width:70px;"
+											styleClass="camposx" required="false" />
+										
+											<h:outputText value="Fecha Fin :  " style="margin-left:20px;"/>
+											<h:inputText  id="fin_date" onkeypress="return block(event);" style="width:70px;"
+											styleClass="camposx" required="false" />
+										</h:panelGroup>
+										<br/>
+										
+										<h:panelGroup>
+											<h:outputText value="Producto :  " style="margin-left:0px"/>
+											<h:selectOneMenu styleClass="camposx"  id="producCombo" style="width:150px;">
+												   <f:selectItem itemValue="" itemLabel="" />
+											</h:selectOneMenu>
+											
+											<h:outputText value="Tecnologia :  " style="margin-left:30px"/>
+											<h:selectOneMenu styleClass="camposx"  id="techCombo" style="width:80px;">
+												   <f:selectItem itemValue="" itemLabel="" />
+											</h:selectOneMenu>
+											
+											<h:outputText value="No. Equipos :  " style="margin-left:30px"/>
+											<h:selectOneMenu styleClass="camposx"  id="numDevicesCombo" style="width:50px;">
+												   <f:selectItem itemValue="" itemLabel="" />
+											</h:selectOneMenu>
+										</h:panelGroup>
+										<br/>
+										
+										<h:panelGroup>
+											<h:outputText value="Afiliacion del servicomercio :  " style="margin-left:0px"/>
+											<h:selectOneMenu styleClass="camposx"  id="affiliationCombo" style="width:100px;">
+												   <f:selectItem itemValue="" itemLabel="" />
+											</h:selectOneMenu>
+											
+											<h:outputText value="Alianza :  " style="margin-left:30px"/>
+											<h:selectOneMenu styleClass="camposx"  id="alianceCombo" style="width:100px;">
+												   <f:selectItem itemValue="" itemLabel="" />
+											</h:selectOneMenu>
+										</h:panelGroup>
+									</h:panelGrid>
+																
+									<br/>
+									<h:outputText value="Domicilio del Evento" style="font-weight:bold;"/>
+									<br/>
+										
+									<h:panelGrid>
+										
+										<br/>
+										<h:panelGroup>
+											<h:outputText value="Calle y Numero :  "/>
+											<h:inputText styleClass="camposx" style="width:250px;" maxlength="30" />
+											
+											<h:outputText value="Colonia :  " style="margin-left:40px;"/>
+											<h:inputText styleClass="camposx" style="width:200px;" maxlength="30" />
+										</h:panelGroup>
+										<br/>
+										
+										<h:panelGroup>
+											<h:outputText value="CP :  "/>
+											<h:inputText styleClass="camposx" style="width:50px;" 
+											onkeypress="return isNumberKey(event)" maxlength="5" />
+										
+											<h:outputText value="Estado :  " style="margin-left:40px"/>
+											<h:selectOneMenu styleClass="camposx"  id="stateCombo" 
+												value="#{MttoTPVGeneric.branchstateGestor}" style="width:150px;" onchange="onchangeStateSucursal()">
+												<f:selectItem itemValue="Seleccione un Estado" />
+												<f:selectItems value="#{MttoTPVGeneric.statesArray}" />
+											</h:selectOneMenu>
+											
+											<h:outputText value="Ciudad :  " style="margin-left:40px"/>
+											<h:selectOneMenu styleClass="camposx"  id="cityCombo" 
+												value="#{MttoTPVGeneric.branchstateGestor}" style="width:150px;">
+												<f:selectItem itemValue="Seleccione una Ciudad" />
+												<f:selectItems value="#{MttoTPVGeneric.citiesArray}" />
+											</h:selectOneMenu>
+										</h:panelGroup>
+										<br/>
+										
+										<h:panelGroup>
+											<h:outputText value="Lada y Telefono :  "/>
+											<h:inputText styleClass="camposx" style="width:200px;" maxlength="10" />
+											
+											<h:outputText value="Extension :  " style="margin-left:40px;"/>
+											<h:inputText styleClass="camposx" style="width:100px;" maxlength="4" />
+											
+											<h:outputText value="Fax :  " style="margin-left:40px;"/>
+											<h:inputText styleClass="camposx" style="width:80px;" maxlength="10" />
+										</h:panelGroup>
+										
+									</h:panelGrid>
+									
+									<br/>
+								</h:panelGrid>
+								<br/>
+								<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+									<f:facet name="header">
+										<h:outputText value="Autorizacion" />
+									</f:facet>
+									<br/>
+									<h:panelGrid>
+										<h:panelGroup>
+											<h:outputText value="No. Empleado " />
+											<h:inputText style="width:80px;"
+												onkeypress="return isTextNON(event)" maxlength="8"
+												styleClass="camposx" required="false" />
+											<h:commandLink	immediate="false" style="text-decoration: none">
+												<h:graphicImage url="images/arrowrightmonth.gif"
+													alt="X Consultar" title="Buscar" style="border:0px" />
+												<f:param name="anchorSearchOfficerMtto" value="officeInfo" />
+											</h:commandLink>
+										</h:panelGroup>
+										<br/>
+										<h:panelGroup>
+											<h:outputText value="Nombre :  "/>
+											<h:inputText styleClass="camposx" onkeypress="return isTextNAN(event)"/>
+											
+											<h:outputText value="Apellido Paterno :  " style="margin-left:10px;"/>
+											<h:inputText styleClass="camposx" onkeypress="return isTextNAN(event)"/>
+											
+											<h:outputText value="Apellido Materno :  " style="margin-left:10px;"/>
+											<h:inputText styleClass="camposx" onkeypress="return isTextNAN(event)"/>
+											
+											<h:outputText value="Puesto :  " style="margin-left:10px;"/>
+											<h:inputText styleClass="camposx" onkeypress="return isTextNAN(event)"/>
+										</h:panelGroup>
+									</h:panelGrid>
+									<br/>
+								</h:panelGrid>
+							</c:when>-->
+							
+							<!-- Pendiente Realizacion 3D Secure 
+							
+							<c:when test="#{MttoTPVGeneric.mttoName =='cambioApoderado'}">
+								<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+									<f:facet name="header">
+										<h:outputText value="Cambio de Apoderados" />
+									</f:facet>
+									<br/>
+									<h:panelGrid>
+										<h:panelGrid>
+											<h:panelGroup>
+												<h:outputText value="Nombre 1 :  "/>
+												<h:inputText styleClass="camposx" onkeypress="return isTextNAN(event)"/>
+												
+												<h:outputText value="Apellido Paterno 1 :  " style="margin-left:20px;"/>
+												<h:inputText styleClass="camposx" onkeypress="return isTextNAN(event)"/>
+												
+												<h:outputText value="Apellido Materno 1 :  " style="margin-left:20px;"/>
+												<h:inputText styleClass="camposx" onkeypress="return isTextNAN(event)"/>
+											</h:panelGroup>
+											<br/>
+											
+											<h:panelGroup>
+												<h:outputText value="RFC 1 :  "/>
+												<h:inputText styleClass="camposx" maxlength="13"/>
+												
+												<h:outputText value="Correo Electronico 1 :  " style="margin-left:30px;"/>
+												<h:inputText styleClass="camposx"/>
+												
+											</h:panelGroup>
+											<br/>
+											
+											<h:panelGroup>
+												<h:outputText value="Nombre 2 :  "/>
+												<h:inputText styleClass="camposx" onkeypress="return isTextNAN(event)"/>
+												
+												<h:outputText value="Apellido Paterno 2 :  " style="margin-left:20px;"/>
+												<h:inputText styleClass="camposx" onkeypress="return isTextNAN(event)"/>
+												
+												<h:outputText value="Apellido Materno 2 :  " style="margin-left:20px;"/>
+												<h:inputText styleClass="camposx" onkeypress="return isTextNAN(event)"/>
+											</h:panelGroup>
+											<br/>
+											
+											<h:panelGroup>
+												<h:outputText value="RFC 2 :  "/>
+												<h:inputText styleClass="camposx" maxlength="13"/>
+												
+												<h:outputText value="Correo Electronico 2 :  " style="margin-left:30px;"/>
+												<h:inputText styleClass="camposx"/>
+												
+											</h:panelGroup>
+										</h:panelGrid>
+										
+										
+									</h:panelGrid>
+									<br/>
+								</h:panelGrid>
+							</c:when>-->
+							
+							<!-- Cancelacion por Monitoreo 
+							
+							<c:when test="#{MttoTPVGeneric.mttoName =='cambioGiro'}">
+								<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+									<f:facet name="header">
+										<h:outputText value="Cambio de Giro" />
+									</f:facet>
+									<br/>
+									<h:panelGrid>
+										
+									</h:panelGrid>
+									<br/>
+								</h:panelGrid>
+							</c:when>
+							
+							<c:when test="#{MttoTPVGeneric.mttoName =='cambioRFC'}">
+								<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+									<f:facet name="header">
+										<h:outputText value="Cambio de RFC" />
+									</f:facet>
+									<br/>
+									<h:panelGrid columns="1">
+										<h:panelGroup>
+											<h:outputText value="Nombre Giro :  "/>
+											<h:inputText style="width:300px;"/>
+										</h:panelGroup>
+									</h:panelGrid>
+									<br/>
+								</h:panelGrid>
+							</c:when>-->
+							
+						</c:choose>
+						
+					<!-- Domicilio Nuevo -->
+					<!--<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+						<f:facet name="header">
+							<h:outputText value="Datos del Domicilio Nuevo" />
+						</f:facet>
+
+						<h:panelGrid columns="4"  border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" 
+						   rowClasses="tableStyleFirstRow">
+								
+							<h:outputText value="Calle y Número:" />
+							<h:outputText value="Colonia:" />
+							<h:outputText value="CP:" />
+							<h:outputText value="Estado" />
+							
+							<h:inputText id="street" style="width:150px;"
+								styleClass="camposx"
+								value="#{MttoTPVGeneric.street}" required="true" />
+							<h:inputText id="colony" style="width:150px;"
+								styleClass="camposx"
+								value="#{MttoTPVGeneric.colony}" required="true" />
+							<h:inputText id="zipcode" style="width:150px;"
+								styleClass="camposx"
+								value="#{MttoTPVGeneric.zipcode}" required="true" />
+							<h:inputText id="state" style="width:150px;"
+								styleClass="camposx"
+								value="#{MttoTPVGeneric.state}" required="true" />
+						</h:panelGrid>
+						<h:panelGrid columns="1"  border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" 
+						   rowClasses="tableStyleSecondRow">
+						   
+							<h:outputText value="Ciudad:" />
+							
+							<h:inputText id="city" style="width:150px;"
+								styleClass="camposx"
+								value="#{MttoTPVGeneric.city}" required="true" />
+						</h:panelGrid>
+					</h:panelGrid> -->
+					<!-- Fin Domicilio Nuevo -->
+					<br/>
+						
+					<!-- Archivo de soporte -->
+					<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+						<f:facet name="header">
+							<h:outputText value="Adjuntar Archivo de Soporte" />
+						</f:facet>
+
+						<h:panelGrid columns="1"  border="0" cellpadding="2" cellspacing="0" styleClass="contractStyleInner" 
+						   rowClasses="tableStyleFirstRow">
+								
+							<!--<h:outputText value="Adjuntar archivo de Soporte:" />
+							<input id="fileButton" type="file" value="Seleccione un archivo" onchange="addPathFile()"/>
+							<h:inputTextarea id="fileSuport" value="#{MttoTPVGeneric.filesSuport}" />
+							-->
+						    <t:inputFileUpload id="file" value="#{MttoTPVGeneric.fileSuport}" required="true" size="40" /> 
+						    <h:commandButton ajax="false" action="#{MttoTPVGeneric.addFile}" styleClass="camposx" value="Agregar Archivo"></h:commandButton>
+			                   
+						<!-- 	<h:panelGrid border="1" columns="2">
+			                   <h:outputText value="ID"></h:outputText>
+			                   <h:outputText value="Seleccionar archivos"></h:outputText>
+			                   <t:inputFileUpload id="file" value="#{MttoTPVGeneric.fileSuport}" required="false" size="40" />
+			                   <h:commandButton ajax="false" action="#{MttoTPVGeneric.addFile}" styleClass="camposx" value="Agregar Archivo"></h:commandButton>
+			                  
+			              </h:panelGrid> -->
+							
+							<!--<h:inputFile id="file" value="#{MttoTPVGeneric.file}" validator="#{MttoTPVGeneric.validateFile}"/>
+  							<h:commandButton value="Seleccione un archivo" action="#{MttoTPVGeneric.uploadFile}"/>-->
+						</h:panelGrid>
+					</h:panelGrid>
+					<!-- Fin Archivo de soporte -->
+					<br/>
+					
+					<!-- Seccion: Funcionario que Capturo la solicitud del Mantenimiento -->
+					<a name="officeInfo"></a>
+					<h:panelGrid styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+						<f:facet name="header">
+							<h:outputText value="Datos del funcionario que capturó la solicitud del mantenimiento" />
+						</f:facet>
+						
+						<!-- Row1  -->
+						<h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner"
+							rowClasses="tableStyleFirstRow">
+							<h:panelGroup>
+								<h:outputText value="No. Empleado " />
+								<h:inputText id="officerempnumber" style="width:80px;"
+									onkeypress="return isTextNON(event)" maxlength="8"
+									styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerEmpNumberReqError}"
+									value="#{MttoTPVGeneric.officerempnumber}" required="false" />
+								<h:commandLink id="SearchOfficerMtto"
+									actionListener="#{MttoTPVGeneric.findOfficerInfo}"
+									immediate="false" style="text-decoration: none">
+									<h:graphicImage url="images/arrowrightmonth.gif"
+										alt="X Consultar" title="Buscar" style="border:0px" />
+									<f:param name="anchorSearchOfficerMtto" value="officeInfo" />
+								</h:commandLink>
+							</h:panelGroup>
+						</h:panelGrid>
+						<!-- Row2  -->
+						<h:panelGrid columns="4" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner"
+							rowClasses="tableStyleSecondRow">
+							<h:outputText value="Nombre" />
+							<h:outputText value="Apellido Paterno" />
+							<h:outputText value="Apellido Materno" />
+							<h:outputText value="Puesto" />
+							
+							<h:inputText id="officername"
+								onkeypress="return isTextNAN(event)" style="width:150px;"
+								maxlength="30" styleClass="camposx"
+								requiredMessage="#{msgs.mttoofficerNameReqError}"
+								value="#{MttoTPVGeneric.officername}" 
+								required="false"
+								disabled="#{empty MttoTPVGeneric.officername ? 'false' : 'true'}" />
+							<h:inputText id="officerlastname"
+								onkeypress="return isTextNAN(event)" style="width:150px;"
+								maxlength="30" styleClass="camposx"
+								requiredMessage="#{msgs.mttoofficerLastnameReqError}"
+								value="#{MttoTPVGeneric.officerlastname}" 
+								required="false"
+								disabled="#{empty MttoTPVGeneric.officerlastname ? 'false' : 'true'}" />
+							<h:inputText id="officermothersln"
+								onkeypress="return isTextNAN(event)" style="width:150px;"
+								maxlength="30" styleClass="camposx"
+								requiredMessage="#{msgs.mttoofficerMothersLnReqError}"
+								value="#{MttoTPVGeneric.officermothersln}" 
+								required="false"
+								disabled="#{empty MttoTPVGeneric.officermothersln ? 'false' : 'true'}" />
+							<h:inputText id="officerposition"
+								onkeypress="return isText(event)" style="width:150px;"
+								maxlength="30" styleClass="camposx"
+								requiredMessage="#{msgs.mttoofficerPositionReqError}"
+								value="#{MttoTPVGeneric.officerposition}" 
+								required="false"
+								disabled="#{empty MttoTPVGeneric.officerposition ? 'false' : 'true'}" />
+						</h:panelGrid>
+					</h:panelGrid>
+					<!--FIN Seccion: Funcionario que Capturo la solicitud del Mantenimiento -->
+					<br/>
+					
+					<!-- Seccion: Datos Funcionario EBanking Solicitante -->
+					<h:panelGrid styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+						<f:facet name="header">
+							<h:outputText value="Datos del funcionario facultado (Banca Digital, Transaccional, PyME)" />
+						</f:facet>
+						<!-- Row1  -->
+						<h:panelGrid columns="1" border="0" cellpadding="0"
+							cellspacing="0" styleClass="contractStyleInner"
+							rowClasses="tableStyleFirstRow">
+							<h:panelGroup>
+							<h:outputText value="No. Empleado " />
+							<h:inputText id="officerebankingempnumber" style="width:80px;"
+								onkeypress="return isTextNON(event)" maxlength="8"
+								styleClass="camposx"
+								requiredMessage="#{msgs.mttoofficerebankingEmpNumberReqError}"
+								value="#{MttoTPVGeneric.officerebankingempnumber}"
+								required="false" />
+								<h:commandLink id="SearchOfficerBankingMtto"
+									actionListener="#{MttoTPVGeneric.findOfficerInfo}"
+									immediate="false" style="text-decoration: none">
+									<h:graphicImage url="images/arrowrightmonth.gif"
+										alt="X Consultar" title="Buscar" style="border:0px" />
+									<f:param name="anchorSearchOfficerBankingMtto" value="officeInfo" />
+								</h:commandLink>
+							</h:panelGroup>
+						</h:panelGrid>
+						<!-- Row2  -->
+						<h:panelGrid columns="4" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner"
+							rowClasses="tableStyleSecondRow">
+							<h:outputText value="Nombre" />
+							<h:outputText value="Apellido Paterno" />
+							<h:outputText value="Apellido Materno" />
+							<h:outputText value="Puesto" />
+
+							<h:inputText id="officerebankingname"
+								onkeypress="return isTextNAN(event)" style="width:150px;"
+								maxlength="30" styleClass="camposx"
+								requiredMessage="#{msgs.mttoofficerebankingNameReqError}"
+								value="#{MttoTPVGeneric.officerebankingname}" 
+								required="false"
+								disabled="#{empty MttoTPVGeneric.officerebankingname ? 'false' : 'true'}" />
+							<h:inputText id="officerebankinglastname"
+								onkeypress="return isTextNAN(event)" style="width:150px;"
+								maxlength="30" styleClass="camposx"
+								requiredMessage="#{msgs.mttoofficerebankingLastnameReqError}"
+								value="#{MttoTPVGeneric.officerebankinglastname}"
+								required="false"
+								disabled="#{empty MttoTPVGeneric.officerebankinglastname ? 'false' : 'true'}" />
+							<h:inputText id="officerebankingmothersln"
+								onkeypress="return isTextNAN(event)" style="width:150px;"
+								maxlength="30" styleClass="camposx"
+								requiredMessage="#{msgs.mttoofficerebankingMothersLnReqError}"
+								value="#{MttoTPVGeneric.officerebankingmothersln}"
+								required="false"
+								disabled="#{empty MttoTPVGeneric.officerebankingmothersln ? 'false' : 'true'}" />
+							<h:inputText id="officerebankingposition"
+								onkeypress="return isTextNAN(event)" style="width:150px;"
+								maxlength="30" styleClass="camposx"
+								requiredMessage="#{msgs.officerebankingNameReqError}"
+								value="#{MttoTPVGeneric.officerebankingposition}" 
+								required="false"
+								disabled="#{empty MttoTPVGeneric.officerebankingposition ? 'false' : 'true'}" />
+						</h:panelGrid>
+					</h:panelGrid>
+					<br />
+					<!--FIN  Seccion: Datos Funcionario EBanking Solicitante -->
+					
+					<!-- Sucursal -->
+					<a name='Sucursal'></a>
+					<h:panelGrid styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+						<f:facet name="header">
+							<h:outputText value="Datos de la Sucursal" />
+						</f:facet>
+						<h:panelGrid columns="5" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner"
+							rowClasses="tableStyleFirstRow">
+							<h:outputText value="CR" />
+							<h:outputText value="" />
+							<h:outputText value="Nombre de la Sucursal" />
+							<h:outputText value="Domicilio" />
+							<h:outputText value="Colonia" />
+
+							<h:inputText id="crnumber" style="width:100px;"
+								onkeypress="return isNumberKey(event)" maxlength="5"
+								styleClass="camposx" requiredMessage="#{msgs.crnumberReqError}"
+								value="#{MttoTPVGeneric.crnumber}" required="false" />
+								
+							<h:commandLink id="SearchOfficerBranch"
+									actionListener="#{MttoTPVGeneric.findOfficerInfo}"
+									immediate="false" style="text-decoration: none">
+									<h:graphicImage url="images/arrowrightmonth.gif"
+										alt="X Consultar" title="Buscar" style="border:0px" />
+									<f:param name="anchorSearchOfficerBranch" value="officeInfo" />
+								</h:commandLink>
+									
+							<h:inputText id="branchname" onkeypress="return isText(event)"
+								style="width:200px;" maxlength="120" styleClass="camposx"
+								requiredMessage="#{msgs.branchnameReqError}"
+								value="#{MttoTPVGeneric.branchname}" required="false"
+								disabled="#{MttoTPVGeneric.foundBranch}"/>
+								 
+							<h:inputText id="branchstreet" onkeypress="return isText(event)"
+								style="width:250px;" maxlength="60" styleClass="camposx"
+								requiredMessage="#{msgs.branchstreetReqError}"
+								value="#{MttoTPVGeneric.branchstreet}" required="false"
+								disabled="#{MttoTPVGeneric.foundBranch}" />
+								
+							<h:inputText id="branchcolony" onkeypress="return isText(event)"
+								style="width:120px;" maxlength="30" styleClass="camposx"
+								requiredMessage="#{msgs.branchcolonyReqError}"
+								value="#{MttoTPVGeneric.branchcolony}" required="false"
+								disabled="#{MttoTPVGeneric.foundBranch}" />
+						</h:panelGrid>
+
+						<h:panelGrid columns="5" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner">
+							<h:outputText value="" />
+							<h:outputText value="Estado" />
+							<h:outputText value="Población" />
+							<h:outputText value="Teléfono" />
+							<h:outputText value="Fax" />
+							
+							<h:commandLink id="SearchSucursal"
+								actionListener="#{MttoTPVGeneric.findBranchCities}"
+								immediate="false" style="display: none">
+								<f:param name="anchorSearchSucursal" value="Sucursal" />
+							</h:commandLink>
+								
+							<h:selectOneMenu id="branchstate" onchange="onchangeStateSucursal()"
+								immediate="true" style="width:180px" class="camposx"
+								value="#{MttoTPVGeneric.branchstate}" 
+								disabled="#{MttoTPVGeneric.foundBranch}" required="false">
+								<f:selectItem itemValue="Seleccione un Estado" />
+								<f:selectItems value="#{MttoTPVGeneric.statesArray}" />
+							</h:selectOneMenu><!--onchange="submit()"  -->
+							
+							<h:selectOneMenu id="branchcity"
+								value="#{MttoTPVGeneric.branchcity}" style="width:180px"
+								class="camposx" required="false" disabled="#{MttoTPVGeneric.foundBranch}">
+								<f:selectItem itemValue="Seleccione una Ciudad" />
+								<f:selectItems value="#{MttoTPVGeneric.citiesBranchArray}" />
+							</h:selectOneMenu><!--  -->
+							<h:inputText id="branchphone" style="width:80px;"
+								onkeypress="return isNumberKey(event)" 
+								styleClass="camposx"
+								requiredMessage="#{msgs.branchphoneReqError}"
+								value="#{MttoTPVGeneric.branchphone}" required="false" 
+								disabled="#{MttoTPVGeneric.foundBranch}"/>
+								
+							<h:inputText id="branchfax" style="width:80px;"
+								onkeypress="return isNumberKey(event)" maxlength="8"
+								styleClass="camposx" value="#{MttoTPVGeneric.branchfax}"
+								required="false" />
+						</h:panelGrid>
+					</h:panelGrid>
+					<br />
+					<!-- Fin Sucursal -->
+					
+					<!-- Seccion: Datos Funcionario Banorte -->
+					<a name="officeRepInfo"></a>	
+					<h:panelGrid styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+						<f:facet name="header">
+							<h:outputText value="Datos Funcionario Banorte" />
+						</f:facet>
+						<!-- Row1 -->
+						<h:panelGrid columns="1" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner"
+							rowClasses="tableStyleFirstRow">
+							<h:panelGroup>
+								<h:outputText value="No. Empleado 1 " />
+								<h:inputText id="officerrepempnumber_1"
+									onkeypress="return isTextNON(event)" style="width:80px;"
+									maxlength="8" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerRepNumber1ReqError}"
+									value="#{MttoTPVGeneric.officerrepempnumber_1}" required="false" />
+								<h:outputText value="" />
+								<h:commandLink id="SearchOfficerRepEmp1Mtto"
+									actionListener="#{MttoTPVGeneric.findOfficerInfo}"
+									immediate="false" style="text-decoration: none">
+									<h:graphicImage url="images/arrowrightmonth.gif"
+										alt="X Consultar" title="Buscar" style="border:0px" />
+									<f:param name="anchorSearchOfficerRepEmp1Mtto"
+										value="officeInfo" />
+								</h:commandLink>
+							</h:panelGroup>
+						</h:panelGrid>							
+						<!-- Row2 -->
+						<h:panelGrid columns="4" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner"
+							rowClasses="tableStyleSecondRow">
+							<h:outputText value="Nombre 1" />
+							<h:outputText value="Apellido Paterno 1" />
+							<h:outputText value="Apellido Materno 1" />
+							<h:outputText value="Puesto 1" />					
+
+								<h:inputText id="officerrepname_1"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerrepname1ReqError}"
+									value="#{MttoTPVGeneric.officerrepname_1}" 
+									required="false"
+									disabled="#{empty MttoTPVGeneric.officerrepname_1 ? 'false' : 'true'}" />
+								<h:inputText id="officerreplastname_1"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerLastname1ReqError}"
+									value="#{MttoTPVGeneric.officerreplastname_1}" 
+									required="false"
+									disabled="#{empty MttoTPVGeneric.officerreplastname_1 ? 'false' : 'true'}" />
+								<h:inputText id="officerrepmothersln_1"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerMothersLn1ReqError}"
+									value="#{MttoTPVGeneric.officerrepmothersln_1}" 
+									required="false"
+									disabled="#{empty MttoTPVGeneric.officerrepmothersln_1 ? 'false' : 'true'}" />
+								<h:inputText id="officerrepposition_1"
+									onkeypress="return isText(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerPosition1ReqError}"
+									value="#{MttoTPVGeneric.officerrepposition_1}" 
+									required="false"
+									disabled="#{empty MttoTPVGeneric.officerrepposition_1 ? 'false' : 'true'}" />
+							</h:panelGrid>
+							<!-- Row3 -->
+							<h:panelGrid columns="1" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:panelGroup>
+								<h:outputText value="No. Empleado 2 " />
+								<h:inputText id="officerrepempnumber_2"
+									onkeypress="return isTextNON(event)" style="width:80px;"
+									maxlength="8" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerrepempnumber2ReqError}"
+									value="#{MttoTPVGeneric.officerrepempnumber_2}" required="false" />
+									<h:commandLink id="SearchOfficerRepEmp2Mtto"
+										actionListener="#{MttoTPVGeneric.findOfficerInfo}"
+										immediate="false" style="text-decoration: none">
+										<h:graphicImage url="images/arrowrightmonth.gif"
+											alt="X Consultar" title="Buscar" style="border:0px" />
+										<f:param name="anchorSearchOfficerRepEmp2Mtto"
+											value="officeInfo" />
+									</h:commandLink>
+								</h:panelGroup>
+							</h:panelGrid>
+							<!-- Row4 -->
+							<h:panelGrid columns="4" border="0"
+								cellpadding="0" cellspacing="0" styleClass="contractStyleInner">
+								<h:outputText value="Nombre 2" />
+								<h:outputText value="Apellido Paterno 2" />
+								<h:outputText value="Apellido Materno 2" />
+								<h:outputText value="Puesto 2" />
+								
+								<h:inputText id="officerrepname_2"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerrepname2ReqError}"
+									value="#{MttoTPVGeneric.officerrepname_2}" 
+									required="false"
+									disabled="#{empty MttoTPVGeneric.officerrepname_2 ? 'false' : 'true'}" />
+								<h:inputText id="officerreplastname_2"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerreplastname2ReqError}"
+									value="#{MttoTPVGeneric.officerreplastname_2}" 
+									required="false"
+									disabled="#{empty MttoTPVGeneric.officerreplastname_2 ? 'false' : 'true'}" />
+								<h:inputText id="officerrepmothersln_2"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerrepmothersln2ReqError}"
+									value="#{MttoTPVGeneric.officerrepmothersln_2}" 
+									required="false"
+									disabled="#{empty MttoTPVGeneric.officerrepmothersln_2 ? 'false' : 'true'}" />
+								<h:inputText id="officerrepposition_2"
+									onkeypress="return isText(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerrepposition2ReqError}"
+									value="#{MttoTPVGeneric.officerrepposition_2}" 
+									required="false"
+									disabled="#{empty MttoTPVGeneric.officerrepposition_2 ? 'false' : 'true'}" />
+							</h:panelGrid>
+						</h:panelGrid>
+						<br/>
+						<!--FIN  Seccion: Datos Funcionario Banorte -->					
+	
+						<!-- SIC -->
+						<div class="notes"> * Numero de Cliente en altamira</div>
+
+						<br />
+						
+						<div class="send" id="divSend">
+							| x <h:commandLink id="Guardar" 
+												onclick="hideShow('divSend', 'divSending');" 
+												action="#{MttoTPVGeneric.processInfo}" 
+												immediate="false" 
+												value="ENVIAR"  />  |
+						</div>
+						<div class="cellright" id="divSending" style="visibility: hidden">
+							| x Enviando... |
+						</div>
+						
+						<br />
+						<br />
+						<br/>
+            			
+            	</h:form>
+				
+					
+				</f:view>
+			</ui:define>
+
+		</ui:composition>
+	</body>
+</html>

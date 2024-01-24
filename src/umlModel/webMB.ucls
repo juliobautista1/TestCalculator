@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.6" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="com.banorte.contract.web.PdfBuilderMB" project="contract" 
+    file="/contract/src/com/banorte/contract/web/PdfBuilderMB.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position x="232" y="46" width="-1" height="-1"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.banorte.contract.web.CitiesMB" project="contract" 
+    file="/contract/src/com/banorte/contract/web/CitiesMB.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position x="72" y="43" width="-1" height="-1"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.banorte.contract.web.OutboundReportMB" project="contract" 
+    file="/contract/src/com/banorte/contract/web/OutboundReportMB.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position x="392" y="298" width="-1" height="-1"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.banorte.contract.web.MailAdminMB" project="contract" 
+    file="/contract/src/com/banorte/contract/web/MailAdminMB.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position x="387" y="46" width="-1" height="-1"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.banorte.contract.web.ContractAbstractMB" project="contract" 
+    file="/contract/src/com/banorte/contract/web/ContractAbstractMB.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position x="546" y="47" width="-1" height="-1"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="com.banorte.contract.web.EjbInstanceManager" project="contract" 
+    file="/contract/src/com/banorte/contract/web/EjbInstanceManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position x="325" y="123" width="-1" height="-1"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="com.banorte.contract.web.AttributeMB" project="contract" 
+    file="/contract/src/com/banorte/contract/web/AttributeMB.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position x="546" y="138" width="-1" height="-1"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="com.banorte.contract.web.ContractAdminReportMB" project="contract" 
+    file="/contract/src/com/banorte/contract/web/ContractAdminReportMB.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position x="95" y="117" width="-1" height="-1"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="com.banorte.contract.web.StatusMB" project="contract" 
+    file="/contract/src/com/banorte/contract/web/StatusMB.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position x="76" y="204" width="-1" height="-1"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="com.banorte.contract.web.BitacoraMB" project="contract" 
+    file="/contract/src/com/banorte/contract/web/BitacoraMB.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position x="234" y="204" width="-1" height="-1"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="com.banorte.contract.web.ReportMB" project="contract" 
+    file="/contract/src/com/banorte/contract/web/ReportMB.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position x="392" y="204" width="-1" height="-1"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="com.banorte.contract.web.LoadFileBitacoraMB" project="contract" 
+    file="/contract/src/com/banorte/contract/web/LoadFileBitacoraMB.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position x="110" y="281" width="-1" height="-1"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <association id="13">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="14" name="attributeMB"/>      
+      <multiplicity id="15" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="16">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="false" package="false" protected="false" private="false" static="true"/>    
+    <operations public="false" package="false" protected="false" private="false" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

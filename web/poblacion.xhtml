@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jstl/core"
+      >
+    <body>
+      <ui:composition template="./contractTemplate2.xhtml">
+
+      <ui:define name="top">
+        Poblaciones
+      </ui:define>
+
+      <ui:define name="content">
+        <f:view>
+          <h:form id="forma">
+            <br/>
+
+              <h:panelGrid styleClass="contractStyleSpecial" columns="1" cellpadding="0" cellspacing="0">
+                <f:facet name="header">
+                    <h:outputText value="Poblacion"/>
+                </f:facet>
+
+                <h:panelGrid columns="2" width="99%" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow, tableStyleSecondRow">
+                  
+                  <h:outputText value="Nombre"/>
+                  <h:inputText style="width:150px;" class="camposx" onkeypress="return isText(event)" maxlength="150" id="cities_name" value="#{CitiesMB.cities_name}"/>
+                  
+                  <h:outputText value="Estado"/>
+                  <h:selectOneMenu id="cities_state" immediate="true" style="width:180px" class="camposx" value="#{CitiesMB.cities_state}" required="false">
+                 <f:selectItem itemValue="Seleccione un Estado"/>
+                 <f:selectItems value="#{CitiesMB.statesArray}"/>    
+                 </h:selectOneMenu>
+                </h:panelGrid>
+              </h:panelGrid>
+            <br/>
+            <br/>
+            <div class="send">
+                      | x <h:commandLink id="Guardar" action="#{CitiesMB.saveCity}" immediate="false">ENVIAR |</h:commandLink>
+            </div>
+          </h:form>
+        </f:view>
+      </ui:define>
+
+    </ui:composition>
+    </body>
+  </html>

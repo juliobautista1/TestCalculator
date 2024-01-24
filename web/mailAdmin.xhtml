@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core">
+
+  <body>
+
+    <ui:composition template="./contractTemplate.xhtml">
+
+      <ui:define name="top">
+        Administracion de Correos Electronicos
+      </ui:define>
+
+      <ui:define name="content">
+        <f:view >
+			
+					<h:form id="forma">
+						<br />
+						<br />
+						
+						<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Correo" />
+							</f:facet>
+
+							<h:panelGrid columns="3" width="10%" border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" 
+							   rowClasses="tableStyleFirstRow">
+								<h:panelGroup>
+									<h:outputText value="Correo Electronico" />
+									<h:inputText id="client_sic" value="#{MailAdminMB.mail}" style="width:100px;"  
+									 styleClass="camposx"  />
+								</h:panelGroup>
+								
+								<h:panelGroup>
+									<h:outputText value="Producto" />
+									<h:selectOneMenu id="productType" value="#{MailAdminMB.productType}" styleClass="camposx" >
+										<f:selectItem itemValue="0" itemLabel="Selecciona Opcion" />
+										<f:selectItem itemValue="99" itemLabel="Reporte General" />
+										<f:selectItem itemValue="1" itemLabel="BEM" />
+										<f:selectItem itemValue="2" itemLabel="Nomina" />
+										<f:selectItem itemValue="3" itemLabel="TPV" />
+										<f:selectItem itemValue="4" itemLabel="CD" />
+										<f:selectItem itemValue="5" itemLabel="MTTO" />
+									</h:selectOneMenu>
+								</h:panelGroup>
+								
+								
+								<h:commandLink id="Add"
+										actionListener="#{MailAdminMB.saveRecipentMail}" immediate="false" style="text-decoration: none">
+										<h:graphicImage url="images/arrowrightmonth.gif"
+											alt="Guardar" title="Guardar" style="border:0px" />
+								</h:commandLink>
+
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						
+						<br />
+						<br />
+						<br />
+						
+						
+						
+						<c:if test="#{! empty MailAdminMB.listRecipentMail}">
+		
+						
+							<h:dataTable id="listMail" value="#{MailAdminMB.listRecipentMail}"
+								rendered="#{! empty MailAdminMB.listRecipentMail}" var="email" 
+								styleClass="contractStyle"  headerClass="Estilo5">
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Email" />
+									</f:facet>
+									<h:outputText value="#{email.recipent}" />
+								</h:column>
+								
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Tipo De Producto" />
+									</f:facet>
+										<h:outputText value="#{email.productTypeStr}" />
+									
+								</h:column>
+								
+								
+								<h:column>
+									<f:facet name="header">
+										
+									</f:facet>
+									<h:commandLink id="mailDelete"
+										actionListener="#{MailAdminMB.deleteRecipentMail}"
+										immediate="false" style="text-decoration: none">
+										<h:graphicImage url="images/remove.png"
+											alt="Eliminar" title="Eliminar" style="border:0px" width="18px" height="18px" />
+										<f:param name="recipentMailId" value="#{email.recipentMailId}" />
+									</h:commandLink>
+								</h:column>
+								
+								
+							</h:dataTable>
+						</c:if>
+								
+								<c:if test="#{ empty MailAdminMB.listRecipentMail}">
+								<h3>No hay Correos registrados</h3>
+								</c:if>
+						
+						
+								
+						
+						
+					</h:form>
+				</f:view>
+      </ui:define>
+
+      
+
+    </ui:composition>
+
+  </body>
+</html>

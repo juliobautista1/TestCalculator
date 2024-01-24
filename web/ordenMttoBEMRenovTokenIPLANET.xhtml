@@ -1,0 +1,631 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+	<body>
+		<ui:composition template="./contractTemplate.xhtml">
+			<ui:define name="top">
+        		Mantenimientos BEM :Reposición de  Tokens
+      		</ui:define>
+
+			<ui:define name="content">
+				<f:view>
+				 <script type="text/javascript">
+				  
+					  function start() {
+						  activateCuentas();
+					  }
+					  
+					  function validateD(){
+						  return true;
+					  }
+					  
+					  function activateCuentas(){
+						  var selectQuantity 		= document.getElementById("forma:quantityAccounts");
+		            	  var quantityOptionsSelect 	= selectQuantity.selectedIndex;
+					  
+		            	  if( selectQuantity.options[quantityOptionsSelect].value == "1" ) {
+		            		  statusCuenta2(true);
+		            		  statusCuenta3(true);
+		            		  statusCuenta4(true);
+		            		  statusCuenta5(true);
+		            		  
+		            	  }else if (selectQuantity.options[quantityOptionsSelect].value == "2"){
+		            		  statusCuenta2(false);
+		            		  statusCuenta3(true);
+		            		  statusCuenta4(true);
+		            		  statusCuenta5(true);
+		            		 
+		            		  
+		            	  }else if (selectQuantity.options[quantityOptionsSelect].value == "3"){
+		            		  statusCuenta2(false);
+		            		  statusCuenta3(false);
+		            		  statusCuenta4(true);
+		            		  statusCuenta5(true);
+		            		  
+		            	  }else if (selectQuantity.options[quantityOptionsSelect].value == "4"){
+		            		  statusCuenta2(false);
+		            		  statusCuenta3(false);
+		            		  statusCuenta4(false);
+		            		  statusCuenta5(true);
+		            		  
+		            	  }else if (selectQuantity.options[quantityOptionsSelect].value == "5"){
+		            		  statusCuenta2(false);
+		            		  statusCuenta3(false);
+		            		  statusCuenta4(false);
+		            		  statusCuenta5(false);
+		            	  }
+						  
+					  }
+					  
+					  
+					  function statusCuenta2(status){
+						  document.getElementById("forma:tokenNumber_2").disabled = status;
+						  document.getElementById("forma:newTokenNumber_2").disabled = status; 
+		            	  document.getElementById("forma:folioPsd_2").disabled = status; 
+		            	  if(status){
+							  document.getElementById("forma:tokenNumber_2").value ="";
+							  document.getElementById("forma:newTokenNumber_2").value ="";
+							  document.getElementById("forma:folioPsd_2").value ="";
+						  }
+					  }
+					  
+					  function statusCuenta3(status){
+						  document.getElementById("forma:tokenNumber_3").disabled = status; 
+						  document.getElementById("forma:newTokenNumber_3").disabled = status; 
+		            	  document.getElementById("forma:folioPsd_3").disabled = status; 
+		            	  if(status){
+							  document.getElementById("forma:tokenNumber_3").value ="";
+							  document.getElementById("forma:newTokenNumber_3").value ="";
+							  document.getElementById("forma:folioPsd_3").value ="";
+						  }
+					  }
+					  
+					  function statusCuenta4(status){
+						  document.getElementById("forma:tokenNumber_4").disabled = status; 
+						  document.getElementById("forma:newTokenNumber_4").disabled = status; 
+		            	  document.getElementById("forma:folioPsd_4").disabled = status; 
+		            	  if(status){
+							  document.getElementById("forma:tokenNumber_4").value ="";
+							  document.getElementById("forma:newTokenNumber_4").value ="";
+							  document.getElementById("forma:folioPsd_4").value ="";
+						  }
+					  }
+					  
+					  function statusCuenta5(status){
+						  document.getElementById("forma:tokenNumber_5").disabled = status; 
+						  document.getElementById("forma:newTokenNumber_5").disabled = status; 
+		            	  document.getElementById("forma:folioPsd_5").disabled = status;
+		            	  if(status){
+							  document.getElementById("forma:tokenNumber_5").value ="";
+							  document.getElementById("forma:newTokenNumber_5").value ="";
+							  document.getElementById("forma:folioPsd_5").value ="";
+						  }
+					  }
+				  
+              		  window.onload = start;
+          		</script>
+				
+				
+				<h:form id="forma">
+
+						<br />
+						<h:messages layout="table" styleClass="errorStyle" />
+						<br />
+						<c:if test="${param['resetForm']==true}">
+              					#{MttoBEMRenovToken.resetForm}
+            			</c:if>
+						<c:if test="${param['editForm']==true}">
+              					#{MttoBEMRenovToken.editForm}
+            			</c:if>
+
+            			<c:if test="#{! empty MttoBEMRenovToken.errorsList}">
+              				<h:dataTable id="list" value="#{MttoBEMRenovToken.errorsList}" rendered="#{! empty MttoBEMRenovToken.errorsList}" var="errors" styleClass="contractStyleNone" rowClasses="tableStyleSecondRow">
+                				<h:column>                  
+                  					<h:outputText value="#{errors.message}" styleClass="msgValidation"/>
+                				</h:column>                 
+              				</h:dataTable>              
+            				<br/>
+            			</c:if>
+            			
+            			<!-- SIC -->
+						<h:panelGrid rowClasses="tableStyleFirstRow" styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Datos del Cliente" />
+							</f:facet>
+
+							<h:panelGrid columns="4"  border="0" cellpadding="3" cellspacing="0" styleClass="contractStyleInner" 
+							   rowClasses="tableStyleFirstRow">
+								
+									<h:outputText value="No. Cliente" />
+									<h:outputText value="No. Empresa" />
+									<h:outputText value="CR del BEM del Cliente" />
+									<h:outputText value="No. de Tokens Solicitados" />
+								
+									<h:inputText id="client_sic" value="#{MttoBEMRenovToken.client_sic}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+									maxlength="8" styleClass="camposx" requiredMessage="#{msgs.mttoSICError}" required="true" />
+									
+									<h:inputText id="bemnumber" value="#{MttoBEMRenovToken.bemnumber}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+									maxlength="8" styleClass="camposx" requiredMessage="#{msgs.mttoNoEmpresaError}" required="true" />
+								
+									<h:inputText id="crnumber" value="#{MttoBEMRenovToken.crnumber}" style="width:100px;" onkeypress="return isNumberKey(event)" 
+									maxlength="8" styleClass="camposx" requiredMessage="#{msgs.mttoCRError}" required="true" />
+									
+									<h:selectOneMenu styleClass="camposx"  id="quantityAccounts" value="#{MttoBEMRenovToken.quantityAccounts}" onchange="activateCuentas();"  >
+                    					<f:selectItem itemValue="1" itemLabel="1"/>
+                    					<f:selectItem itemValue="2" itemLabel="2"/>
+					                    <f:selectItem itemValue="3" itemLabel="3"/>
+					                    <f:selectItem itemValue="4" itemLabel="4"/>
+					                    <f:selectItem itemValue="5" itemLabel="5"/>
+                  					</h:selectOneMenu>
+							</h:panelGrid>
+						</h:panelGrid>
+						<br/>
+						<!-- FIN SIC -->
+						
+						
+						<!-- Seccion: Tokens -->
+						
+						<h:panelGrid styleClass="contractStyle" columns="1" cellpadding="0" cellspacing="0" width="100%">
+							<f:facet name="header">
+								<h:outputText value="Tokens" />
+							</f:facet>
+							
+							
+							<!--  Row 1 -->
+							<h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+								<h:outputText value="No. Serie de Token Anterior" />
+								<h:outputText value="No. Serie de Token NUEVO" />								
+								<h:outputText value="Folio de la Contraseña" />
+								
+							</h:panelGrid>
+							
+								<!--  Row 2 -->
+							<h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" >	
+								
+								<h:inputText id="tokenNumber_1" value="#{MttoBEMRenovToken.tokenNumber_1}" style="width:220px;"  onkeypress="return isNumberKey(event)"
+								maxlength="9" styleClass="camposx" requiredMessage="#{msgs.mttoNumToken1Error}" required="true" onblur="isValidTokenNumMtto('tokenNumber_1');"></h:inputText>
+								
+								<h:inputText id="newTokenNumber_1" value="#{MttoBEMRenovToken.newTokenNumber_1}" style="width:220px;" onkeypress="return isNumberKey(event)"
+								maxlength="9" styleClass="camposx" requiredMessage="#{msgs.mttoNumToken1Error}" required="true" onblur="isValidTokenNumMtto('newTokenNumber_1');"></h:inputText>
+																
+								<h:inputText id="folioPsd_1" value="#{MttoBEMRenovToken.folioPsd_1}"  onkeypress="return isNumberKey(event)"
+							   maxlength="7" style="width:220px;"  styleClass="camposx"  requiredMessage="#{msgs.mttoFolioPass1Error}"  required="true"></h:inputText>
+									
+							</h:panelGrid>
+								<!--  Row 3 -->
+								
+							<h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+								
+								<h:inputText id="tokenNumber_2" value="#{MttoBEMRenovToken.tokenNumber_2}" style="width:220px;" onkeypress="return isNumberKey(event)"
+								maxlength="9" styleClass="camposx" requiredMessage="#{msgs.mttoNumToken2Error}" required="true" onblur="isValidTokenNumMtto('tokenNumber_2');"></h:inputText>
+								
+								<h:inputText id="newTokenNumber_2" value="#{MttoBEMRenovToken.newTokenNumber_2}" style="width:220px;" onkeypress="return isNumberKey(event)"
+								maxlength="9" styleClass="camposx" requiredMessage="#{msgs.mttoNumToken2Error}" required="true" onblur="isValidTokenNumMtto('newTokenNumber_2');"></h:inputText>
+								
+								<h:inputText id="folioPsd_2" value="#{MttoBEMRenovToken.folioPsd_2}"   onkeypress="return isNumberKey(event)"
+								maxlength="7"  style="width:220px;" styleClass="camposx" requiredMessage="#{msgs.mttoFolioPass2Error}"  required="true"></h:inputText>
+									
+							</h:panelGrid>		
+								<!--  Row 4 -->
+							
+							<h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" >	
+								
+								<h:inputText id="tokenNumber_3" value="#{MttoBEMRenovToken.tokenNumber_3}" style="width:220px;"  onkeypress="return isNumberKey(event)"
+								maxlength="9" styleClass="camposx" requiredMessage="#{msgs.mttoNumToken3Error}" required="true" onblur="isValidTokenNumMtto('tokenNumber_3');"></h:inputText>
+								
+								<h:inputText id="newTokenNumber_3" value="#{MttoBEMRenovToken.newTokenNumber_3}" style="width:220px;"  onkeypress="return isNumberKey(event)"
+								maxlength="9" styleClass="camposx" requiredMessage="#{msgs.mttoNumToken3Error}" required="true" onblur="isValidTokenNumMtto('newTokenNumber_3');"></h:inputText>
+				
+								<h:inputText id="folioPsd_3" value="#{MttoBEMRenovToken.folioPsd_3}"  onkeypress="return isNumberKey(event)"
+								maxlength="7" style="width:220px;" styleClass="camposx" requiredMessage="#{msgs.mttoFolioPass3Error}"  required="true"></h:inputText>
+									
+									
+							</h:panelGrid>		
+									
+								<!--  Row 5 -->
+								
+							<h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow">
+								
+								<h:inputText id="tokenNumber_4" value="#{MttoBEMRenovToken.tokenNumber_4}" style="width:220px;"  onkeypress="return isNumberKey(event)"
+								maxlength="9" styleClass="camposx" requiredMessage="#{msgs.mttoNumToken4Error}" required="true" onblur="isValidTokenNumMtto('tokenNumber_4');"></h:inputText>
+								
+								<h:inputText id="newTokenNumber_4" value="#{MttoBEMRenovToken.newTokenNumber_4}" style="width:220px;"  onkeypress="return isNumberKey(event)"
+								maxlength="9" styleClass="camposx" requiredMessage="#{msgs.mttoNumToken4Error}" required="true" onblur="isValidTokenNumMtto('newTokenNumber_4');"></h:inputText>
+									
+								<h:inputText id="folioPsd_4" value="#{MttoBEMRenovToken.folioPsd_4}"  onkeypress="return isNumberKey(event)"
+								maxlength="7" style="width:220px;" styleClass="camposx" requiredMessage="#{msgs.mttoFolioPass4Error}"  required="true"></h:inputText>
+									
+							</h:panelGrid>		
+								<!--  Row 6 -->
+								
+							<h:panelGrid columns="3" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" >
+								
+								<h:inputText id="tokenNumber_5" value="#{MttoBEMRenovToken.tokenNumber_5}" style="width:220px;"  onkeypress="return isNumberKey(event)"
+								maxlength="9" styleClass="camposx" requiredMessage="#{msgs.mttoNumToken5Error}" required="true" onblur="isValidTokenNumMtto('tokenNumber_5');"></h:inputText>
+								
+								<h:inputText id="newTokenNumber_5" value="#{MttoBEMRenovToken.newTokenNumber_5}" style="width:220px;"  onkeypress="return isNumberKey(event)"
+								maxlength="9" styleClass="camposx" requiredMessage="#{msgs.mttoNumToken5Error}" required="true" onblur="isValidTokenNumMtto('newTokenNumber_5');"></h:inputText>
+					
+								<h:inputText id="folioPsd_5" value="#{MttoBEMRenovToken.folioPsd_5}"  onkeypress="return isNumberKey(event)"
+								maxlength="7" style="width:220px;" styleClass="camposx" requiredMessage="#{msgs.mttoFolioPass5Error}"  required="true"></h:inputText>
+									
+								
+							</h:panelGrid>
+					</h:panelGrid>
+							
+							<br/>
+	<!--FIN Seccion: Alta de Cuentas Propias -->
+	
+	
+	<!-- Seccion: Nombre del Cliente -->
+	
+				<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Datos de la Empresa" />
+							</f:facet>
+
+							<h:panelGrid columns="2" border="0" cellpadding="5"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:outputText value="Nombre, Denominación o Razón Social de la Empresa" />
+								<h:outputText value="Colonia" />
+
+								<h:inputText id="fiscalFullName"
+									style="width:250px;"
+									maxlength="150" styleClass="camposx"
+									requiredMessage="#{msgs.mttoFiscalNameError}"
+									value="#{MttoBEMRenovToken.fiscalFullName}"
+									required="true" />
+								<h:inputText id="bem_colony"
+									style="width:200px;"
+									maxlength="70" styleClass="camposx"
+									requiredMessage="#{msgs.mttoColoniaError}"
+									value="#{MttoBEMRenovToken.bem_colony}"
+									required="true" />
+							</h:panelGrid>
+					
+							<h:panelGrid columns="4" border="0" cellpadding="5"
+								cellspacing="0" styleClass="contractStyleInner">
+								<h:outputText value="Domicilio" />
+								<h:outputText value="CP" />
+								<h:outputText value="Estado" />
+								<h:outputText value="Poblacion" />
+
+								<h:inputText id="bem_address"
+									style="width:200px;"
+									maxlength="80" styleClass="camposx"
+									value="#{MttoBEMRenovToken.bem_address}"
+									requiredMessage="#{msgs.mttoDomicilioError}"
+									required="true" />
+									
+								<h:inputText id="bem_cp"
+									style="width:75px;"
+									onkeypress="return isNumberKey(event)"
+									maxlength="5" styleClass="camposx"
+									value="#{MttoBEMRenovToken.bem_cp}"
+									requiredMessage="#{msgs.mttoCPError}"
+									required="true" />
+								
+								<h:selectOneMenu id="bem_state" onchange="submit()"
+									immediate="true" style="width:180px" class="camposx"
+									value="#{MttoBEMRenovToken.celebrationstate}" required="false">
+									<f:selectItem itemValue="Seleccione un Estado" />
+									<f:selectItems value="#{MttoBEMRenovToken.statesArray}" />
+								</h:selectOneMenu>
+
+								<h:selectOneMenu id="bem_population"
+									value="#{MttoBEMRenovToken.celebrationplace}"
+									style="width:180px" class="camposx" required="false">
+									<f:selectItem itemValue="Seleccione una Ciudad" />
+									<f:selectItems value="#{MttoBEMRenovToken.citiesCelebrationArray}" />
+								</h:selectOneMenu>
+							
+							</h:panelGrid>
+							
+							<h:panelGrid columns="1" border="0" cellpadding="5"
+								cellspacing="0" styleClass="contractStyleInner">
+								<h:outputText value="Apoderado Legal" />
+								
+								<h:inputText id="legalRepresentativeFullName"
+									onkeypress="return isTextNAN(event)" style="width:200px;"
+									maxlength="50" styleClass="camposx"
+									value="#{MttoBEMRenovToken.legalRepresentativeFullName}"
+									required="false" />
+							</h:panelGrid>
+							
+						</h:panelGrid>
+	
+	<br/>
+	<!--FIN Seccion: Nombre del Cliente -->
+	
+	
+	<!-- Seccion: Funcionario que Capturo la solicitud del Mantenimiento -->
+	
+	
+<a name="officeInfo"></a>		
+	<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText
+									value="Datos del Funcionario que Capturo la solicitud del Mantenimiento" />
+							</f:facet>
+							<!-- Row1  -->
+							<h:panelGrid columns="1" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:panelGroup>
+									<h:outputText value="No. Empleado " />
+									<h:inputText id="officerempnumber" style="width:80px;"
+										onkeypress="return isTextNON(event)" maxlength="8"
+										styleClass="camposx"
+										requiredMessage="#{msgs.mttoofficerEmpNumberReqError}"
+										value="#{MttoBEMRenovToken.officerempnumber}" required="false" />
+									<h:commandLink id="SearchOfficerMtto"
+										actionListener="#{MttoBEMRenovToken.findOfficerInfo}"
+										immediate="false" style="text-decoration: none">
+										<h:graphicImage url="../img_contracts/images/arrowrightmonth.gif"
+											alt="X Consultar" title="Buscar" style="border:0px" />
+										<f:param name="anchorSearchOfficerMtto" value="officeInfo" />
+									</h:commandLink>
+								</h:panelGroup>
+							</h:panelGrid>
+							<!-- Row2  -->
+							<h:panelGrid columns="4" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleSecondRow">
+								<h:outputText value="Nombre" />
+								<h:outputText value="Apellido Paterno" />
+								<h:outputText value="Apellido Materno" />
+								<h:outputText value="Puesto" />
+
+								<h:inputText id="officername"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerNameReqError}"
+									value="#{MttoBEMRenovToken.officername}" 
+									required="false"
+									disabled="#{empty MttoBEMRenovToken.officername ? 'false' : 'true'}" />
+								<h:inputText id="officerlastname"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerLastnameReqError}"
+									value="#{MttoBEMRenovToken.officerlastname}" 
+									required="false"
+									disabled="#{empty MttoBEMRenovToken.officerlastname ? 'false' : 'true'}" />
+								<h:inputText id="officermothersln"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerMothersLnReqError}"
+									value="#{MttoBEMRenovToken.officermothersln}" 
+									required="false"
+									disabled="#{empty MttoBEMRenovToken.officermothersln ? 'false' : 'true'}" />
+								<h:inputText id="officerposition"
+									onkeypress="return isText(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerPositionReqError}"
+									value="#{MttoBEMRenovToken.officerposition}" 
+									required="false"
+									disabled="#{empty MttoBEMRenovToken.officerposition ? 'false' : 'true'}" />
+							</h:panelGrid>
+						</h:panelGrid>
+	
+	<br/>
+	<!--FIN Seccion: Funcionario que Capturo la solicitud del Mantenimiento -->
+	
+	<!-- Seccion: Datos Funcionario Banorte -->
+	
+<a name="officeRepInfo"></a>
+			<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText
+									value="Datos Funcionario Banorte" />
+							</f:facet>
+							<!-- Row1 -->
+							<h:panelGrid columns="1" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:panelGroup>
+								<h:outputText value="No. Empleado 1 " />
+								<h:inputText id="officerrepempnumber_1"
+									onkeypress="return isTextNON(event)" style="width:80px;"
+									maxlength="8" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerRepNumber1ReqError}"
+									value="#{MttoBEMRenovToken.officerrepempnumber_1}" required="false" />
+								<h:outputText value="" />
+									<h:commandLink id="SearchOfficerRepEmp1Mtto"
+										actionListener="#{MttoBEMRenovToken.findOfficerInfo}"
+										immediate="false" style="text-decoration: none">
+										<h:graphicImage url="../img_contracts/images/arrowrightmonth.gif"
+											alt="X Consultar" title="Buscar" style="border:0px" />
+										<f:param name="anchorSearchOfficerRepEmp1Mtto"
+											value="officeRepInfo" />
+									</h:commandLink>
+								</h:panelGroup>
+							</h:panelGrid>							
+							<!-- Row2 -->
+							<h:panelGrid columns="3" border="0"
+								cellpadding="0" cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:outputText value="Nombre 1" />
+								<h:outputText value="Apellido Paterno 1" />
+								<h:outputText value="Apellido Materno 1" />						
+
+								<h:inputText id="officerrepname_1"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerrepname1ReqError}"
+									value="#{MttoBEMRenovToken.officerrepname_1}" 
+									required="false"
+									disabled="#{empty MttoBEMRenovToken.officerrepname_1 ? 'false' : 'true'}" />
+								<h:inputText id="officerreplastname_1"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerLastname1ReqError}"
+									value="#{MttoBEMRenovToken.officerreplastname_1}" 
+									required="false"
+									disabled="#{empty MttoBEMRenovToken.officerreplastname_1 ? 'false' : 'true'}" />
+								<h:inputText id="officerrepmothersln_1"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerMothersLn1ReqError}"
+									value="#{MttoBEMRenovToken.officerrepmothersln_1}" 
+									required="false"
+									disabled="#{empty MttoBEMRenovToken.officerrepmothersln_1 ? 'false' : 'true'}" />
+								
+								<h:outputText value="No. de Firma 1" />
+								<h:outputText value="Puesto 1" />
+								<h:outputText value="" />
+								
+								<h:inputText id="Officerrepfirmnumber_1" style="width:80px;"
+									onkeypress="return isNumberKey(event)" maxlength="8"
+									styleClass="camposx" value="#{MttoBEMRenovToken.officerrepfirmnumber_1}"
+									required="false" />
+								<h:inputText id="officerrepposition_1"
+									onkeypress="return isText(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerPosition1ReqError}"
+									value="#{MttoBEMRenovToken.officerrepposition_1}" 
+									required="false"
+									disabled="#{empty MttoBEMRenovToken.officerrepposition_1 ? 'false' : 'true'}" />
+								<h:outputText value="" />	
+							</h:panelGrid>
+						
+						</h:panelGrid>
+						
+	<br/>
+	
+	<!--FIN  Seccion: Datos Funcionario Banorte -->
+	
+	
+	<!-- Seccion: Datos Funcionario EBanking Solicitante -->
+	
+		<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Datos del funcionario facultado (eBanking o Transaccional)" />
+							</f:facet>
+							<!-- Row1  -->
+							<h:panelGrid columns="1" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:panelGroup>
+								<h:outputText value="No. Empleado " />
+								<h:inputText id="officerebankingempnumber" style="width:80px;"
+									onkeypress="return isTextNON(event)" maxlength="8"
+									styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerebankingEmpNumberReqError}"
+									value="#{MttoBEMRenovToken.officerebankingempnumber}"
+									required="false" />
+									<h:commandLink id="SearchOfficerBankingMtto"
+										actionListener="#{MttoBEMRenovToken.findOfficerInfo}"
+										immediate="false" style="text-decoration: none">
+										<h:graphicImage url="../img_contracts/images/arrowrightmonth.gif"
+											alt="X Consultar" title="Buscar" style="border:0px" />
+										<f:param name="anchorSearchOfficerBankingMtto" value="officeInfo" />
+									</h:commandLink>
+								</h:panelGroup>
+							</h:panelGrid>
+							<!-- Row2  -->
+							<h:panelGrid columns="3" border="0"
+								cellpadding="0" cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleSecondRow">
+								<h:outputText value="Nombre" />
+								<h:outputText value="Apellido Paterno" />
+								<h:outputText value="Apellido Materno" />
+								
+
+								<h:inputText id="officerebankingname"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerebankingNameReqError}"
+									value="#{MttoBEMRenovToken.officerebankingname}" 
+									required="false"
+									disabled="#{empty MttoBEMRenovToken.officerebankingname ? 'false' : 'true'}" />
+								<h:inputText id="officerebankinglastname"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerebankingLastnameReqError}"
+									value="#{MttoBEMRenovToken.officerebankinglastname}"
+									required="false"
+									disabled="#{empty MttoBEMRenovToken.officerebankinglastname ? 'false' : 'true'}" />
+								<h:inputText id="officerebankingmothersln"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.mttoofficerebankingMothersLnReqError}"
+									value="#{MttoBEMRenovToken.officerebankingmothersln}"
+									required="false"
+									disabled="#{empty MttoBEMRenovToken.officerebankingmothersln ? 'false' : 'true'}" />
+								
+							</h:panelGrid>
+							
+							<h:panelGrid columns="3" border="0"
+								cellpadding="0" cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleSecondRow">
+								
+<!--								<h:outputText value="No. De Firma" />-->
+								<h:outputText value="Puesto" />
+								<h:outputText value="" />
+
+<!--								<h:inputText id="officerebankingnumfirm"-->
+<!--									onkeypress="return isNumberKey(event)" style="width:100px;"-->
+<!--									maxlength="30" styleClass="camposx"-->
+<!--									requiredMessage="#{msgs.officerebankingNameReqError}"-->
+<!--									value="#{MttoBEMRenovToken.officerebankingnumfirm}" -->
+<!--									required="false"-->
+<!--									 />-->
+								<h:outputText value="" />
+								<h:inputText id="officerebankingposition"
+									onkeypress="return isTextNAN(event)" style="width:150px;"
+									maxlength="30" styleClass="camposx"
+									requiredMessage="#{msgs.officerebankingNameReqError}"
+									value="#{MttoBEMRenovToken.officerebankingposition}" 
+									required="false"
+									disabled="#{empty MttoBEMRenovToken.officerebankingposition ? 'false' : 'true'}" />
+								<h:outputText value="" />
+								
+							</h:panelGrid>
+							
+						</h:panelGrid>
+	
+	<br />
+	<!--FIN  Seccion: Datos Funcionario EBanking Solicitante -->
+	
+						
+						
+						
+						
+						<!-- SIC -->
+						<div class="notes">* Numero de Cliente en altamira</div>
+
+						<br />
+						
+
+						<div class="send" id="divSend">
+							| x <h:commandLink id="Guardar" 
+												onclick="hideShow('divSend', 'divSending');" 
+												action="#{MttoBEMRenovToken.processInfo}"
+												immediate="false" 
+												value="ENVIAR"  />  |
+						</div>
+						<div class="cellright" id="divSending" style="visibility: hidden">
+							| x Enviando... |
+						</div>
+						<br />
+						<br />
+						<br />
+            			
+            	</h:form>
+				
+					
+				</f:view>
+			</ui:define>
+
+		</ui:composition>
+	</body>
+</html>

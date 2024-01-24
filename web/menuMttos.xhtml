@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+  <body>
+
+
+    <ui:composition template="./contractTemplate.xhtml">
+
+      <ui:define name="top">
+        Mantenimientos
+      </ui:define>
+
+      <ui:define name="content">
+        <f:view >
+	        <script>
+	        function start(){
+	        	document.getElementById("selCombo").value="BEM";
+	        }
+	        	function changeCombo(){
+	        		var cbo = document.getElementById("selCombo");
+	        		if(cbo.value == "BEM"){
+	        			document.getElementById("tableBEM").style.display="table";
+	        			document.getElementById("tableTPV").style.display="none";
+	        		}else{
+	        			document.getElementById("tableBEM").style.display="none";
+	        			document.getElementById("tableTPV").style.display="table";
+	        		}
+	        	}
+	        	window.onload=start;
+	        </script>
+	        <form>
+	        	<select id="selCombo" size="1" onchange="changeCombo()"> 
+					<option value="BEM">BEM</option>
+					<option value="TPV">TPV</option>
+				</select>
+	        </form>
+	        <br/>
+	        <table id="tableBEM" width="300"  border="0" cellpadding="5" cellspacing="0">
+				<tr>
+					<td width="41"><div align="center"><img src="images/bullet_1.gif"  /></div></td> <!-- ../img_contracts/ -->
+					<td width="236" class="menuLink"><div align="left"><a  href="ordenMttoBEMAccounts.jsf?resetForm=true" >Cuentas Propias</a></div></td>
+				</tr>
+				<tr >
+					<td><div align="center"><img src="images/bullet_1.gif"  /></div></td> <!-- ../img_contracts/ -->
+					<td class="menuLink"><div align="left"><a href="ordenMttoBEMNewPassword.jsf?resetForm=true" >Nueva Contraseña</a></div></td>
+				</tr>
+				<tr>
+	                <td><div align="center"><img src="images/bullet_1.gif" /></div></td> <!-- ../img_contracts/       ?resetForm=true-->
+	                <td class="menuLink"><div align="left"><a href="http://localhost:7001/contract/ordenMttoBEMAddToken.jsf" >Tokens Adicionales</a> </div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="images/bullet_1.gif"  /></div></td> <!-- ../img_contracts/ -->
+					<td class="menuLink"><div align="left"><a href="ordenMttoBEMRenovToken.jsf?resetForm=true" > Reposicion de Tokens  </a></div></td>
+				</tr>
+				<tr >
+					<td><div align="center"><img src="images/bullet_1.gif"  /> </div></td> <!-- ../img_contracts/ -->
+					<td class="menuLink"><div align="left"><a href="ordenMttoBEMUpdateAgree.jsf?resetForm=true" > Convenio Modificatorio  </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="images/bullet_1.gif"  /></div></td> <!-- ../img_contracts/ -->
+					<td class="menuLink"><div align="left"><a href="ordenMttoBEMDropCompany.jsf?resetForm=true" >Baja Empresa  </a></div></td>
+				</tr>
+				<tr >
+					<td><div align="center"><img src="images/bullet_1.gif"  /></div></td> <!-- ../img_contracts/ -->
+					<td class="menuLink"><div align="left"><a href="ordenMttoBEMDropToken.jsf?resetForm=true" > Baja Tokens </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="images/bullet_1.gif"  /></div></td> <!-- ../img_contracts/ -->
+					<td class="menuLink"><div align="left"><a href="ordenMttoBEMDropAccount.jsf?resetForm=true" > Baja Cuentas </a></div></td>
+				</tr>
+			</table>
+			
+			
+			<!-- Mantenimientos TPV -->
+			<table id="tableTPV" width="300"  border="0" cellpadding="5" cellspacing="0" style="display:none">
+				
+				<tr>
+					<td><div align="center"><img src="images/bullet_1.gif" /></div></td> <!-- ../img_contracts/ ordenMttoTPVGeneric.jsf?url=CambioDomicilio-->
+					<td class="menuLink"><div align="left"><a href="http://localhost:7001/contract/ordenMttoTPVDomicilio.jsf?resetForm=true"> Cambio de domicilio </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="images/bullet_1.gif"  /></div></td> <!-- ../img_contracts/ ordenMttoTPVGeneric.jsf?url=cambioTelefono-->
+					<td class="menuLink"><div align="left"><a href="http://localhost:7001/contract/ordenMttoTPVCambioTelefono.jsf?resetForm=true" > Cambio de teléfono </a></div></td>
+				</tr>
+<!--			<tr>
+					<td><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td> 
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=serviciosEspeciales" > Servicios especiales </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td> 
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=cambioBanco" > Cambio de banco </a></div></td>
+				</tr>   -->
+				<tr>
+					<td><div align="center"><img src="images/bullet_1.gif"  /></div></td> <!-- ../img_contracts/ -->
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=cambioCRGestor" > Cambio de cr gestor </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="images/bullet_1.gif"  /></div></td> <!-- ../img_contracts/ -->
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=cambioURL" > Cambio de URL </a></div></td>
+				</tr>
+<!--			<tr>
+					<td><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td> 
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=addendumWeb" > Addendum herramienta web conciliacion payworks </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td> 
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=reposicionEquipo" > Reposicion de equipo, id, tpv o por robo o extravio </a></div></td>
+				</tr>   -->
+				<tr>
+					<td><div align="center"><img src="images/bullet_1.gif"  /></div></td> <!-- ../img_contracts/ -->
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=reenvioClaves" > Reenvio de claves de sistema payworks </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="images/bullet_1.gif"  /></div></td> <!-- ../img_contracts/ -->
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=cambioCorreoElectronico" > Cambio de correo electronico en sistema payworks </a></div></td>
+				</tr>
+<!--			<tr>
+					<td><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td>   
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=cambioAplicacion" > Cambio de Aplicacion </a></div></td>
+				</tr> -->
+				<tr>
+					<td><div align="center"><img src="images/bullet_1.gif"  /></div></td> <!-- ../img_contracts/ -->
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=cambioCuentaCheques" > Cambio de Cuenta de Cheques </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="images/bullet_1.gif"  /></div></td> <!-- ../img_contracts/ -->
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=cambioNombreComercial" > Cambio de Nombre Comercial </a></div></td>
+				</tr>
+<!--			<tr>
+					<td><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td>   
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=incrementoTecho" > Incremento de limite de techo </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td> 
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=incrementoVoucher" > Incremento de linea de voucher </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td> 
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=equiposTempEventos" > Equipos temporales para eventos </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td> 
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=3dSecure" > Realizacion de 3d secure </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td> 
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=cambioApoderado" > Cambio de Apoderado </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td> 
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=cancelacionMonitoreo" > Cancelacion por monitoreo </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td> 
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=cambioGiro" > Cambio de giro </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td>
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=cambioRFC" > Cambio de RFC </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td>
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=cambioClienteVIP" > Cambio de Ciente VIP </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td>
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=bajaTerminal" > Baja de Terminal </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td>
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=idAdsCambioEquipo" > Id adicionales y cambios de equipo </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td>
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=cambioSIM" > Cambio de SIM </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td>
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=bajasComision" > Bajas de comision </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td>
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=pagosDif15Bancos" > Pagos diferidos 15 bancos </a></div></td>
+				</tr>
+				<tr>
+					<td><div align="center"><img src="../img_contracts/images/bullet_1.gif"  /></div></td>
+					<td class="menuLink"><div align="left"><a href="ordenMttoTPVGeneric.jsf?url=pagosDifBanorteIXE" > Pagos diferidos banorte &amp; IXE (agregar o quitar plazos) </a></div></td>
+				</tr> -->
+	        </table> 
+        </f:view>
+      </ui:define>
+
+    </ui:composition>
+
+  </body>
+</html>

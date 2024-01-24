@@ -1,0 +1,277 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+	<body>
+		<ui:composition template="./contractTemplate.xhtml">
+			<ui:define name="top">
+        Orden Nomina
+      </ui:define>
+
+			<ui:define name="content">
+				<f:view>
+					<h:form id="forma">
+						<br />
+						<h:messages layout="table" styleClass="errorStyle" />
+						<br />
+						<c:if test="${param['resetForm']==true}">
+              #{ContractPayrollMB.resetForm}
+            </c:if>
+						<c:if test="${param['editForm']==true}">
+              #{ContractPayrollMB.editForm}
+            </c:if>
+						
+						<!--PanelGrid Orden Nomina-->
+						<h:panelGrid styleClass="contractStyle" columns="1"
+							cellpadding="0" cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Orden Nomina" />
+							</f:facet>
+							
+							<h:panelGrid columns="5" width="99%" border="0" cellpadding="0"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:outputText value="No. Cliente" />
+								<h:outputText value="Tipo de Solución" />
+								<h:outputText value="No. Empresa BEM" />
+								<h:outputText value="Periodicidad de Dispersión" />
+								<h:outputText value="Días de Abono Anticipado" />
+
+								<h:inputText id="client_sic" style="width:70px;"
+									onkeypress="return isNumberKey(event)" maxlength="8"
+									styleClass="camposx" value="#{ContractPayrollMB.client_sic}"
+									requiredMessage="#{msgs.obClient_sicReqError}" required="true" />
+								
+								<h:selectOneMenu id="payrolltype" styleClass="camposx"
+									onchange="activateFill(1, 'forma:payrolltype', 'forma:bemnumber');"
+									value="#{ContractPayrollMB.payrolltype}">
+									<f:selectItem itemValue="Impulso Nomina Web" itemLabel="Impulso Nomina Web" />
+								</h:selectOneMenu>
+
+								<h:inputText id="bemnumber"
+									onkeypress="return isNumberKey(event)"
+									onblur="return obBem('bemnumber');" style="width:100px;"
+									maxlength="10" styleClass="camposx"
+									value="#{ContractPayrollMB.bemnumber}" disabled="false"
+									required="false" />
+
+								<h:selectOneMenu id="perioddispersion" styleClass="camposx"
+									requiredMessage="#{msgs.onPeriodDispersionReqError}"
+									value="#{ContractPayrollMB.perioddispersion}" required="true">
+									<f:selectItems
+										value="#{ContractPayrollMB.perioddispersionArray}" />
+								</h:selectOneMenu>
+								<h:inputText id="daystankpayroll"
+									onkeypress="return isNumberKey(event)" style="width:100px;"
+									maxlength="2" styleClass="camposx"
+									requiredMessage="#{msgs.onDaysTankPayrollReqError}"
+									value="#{ContractPayrollMB.daystankpayroll}" required="true" />
+
+								<h:outputText value="Tipo de Paquete" />
+								<h:outputText value="Número de Empleados" />
+								<h:outputText value="Sueldo Promedio por Empleado" />
+								<h:outputText value="Porcentaje Rotación de Personal" />
+								<h:outputText value="Número de Cuenta Dispersadora" />
+
+								<h:selectOneMenu id="packagetype" onchange="return nomina();" 
+									styleClass="camposx"
+									requiredMessage="#{msgs.onPackageTypeReqError}"
+									value="#{ContractPayrollMB.packagetype}" required="true">
+									<f:selectItems value="#{ContractPayrollMB.packagetypeArray}" />
+								</h:selectOneMenu>
+								<h:inputText id="quantemployees"
+									onkeypress="return isNumberKey(event);" style="width:100px;"
+									maxlength="10" styleClass="camposx"
+									requiredMessage="#{msgs.onQuantEmployeesReqError}"
+									value="#{ContractPayrollMB.quantemployees}" required="true" />
+								<h:inputText id="avsalarybyemployee"
+									onkeypress="return isNumberKey(event)" style="width:100px;"
+									maxlength="10" styleClass="camposx"
+									requiredMessage="#{msgs.onAvSalaryByEmployeeReqError}"
+									value="#{ContractPayrollMB.avsalarybyemployee}" required="true" />
+								<h:inputText id="avstaffturnover"
+									onkeypress="return isNumberKey(event)" style="width:100px;"
+									maxlength="2" styleClass="camposx"
+									requiredMessage="#{msgs.onAvStaffTurnOverReqError}"
+									value="#{ContractPayrollMB.avstaffturnover}" required="true" />
+								<h:inputText id="accountnumber"
+									onkeypress="return isNumberKey(event)"
+									onblur="isValidAccNum('accountnumber');" style="width:100px;"
+									maxlength="10" styleClass="camposx"
+									requiredMessage="#{msgs.onAccountNumberReqError}"
+									value="#{ContractPayrollMB.accountnumber}" required="true" />
+								
+								<h:outputText value="Banca/Segmento" />
+								<h:outputText value="Folio Validación." />
+								<h:selectBooleanCheckbox title="Afilicación Automática" style="visibility:hidden"
+									value="#{ContractPayrollMB.autoRegister}">
+									<h:outputText value="Afilicación Automática" style="visibility:hidden" />
+								</h:selectBooleanCheckbox>
+								<h:outputText value="" />
+								<h:outputText value="" />
+								
+								<h:selectOneMenu id="bancaSegmentoNomina"  style="width:100px;" onchange="validacionBancaSegmentoNomina();" onclick="validacionBancaSegmentoNomina();"
+			                		styleClass="camposx" value="#{ContractPayrollMB.bancaSegmentoNomina}" required="false">
+			                  	<f:selectItem itemValue="pyme" itemLabel="PyME"/>
+			                	<f:selectItem itemValue="gobierno" itemLabel="Gobierno Estatal o Municipal"/>
+			                	<f:selectItem itemValue="comparativo" itemLabel="Comparativo"/>
+			                	<f:selectItem itemValue="empresarial" itemLabel="Empresarial"/>
+			                  </h:selectOneMenu>
+			                  
+			                  <h:panelGroup>
+				                    <h:inputText id="folioValidacionNomina" style="width: 130px; "
+				                    onchange="onchangeFolioValidacion();"
+										onkeypress="return isTextNON(event)" maxlength="20"
+										styleClass="camposx" value="#{ContractPayrollMB.folioValidacionNomina}" required="false" />
+										
+									<h:commandLink id="searchFolioNomina"
+										actionListener="#{ContractPayrollMB.findFolioNomina}"
+										immediate="false" style="text-decoration: none">
+										<!-- <h:graphicImage url="../img_contracts/images/arrowrightmonth.gif" --> <!-- LINEA PARA PRODUCCION -->
+										<h:graphicImage url="images/arrowrightmonth.gif"
+											alt="X Consultar" title="Buscar" style="border:0px" />
+										<f:param name="anchorSearchOfficerBranch" value="officeInfo" />
+									</h:commandLink>
+							  </h:panelGroup>
+							  
+							  
+							  <h:inputHidden id="esFolioValido" value="#{ContractPayrollMB.esFolioValido}" />
+							  <h:inputHidden id="isValidarFolio" value="#{ContractPayrollMB.isValidarFolio}" />
+							  <h:outputText value="" />
+									
+							
+							</h:panelGrid>
+
+						</h:panelGrid>
+
+						<br />
+						<br />
+						<div class="notemsg">
+							<p align="center">
+								<br />
+								Nota: Para los nuevos clientes que utilicen layout con este
+								servicio, es obligatorio definir en la posición 109 a 112 clave del
+								producto de la cuenta (0367)Nómina sin Chequera ó (0368)Nómina con
+								Chequera según sea el caso. 
+								<br />
+								<br/>
+							</p>
+						</div>
+						<br />
+						<br/>
+						<div class="notemsg">
+							<p align="center">
+								<br />
+								Recuerda que para solicitudes con condiciones comerciales
+								especiales, deberás contar con el estudio de rentabilidad
+								correspondiente firmado por tu Director Regional o Territorial
+								según corresponda y anexarlo al expediente para futuras
+								aclaraciones.
+								<br />
+								<br/>
+							</p>
+						</div>
+						<br />
+						<br />
+
+						<!--Comisiones-->
+						<h:panelGrid columns="1" cellpadding="0" cellspacing="0"
+							styleClass="contractStyle" rowClasses="tableStyleFirstRow">
+							<f:facet name="header">
+								<div id="comisiones"></div>
+							</f:facet>
+
+							<h:panelGrid columns="5" width="99%" border="0" cellpadding="3"
+								cellspacing="0" rowClasses="tableStyleFirstRow">
+								<h:outputText
+									value="Comisión por dispersión a cuenta Banorte Tradicional (Batch)" />
+								<h:outputText value="Comisión por dispersión a otro Banco" />
+								<h:outputText value="Comisión por dispersión en LINEA" />
+								<h:outputText
+									value="Comisión por transmitir archivos en SUCURSAL" />
+								<h:outputText
+									value="Cobro por (expedición/reposición/adicional) a:" />
+
+								<h:inputText id="commtraddispersal" style="width:100px;"
+									maxlength="10" styleClass="camposx"
+									requiredMessage="#{msgs.onCommTradDispersalReqError}"
+									value="#{ContractPayrollMB.commtraddispersal}" required="true" 
+									onkeypress="return isDecimalKey(event)"/>
+								<h:inputText id="commdispersalanotherbank" style="width:100px;"
+									maxlength="10" styleClass="camposx"
+									requiredMessage="#{msgs.onCommDispersalAnotherBankReqError}"
+									value="#{ContractPayrollMB.commdispersalanotherbank}"
+									required="true" />
+								<h:inputText id="commonlinedispersal" style="width:100px;"
+									maxlength="10" styleClass="camposx"
+									requiredMessage="#{msgs.onCommonLineDispersalReqError}"
+									value="#{ContractPayrollMB.commonlinedispersal}"
+									required="true" />
+								<h:inputText id="commfiletransmition" style="width:100px;"
+									maxlength="10" styleClass="camposx"
+									requiredMessage="#{msgs.onCommFileTransmitionReqError}"
+									value="#{ContractPayrollMB.commfiletransmition}"
+									required="true" />
+								<h:selectOneMenu id="charge" styleClass="camposx"
+									requiredMessage="#{msgs.onChargeReqError}"
+									value="#{ContractPayrollMB.charge}" required="true">
+									<f:selectItems value="#{ContractPayrollMB.chargeArray}" />
+								</h:selectOneMenu>
+							</h:panelGrid>
+
+						</h:panelGrid>
+
+						<br />
+						<br />
+
+						<!--Comentarios-->
+						<h:panelGrid rowClasses="tableStyleFirstRow"
+							styleClass="contractStyle" columns="1" cellpadding="0"
+							cellspacing="0">
+							<f:facet name="header">
+								<h:outputText value="Comentarios" />
+							</f:facet>
+
+							<h:panelGrid columns="1" width="99%" border="0" cellpadding="3"
+								cellspacing="0" styleClass="contractStyleInner"
+								rowClasses="tableStyleFirstRow">
+								<h:outputText value="Comentarios" />
+								<h:inputTextarea id="comments" styleClass="camposx" cols="70"
+									rows="3" value="#{ContractPayrollMB.comments}" required="false" />
+							</h:panelGrid>
+						</h:panelGrid>
+						<br />
+						<br />
+						<h:inputHidden id="repetirValidarFolio" value="#{ContractPayrollMB.repetirValidarFolio}"></h:inputHidden>
+						
+
+						<div class="send">
+							| x
+							<h:commandLink id="Guardar" onclick="return validateNominaForm();"
+								action="#{ContractPayrollMB.continueToGeneralInfo}"
+								immediate="false" value="ENVIAR" />
+							|
+						</div>
+					</h:form>
+					<script type="text/javascript">
+            /* <![CDATA[ */
+            function start() {
+            /*var reValidarFolio = document.getElementById("forma:repetirValidarFolio");
+              alert("aaa "+reValidarFolio.value);*/
+            	//mensajeFolioValidacion();
+              //nomina();
+              nominaStart();
+              
+            }
+            window.onload = start;
+            /* ]]> */
+          </script>
+				</f:view>
+			</ui:define>
+
+		</ui:composition>
+	</body>
+</html>

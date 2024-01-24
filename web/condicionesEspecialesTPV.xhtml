@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jstl/core"
+      >
+    <body>
+      <ui:composition template="./contractTemplate.xhtml">
+
+      <ui:define name="top">
+        Tipos de Equipos
+      </ui:define>
+
+      <ui:define name="content">
+        <f:view>
+          <h:form id="forma">
+            <br/>
+            
+             <c:if test="#{! empty ContractAcquirerMB.errorsList}">
+              <h:dataTable id="list" value="#{ContractAcquirerMB.errorsList}" rendered="#{! empty ContractAcquirerMB.errorsList}" var="errors" styleClass="contractStyleNone" rowClasses="tableStyleSecondRow">
+                <h:column>                  
+                  <h:outputText value="#{errors.message}" styleClass="msgValidation"/>
+                </h:column>                 
+              </h:dataTable>              
+            <br/>
+            <br/>
+            </c:if>
+            
+              <h:panelGrid styleClass="contractStyleSpecial" width="99%" cellpadding="0" cellspacing="0">
+	               <f:facet name="header" >
+    		           <h:dataTable>
+							<h:column id="col1">
+								<f:facet name="header">
+									<h:outputText value="Modelo"/>
+								</f:facet>
+							</h:column>
+							<h:column id="col2">
+								<f:facet name="header">
+								 	<h:outputText value="Numero de equipos"/>
+								</f:facet>
+							</h:column>
+							<h:column id="col3">
+								<f:facet name="header">
+									<h:outputText value="Plan Banorte"/>
+								</f:facet>
+							</h:column>
+						</h:dataTable> 
+                  	   </f:facet>   
+
+	                <h:panelGrid columns="3" width="99%" border="0" cellpadding="0" cellspacing="0" styleClass="contractStyleInner" rowClasses="tableStyleFirstRow, tableStyleSecondRow">
+	                  <h:outputText value="GPRS/CDMA"/>
+	                  <h:inputText style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="3" id="affiliation_quantgprs" value="#{ContractAcquirerMB.affiliation_quantgprs}"/>
+	                  <h:selectBooleanCheckbox id="affiliation_plangprs" value="#{ContractAcquirerMB.affiliation_plangprs}"/>
+	                  
+	                  <h:outputText value="Wifi"/>
+	                  <h:inputText style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="3" id="affiliation_quantwifi" value="#{ContractAcquirerMB.affiliation_quantwifi}"/>
+	                  <h:selectBooleanCheckbox id="affiliation_planwifi" value="#{ContractAcquirerMB.affiliation_planwifi}"/>
+	
+	                  <h:outputText value="Lan"/>
+	                  <h:inputText style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="3" id="affiliation_quantlan" value="#{ContractAcquirerMB.affiliation_quantlan}"/>
+	                  <h:outputText value=""/>
+	                  
+	                   <h:outputText value="Bluetooth"/>
+	                  <h:inputText style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="3" id="affiliation_quantblue" value="#{ContractAcquirerMB.affiliation_quantblue}"/>
+	                  <h:outputText value=""/>
+	                  
+	                  <h:outputText value="Dial up"/>
+	                  <h:inputText style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="3" id="affiliation_quantdialup" value="#{ContractAcquirerMB.affiliation_quantdialup}"/>
+	                  <h:outputText value=""/>
+	                  
+	                  <h:outputText value="Placa o Transcriptora"/>
+	                  <h:inputText style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="3" id="affiliation_quantmanual" value="#{ContractAcquirerMB.affiliation_quantmanual}"/>
+	                  <h:outputText value=""/>
+	                  
+	                  <h:outputText value="PinPad"/>
+	                  <h:inputText style="width:50px;" onkeypress="return isNumberKey(event)" maxlength="3" id="affiliation_quantpinpad" value="#{ContractAcquirerMB.affiliation_quantpinpad}"/>
+	                  <h:outputText value=""/>
+	                </h:panelGrid>    
+              </h:panelGrid>
+            <br/>
+            <br/>
+
+            <div class="notemsg">
+              Recuerda que los números de equipo a solicitar deberán coincidir con lo informado en la tabla de comisiones.
+            </div>
+
+            <br/>
+            <br/>
+            <div class="send">
+                | x <h:commandLink id="Guardar" action="#{ContractAcquirerMB.validateQuantTpvs}" immediate="false">ENVIAR |</h:commandLink>
+                    
+                    
+            </div>
+          </h:form>
+        </f:view>
+      </ui:define>
+      
+    </ui:composition>
+    </body>
+  </html>
+
